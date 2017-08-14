@@ -1,0 +1,54 @@
+<!--pages/me/functions/set.wxml-->
+
+<view class="box-top">
+   <navigator url="changePhone" hover-class="none" class="content">
+    修改手机号
+         <image class="btn-enter" src="../../../img/icon/enter.png"></image>
+    </navigator>
+   <view class="middle"></view>
+   <navigator url="changePassword" hover-class="none"  class="content">
+    修改密码
+     <image class="btn-enter" src="../../../img/icon/enter.png"></image>
+    </navigator>
+
+</view>
+
+
+
+<view class="box-top">
+ <block wx:for="{{functionList}}" wx:key="{{item}}">
+   <view class="content">
+    {{item.title}}
+      <form report-submit bindsubmit="setting" data-index="{{index}}">
+        <view class="box-text">
+         <button class="set-btn {{remindFlag[index]==1?'close':'open'}}" formType="submit">{{remindFlag[index]==1?'关闭':'开启'}}</button>
+        </view>
+      </form>
+      <view class="remind">
+       {{item.warn}}
+      </view>
+    </view>
+   <view class="middle"></view>
+ </block>
+</view>
+
+
+
+<view class="box-top">
+   <view class="content">
+    清理缓存
+    </view>
+</view>
+
+<!--弹出框-->
+<modal title="推荐频率" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" bindconfirm="AgreeRecommend" bindcancel="modalHide">
+<radio-group bindchange="radioVal">
+ <label wx:for="{{radioValue}}" wx:key="{{item}}">
+  <view class="_radio">
+   <radio value="{{item.value}}" checked="{{frequency}}" />
+   {{item.name}}
+  </view>
+ </label>
+</radio-group>
+</modal>
+ 

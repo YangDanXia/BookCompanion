@@ -1,0 +1,16 @@
+<!--pages/index/functions/library.wxml-->
+<view class="search-box">
+  <view class="search search-btn"  bindtap="search">
+     <image class="search-scan" src="../../../img/icon/location.png" />
+   </view>
+   <navigator url="map" class="search search-input"><text class="search-text"> 查看地图</text></navigator>
+   <view class="search search-right"  bindtap="search"> </view>
+</view>
+   <view class="themes-list" wx:for="{{wxMarkerData}}" wx:key="{{item}}">
+    <view class="themes-list-box" data-index="{{index}}" bindtap="choosed">
+       <view class="themes-list-main">
+         <view class="themes-list-name">{{item.title}}</view>
+         <view class="themes-list-description">{{item.address}}</view>
+       </view>
+     </view>
+    </view>

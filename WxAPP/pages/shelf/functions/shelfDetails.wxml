@@ -1,0 +1,68 @@
+<!--pages/shelf/functions/shelfDetails.wxml-->
+
+<!-- loading -->
+<loading hidden="{{loadHidden}}">
+    加载中...
+</loading>
+
+ <scroll-view style="height:{{winHeight}}px" scroll-y="true" enable-back-to-top="true" >
+ <view class="box-title-top">
+  <view class="book-details">
+   <view class="book-cover">
+     <image class="cover" src="{{bookShelfValue.img}}"></image>
+   </view>
+   <view class="book-synopsis">
+    <view class="book-title">
+      <text>{{bookShelfValue.name}}</text>
+    </view>
+    <view class="book-brief">{{bookShelfValue.intro}}</view>
+  </view>
+</view>
+
+
+
+<!--功能栏-->
+
+<view class="themes-box-top">
+    <view class="classname">
+      <view bindtap="{{item.bindtap}}">
+        <image  class="themes-box-title" src="../../../img/icon/addToShelf.png" />
+        <text class="themes-box-subtitle">收藏</text>
+      </view>
+    </view>
+
+    <view class="classname">
+      <view bindtap="{{item.bindtap}}">
+        <image  class="themes-box-title"  src="../../../img/icon/discuss.png"  />
+        <text class="themes-box-subtitle">评论</text>
+      </view>
+    </view>
+    <view class="classname">
+      <view bindtap="{{item.bindtap}}">
+        <image  class="themes-box-title"  src="../../../img/icon/share.png"  />
+        <text class="themes-box-subtitle">分享</text>
+      </view>
+    </view>
+
+</view>
+</view>
+<!--简介-->
+   <view class="list fun-list">
+      <block wx:for="{{bookShelfValue.detail}}"  wx:key="item"> 
+           <view class="wrap-item">  
+             <navigator url="../book/book?isbn={{item.img}}"  hover-class="none" class="navs">
+                <image class="book" src="{{item.img}}"></image>
+             </navigator>
+                <view>
+                  <image class="book-collect" src="../../../img/icon/like.png"></image>
+                  <view class="themes-list-name">{{item.title}}</view>
+                  <view class="themes-list-description">{{item.author}}</view>
+                </view>
+            </view>
+          </block>
+    </view>
+</scroll-view>
+
+
+
+ 

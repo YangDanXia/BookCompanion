@@ -1,0 +1,251 @@
+/* pages/shelf/shelf.wxss */
+
+Page{
+    background:#fff;
+    height:0;
+}
+
+
+/*标题栏*/
+.swiper-tab{ 
+   height: 70rpx; 
+   line-height: 70rpx; 
+   background: #FFF; 
+   display: flex; 
+   position: relative; 
+   z-index: 2; 
+   flex-direction:row; 
+   justify-content:center; 
+   align-items:center;
+   margin-bottom:10rpx;
+  }
+
+.swiper-tab-list{ 
+   margin: 0 100rpx;  
+   font-size: 35rpx; 
+   font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif 
+  }
+
+.on{ border-bottom: 3px solid #3399FF; color: #3399FF; }
+
+
+/*个性推荐*/
+.slide-image
+{
+  width:750rpx;
+  height:350rpx;
+}
+
+.title{ 
+   font-size:35rpx;
+   color: #666;
+   margin-left:30%;
+  /* padding-top:30rpx; */
+   padding-bottom:20rpx;
+   /*font-weight:bold;*/
+
+   }
+.title-btn{
+  width:80rpx;height:60rpx;
+}
+
+.first-box
+{
+  box-sizing:border-box;
+  display:flex;
+  justify-content:flex-start;/*定义了项目在主轴上的对齐方式*/
+  align-items:flex-start; /*具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下*/
+  flex-direction:row; /* 主轴的方向（即项目的排列方向）*/
+  flex-wrap:nowrap; /*如果一条轴线排不下，如何换行。*/
+  align-content:stretch; /*定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。*/
+  width:750rpx;
+  height: 270rpx; 
+  background-color: transparent;
+ /*color: #FFFFFF; */
+ /*line-height:40rpx;*/ 
+  border-top:2px solid #cdcdcd;
+  border-bottom:1px solid #cdcdcd;
+}
+.first-boxone
+{
+  box-sizing:border-box;
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-start;
+  flex-direction:row;  /*默认值*/
+  flex-wrap:wrap; 
+  align-content:stretch; 
+  margin: 20rpx 25rpx 20rpx 25rpx; 
+  width:180rpx;
+  height:220rpx;
+  overflow: hidden;
+}
+.first-boxonepicture
+{
+  width:180rpx;
+  height:220rpx;
+  background-size:contain;
+}
+.first-boxtwo
+{
+  box-sizing:border-box;
+  display:flex;
+  justify-content:flex-start;
+  align-items:flex-start;
+  flex-direction:row;  /*默认值*/
+  flex-wrap:wrap; 
+  align-content:stretch; 
+  margin: 20rpx 25rpx 15rpx 10rpx; 
+  width:500rpx;
+  height:230rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  display: -moz-box;
+  word-break: break-all;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:5;
+  background-color: #FFFFFF; 
+  line-height:45rpx; 
+}
+.main-text
+{
+  color: #000000;
+  font-size:30rpx;
+}
+
+.shuxian
+{
+  width:35rpx;
+  height:30rpx;
+}
+
+
+.box-subtitle
+{
+  font-size:25rpx;
+  color: #8a8a8a;
+  line-height: 25rpx;
+}
+.box-imgtext
+{
+  color: #000000;
+  font-size:27rpx;
+}
+
+
+
+/* 我的书单 */
+.myShelfTop{
+  display:flex;
+}
+.shelfTop{ 
+   font-size:35rpx;
+   color: #666;
+   padding-top:20rpx;
+   padding-bottom:30rpx;
+   padding-left:110rpx;
+}
+
+.shelf-btn{
+  width:60rpx;
+  height:50rpx;
+}
+
+.shelf-text{
+  padding:20rpx;
+}
+
+navigator {
+width:auto;
+height:auto;
+
+}
+ 
+.themes-list{ 
+    background: #fff; 
+    display: flex;
+   /* margin-bottom:15rpx;*/
+    }
+
+.themes-list-box{ 
+    display: block; 
+    position: relative; 
+    padding: 15rpx 0rpx; 
+    border-bottom: 0px solid  #D3D3D3;
+    width:90%;
+  }
+
+.shelf-box
+{
+  box-sizing:border-box;
+  display:flex;
+  justify-content:flex-start;/*定义了项目在主轴上的对齐方式*/
+  align-items:flex-start; /*具体的对齐方式与交叉轴的方向有关，下面假设交叉轴从上到下*/
+  flex-direction:row; /* 主轴的方向（即项目的排列方向）*/
+  flex-wrap:nowrap; /*如果一条轴线排不下，如何换行。*/
+  align-content:stretch; /*定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。*/
+  width:750rpx;
+  height: 270rpx; 
+  background-color: transparent;
+
+ /* border-bottom:1px solid #cdcdcd;*/
+}
+
+.shelf-boxtwo{
+  width:420rpx;
+} 
+
+.delete{
+  float:right;
+}
+   .bookList{
+   padding:15rpx 0;
+   }
+
+
+.container{
+  background-color: #f6f6f6;
+  padding: 0;
+}
+.more-btn {
+  display: flex;
+  min-height: 60rpx;
+/*  border-top: 1px solid #cdcdcd;
+  border-bottom: 1px solid #cdcdcd;*/
+  align-items: center;
+  font-size: 30rpx;
+  padding: 0 15rpx;
+  background: -moz-linear-gradient(#F0F0F0 , #fff); 
+  background: linear-gradient(#F0F0F0 , #fff);  
+}
+
+ 
+.more-list {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+ 
+}
+
+ 
+.btn-icon {
+  width: 45rpx;
+  height: 45rpx;
+  margin-right: 15rpx;
+}
+
+
+.btn-icon-right {
+  width: 35rpx;
+  height: 35rpx;
+}
+
+.btn-text {
+  flex: 1;
+}
+
+.operate-type {
+margin-top:110rpx;
+
+}

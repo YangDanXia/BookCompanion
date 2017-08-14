@@ -1,0 +1,6 @@
+/* pages/index/functions/borrowProcess/QRcode.wxss */
+ 
+image {
+ width:320px;
+ height:320px;
+}

@@ -1,0 +1,27 @@
+<!--pages/me/account/addCard.wxml-->
+ 
+
+<view class="bd">
+  <form class="login-form">
+
+  <view class="input-group">
+      <text class="input-label">所在图书馆</text>
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"  class="picker">
+          {{array[index]}}
+      </picker>
+    </view>
+
+    <view class="input-group">
+      <text class="input-label">借书证号</text>
+      <input cursor-spacing="30" bindinput="cardNumInput" />
+    </view>
+  </form>
+  <view class="list"> 
+         <view class="confirm-btn" bindtap="addCard">
+            <text>添加</text>
+        </view>
+  </view>
+</view>
+
+
+  

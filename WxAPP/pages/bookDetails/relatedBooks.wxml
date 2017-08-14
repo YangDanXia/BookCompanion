@@ -1,0 +1,37 @@
+<!--pages/bookDetails/relatedBooks.wxml-->
+<loading hidden="{{hidden}}">
+    加载中...
+</loading>
+
+<!--设置下滑更新数据-->
+<view wx:if="{{errHidden}}">
+<scroll-view class="scolly" scroll-y="true" style="height:{{winHeight}}px">
+  <block wx:for="{{bookList}}" wx:key="{{item}}"> 
+   <view class="themes-list">
+    <view class="themes-list-box">
+     <navigator url="bookDetails?isbn={{item.isbn13}}" hover-class="none">
+       <view class="themes-list-thumbnail">
+         <image class="themes-list-img" src='{{item.image}}' />
+       </view>
+
+       <view class="themes-list-main">
+         <view class="themes-list-name">{{item.title}}</view>
+         <view class="themes-list-description">{{item.author[0]}}</view>
+         <view class="themes-list-description">{{item.publisher}}</view>
+         <view class="list-description">{{item.summary}}</view>
+       </view>
+      </navigator>
+     </view>
+    </view>
+   </block>
+</scroll-view>
+</view>
+
+
+
+<view class="contain" wx:else>
+ <view>
+  <image class="img" src="../../img/show/unload.png"/>
+ </view>
+ <text>请求失败，没有找到相应图书...</text>
+</view>

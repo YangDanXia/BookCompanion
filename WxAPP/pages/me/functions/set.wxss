@@ -1,0 +1,38 @@
+/* pages/me/functions/set.wxss */
+page {
+   background-color: #f6f6f6;
+   padding: 0;
+}
+
+.box-top{margin-top:30rpx; background: #fff;padding-bottom:20rpx;font-size: 35rpx;border-top:1px solid #F0F0F0;
+border-bottom:1px solid #F0F0F0;
+ }
+.middle{padding-bottom:15rpx;margin-left:30rpx;border-bottom: 1px solid #F0F0F0;}
+.box-text{float:right;}
+.content{margin-left:30rpx;padding-top: 30rpx;padding-bottom:10rpx;}
+._radio{padding-bottom:15rpx;padding-top:10rpx;color:black;}
+.remind{font-size:25rpx;color:#888888;padding-top:15rpx;}
+ 
+/*按钮*/
+button{
+    font-size:28rpx;
+    line-height:70rpx;
+    height:70rpx;
+    margin-right:10rpx;
+}
+
+.open{
+    background-color:limegreen;
+}
+
+.close{
+    background-color:#FF0000;
+}
+ 
+.btn-enter {
+   width:38rpx;
+   height:47rpx;
+   float:right;
+   margin-right:5%;
+
+}

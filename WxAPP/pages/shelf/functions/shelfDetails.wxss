@@ -1,0 +1,149 @@
+/* pages/shelf/functions/shelfDetails.wxss */
+
+Page{
+    background:#fff;
+    height:0;
+}
+
+
+/*标题栏*/
+.swiper-tab{ 
+   height: 60rpx; 
+   line-height: 60rpx; 
+   background: #FFF; 
+   display: flex; 
+   position: relative; 
+   z-index: 2; 
+   border-bottom: 1px solid #F4F4F4; 
+   flex-direction:row; 
+   justify-content:center; 
+   align-items:center;
+  }
+
+.swiper-tab-list{ 
+   margin: 0 40rpx;  
+   padding: 0 48rpx; 
+   font-size: 32rpx; 
+   font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif 
+  }
+
+.on{ border-bottom: 1px solid #48C23D; color: #48C23D; }
+
+
+
+/*书籍信息*/
+.book-details{
+  display: flex;
+  position: relative;
+  padding: 30rpx;
+  padding-left:40rpx;
+  font-size: 30rpx;
+  color: #fff;
+}
+.book-synopsis{
+  flex: 1;
+  z-index: 2
+}
+.book-cover{
+  position: relative;
+  margin-right: 30rpx;  
+
+}
+.book-cover .cover{
+  width: 180rpx;
+  height: 180rpx;
+}
+.book-title{
+  font-size: 18px;
+  line-height: 46rpx;
+}
+.book-brief{
+  line-height: 44rpx;
+}
+.book-title, .book-brief{
+	text-overflow: ellipsis;
+  margin-bottom:20rpx;
+
+}
+.book-brief .wish{
+  margin-right: 4px;
+  color: #fea54c;
+}
+
+.book-desc{
+  padding: 0 30rpx;
+  margin-bottom: 40rpx;
+  font-size: 14px;
+  line-height: 2;
+  background: linear-gradient(180deg,#e1e1e1,#e1e1e1 50%,transparent 0) 0 bottom/100% 1px no-repeat;
+  
+}
+.book-desc .title{
+  margin-bottom: 20rpx;
+  font-size: 14px;
+  font-weight: 700;
+}
+.book-desc .desc-limit{
+  height:168px;
+  overflow: hidden;
+}
+.book-desc .desc-button{
+  padding: 40rpx;
+  text-align: center;
+}
+
+.box-title-top{
+   z-index:-1;
+   background-color:#8a8a8a; 
+}
+
+/*功能栏*/
+.classname{width:32%; display: inline-block;}
+.themes-box-title{ width: 60rpx;height:60rpx; }
+.themes-box-top{ 
+   text-align: center; 
+   padding-bottom: 15rpx;
+   margin-top:-15rpx; 
+}
+.themes-box-subtitle{ font-size: 28rpx; color:#fff; display: block;}
+
+
+/*简介*/
+.list{
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  background:white;
+
+}
+
+.fun-list{
+    flex-flow:row wrap;
+}
+
+.wrap-item{
+    background: cover;
+    display: inline-block;
+    background: #fff;
+    margin-top: 15px;
+    border-radius: 2%;
+    width:23%;
+    height:170rpx;
+    margin-bottom:90rpx;
+    padding:60rpx;
+    padding-right:0; 
+}
+
+
+.book{width:100%;height: 100%;}
+.book-collect{width:50rpx;height:50rpx;}
+navigator{
+  width:100%;
+  height:120%;
+
+}
+
+.themes-list-name {
+  font-size:30rpx;
+  height:auto
+}

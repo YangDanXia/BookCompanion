@@ -1,0 +1,29 @@
+<!--pages/me/functions/changePhone.wxml-->
+<view class="bd">
+  <form class="login-form">
+    <view class="input-group">
+      <text class="input-label">原手机号</text>
+      <input cursor-spacing="30" id="oldPhone"  bindinput="oldPhone" placeholder="用于接收验证码" />
+    </view>
+    <view class="input-group">
+       <text class="input-label">新手机号</text>
+       <input cursor-spacing="30"  id="newPhone" bindinput="newPhone" />
+    </view>
+    <view class="code">
+    <view class="input-code">
+       <text class="input-label">验证码</text>
+       <input cursor-spacing="30"  id="newPhone" bindinput="newPhone" />
+    </view>
+    <view class="sendCode" bindtap="reset">
+       <text>发送验证码</text>
+    </view>
+    </view>
+  </form>
+  <view class="list"> 
+    <view class="confirm-btn" bindtap="changePhone">
+        <text>确认修改</text>
+    </view>
+
+   </view>
+</view>
+ 

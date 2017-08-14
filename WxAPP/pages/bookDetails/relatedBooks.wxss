@@ -1,0 +1,38 @@
+/* pages/bookDetails/relatedBooks.wxss */
+page
+{
+    background-color:rgb(240,240,240); 
+    font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif;
+}
+
+  
+.themes-list-box{ 
+ 
+    height:220rpx;
+    }
+ 
+    
+/*显示异常*/
+.img{
+  width:280rpx;
+  height:300rpx;
+}
+
+.contain{
+  text-align: center;
+  margin-top:280rpx;
+}
+ 
+.themes-list-name{
+  text-align:left;
+  line-height:45rpx;
+} 
+
+.themes-list-description{
+  text-align:left;
+  line-height:45rpx;
+ }
+
+.themes-list-thumbnail{
+    top:15rpx;
+}

@@ -1,0 +1,82 @@
+/* pages/shelf/functions/addShelf.wxss */ 
+page {
+ 
+}
+
+/*功能栏*/
+.box-img{
+  float:left; 
+  width:50rpx;
+  height:50rpx; 
+ }
+
+.box-top{
+ 
+  background: #fff;
+  padding-bottom:20rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #e0e0e0; 
+ }
+
+.box-text{
+  padding-left:25rpx; 
+}
+
+.content{
+   padding-top: 30rpx;
+   padding-bottom:10rpx;
+}
+
+.titleImage{
+  padding-bottom:100rpx;
+}
+
+.middle{
+   padding-bottom:15rpx;
+   margin-left:30rpx;
+   border-bottom: 1px solid #F9F9F9;
+}
+
+.detail{
+   float: right;
+   color:#888888;
+   margin-right: 30rpx;
+}
+
+.detail-input{
+   float: right;
+   color:#888888;
+   margin-right: 30rpx;
+}
+
+.img{
+  width:160rpx;
+  height:160rpx;
+  margin-top:-20rpx;
+
+}
+
+/*弹出窗*/
+input{font-size:38rpx;color:black;padding-top:30rpx;border-bottom: 1px solid #888888;}
+
+ .submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40rpx 13%;
+    height: 80rpx;
+    border-radius: 3px;
+    text-align: center;
+    background-color: #73b4ef;
+    color: #fff;
+    font-size: 12pt;
+    line-height: 150%;
+    padding: 0;
+    border: none;
+}
+.submit-btn.disabled{
+    opacity: .7;
+}
+.submit-btn:active{
+    opacity: .7;
+}

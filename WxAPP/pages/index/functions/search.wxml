@@ -1,0 +1,22 @@
+<!--pages/index/functions/search.wxml-->
+<!--搜索/扫一扫-->
+<view class="search-box">
+ <image class="search-vacate"/>
+   <input class="search-input" placeholder="请输入关键字" placeholder-class="placeholder-style" bindchange="bindChange" confirm-type="search"/>
+   <view class="search-btn">
+     <icon type="search"  bindtap="formSubmit"/>
+   </view>
+</view>
+
+
+<view class="history">
+<text>历史记录:</text>
+<text style="float:right;font-size:23rpx;" bindtap="remove">清除记录</text>
+</view>
+
+<view clas="wrap">
+
+<block wx:if="{{historicalRecord!=[]}}"  wx:for="{{historicalRecord}}" wx:key="{{item}}">
+<navigator url="../../bookDetails/relatedBooks?tag={{item}}" class="content" hover-class="none"><text class="record">{{item}}</text></navigator>
+</block>
+</view>

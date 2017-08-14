@@ -1,0 +1,73 @@
+{
+  "pages": [
+
+    "pages/me/me",
+    "pages/index/index",
+    "pages/shelf/shelf",
+
+    "pages/index/functions/library",
+    "pages/index/functions/map",
+    "pages/index/functions/search",
+    "pages/index/functions/bookNavigateList",
+    "pages/index/functions/bookOrder",
+    "pages/index/functions/borrowProcess/QRcode",
+    "pages/index/functions/borrowProcess/pay",
+
+    "pages/shelf/functions/shelfDetails",
+    "pages/shelf/functions/addShelf",
+
+    "pages/bookDetails/bookDetails",
+    "pages/bookDetails/relatedBooks",
+
+    "pages/me/account/login",
+    "pages/me/account/enroll",
+    "pages/me/account/information",
+    "pages/me/account/addCard",
+    "pages/me/account/findPassword",
+    "pages/me/functions/service",
+    "pages/me/functions/suggest",
+    "pages/me/functions/recommend",
+    "pages/me/functions/set",
+    "pages/me/functions/changePassword",
+    "pages/me/functions/changePhone"
+
+ 
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#73b4ef",
+    "navigationBarTitleText": "图书借阅",
+    "navigationBarTextStyle": "black",
+    "backgroundColor": "#fff"
+  },
+  "tabBar": {
+    "color": "#707070",
+    "selectedColor": "#1296db",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "img/icon/find.png",
+        "selectedIconPath": "img/icon/finding.png"
+      },
+      {
+        "pagePath": "pages/shelf/shelf",
+        "text": "书单",
+        "iconPath": "img/icon/shelf.png",
+        "selectedIconPath": "img/icon/shelfing.png"
+      },
+      {
+        "pagePath": "pages/me/functions/changePhone",
+        "text": "跳蚤市场",
+        "iconPath": "img/icon/market.png",
+        "selectedIconPath": "img/icon/marketing.png"
+      },      
+      {
+        "pagePath": "pages/me/me",
+        "text": "我",
+        "iconPath": "img/icon/user.png",
+        "selectedIconPath": "img/icon/usering.png"
+      }
+    ]
+  }
+}

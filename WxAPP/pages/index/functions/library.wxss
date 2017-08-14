@@ -1,0 +1,83 @@
+/* pages/index/functions/library.wxss */
+ .search{
+    background-color: rgb(240,240,240);
+    height: 65rpx;
+ }
+
+.search-input{
+  -webkit-box-flex: 1;
+          flex: 1;
+  max-width: 160rpx;
+  padding-left:10rpx;
+}
+
+.search-btn{
+  border-top-left-radius: 100rpx;
+  border-bottom-left-radius: 100rpx;
+  display: -webkit-box;
+  -webkit-box-align: center;
+          align-items: center;
+  margin-left:40rpx;
+
+}
+
+.search-text{
+  line-height:30px;
+  color:#707070;
+}
+
+.search-right{
+  border-top-right-radius: 100rpx;
+  border-bottom-right-radius: 100rpx;
+  display: -webkit-box;
+  -webkit-box-align: center;
+          align-items: center;
+  padding-left:30rpx;
+
+}
+.search-box{
+ -webkit-display: flex;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  box-sizing: border-box;
+  position: relative;
+   
+  padding:24rpx;
+  padding-left:24%;
+
+}
+
+
+
+.themes-list-main {
+  margin-left:30rpx;
+}
+
+.themes-list-box {
+  display:flex;
+  border-radius:0rpx;
+}
+.themes-list-name{ 
+text-align:left;
+}
+
+.themes-list-description { 
+text-align:left;
+}
+
+.selected{
+  float: right;
+}
+.location{
+  width:70rpx;
+  height: 70rpx;
+}
+image{
+  width:50rpx;
+  height:50rpx;
+  display:inline-block;
+  overflow:hidden;
+  margin-left:10px;
+
+}

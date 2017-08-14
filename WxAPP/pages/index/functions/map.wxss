@@ -1,0 +1,24 @@
+/* pages/index/functions/library.wxss */
+.themes-list-main {
+  margin-left:30rpx;
+}
+
+.themes-list-box {
+  display:flex;
+  border-radius:0rpx;
+}
+.themes-list-name{ 
+text-align:left;
+}
+
+.themes-list-description { 
+text-align:left;
+}
+
+.selected{
+  float: right;
+}
+.location{
+  width:70rpx;
+  height: 70rpx;
+}

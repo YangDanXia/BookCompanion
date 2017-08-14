@@ -1,0 +1,35 @@
+<!--pages/shelf/functions/addShelf.wxml--> 
+<view class="box-top"  bindtap="chooseImg">
+ <view class="content titleImage">
+    <text class="box-text">书单封面:</text>
+    <image src="{{img}}" class="detail img"></image>
+   </view>
+</view>
+
+
+<view class="box-top"  bindtap="doShelfName">
+ <view class="content">
+    <text class="box-text">名称:</text>
+    <text class="detail">{{content[0]}}</text>
+  </view>
+</view>
+
+
+<view class="box-top"  bindtap="doShelfIntro">
+ <view class="content">
+    <text class="box-text">简介:</text>
+    <text class="detail">{{content[1]}}</text> 
+   </view>
+</view>
+
+    <view class="submit-btn"  bindtap="createShelf">
+      <text>创建书单</text>
+    </view>
+
+<!--弹出框-->
+<modal confirm-text="保存" cancel-text="取消" hidden="{{modalHidden}}" bindconfirm="submit" bindcancel="modalHide" data-index="{{index}}">
+<input value="{{value}}" bindinput="bindInput" data-index="{{index}}" focus="true"/>
+</modal>
+
+
+

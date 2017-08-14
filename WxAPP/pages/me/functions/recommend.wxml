@@ -1,0 +1,44 @@
+<!--pages/me/functions/recommend.wxml-->
+<view class="container">
+
+  <view class="list-btn" bindtap="openList">
+    <image class="btn-icon" src="../../../img/icon/recommend.png"></image>
+      <view class="input-group">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"  class="picker">
+          {{array[index]}}
+      </picker>
+    </view>
+ 
+  </view>
+
+    <text class="issues-label">图书信息</text>
+    <view class="issues-panel">
+        <view class="issues-input">
+        <input placeholder="请输入书名" bindinput="listenerTitle" />
+      </view>
+
+      <view class="issues-input">
+        <input placeholder="请输入作者" bindinput="listenerTitle" />
+      </view>
+      <view class="issues-input">
+        <input placeholder="请输入出版社" bindinput="listenerTitle" />
+      </view>
+    </view>
+    
+    <text class="issues-label">荐购原因</text>
+    <view class="issues-panel">
+     <textarea class="issues-textarea {{(showError&&!content)?'error':''}}" cursor-spacing="50" placeholder="请输入荐购理由" bindinput="listenerTextarea">
+     </textarea>
+    </view>
+
+    <view class="submit-btn"  bindtap="submit">
+      <text>提交反馈</text>
+    </view>
+</view>
+
+<!-- <modal class="modal" hidden="{{modalHidden}}" no-cancel bindconfirm="hideModal">
+  <view>添加成功</view>
+</modal>
+<modal class="modal" hidden="{{alertHidden}}" no-cancel bindconfirm="hideAlertView">
+  <view>{{alertTitle}}</view>
+</modal> -->

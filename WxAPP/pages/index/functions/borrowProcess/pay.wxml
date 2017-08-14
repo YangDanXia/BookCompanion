@@ -1,0 +1,35 @@
+ <!--pages/shelf/functions/pay.wxml-->
+ <view class="workbench">
+   <view>
+    <view class="title"><image class="title-warn" src="../../../../img/icon/h.png"/>支付押金
+    <image class="title-warn" src="../../../../img/icon/h.png"/>
+    </view>
+   </view>
+ 
+   <view class="list fun-list">
+     <view class="err-item">  
+       <view class="themes-box-top">
+        <image src="{{userInfo.avatarUrl}}" class="themes-box-title"></image>
+       </view>
+       <view class="_navs">
+          <text class="1_content">向{{selectLibrary}}转账：</text>
+       </view>
+       <view class="navs">
+          <text class="_content"></text>
+          <text class="_money">￥100</text>
+       </view>
+     </view>
+   </view>
+ 
+    <view class="err-list-name">
+         <view class="input-group">
+            <input type="password" cursor-spacing="50" placeholder="请输入转账密码" bindinput="useridInput"/>
+          </view>    
+          <view class="submit_btn" bindtap="doPay">
+                <text class="zi">转账</text>
+          </view>
+      </view>
+  </view>
+
+
+

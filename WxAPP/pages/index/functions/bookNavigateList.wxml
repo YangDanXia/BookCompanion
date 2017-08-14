@@ -1,0 +1,49 @@
+<!--pages/index/functions/bookNavigateList.wxml-->
+<!--显示馆藏情况-->
+<!--标题栏-->
+<loading hidden="{{loadhidden}}">
+    玩命加载中...
+</loading>
+<view class="swiper-tab" bindtap="tapMainMenu">
+    <view class="swiper-tab-list" data-current="0" >全部分类
+    <image src="../../../img/icon/down.png"  class="swiper-tab-icon"></image>
+    </view>
+</view>
+
+<view class="list-main">
+ <scroll-view class="{{subMenuDisplay}}" scroll-y style="height:500rpx;">
+   <ul wx:for="{{subMenuList}}" wx:key="item">
+    <li class="{{subMenuLight[index]}}" catchtap="selectBookCatagory" data-index="{{index}}" data-tag="{{item.tag}}">{{item.title}}</li>
+   </ul>
+  </scroll-view>
+</view>
+
+<view class="book-list {{showTab?'masked':''}}" wx:if="{{errHidden}}">
+<scroll-view class="scolly" scroll-y  style="height:{{winHeight}}px" >
+  <block  wx:for="{{booksList}}" wx:key="{{item}}"> 
+   <view class="themes-list">
+    <view class="themes-list-box">
+     <navigator url="../../bookDetails/bookDetails?isbn={{item.isbn13}}" hover-class="none">
+       <view class="themes-list-thumbnail">
+         <image class="themes-list-img" src='{{item.image}}' />
+       </view>
+
+       <view class="themes-list-main">
+         <view class="themes-list-name">{{item.title}}</view>
+         <view class="themes-list-description">{{item.author[0]}}/{{item.binding}}</view>
+         <view class="themes-list-description">{{item.publisher}}</view>
+         <view class="list-description">{{item.summary}}</view>
+       </view>
+      </navigator>
+     </view>
+    </view>
+   </block>
+</scroll-view>
+</view>
+
+<view class="contain" wx:else>
+ <view>
+  <image class="img" src="../../../img/show/unload.png"/>
+ </view>
+ <text>请求失败，没有找到相应图书...</text>
+</view>

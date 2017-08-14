@@ -1,0 +1,174 @@
+/* pages/bookDetails/bookDetails.wxss */
+
+Page{
+    background:#fff;
+    height:0;
+}
+
+
+/*标题栏*/
+.swiper-tab{ 
+   height: 60rpx; 
+   line-height: 60rpx; 
+   background: #FFF; 
+   display: flex; 
+   position: relative; 
+   z-index: 2; 
+   border-bottom: 1px solid #F4F4F4; 
+   flex-direction:row; 
+   justify-content:center; 
+   align-items:center;
+  }
+
+.swiper-tab-list{ 
+   margin: 0 40rpx;  
+   padding: 0 48rpx; 
+   font-size: 32rpx; 
+   font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif 
+  }
+
+.on{ border-bottom: 1px solid #48C23D; color: #48C23D; }
+
+
+
+/*书籍信息*/
+.book-details{
+  display: flex;
+  position: relative;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  background: #175782;
+  font-size: 12px;
+  color: #fff;
+}
+.book-synopsis{
+  flex: 1;
+}
+.book-cover{
+  position: relative;
+  margin-right: 25rpx;
+}
+.book-cover .cover{
+  width: 240rpx;
+  height: 330rpx;
+}
+.book-title{
+  font-size: 18px;
+  line-height: 46rpx;
+}
+.book-brief{
+  line-height: 44rpx;
+}
+.book-title, .book-brief{
+	text-overflow: ellipsis;
+}
+.book-brief .wish{
+  margin-right: 4px;
+  color: #fea54c;
+}
+
+.book-desc{
+  padding: 0 30rpx;
+  margin-bottom: 40rpx;
+  font-size: 14px;
+  line-height: 2;
+  background: linear-gradient(180deg,#e1e1e1,#e1e1e1 50%,transparent 0) 0 bottom/100% 1px no-repeat;
+  
+}
+.book-desc .title{
+  margin-bottom: 20rpx;
+  font-size: 14px;
+  font-weight: 700;
+}
+.book-desc .desc-limit{
+  height:168px;
+  overflow: hidden;
+}
+.book-desc .desc-button{
+  padding: 40rpx;
+  text-align: center;
+}
+
+
+
+/*功能栏*/
+.classname{width:180rpx; display: inline-block;border-right:1px solid #f2f2f2;}
+.themes-box-title{ width: 60rpx;height:60rpx; }
+.themes-box-top{ text-align: center; padding-bottom: 35rpx;}
+.themes-box-subtitle{ font-size: 28rpx; color: black; display: block;}
+
+
+/*简介*/
+.list-main{ margin-left: 20rpx;}
+.list-name{ font-size: 35rpx; color:black; height: auto; line-height: 55rpx; }
+.line{border-bottom: 1px solid #f2f2f2;padding-top:10rpx}
+
+
+/*目录*/
+.list-description{padding-left:2% ;padding-top:2%;font-size: 18px;line-height:150%;}
+
+
+/*书评*/
+.comment-list{
+   background: #fff; 
+   margin-top: 10rpx;
+ }
+
+.comment-list-box{ 
+   display: block; 
+   position: relative; 
+   padding: 10rpx 20rpx;  
+   height:300rpx;
+  }
+
+.comment-list-thumbnail{ 
+   position: absolute; 
+   left: 40rpx; 
+   top: 10rpx; 
+   height: 250rpx; 
+   width:200rpx; 
+  }
+
+.comment-list-img{ 
+   width: 200rpx; 
+   height:250rpx; 
+   border-radius: 2%; 
+   border: 1px solid #999;
+}
+
+.comment-list-main{margin-left: 260rpx;}
+.view-list-box{ display: block; position: relative; padding: 35rpx 20rpx; border-bottom: 1px solid  #D3D3D3; height:auto;}
+.view-list-img{ width: 60rpx; height:60rpx; border-radius: 100%;}
+.view-list-main{ margin-left: 100rpx;margin-top:-20rpx}
+
+
+/*馆藏情况*/
+.book-box{
+  height:auto;
+  display:flex;
+ 
+}
+.book{ 
+  display: inline-block;
+  border:1px solid #f2f2f2;
+  padding-left:10rpx;
+  background-color:#f6f6f6; 
+  }
+.book-info{ 
+  font-size: 33rpx; 
+  display: block;
+  line-height:60rpx;
+  margin-top:5rpx;
+
+}
+
+.book-id{
+   width:28%;
+}
+
+.book-address{
+   width:40%;
+}
+.book-statu{
+   width:20%;
+}

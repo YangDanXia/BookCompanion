@@ -1,0 +1,132 @@
+/* pages/index/functions/bookOrder.wxss */
+/*标题栏*/
+
+.swiper-box{
+  margin-top:10rpx;
+}
+.swiper-tab{ 
+   height: 70rpx; 
+   line-height: 60rpx; 
+   background: #FFF; 
+   display: flex; 
+   position: relative; 
+   z-index: 2; 
+   border-bottom: 1px solid #F4F4F4; 
+   flex-direction:row; 
+   justify-content:center; 
+   align-items:center;
+  }
+
+.swiper-tab-list{ 
+   margin: 0 40rpx;  
+   padding: 0 18rpx; 
+   font-size: 32rpx; 
+   font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif 
+  }
+
+.on{ 
+  border-bottom: 1px solid #48C23D; 
+  color: #48C23D; 
+  height:70rpx;
+  line-height:70rpx;
+}
+
+/*二维码显示*/
+ .list{
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  background:white;
+}
+.items{
+  width: 100rpx;
+  flex:1;
+  text-align: center;
+}
+
+.items image{
+  width: 100rpx;
+  height: 100rpx;
+}
+.items image.service-icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+.items text{
+  display: block;
+  text-align: center;
+  margin-top: 10rpx;
+  font-size:30rpx;
+}
+ 
+ 
+
+.login-warn{
+  font-size:33rpx;
+  line-height:90rpx;
+padding:0 10rpx;
+
+}
+
+.themes-list-description{
+  font-size:28rpx;
+  color:#8a8a8a;
+  overflow:hidden;
+  text-align: left;
+}
+.themes-list-name {
+  font-size:30rpx;
+  font-weight:normal;  
+  text-align: left;
+}
+
+.themes-list-main{
+  margin-top:10rpx;
+
+}
+.themes-list{ 
+    background: #fff; 
+    display: flex;
+    margin-bottom:15rpx;
+    border-bottom:1px solid #8a8a8a;
+    }
+
+.themes-list-box{ 
+    display: block; 
+    position: relative; 
+    padding: 15rpx 0rpx; 
+    border-bottom: 0px solid  #D3D3D3;
+    height:220rpx;
+    width:95%;
+  }
+
+.themes-list-thumbnail {
+  top:20rpx;
+}
+
+.operate-type{
+  margin:15rpx;
+}
+
+
+.contain{
+  margin-left:0;
+  margin-top:200rpx;
+}
+.img { 
+  width:330rpx;
+  height:330rpx;
+}
+
+
+.submit-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40rpx 39%;
+    height: 80rpx;
+    border-radius: 3px;
+    background-color: #73b4ef;
+    color: #fff;
+    font-size: 12pt;    line-height: 150%;
+}

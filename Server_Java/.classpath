@@ -21,5 +21,6 @@
 	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/httpcore-4.4.6.jar"/>
 	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/http-request-6.0.jar"/>
 	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/javase.jar"/>
+	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/c3p0-0.9.1.2.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

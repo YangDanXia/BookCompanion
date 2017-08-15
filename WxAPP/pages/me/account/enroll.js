@@ -38,8 +38,12 @@ Page({
         return false;
       }
     }
+  /**
+   * 连接数据库
+   * 需要的数据：数据库名，数据表，操作类型，手机号，密码
+   */
     wx.request({
-      url: 'http://localhost:8080/BookBorrow_WxApp/DBOperations',
+      url: 'http://localhost:8080/Server_Java/DbOperations',
       data:
       {
         request: "newID",

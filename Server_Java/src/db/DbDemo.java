@@ -4,7 +4,7 @@ import java.sql.ResultSet;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DbOperation {
+public class DbDemo {
 	
 	public static void main(String[] args) throws Exception {
 		String sql;

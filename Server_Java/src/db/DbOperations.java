@@ -39,8 +39,6 @@ public class DbOperations extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
         // 创建输出管道
 		PrintWriter w = response.getWriter();       
-		// 获取数据库名
-		String dbName = request.getParameter("dbName"); 
 		// 获取数据表名
 		String table = request.getParameter("table"); 
 		// 获取操作类型

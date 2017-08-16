@@ -29,4 +29,14 @@
     <servlet-name>EnQRcode</servlet-name>
     <url-pattern>/EnQRcode</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>DbOperations</display-name>
+    <servlet-name>DbOperations</servlet-name>
+    <servlet-class>db.DbOperations</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DbOperations</servlet-name>
+    <url-pattern>/DbOperations</url-pattern>
+  </servlet-mapping>
 </web-app>

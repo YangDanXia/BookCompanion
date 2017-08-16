@@ -1,13 +1,15 @@
 package db;
 
 import java.io.IOException;
+
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Date;
 import java.util.Map;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
+ 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,14 +19,13 @@ import com.alibaba.fastjson.JSON;
 /**
  * Servlet implementation class DbOperations
  */
-@WebServlet("/DbOperations")
-public class DbDemo extends HttpServlet {
+public class DbOperations extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DbDemo() {
+    public DbOperations() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,26 +49,32 @@ public class DbDemo extends HttpServlet {
 		String fieldStr = request.getParameter("field"); 
 		// 获取条件值
 		String factorStr = request.getParameter("factor"); 
-
+		System.out.println("0/"+new Date());
 		 @SuppressWarnings("unchecked")
 		Map<String,String> field =(Map<String,String>)JSON.parse(fieldStr);    
 		 @SuppressWarnings("unchecked")
 		Map<String,String> factor =(Map<String,String>)JSON.parse(factorStr);    
+
+		 System.out.println("1/"+new Date());
 		 
 		preparedSql object = new preparedSql();
 		PreparedStatement pstmt;
 		try {
-			pstmt = object.prepared(dbName,type, table, field, factor);
+			pstmt = object.prepared(type, table, field, factor);
+			 System.out.println("2/"+new Date());
 			if(type.equalsIgnoreCase("inquire")) {
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next())
 				{
+					 System.out.println("3/"+new Date());
 					for(String key:field.keySet()) {
 						w.println(rs.getString(key));
 					}
+					 System.out.println("4/"+new Date());
 				}
 			}else {
 				int rs = pstmt.executeUpdate();
+				System.out.println("3/"+new Date());
 				if(rs == 0) {
 					w.print("没有该内容");
 				}

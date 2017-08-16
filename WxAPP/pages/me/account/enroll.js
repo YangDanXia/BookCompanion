@@ -125,7 +125,7 @@ Page({
         dbName:"WxApp",
         table:"user_info",
         typeName:"insert",
-        field:{uk_phone:"13420116914",info_password:"13420116914"},
+        field:{uk_phone:userPhone,info_password:passwd},
         factor:{}
       },
       // data:{

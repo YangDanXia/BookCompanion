@@ -7,16 +7,19 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class preparedSql {
 	
+	public static Connection conn;
+	public final void runSQL(String dbName) throws Exception {
+//		启动数据库
+		ConnectionPoolFactory dataBase =  ConnectionPoolFactory.getInstance();
+		ComboPooledDataSource ds =dataBase.getDB(dbName);
+//		连接数据库
+		conn = ds.getConnection();
+	}
+	
 	//模板
-	public final PreparedStatement prepared(String dbName,String type,String table,Map<String,String> field,Map<String,String> factor) throws Exception {
+	public final PreparedStatement prepared(String type,String table,Map<String,String> field,Map<String,String> factor) throws Exception {
 		
 		int index=1;
-//		连接数据库
-		ConnectionPoolFactory dataBase =  ConnectionPoolFactory.getInstance();
-		ComboPooledDataSource  ds =dataBase.getDB(dbName);
-		System.out.println(ds);
-		Connection conn = ds.getConnection();
-		
 //		写sql语句
 		DML dml =  DML.getInstance();
 		String  sql =dml.getDML(type, table, field, factor);

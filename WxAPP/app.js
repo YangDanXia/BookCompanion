@@ -63,6 +63,21 @@ App({
       }
     } catch (e) { console.warn('获取缓存失败'); }
 
+    //  启动连接池
+    wx.request({
+      url: 'http://localhost:8080/Server_Java/InitSql',
+      data:{
+        dbName:"WxApp"
+      },      
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success:function(res){
+        
+      }
+    })
+
 
   },
 

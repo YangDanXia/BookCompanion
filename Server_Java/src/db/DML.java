@@ -14,18 +14,18 @@ public class DML {
 	}
 	
 	
-	public String getDML(String type,String table,Map<String,String> map,String where) {
+	public String getDML(String type,String table,Map<String,String> field,Map<String,String> factor) {
 		if(type.equalsIgnoreCase("inquire")) {
-			String sql =deleteDML(table,where);
+			String sql = inquire(table,field,factor);
 			return sql;
 		}else if(type.equalsIgnoreCase("insert")) {
-			String sql = insertDML(table, map);
+			String sql = insertDML(table, field);
 			return sql;
 		}else if(type.equalsIgnoreCase("update")) {
-			String sql = updateDML(table, map,where);
+			String sql = updateDML(table, field, factor);
 			return sql;
 		}else if(type.equalsIgnoreCase("delete")) {
-			String sql = deleteDML(table,where);
+			String sql = deleteDML(table,factor);
 			return sql;
 		}
 		return null;
@@ -34,17 +34,24 @@ public class DML {
 	
 	
 //查询数据
-	public static String inquire(String table,Map<String,String> map,String where) {
+	public static String inquire(String table,Map<String,String> field,Map<String,String> factor) {
 //		sql语句
 		String sql;
 //		键名
 		StringBuilder keys = new StringBuilder();
-		for(String key:map.keySet()) {
+//		查询条件
+		StringBuilder keyFactor = new StringBuilder();
+		for(String key:field.keySet()) {
 			keys.append(key);
 			keys.append(",");
 		}
+		for(String key:factor.keySet()) {
+			keyFactor.append(key);
+			keyFactor.append("=? and");
+		}
 		keys.delete((keys.length())-1, keys.length());
-		sql = "select "+keys.toString() +" from "+table+" where  "+where;
+		keyFactor.delete((keys.length())-3, keyFactor.length());
+		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString();
 		return sql;
 	}
 
@@ -69,24 +76,38 @@ public class DML {
 	}
 
 //	修改数据
-	public static String updateDML(String table,Map<String,String> map,String where) {
+	public static String updateDML(String table,Map<String,String> field,Map<String,String> factor) {
 //		sql语句
 		String sql;
 //		键名
 		StringBuilder keys = new StringBuilder();
-		for(String key:map.keySet()) {
+//		修改位置条件
+		StringBuilder keyFactor = new StringBuilder();
+		for(String key:field.keySet()) {
 			keys.append(key);
-			keys.append("=?");
+			keys.append(",");
 		}
-		sql = "update "+table+" set "+keys.toString()+" where " + where;
+		for(String key:factor.keySet()) {
+			keyFactor.append(key);
+			keyFactor.append("=? and");
+		}
+		keys.delete((keys.length())-1, keys.length());
+		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
+		sql = "update "+table+" set "+keys.toString()+" where " + keyFactor.toString();
 		return sql;
 	}
 	
 //	删除数据
-	public static String deleteDML(String table,String where) {
+	public static String deleteDML(String table,Map<String,String> factor) {
 //		sql语句
 		String sql;
-		sql = "delete from "+table+" where " + where;
+		StringBuilder keyFactor = new StringBuilder();
+		for(String key:factor.keySet()) {
+			keyFactor.append(key);
+			keyFactor.append("=? and");
+		}
+		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
+		sql = "delete from "+table+" where " + keyFactor.toString();
 		return sql;
 	}
 	

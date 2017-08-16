@@ -13,7 +13,7 @@
     <view class="code">
     <view class="input-code">
        <text class="input-label">验证码</text>
-       <input cursor-spacing="30"  id="newPhone" bindinput="newPhone" />
+       <input cursor-spacing="30"  id="code" bindinput="codeInput" />
     </view>
     <view class="sendCode" bindtap="reset">
        <text>发送验证码</text>

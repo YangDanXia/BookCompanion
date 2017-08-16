@@ -30,12 +30,14 @@ Page({
       return false;
     }
     wx.request({
-      url: 'http://localhost:8080/BookBorrow_WxApp/DBOperations',
+      url: 'http://localhost:8080/Server_Java/DbOperations',
       data:
       {
-        request: "doLogin",//该请求为登录账号
-        UserId: this.data.userid,
-        UserPassword: this.data.passwd
+        dbName: "WxApp",
+        table: "user_info",
+        typeName: "inquire",
+        field: {info_password: "13420116914"},
+        factor: {uk_phone: "13420116914"}
       },
       //请求头
       header: {

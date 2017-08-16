@@ -11,7 +11,7 @@
 </view>
 
 <block wx:for="{{bookCard}}" wx:key="item">
-<view class="box-top">
+<view class="box-top" bindlongtap="delCard" data-id="{{index}}">
   <view class="content">
     <text class="box-text">所在图书馆：{{bookCard[index].library}}</text>
   </view>

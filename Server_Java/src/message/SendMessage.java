@@ -52,9 +52,6 @@ public class SendMessage extends HttpServlet {
         String phone = request.getParameter("phone");
         String template = request.getParameter("template");
         String param = request.getParameter("param");
-        System.out.println(phone);
-        System.out.println(template);
-        System.out.println(param);
         //·¢¶ÌÐÅ
     	try {
 			SendSmsResponse resp = sendSms(phone,template,param);

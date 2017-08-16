@@ -81,6 +81,58 @@ Page({
     this.setData({
       modalHidden: true
     })
+  },
+
+  /**
+   * 长按删除借书证
+   */
+  delCard:function(e){
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '是否确认删除此借书证',
+      success: function (res) {
+        if (res.confirm) {
+          var index = e.currentTarget.dataset.index;
+          that.data.bookCard.splice(index, 1);
+          console.log(that.data.bookCard)
+          app.saveCache('bookCard', that.data.bookCard);
+          wx.showToast({
+            title: "删除成功",
+            icon: 'success'
+          });
+          that.onShow()
+          wx.request({
+            url: 'http://localhost:8080/Server_Java/DbOperations',
+            data:
+            {
+              table: "bookcard_record",
+              typeName: "delete",
+              field: {},
+              factor: { idx_phone: that.data.phone}
+            },
+            //请求头
+            header: {
+              'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+            },
+            method: 'GET',
+            success: function (res) {
+              if (res.data) {
+                wx.showToast({
+                  title: '添加成功',
+                  icon: 'success'
+                })
+                wx.navigateBack({
+                  delta: 1
+                })
+              }
+            }
+          })
+        } else if (res.cancel) {
+          return false;
+        }
+      }
+    })
   }
 
 })

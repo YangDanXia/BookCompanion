@@ -98,41 +98,35 @@ Page({
    */
   enroll: function () {
     var information = new Array(userPhone,passwd,code);
-    // for (var x = 0; x < 3; x++) {
-    //   if (!information[x]) {
-    //     wx.showToast({
-    //       title: "请填写完整信息",
-    //       img: '../../../img/icon/warn.png'
-    //     })
-    //     return false;
-    //   }
-    // }
-    // if(code != codeNumber){
-    //   wx.showToast({
-    //     title: "验证码错误！",
-    //     img: '../../../img/icon/warn.png'
-    //   })
-    //   return false;
-    // }
+    for (var x = 0; x < 3; x++) {
+      if (!information[x]) {
+        wx.showToast({
+          title: "请填写完整信息",
+          img: '../../../img/icon/warn.png'
+        })
+        return false;
+      }
+    }
+    if(code != codeNumber){
+      wx.showToast({
+        title: "验证码错误！",
+        img: '../../../img/icon/warn.png'
+      })
+      return false;
+    }
   /**
    * 连接数据库
-   * 需要的数据：数据库名，数据表，操作类型，手机号，密码
+   * 需要的数据：数据表，操作类型，手机号，密码
    */
     wx.request({
       url: 'http://localhost:8080/Server_Java/DbOperations',
       data:
       {
-        dbName:"WxApp",
         table:"user_info",
         typeName:"insert",
         field:{uk_phone:userPhone,info_password:passwd},
         factor:{}
-      },
-      // data:{
-      //   request:"newID",
-      //   UserId:userPhone,
-      //   UserPassword:passwd
-      // },
+      }, 
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
       },

@@ -28,7 +28,7 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onshow: function () {
+  onShow: function () {
     this.setData({
       loginFlag: app.cache.loginFlag || false
     })
@@ -36,16 +36,16 @@ Page({
 
 
   /**
-   * 查看个人信息
+   * 查看借书证
    */
-  doInfo: function () {
-    // if (!this.data.loginFlag) {
-    //   this.login()
-    // } else {
+  bookCard: function () {
+    if (!this.data.loginFlag) {
+      this.login()
+    } else {
       wx.navigateTo({
         url: 'account/information'
       })
-    // }
+    }
   },
 
 

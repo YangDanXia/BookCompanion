@@ -52,7 +52,6 @@ Page({
       url: 'http://localhost:8080/Server_Java/DbOperations',
       data:
       {
-        dbName: "WxApp",
         table: "user_info",
         typeName: "inquire",
         field: { info_password: that.data.passwd},

@@ -13,7 +13,7 @@
 <view class="container">
   <view class="more-list">
 
-    <view bindtap="doInfo" class="issue-link">
+    <view bindtap="bookCard" class="issue-link">
       <view class="more-btn">
         <image class="btn-icon" src="../../img/icon/infor.png"></image>
         <text class="btn-text">我的借书证</text>

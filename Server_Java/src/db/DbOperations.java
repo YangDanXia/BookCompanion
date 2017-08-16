@@ -62,8 +62,9 @@ public class DbOperations extends HttpServlet {
 				ResultSet rs = pstmt.executeQuery();
 				while(rs.next())
 				{
-					String BookId = rs.getString("info_password");
-                    System.out.println(BookId);
+					for(String key:field.keySet()) {
+						w.println(rs.getString(key));
+					}
 				}
 			}else {
 				int rs = pstmt.executeUpdate();

@@ -17,9 +17,11 @@
   transform: translate3d(0,100%,0); 
   animation: rise 0s cubic-bezier(0.19, 1, 0.22, 1) .0s forwards;
 }
+ 
 @keyframes rise{
-  100% {opacity: 1;transform: translate3d(0,450rpx,0);}
+ 100%{opacity:1;transform:translate3d(0,450rpx,0);} 
 }
+
 .title{
   position: absolute;
   top: 60rpx;
@@ -30,10 +32,12 @@
   opacity: 0;
   animation: show 0s cubic-bezier(0.19, 1, 0.22, 1) .0s forwards;
 }
+
 @keyframes show{
-  0% {opacity: 0;}
-  100% {opacity: .95;}
+  0%{opacity:0;}
+ 100%{opacity:.95;} 
 }
+ 
 
 .hd {
   position: absolute;
@@ -78,10 +82,11 @@
   animation: bd-rise 0s cubic-bezier(0.23,1,0.32,1) .0s forwards;
   opacity: 0;
 }
-@keyframes bd-rise{
-  from {opacity: 0; transform: translate3d(0,60rpx,0); }
-  to {opacity: 1; transform: translate3d(0,0,0); }
+ @keyframes bd-rise{
+  from{opacity:0;transform:translate3d(0,60rpx,0)}
+  to{opacity:1;transform:translate3d(0,0,0);} 
 }
+
 form {
   flex: 1;
   display: flex;
@@ -134,14 +139,7 @@ form {
   opacity: .8;
 }
  
-.login-help {
-  align-items: center;
-  justify-content: flex-end;
-  font-size: 35rpx;
-  color: red;
-  margin:20rpx 160rpx;
-  margin-top:20rpx;
-} 
+ 
 
 .findPasswd{
   align-items: center;

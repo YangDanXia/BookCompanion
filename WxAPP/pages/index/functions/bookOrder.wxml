@@ -19,31 +19,46 @@
   </view>
 
 
-  <view wx:if="{{borrowBook ==''}}" class="login-warn">目前没有借阅书籍</view>
-  <view wx:else>
-   <block wx:for="{{borrowBook}}" wx:key="item">
+  <!-- <view wx:if="{{borrowBook ==''}}" class="login-warn">目前没有借阅书籍</view>
+  <view wx:else> -->
+  <view class="bookList">
+   <!-- <block wx:for="{{borrowBook}}" wx:key="item"> -->
 
    <view class="themes-list">
     <view class="themes-list-box">
+    <checkbox value="item.name" checked="checked"/>
      <navigator url="../../bookDetails/bookDetails?isbn={{item.ISBN}}" hover-class="none">
        <view class="themes-list-thumbnail">
          <image class="themes-list-img" src='{{item.image}}' />
        </view>
        <view class="themes-list-main">
-         <view class="themes-list-name">{{item.title}}</view>
-         <view class="themes-list-description">{{item.author}}</view>
-         <view class="themes-list-name">索书号：{{item.BookId}}</view>
-         <view class="themes-list-name">借书时间：{{item.borrowTime}}</view>
-         <view class="themes-list-name">借书地点：{{item.bookAddress}}</view>
+         <view class="themes-list-name">item.title</view>
+         <view class="themes-list-description">item.author</view>
+         <view class="themes-list-name">索书号：item.BookId</view>
+         <view class="themes-list-name">借书时间：item.borrowTime</view>
+         <view class="themes-list-name">借书地点：item.bookAddress</view>
        </view>
       </navigator>
+
      </view>
-    <view class="books-operate">
+     <!-- <view class="books-operate">
         <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"  data-index="{{index}}" bindtap="doBorrowColllect"></image>
         <image class="operate-type" src="../../../img/icon/del.png" data-index="{{index}}" data-type ="borrow"  bindtap="delBorrowBook"></image>
-      </view>
+      </view> -->
+
     </view>
-   </block>
+
+      <view class="operate">
+        <view class="operate-toDo">
+           <image class="operate-type" src="../../../img/icon/del.png"/>
+           <text>收藏</text>
+        </view>
+        <view class="operate-toDo">
+           <image class="operate-type" src="../../../img/icon/del.png"/>
+           <text>删除</text>
+        </view>
+      </view>
+   <!-- </block> -->
  </view>
 
 </swiper-item>
@@ -77,11 +92,18 @@
        </view>
       </navigator>
      </view>
-    <view class="books-operate">
-        <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"  data-index="{{index}}" bindtap="doBorrowColllect"></image>
-        <image class="operate-type" src="../../../img/icon/redecorate.png"></image>
-      </view>
+ 
     </view>
+      <view class="operate">
+        <view class="operate-toDo">
+           <image class="operate-type" src="../../../img/icon/del.png"/>
+           <text>收藏</text>
+        </view>
+        <view class="operate-toDo">
+           <image class="operate-type" src="../../../img/icon/del.png"/>
+           <text>删除</text>
+        </view>
+      </view>    
    </block>
  </view>
 
@@ -109,13 +131,18 @@
        </view>
       </navigator>
      </view>
-     <view class="books-operate">
-        <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png" data-index="{{index}}" bindtap="doReserveColllect"></image>
-        <image class="operate-type" src="../../../img/icon/redecorate.png"></image>
-        <image class="operate-type" src="../../../img/icon/del.png" data-index="{{index}}" data-type ="reserve"  bindtap="delReserveBook"></image>
-      </view>
+ 
     </view>
-
+      <view class="operate">
+        <view class="operate-toDo">
+           <image class="operate-type" src="../../../img/icon/del.png"/>
+           <text>收藏</text>
+        </view>
+        <view class="operate-toDo">
+           <image class="operate-type" src="../../../img/icon/del.png"/>
+           <text>删除</text>
+        </view>
+      </view>
    </block>
  </view>
 </swiper-item>

@@ -1,8 +1,11 @@
 /* pages/index/functions/bookOrder.wxss */
 /*标题栏*/
+page{
+     background-color: #f6f6f6;
+}
 
 .swiper-box{
-  margin-top:10rpx;
+  
 }
 .swiper-tab{ 
    height: 70rpx; 
@@ -47,6 +50,8 @@
 .items image{
   width: 100rpx;
   height: 100rpx;
+  margin-top:10rpx;
+
 }
 .items image.service-icon{
   width: 50rpx;
@@ -68,6 +73,19 @@ padding:0 10rpx;
 
 }
 
+/* 图书列表 */
+
+.bookList{
+  background:#fff;
+
+}
+
+checkbox{
+  margin:10% 0;
+  margin-left:10rpx;
+
+}
+
 .themes-list-description{
   font-size:28rpx;
   color:#8a8a8a;
@@ -82,17 +100,19 @@ padding:0 10rpx;
 
 .themes-list-main{
   margin-top:10rpx;
+  margin-left:35%;
 
 }
 .themes-list{ 
     background: #fff; 
     display: flex;
     margin-bottom:15rpx;
-    border-bottom:1px solid #8a8a8a;
+    margin:7px 0;
+
     }
 
 .themes-list-box{ 
-    display: block; 
+    display: flex; 
     position: relative; 
     padding: 15rpx 0rpx; 
     border-bottom: 0px solid  #D3D3D3;
@@ -102,12 +122,29 @@ padding:0 10rpx;
 
 .themes-list-thumbnail {
   top:20rpx;
+  left:11%;
+  height:200rpx;
+  width:155rpx;
 }
 
 .operate-type{
   margin:15rpx;
 }
 
+.operate-toDo{
+margin-left:9%;
+margin-right:20%;
+  display:flex;
+}
+.operate-toDo text{
+  margin-top:16%;
+}
+
+.operate{
+  display: flex; 
+  background:#ebf1f4;
+
+}
 
 .contain{
   margin-left:0;
@@ -130,3 +167,4 @@ padding:0 10rpx;
     color: #fff;
     font-size: 12pt;    line-height: 150%;
 }
+

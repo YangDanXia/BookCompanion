@@ -98,3 +98,30 @@ page {
 .more-down{
   border-bottom: 1px solid #f0f0f0;
 }
+
+ .list{
+  display: flex;
+  flex-direction: row;
+  flex:1;
+  background:white;
+}
+.items{
+  width: 100rpx;
+  flex:1;
+  text-align: center;
+  margin:10rpx 0;
+
+
+}
+
+.items image{
+  width: 70rpx;
+  height: 70rpx;
+}
+
+.items text{
+  display: block;
+  text-align: center;
+  margin-top: 10rpx;
+  font-size:30rpx;
+}

@@ -12,7 +12,6 @@
 
 <view class="container">
   <view class="more-list">
-
     <view bindtap="bookCard" class="issue-link">
       <view class="more-btn">
         <image class="btn-icon" src="../../img/icon/infor.png"></image>
@@ -34,19 +33,19 @@
       </view>
     </navigator>
 
-    <navigator url="functions/service" class="issue-middle" hover-class="none">
+    <navigator url="functions/suggest" class="issue-middle" hover-class="none">
       <view class="more-btn more-middle">
-        <image class="btn-icon" src="../../img/icon/ask.png"></image>
-        <text class="btn-text">客服咨询</text>
+        <image class="btn-icon" src="../../img/icon/back.png"></image>
+        <text class="btn-text">图书馆反馈</text>
         <view class="btn-open">
           <image class="btn-enter" src="../../img/icon/enter.png"></image>
         </view>
       </view>
     </navigator>
-    <navigator url="functions/suggest" class="about-link" hover-class="none">
+    <navigator url="functions/service" class="about-link" hover-class="none">
       <view class="more-btn more-down">
-        <image class="btn-icon" src="../../img/icon/back.png"></image>
-        <text class="btn-text">意见反馈</text>
+        <image class="btn-icon" src="../../img/icon/ask.png"></image>
+        <text class="btn-text">帮助与反馈</text>
         <view class="btn-open">
             <image class="btn-enter" src="../../img/icon/enter.png"></image>
         </view>

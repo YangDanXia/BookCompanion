@@ -17,15 +17,19 @@ public class DML {
 	public String getDML(String type,String table,Map<String,String> field,Map<String,String> factor) {
 		if(type.equalsIgnoreCase("inquire")) {
 			String sql = inquire(table,field,factor);
+			System.out.println(sql);
 			return sql;
 		}else if(type.equalsIgnoreCase("insert")) {
 			String sql = insertDML(table, field);
+			System.out.println(sql);
 			return sql;
 		}else if(type.equalsIgnoreCase("update")) {
 			String sql = updateDML(table, field, factor);
+			System.out.println(sql);
 			return sql;
 		}else if(type.equalsIgnoreCase("delete")) {
 			String sql = deleteDML(table,factor);
+			System.out.println(sql);
 			return sql;
 		}
 		return null;
@@ -50,7 +54,7 @@ public class DML {
 			keyFactor.append("=? and");
 		}
 		keys.delete((keys.length())-1, keys.length());
-		keyFactor.delete((keys.length())-3, keyFactor.length());
+		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
 		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString();
 		return sql;
 	}

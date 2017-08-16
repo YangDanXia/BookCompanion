@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.Map;
 
@@ -47,32 +48,25 @@ public class DbOperations extends HttpServlet {
 		String fieldStr = request.getParameter("field"); 
 		// 获取条件值
 		String factorStr = request.getParameter("factor"); 
-		System.out.println("0/"+new Date());
+
 		 @SuppressWarnings("unchecked")
 		Map<String,String> field =(Map<String,String>)JSON.parse(fieldStr);    
 		 @SuppressWarnings("unchecked")
 		Map<String,String> factor =(Map<String,String>)JSON.parse(factorStr);    
-
-		 System.out.println("1/"+new Date());
 		 
 		preparedSql object = new preparedSql();
-		PreparedStatement pstmt;
 		try {
+			PreparedStatement pstmt;
 			pstmt = object.prepared(type, table, field, factor);
-			 System.out.println("2/"+new Date());
 			if(type.equalsIgnoreCase("inquire")) {
 				ResultSet rs = pstmt.executeQuery();
-				while(rs.next())
-				{
-					 System.out.println("3/"+new Date());
-					for(String key:field.keySet()) {
-						w.println(rs.getString(key));
-					}
-					 System.out.println("4/"+new Date());
-				}
+			    String str = getResult(rs, field);
+			    System.out.println(str);
+			    w.print(str);
 			}else {
 				int rs = pstmt.executeUpdate();
-				System.out.println("3/"+new Date());
+				w.print("true");
+				System.out.println(new Date());
 				if(rs == 0) {
 					w.print("没有该内容");
 				}
@@ -90,6 +84,22 @@ public class DbOperations extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
+	}
+	
+	public static String getResult(ResultSet rs,Map<String,String> field) throws SQLException {
+		StringBuilder json = new StringBuilder();
+		json.append("{\"result\":[");
+		while(rs.next())
+		  {
+			  json.append("{");	
+			  for(String key:field.keySet()) {
+			     json.append("\""+key+"\":").append("\""+rs.getString(key)+"\",");
+			  }
+			  json.append("},");	
+	  	  }
+        json.append("]}"); 
+		String str = json.toString().replaceAll(",},]}", "}]}");
+		return str;
 	}
 
 }

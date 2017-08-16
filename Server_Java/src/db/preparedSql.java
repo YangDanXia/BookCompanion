@@ -24,13 +24,10 @@ public class preparedSql {
 		DML dml =  DML.getInstance();
 		String  sql =dml.getDML(type, table, field, factor);
 		
-		
 //		执行SQL语句
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 //		占位符中对应的值
-		if(type.equalsIgnoreCase("inquire")) {
-			
-		}else {
+		if(!type.equalsIgnoreCase("inquire")) {
 			for(String key:field.keySet()) {
 				pstmt.setString(index, field.get(key));
 				index++;

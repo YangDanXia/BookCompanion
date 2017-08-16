@@ -34,6 +34,15 @@ Page({
     })
   },
 
+  /**
+   * 进入登录界面
+   */
+  login: function () {
+    wx.navigateTo({
+      url: 'account/login'
+    })
+  },
+
 
   /**
    * 查看借书证
@@ -43,20 +52,11 @@ Page({
       this.login()
     } else {
       wx.navigateTo({
-        url: 'account/information'
+        url: 'account/bookCard'
       })
     }
   },
 
-
-  /**
-   * 进入登录界面
-   */
-  login: function () {
-    wx.navigateTo({
-      url: 'account/login'
-    })
-  },
 
 
   /**
@@ -69,6 +69,6 @@ Page({
       icon: 'success',
       duration: 1000
     })
-    this.onshow();
+    this.onShow();
   }
 })

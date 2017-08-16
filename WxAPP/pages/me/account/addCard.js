@@ -37,6 +37,7 @@ Page({
      url: 'http://localhost:8080/Server_Java/DbOperations',
      data:
      {
+       dbName: "WxApp",
        table: "bookcard_record",
        typeName: "insert",
        field: {idx_phone: that.data.phone,uk_bookCardId: that.data.cardNum, library: that.data.array[this.data.index]},

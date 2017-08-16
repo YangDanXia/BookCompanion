@@ -122,6 +122,7 @@ Page({
       url: 'http://localhost:8080/Server_Java/DbOperations',
       data:
       {
+        dbName:"WxApp",
         table:"user_info",
         typeName:"insert",
         field:{uk_phone:userPhone,info_password:passwd},

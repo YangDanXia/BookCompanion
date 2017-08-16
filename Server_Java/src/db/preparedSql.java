@@ -7,25 +7,33 @@ import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 public class preparedSql {
 	
-	public static Connection conn;
-	public final void runSQL(String dbName) throws Exception {
+	public static Connection connWx;
+	public static Connection connLib;
+	public final void runSQL() throws Exception {
 //		启动数据库
 		ConnectionPoolFactory dataBase =  ConnectionPoolFactory.getInstance();
-		ComboPooledDataSource ds =dataBase.getDB(dbName);
+		ComboPooledDataSource dsWx =dataBase.getDB("WxApp");
+		ComboPooledDataSource dsLib=dataBase.getDB("Library");
 //		连接数据库
-		conn = ds.getConnection();
+		connWx = dsWx.getConnection();
+		connLib = dsLib.getConnection();
 	}
 	
 	//模板
-	public final PreparedStatement prepared(String type,String table,Map<String,String> field,Map<String,String> factor) throws Exception {
+	public final PreparedStatement prepared(String dbName,String type,String table,Map<String,String> field,Map<String,String> factor) throws Exception {
 		
 		int index=1;
 //		写sql语句
 		DML dml =  DML.getInstance();
 		String  sql =dml.getDML(type, table, field, factor);
-		
+		PreparedStatement pstmt = null ;
 //		执行SQL语句
-		PreparedStatement pstmt = conn.prepareStatement(sql);
+		if(dbName.equalsIgnoreCase("Library")) {
+			pstmt = connLib.prepareStatement(sql);
+		}else if(dbName.equalsIgnoreCase("WxApp")) {
+		   pstmt = connWx.prepareStatement(sql);
+		}
+
 //		占位符中对应的值
 		if(!type.equalsIgnoreCase("inquire")) {
 			for(String key:field.keySet()) {

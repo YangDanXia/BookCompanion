@@ -39,7 +39,9 @@ public class DbOperations extends HttpServlet {
     	request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
         // 创建输出管道
-		PrintWriter w = response.getWriter();       
+		PrintWriter w = response.getWriter();   
+		// 获取数据库名
+		String dbName = request.getParameter("dbName"); 
 		// 获取数据表名
 		String table = request.getParameter("table"); 
 		// 获取操作类型
@@ -57,7 +59,7 @@ public class DbOperations extends HttpServlet {
 		preparedSql object = new preparedSql();
 		try {
 			PreparedStatement pstmt;
-			pstmt = object.prepared(type, table, field, factor);
+			pstmt = object.prepared(dbName,type, table, field, factor);
 			if(type.equalsIgnoreCase("inquire")) {
 				ResultSet rs = pstmt.executeQuery();
 			    String str = getResult(rs, field);

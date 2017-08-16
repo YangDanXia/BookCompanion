@@ -104,7 +104,7 @@ Page({
     var history_length = this.data.historicalSearch.length;
     if (history_length == 0) {
       wx.request({
-        url: 'http://localhost:8080/Library_WxApp/GetBooksInfo',
+        url: 'http://localhost:8080/Server_Java/GetBooksInfo',
         data: {
           request: "tag",
           tag: "计算机",
@@ -128,7 +128,7 @@ Page({
       var re_tag = this.data.historicalSearch[re_index];
 
       wx.request({
-        url: 'http://localhost:8080/Library_WxApp/GetBooksInfo',
+        url: 'http://localhost:8080/Server_Java/GetBooksInfo',
         data: {
           request: "tag",
           tag: re_tag,
@@ -157,7 +157,7 @@ Page({
     var that = this
     var index = app.getRandom(20);
     wx.request({
-      url: 'http://localhost:8080/Library_WxApp/GetBooksInfo',
+      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
       data: {
         request: "tag",
         tag: "语言",
@@ -207,7 +207,7 @@ Page({
             success: function (res) {
               if (res.confirm) {
                 wx.request({
-                  url: 'http://localhost:8080/Library_WxApp/DBOperations',
+                  url: 'http://localhost:8080/Server_Java/DbOperations',
                   data: {
                     request: "get_bookmsg_2",
                     bookId:bookId

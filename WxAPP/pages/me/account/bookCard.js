@@ -22,6 +22,7 @@ Page({
         url: 'http://localhost:8080/Server_Java/DbOperations',
         data:
         {
+          dbName: "WxApp",
           table: "bookcard_record",
           typeName: "inquire",
           field: { uk_bookCardId: '', library: '', current_borrow:'',history_borrow:''},
@@ -106,6 +107,7 @@ Page({
             url: 'http://localhost:8080/Server_Java/DbOperations',
             data:
             {
+              dbName: "WxApp",
               table: "bookcard_record",
               typeName: "delete",
               field: {},

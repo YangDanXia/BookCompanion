@@ -95,6 +95,16 @@ form {
   opacity: .8;
 }
 
+.wait {
+  font-size: 35rpx;
+  line-height: 90rpx;
+  height: 90rpx;
+  background:#A0A0A0;
+  color: #fff;
+  text-align: center;
+  border-radius: 5px;
+  width:250rpx;
+}
 
 .confirm-btn {
   font-size: 35rpx;

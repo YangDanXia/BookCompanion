@@ -34,9 +34,10 @@
 
 
 
-<view class="box-top">
+<view class="box-top" bindtap="clearStorage">
    <view class="content">
     清理缓存
+    <view class="btn-size"> {{currentSize}} M</view>
     </view>
 </view>
 

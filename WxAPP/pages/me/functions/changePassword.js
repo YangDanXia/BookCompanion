@@ -1,66 +1,113 @@
-// pages/me/functions/changePassword.js
+// pages/me/account/changePassword.js
+var app = getApp();
+var that = this;
+var old;
+var passwd;
+var rePasswd;
+
 Page({
 
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    toSend: true,
+    second: 60,
+    oldPasswd: app.cache.userInfo.password,
+    phone: app.cache.userInfo.phone
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 获取用户名的输入
    */
-  onLoad: function (options) {
-  
+  oldPasswd: function (e) {
+    old = e.detail.value
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
+   * 获取密码的输入
    */
-  onReady: function () {
-  
+  newPasswd: function (e) {
+    passwd = e.detail.value
   },
 
   /**
-   * 生命周期函数--监听页面显示
+   * 重复的密码
    */
-  onShow: function () {
-  
+  renewPasswd:function(e){
+    rePasswd=e.detail.value
   },
+  
 
   /**
-   * 生命周期函数--监听页面隐藏
+   * 点击修改
    */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  changePasswd: function () {
+    var information = new Array(old, passwd, rePasswd);
+    for (var x = 0; x < 3; x++) {
+      if (!information[x]) {
+        wx.showToast({
+          title: "请填写完整信息",
+          image: '../../../img/icon/warn.png'
+        })
+        return false;
+      }
+    }
+    if (old != this.data.oldPasswd) {
+      wx.showToast({
+        title: "原密码错误！",
+        image: '../../../img/icon/warn.png'
+      })
+      return false;
+    } 
+    if (passwd != rePasswd) {
+      wx.showToast({
+        title: "两次密码不一致！",
+        image: '../../../img/icon/warn.png'
+      })
+      return false;
+    }
+    /**
+     * 连接数据库
+     * 需要的数据：数据表，操作类型，手机号，密码
+     */
+    wx.request({
+      url: 'http://localhost:8080/Server_Java/DbOperations',
+      data:
+      {
+        table: "user_info",
+        typeName: "update",
+        field: { info_password: passwd },
+        factor: { uk_phone: this.data.phone }
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data);
+        if (res.data == "error") {
+          wx.showToast({
+            title: "系统繁忙",
+            image: "../../../img/icon/warn.png"
+          })
+        } else {
+          wx.showToast({
+            icon: 'success',
+            duration: 2000,
+            success: function () {
+              wx.navigateTo({
+                url:'../account/login'
+              })
+            }
+          })
+        }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: "网络异常",
+          image: "../../../img/icon/warn.png"
+        })
+      }
+    })
   }
+
+
 })

@@ -78,7 +78,7 @@ Page({
         if(res.data !== "OK"){
           wx.showToast({
             title: res.data,
-            img: "../../../img/icon/warn.png"
+            image: "../../../img/icon/warn.png"
           })
         }
       }
@@ -102,7 +102,7 @@ Page({
       if (!information[x]) {
         wx.showToast({
           title: "请填写完整信息",
-          img: '../../../img/icon/warn.png'
+          image: '../../../img/icon/warn.png'
         })
         return false;
       }
@@ -110,7 +110,7 @@ Page({
     if(code != codeNumber){
       wx.showToast({
         title: "验证码错误！",
-        img: '../../../img/icon/warn.png'
+        image: '../../../img/icon/warn.png'
       })
       return false;
     }
@@ -136,10 +136,9 @@ Page({
         if (res.data == "error") {
           wx.showToast({
             title: "手机号已存在",
-            img: "../../../img/icon/warn.png"
+            image: "../../../img/icon/warn.png"
           })
         } else{
-          wx.setStorageSync('information', information);
           wx.showToast({
             title: '注册成功',
             icon: 'success',
@@ -155,7 +154,7 @@ Page({
       fail: function (res) {
         wx.showToast({
           title: "网络异常",
-          img: "../../../img/icon/warn.png"
+          image: "../../../img/icon/warn.png"
         })
       }
     })

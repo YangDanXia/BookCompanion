@@ -89,7 +89,7 @@ public class DML {
 		StringBuilder keyFactor = new StringBuilder();
 		for(String key:field.keySet()) {
 			keys.append(key);
-			keys.append(",");
+			keys.append("=?,");
 		}
 		for(String key:factor.keySet()) {
 			keyFactor.append(key);

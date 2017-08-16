@@ -19,6 +19,20 @@ Page({
   },
 
 
+ onLoad:function(){
+   var that=this;
+   wx.getStorageInfo({
+     success: function (res) {
+       console.log(res.currentSize)
+       var size =Math.round(res.currentSize / 1024);
+       console.log(size)
+       that.setData({
+         currentSize: size
+       })
+     }
+   })
+ },
+
   /**
    * 生命周期函数--监听页面显示
    */
@@ -75,6 +89,13 @@ Page({
     })
   },
 
+ /**
+  * 清理缓存
+  */
+  clearStorage:function(){
+    app.removeCache('historyBook');
+    app.removeCache('historySearch');
+  },
 
   /**
    * 隐藏弹窗

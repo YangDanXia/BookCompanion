@@ -3,19 +3,22 @@
   <form class="login-form">
     <view class="input-group">
       <text class="input-label">原手机号</text>
-      <input cursor-spacing="30" id="oldPhone"  bindinput="oldPhone" placeholder="用于接收验证码" />
+      <input cursor-spacing="30" maxlength="11" bindinput="oldPhone" placeholder="用于接收验证码" />
     </view>
     <view class="input-group">
        <text class="input-label">新手机号</text>
-       <input cursor-spacing="30"  id="newPhone" bindinput="newPhone" />
+       <input cursor-spacing="30" maxlength="11" bindinput="newPhone" />
     </view>
     <view class="code">
     <view class="input-code">
        <text class="input-label">验证码</text>
-       <input cursor-spacing="30"  id="newPhone" bindinput="newPhone" />
+       <input cursor-spacing="30"  bindinput="codeInput" />
     </view>
-    <view class="sendCode" bindtap="reset">
-       <text>发送验证码</text>
+     <view class="sendCode" bindtap="sendCode" wx:if="{{toSend}}">
+        <text>发送验证码</text>
+    </view> 
+    <view class="wait" wx:else> 
+       <text>等待{{second}}秒</text>
     </view>
     </view>
   </form>

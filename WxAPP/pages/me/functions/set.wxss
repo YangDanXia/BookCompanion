@@ -36,3 +36,10 @@ button{
    margin-right:5%;
 
 }
+
+.btn-size{
+   height:47rpx;
+   float:right;
+   margin-right:5%;
+
+}

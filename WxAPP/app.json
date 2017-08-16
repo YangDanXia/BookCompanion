@@ -1,7 +1,6 @@
 {
   "pages": [
-        "pages/me/account/findPassword",
-    "pages/me/account/bookCard",
+
     "pages/me/me",
     "pages/index/index",
     "pages/shelf/shelf",
@@ -24,13 +23,15 @@
     "pages/me/account/enroll",
 
     "pages/me/account/addCard",
-
+    "pages/me/account/findPassword",
+    "pages/me/account/bookCard",
     "pages/me/functions/service",
     "pages/me/functions/suggest",
     "pages/me/functions/recommend",
     "pages/me/functions/set",
-    "pages/me/functions/changePassword",
-    "pages/me/functions/changePhone"
+    "pages/me/functions/changePhone",
+    "pages/me/functions/changePassword"
+
 
  
   ],

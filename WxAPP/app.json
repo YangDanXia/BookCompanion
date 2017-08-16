@@ -1,6 +1,6 @@
 {
   "pages": [
-
+    "pages/me/account/enroll",
     "pages/me/me",
     "pages/index/index",
     "pages/shelf/shelf",
@@ -20,7 +20,7 @@
     "pages/bookDetails/relatedBooks",
 
     "pages/me/account/login",
-    "pages/me/account/enroll",
+
     "pages/me/account/information",
     "pages/me/account/addCard",
     "pages/me/account/findPassword",

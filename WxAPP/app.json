@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/bookDetails/bookDetails",
     "pages/index/functions/search",
     "pages/index/index",
     "pages/me/me",
@@ -16,7 +17,7 @@
     "pages/shelf/functions/shelfDetails",
     "pages/shelf/functions/addShelf",
 
-    "pages/bookDetails/bookDetails",
+
     "pages/bookDetails/relatedBooks",
 
     "pages/me/account/login",

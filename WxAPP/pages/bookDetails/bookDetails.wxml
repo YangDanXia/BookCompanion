@@ -1,5 +1,4 @@
 <!--pages/bookDetails/bookDetails.wxml-->
-
 <!-- loading -->
 <loading hidden="{{hidden}}">
     加载中...
@@ -51,7 +50,7 @@
 </label>
 
 <!-- 可以预约图书-->
-<block wx:if="{{ownBook}}&&{{isContinue}}" >
+<block wx:if="{{isBookIn&&isBookCard&&isReserve}}" >
  <view class="classname">
   <picker mode="date" value="{{date}}" start="2017-06-30" end="2017-09-01" bindchange="bindDateChange">
     <view bindtap="booking">
@@ -75,7 +74,7 @@
 <!--显示馆藏情况-->
 <view class="list-main">
  <table class="{{subMenuDisplay}}">
-<block wx:if="{{ownBook}}">
+<block wx:if="{{isHaveBook}}">
   <view class="book-box">
      <view class=" book book-id"><text class="book-info">索书号</text></view>
      <view class=" book book-address"><text class="book-info">馆藏地点</text></view>
@@ -101,13 +100,13 @@
 <!--简介-->
 <view class="book-desc">
  <view class="title"  >作者简介</view>
-  <view class="{{!descript?'desc-limit':'desc-limit-show'}}">
+  <view class="{{!isDescripte?'desc-limit':'desc-limit-show'}}">
    <text wx:if="{{bookInfo.author_intro==''}}">暂无作者信息</text>
    <text wx:else>{{bookInfo.author_intro}}</text>
   </view>
- <view class="desc-button" wx:if="{{!descript}}" bindtap="showDesc">展开   
+ <view class="desc-button" wx:if="{{!isDescripte}}" bindtap="showDesc">展开   
  </view>
- <view class="desc-button" wx:elif="{{descript}}" bindtap="hideDesc">关闭   </view>
+ <view class="desc-button" wx:elif="{{isDescripte}}" bindtap="hideDesc">关闭   </view>
 </view>
 
 </scroll-view>

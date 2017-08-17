@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/index/functions/search",
     "pages/index/index",
     "pages/me/me",
 
@@ -7,7 +8,7 @@
 
     "pages/index/functions/library",
     "pages/index/functions/map",
-    "pages/index/functions/search",
+
     "pages/index/functions/bookNavigateList",
     "pages/index/functions/bookOrder",
     "pages/index/functions/borrowProcess/QRcode",

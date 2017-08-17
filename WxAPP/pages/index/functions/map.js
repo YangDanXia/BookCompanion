@@ -1,5 +1,4 @@
 // pages/index/functions/library.js
-var map = require('../../../libs/bmap-wx.min.js');
 var wxMarkerData = [];
 var app = getApp()
 Page({
@@ -8,7 +7,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ak: "qYrgL0YUKKmtx2zej6zG33iOdMIoQUGE",//百度API的密钥
     markers: []
   },
 
@@ -18,7 +16,7 @@ Page({
   onLoad: function (options) {
     var that = this
 
-  //  获取当前位置
+  //  获取当前位置及附近图书馆
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
@@ -26,40 +24,34 @@ Page({
           longitude: res.longitude,
           latitude: res.latitude
         })
-      }
-    })
-  // 获取附近图书馆
-    var BMap = new map.BMapWX({
-      ak: that.data.ak
-    });
-    var fail = function (data) {
-      console.log(data);
-    };
-    var success = function (data) {
-      wxMarkerData = data.wxMarkerData;
-      console.log(wxMarkerData)
-      for(var i=0;i<wxMarkerData.length;i++){
-        wxMarkerData[i].iconPath ='../../../img/icon/location1.png';
-        wxMarkerData[i].height =50;
-        wxMarkerData[i].width = 50;
-      }
-      that.setData({ 
-        markers: wxMarkerData
-      });
-    }
-    //找到附近地点
-    BMap.search({
-      "query": '图书馆',
-      fail: fail,
-      success: success
-    });
-  },
+        wx.request({
+          url: 'http://localhost:8080/Server_Java/GetMap',
+          data: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+          },
+          method: 'GET',
+          success: function (res) {
+            wxMarkerData = res.data.results;
 
-  choosed: function (e) {
-    var index = e.currentTarget.dataset.index;
-    app.saveCache('selectLibrary', wxMarkerData[index].title)
-    wx.switchTab({
-      url: '../index'
+            for (var i = 0; i < wxMarkerData.length; i++) {
+              wxMarkerData[i].latitude = wxMarkerData[i].location.lat
+              wxMarkerData[i].longitude = wxMarkerData[i].location.lng
+              wxMarkerData[i].title = wxMarkerData[i].name;
+              wxMarkerData[i].iconPath = '../../../img/icon/location1.png';
+              wxMarkerData[i].height = 30;
+              wxMarkerData[i].width = 30;
+            }
+            console.log(wxMarkerData)
+            that.setData({
+              markers: wxMarkerData
+            });
+          }
+        })
+      }
     })
   }
 })

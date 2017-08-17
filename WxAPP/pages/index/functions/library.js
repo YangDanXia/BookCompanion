@@ -1,6 +1,4 @@
 // pages/index/functions/library.js
-var map = require('../../../libs/bmap-wx.min.js');
-var wxMarkerData = [];
 var app = getApp()
 Page({
 
@@ -8,8 +6,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    wxMarkerData: [],
-    ak: "qYrgL0YUKKmtx2zej6zG33iOdMIoQUGE",//百度API的密钥
+    wxMarkerData: []
   },
 
   /**
@@ -17,30 +14,33 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    var BMap = new map.BMapWX({
-      ak: that.data.ak
-    });
-    var fail = function (data) {
-      console.log(data);
-    };
-    var success = function (data) {
-      wxMarkerData = data.wxMarkerData;
-      console.log(wxMarkerData)
-      that.setData({ 
-        wxMarkerData: wxMarkerData
-      });
-    }
-    //找到附近地点
-    BMap.search({
-      "query": '图书馆',
-      fail: fail,
-      success: success
-    });
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        wx.request({
+          url: 'http://localhost:8080/Server_Java/GetMap',
+          data: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          header: {
+            'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+          },
+          method: 'GET',
+          success: function (res) {
+            console.log(res.data)
+            that.setData({
+              wxMarkerData: res.data.results
+            })
+          }
+        })
+      }
+    })
   },
 
   choosed: function (e) {
     var index = e.currentTarget.dataset.index;
-    app.saveCache('selectLibrary', wxMarkerData[index].title)
+    app.globalData.G_selectLibrary = this.data.wxMarkerData[index].name;
     wx.switchTab({
       url: '../index'
     })

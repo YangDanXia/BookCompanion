@@ -64,6 +64,7 @@ Page({
       },
       method: 'GET',
       success: function (res) {
+        console.log(res.data.result)
         result=res.data.result[0].info_password;
         if (result == that.data.passwd) {//验证成功，则返回的数据为TRUE,失败则返回false
           //保存登录态，只要用户不删除缓存记录和自动退出，以后都不需要再登录

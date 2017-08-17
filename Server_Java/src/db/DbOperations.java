@@ -100,8 +100,9 @@ public class DbOperations extends HttpServlet {
 			  json.append("},");	
 	  	  }
         json.append("]}"); 
-		String str = json.toString().replaceAll(",},]}", "}]}");
-		return str;
+        String str = json.toString().replaceAll(",}","}");
+		String str1 = str.toString().replaceAll(",]}","]}");
+		return str1;
 	}
 
 }

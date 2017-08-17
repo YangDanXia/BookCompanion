@@ -41,7 +41,7 @@ Page({
   getBooksList: function (query) {
     var that = this
     wx.request({
-      url: 'http://localhost:8080/Library_WxApp/GetBooksInfo',
+      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
       data: {
         request: "tag",
         tag: query.tag,

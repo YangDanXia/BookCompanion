@@ -9,7 +9,7 @@
    <view class="themes-list" wx:for="{{wxMarkerData}}" wx:key="{{item}}">
     <view class="themes-list-box" data-index="{{index}}" bindtap="choosed">
        <view class="themes-list-main">
-         <view class="themes-list-name">{{item.title}}</view>
+         <view class="themes-list-name">{{item.name}}</view>
          <view class="themes-list-description">{{item.address}}</view>
        </view>
      </view>

@@ -80,3 +80,7 @@ li{
   text-align:left;
   line-height:45rpx;
  }
+
+ .list-description {
+   font-size:30rpx;
+ }

@@ -84,7 +84,7 @@ Page({
           showTab: false,
           subMenuDisplay: 'hidden'
         })
-        this.getBooksList(tag, "0")
+        this.getBooksList(tag)
       } else {
         newSubMenuLight[i] = 'disagree';
       }
@@ -99,15 +99,15 @@ Page({
   /**
    * 获取该类型下的图书列表
    */
-  getBooksList: function (tag, start) {
+  getBooksList: function (tag) {
     var that = this
     wx.request({ 
-      url: 'http://localhost:8080/Library_WxApp/GetBooksInfo',
+      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
       data: {
         request: "tag",
         tag: tag,
         count: "100",
-        start: start
+        start:"29"
       },
       success: function (res) {
         var books = res.data.books;

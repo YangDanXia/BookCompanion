@@ -26,5 +26,6 @@
 	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/fastjson-1.2.2.jar"/>
 	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/aliyun-java-sdk-core-3.2.3.jar"/>
 	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/aliyun-java-sdk-dysmsapi-1.0.0-SANPSHOT.jar"/>
+	<classpathentry kind="lib" path="F:/Git/BookCompanion/Server_Java/WebContent/WEB-INF/lib/commons-lang-2.6.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

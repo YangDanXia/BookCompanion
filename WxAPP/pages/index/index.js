@@ -2,7 +2,6 @@
 // const声明的变量不能被改变
 const date = new Date()
 const util = require('../../utils/util.js');
-var map = require('../../libs/bmap-wx.min.js');
 var option = require('../../utils/infor.js')
 var wxMarkerData = [];
 var app = getApp();
@@ -26,9 +25,7 @@ Page({
      bookTypeUp: option.BookNavigationUp,
      bookTypeDown: option.BookNavigationDown,
     //附近图书馆名称
-     library: app.globalData.G_selectLibrary || '',
-    //百度API的密钥
-     ak: "qYrgL0YUKKmtx2zej6zG33iOdMIoQUGE"
+     library: app.globalData.G_selectLibrary || ''
   },
 
 
@@ -37,24 +34,33 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that = this
-    //获附近图书馆 
-    var BMap = new map.BMapWX({
-      ak: that.data.ak
-    });
-    var success = function (data) {
-      wxMarkerData = data.wxMarkerData;
-      that.setData({
-        library: wxMarkerData[0].title
-      });
-      //保存图书馆的选择
-      app.globalData.G_selectLibrary = that.data.library;
-    }
-    //找到附近地点
-      BMap.search({
-        "query": '图书馆',
-        success: success
-     });
+    var that = this;
+    //所在图书馆
+    wx.getLocation({
+      type: 'wgs84',
+      success: function (res) {
+        wx.request({
+          url: 'http://localhost:8080/Server_Java/GetMap',
+          data:{
+            latitude: res.latitude,
+            longitude: res.longitude
+          }, 
+          header: {
+            'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+          },
+          method: 'GET',
+          success: function (res) {
+            console.log(res.data)
+            that.setData({
+              library:res.data.results[0].name
+            })
+            app.globalData.G_selectLibrary = res.data.results[0].name
+          }
+
+
+        })
+      }
+    })
 
     //每日推荐
     that.DailyRecommend();

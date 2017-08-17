@@ -13,11 +13,11 @@ Page({
    //登录状态
     login: app.cache.loginFlag || false,
    //成功借了的书
-    borrowBook: app.cache.borrowBook || [],
+    borrowBook: app.cache.waitToBorrow || [],
    //借书二维码内容
     borrowCode: app.cache.borrowCode || [],
    //预约图书,扫码的书和网上预约的都在这里
-    reserveBook: app.cache.reservation || [],
+    reserveBook: app.cache.reserveBook || [],
    //借书历史
     borrowedBook: app.cache.borrowedBook || [],
     //收藏记录

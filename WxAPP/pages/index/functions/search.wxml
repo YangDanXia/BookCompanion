@@ -16,7 +16,7 @@
 
 <view clas="wrap">
 
-<block wx:if="{{historicalRecord!=[]}}"  wx:for="{{historicalRecord}}" wx:key="{{item}}">
+<block wx:if="{{historySearch!=[]}}"  wx:for="{{historySearch}}" wx:key="{{item}}">
 <navigator url="../../bookDetails/relatedBooks?tag={{item}}" class="content" hover-class="none"><text class="record">{{item}}</text></navigator>
 </block>
 </view>

@@ -30,6 +30,7 @@
     <view class="book-brief">作者：{{bookInfo.author}}</view>
     <view class="book-brief">出版社：{{bookInfo.publisher}}</view>
     <view class="book-brief">出版时间：{{bookInfo.pubdate}}</view>
+    <view class="book-brief">售价：{{bookInfo.price}}</view>
     <view class="book-brief">页码：{{bookInfo.pages}}页</view>
   </view>
    <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder"></image>
@@ -48,7 +49,28 @@
       </view>
     </view>
 </label>
+
+<!-- 可以预约图书-->
+<block wx:if="{{ownBook}}&&{{isContinue}}" >
+ <view class="classname">
+  <picker mode="date" value="{{date}}" start="2017-06-30" end="2017-09-01" bindchange="bindDateChange">
+    <view bindtap="booking">
+      <image  class="themes-box-title" src="../../img/icon/add.png" />
+      <text class="themes-box-subtitle">预约此书</text>
+    </view>
+  </picker>
+ </view>
+</block>
+<!-- 不可以预约图书 -->
+<view class="classname" wx:else>
+  <view bindtap="booking">
+    <image  class="themes-box-title" src="../../img/icon/add.png" />
+    <text class="themes-box-subtitle">预约此书</text>
+  </view>
 </view>
+</view>
+
+
 
 <!--显示馆藏情况-->
 <view class="list-main">
@@ -74,14 +96,6 @@
 </view>
 
 
-
-<!--弹窗-->
- <picker mode="date" value="{{date}}" start="2017-06-30" end="2017-09-01" bindchange="bindDateChange" 
- disabled="{{timeSelect}}">
-<modal hidden="{{confirmHidden}}"  confirm-text="确定" no-cancel="true" bindconfirm="timeSelect" >
-  您已预约成功,索书号为：{{bookStatus}},请选择取书时间：
-</modal>
-</picker>
 
 
 <!--简介-->

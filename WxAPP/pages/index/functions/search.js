@@ -8,7 +8,7 @@ Page({
    */
   data: {
     //历史记录
-    historicalRecord: app.cache.historicalSearch || [],
+    historySearch: app.cache.historySearch || [],
     //搜索内容
     searchContent: ''
   },
@@ -19,7 +19,7 @@ Page({
    */
   onShow: function () {
     this.setData({
-      historicalRecord: app.cache.historicalSearch || [] //历史记录
+      historySearch: app.cache.historySearch || [] //历史记录
     })
   },
 
@@ -40,7 +40,7 @@ Page({
   formSubmit: function () {
     var input = this.data.searchContent;
     // 添加搜索内容到历史记录的数组中
-    this.data.historicalRecord.push(input);
+    this.data.historySearch.push(input);
     //输入内容不能为空
     if (input == '') {
       wx.showModal({
@@ -51,7 +51,7 @@ Page({
       return false;
     }
     // 本地缓存搜索记录
-    app.saveCache("historicalSearch", this.data.historicalRecord);
+    app.saveCache("historySearch", this.data.historySearch);
     // 显示搜索结果
     wx.navigateTo({
       url: '../../bookDetails/relatedBooks?tag=' + input
@@ -63,14 +63,14 @@ Page({
    *  清除历史记录
    */
   remove: function () {
-    if (!app.removeCache("historicalSearch")) {
+    if (!app.removeCache("historySearch")) {
       wx.showToast({
         title: '清除成功',
         duration: 1800
       })
       //清空搜索记录
       this.setData({
-        historicalRecord: []
+        historySearch: []
       })
     }
   }

@@ -32,5 +32,5 @@ module.exports={"BookType":[
      { "url": 'functions/bookNavigateList?tag=卫生', "img": "../../img/icon/medical.png", "text": '医学' }, 
      { "url": 'functions/bookNavigateList?tag=哲学', "img": "../../img/icon/philosophy.png", "text": '哲学' }, 
      { "url": 'functions/bookNavigateList?tag=综合',"img": "../../img/icon/more.png","text": '更多'}],
-   "BookAction":[{"bindtap":"relevant","name":"相关书","src":"../../img/icon/same.png"},{"bindtap":"bookOfLibrary","name":"馆藏情况","src":"../../img/icon/comment.png"},{"bindtap":"addShelf","name":"收藏此书","src":"../../img/icon/read.png"},{"bindtap":"booking","name":"预约此书","src":"../../img/icon/add.png"}],"ReminderFunction":[{"title":"允许推荐书籍","warn":"开启后，默认每日一推;可关闭后再开启，选择推荐频率"},{"title":"书籍到期提醒","warn":"开启后，在借阅书籍到期前一周会给您推送提醒还书"},{"title":"藏书到馆提醒","warn":"开启后，当预约图书到馆，会给您推送提醒"},{"title":"预约到期提醒","warn":"开启后，在预约期限前一星期，会给您推送提醒取书"}]
+   "BookAction":[{"bindtap":"relevant","name":"相关书","src":"../../img/icon/same.png"},{"bindtap":"bookOfLibrary","name":"馆藏情况","src":"../../img/icon/comment.png"},{"bindtap":"addShelf","name":"收藏此书","src":"../../img/icon/read.png"}],"ReminderFunction":[{"title":"允许推荐书籍","warn":"开启后，默认每日一推;可关闭后再开启，选择推荐频率"},{"title":"书籍到期提醒","warn":"开启后，在借阅书籍到期前一周会给您推送提醒还书"},{"title":"藏书到馆提醒","warn":"开启后，当预约图书到馆，会给您推送提醒"},{"title":"预约到期提醒","warn":"开启后，在预约期限前一星期，会给您推送提醒取书"}]
 }

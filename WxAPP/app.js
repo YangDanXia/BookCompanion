@@ -23,10 +23,11 @@ App({
       success: function (res) { return; },
       fail: function () {
         var newBookShelf = [{
-          "img": "../../../img/show/book.png",
-          "name": "我喜欢的图书",
-          "intro": "",
-          "detail": []
+          "idx_bookList_id":0,
+          "shelf_photo": "../../../img/show/book.png",
+          "shelf_name": "我喜欢的图书",
+          "shelf_intro": "",
+          "shelf_bookList": []
         }]
         that.saveCache('bookShelf', newBookShelf)
       }

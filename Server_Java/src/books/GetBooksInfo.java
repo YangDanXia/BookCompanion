@@ -40,9 +40,9 @@ public class GetBooksInfo extends HttpServlet {
                 // 获取ISBN编号
 				String ISBN = request.getParameter("ISBN");
                 // 通过ISBN找到此书的相关信息
-				String URL_getBookInfo = "https://api.douban.com/v2/book/isbn/"+ISBN;
+				String url_getBookInfo = "https://api.douban.com/v2/book/isbn/"+ISBN;
                 // 获取页面内容即图书信息
-				String data = HttpRequest.get(URL_getBookInfo).body();
+				String data = HttpRequest.get(url_getBookInfo).body();
                 // 写入到反馈给小程序的数据上
 				w.print(data); 
 			}catch(Exception e){
@@ -56,14 +56,16 @@ public class GetBooksInfo extends HttpServlet {
 		if(appRequest.equals("tag")){
 			try{
                 // 获取关键字，有可能是中文，所以要注意编码问题
-				String tag = new String(request.getParameter("tag").getBytes("ISO-8859-1"),"utf-8");
+//				String tag = new String(request.getParameter("tag").getBytes("ISO-8859-1"),"utf-8");
+				String tag = request.getParameter("tag");
+				System.out.println(tag);
                 // 获取起始指针
 				String start = request.getParameter("start");
                 // 每次获取的图书量
 				String count =request.getParameter("count");
                 // 根据关键字、起始指针和图书量返回一定量的图书
-				String URL_getBookInfo = "https://api.douban.com/v2/book/search?q="+tag+"&start="+start+"&count="+count;
-				String data = HttpRequest.get(URL_getBookInfo).body(); 
+				String url_getBookInfo = "https://api.douban.com/v2/book/search?q="+tag+"&start="+start+"&count="+count;
+				String data = HttpRequest.get(url_getBookInfo).body(); 
 				w.print(data);
 			}catch(Exception e){
 				e.printStackTrace();

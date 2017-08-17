@@ -176,10 +176,10 @@ navigator{
     /*text-align: center;*/
 }
 .navs{width:100%;height: 100%;}
-.book{width:60%;height: 100%;padding-left:2%}
+.book{width:57%;height: 100%;border-radius:8rpx;}
 
 .themes-list-name{
-  font-size: 28rpx; 
+  font-size: 25rpx; 
   color: #444; 
   text-align:center; 
   line-height: 20px;  

@@ -18,10 +18,10 @@ Page({
     currentTab: 0,
     imgUrls:
     [
-      "http://www.hqinfo.xyz/photo/book1.jpg",
-      "http://www.hqinfo.xyz/photo/book2.jpg",
-      "http://www.hqinfo.xyz/photo/book3.jpg",
-      "http://www.hqinfo.xyz/photo/book4.png"
+      "http://www.hqinfo.xyz:8080/photo/book1.jpg",
+      "http://www.hqinfo.xyz:8080/photo/book2.jpg",
+      "http://www.hqinfo.xyz:8080/photo/book3.jpg",
+      "http://www.hqinfo.xyz:8080/photo/book4.png"
     ],
     indicatorDots: true,
     autoplay: true,

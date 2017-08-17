@@ -30,11 +30,10 @@ public class InitSql extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		// 获取数据库名
-		String dbName = request.getParameter("dbName"); 
-		 System.out.println("1/"+new Date());
+//		String dbName = request.getParameter("dbName"); 
 		preparedSql object = new preparedSql();
 		try {
-			object.runSQL(dbName);
+			object.runSQL();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

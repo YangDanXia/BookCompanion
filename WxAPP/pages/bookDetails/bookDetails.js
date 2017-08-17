@@ -53,7 +53,7 @@ Page({
     var that = this;
     //从豆瓣API获取图书的详细信息
     wx.request({
-      url: 'http://localhost:8080/Library_WxApp/GetBooksInfo',
+      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
       data: {
         request: "isbn",
         ISBN: query.isbn
@@ -138,7 +138,7 @@ Page({
     var that = this;
     console.log(isbn)
     wx.request({
-      url: 'http://localhost:8080/Library_WxApp/DBOperations',
+      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
       data: {
         request: "get_bookmsg_1",
         BooklistISBN: isbn

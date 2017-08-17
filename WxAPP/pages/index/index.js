@@ -17,19 +17,16 @@ Page({
      loadhidden: false,
     //是否隐藏网络异常：
      errHidden: true,
-    //借书栏内的书
-     borrowBook: app.cache.borrowBook || [],
-    //借书二维码的内容
-     borrowCode:app.cache.borrowCode||[],
-    //预约栏内的书
-     reserveBook: app.cache.reservation || [],
-    //搜索历史
+    //待借图书
+    waitToBorrow: app.cache.waitToBorrow || [],
+
+    //搜索历史，用于图书推荐
      historicalSearch: app.cache.historicalSearch || [],
-    //图书导航栏
+    //图书导航栏内容
      bookTypeUp: option.BookNavigationUp,
      bookTypeDown: option.BookNavigationDown,
     //附近图书馆名称
-     library: app.cache.selectLibrary || '',
+     library: app.globalData.G_selectLibrary || '',
     //百度API的密钥
      ak: "qYrgL0YUKKmtx2zej6zG33iOdMIoQUGE"
   },
@@ -51,7 +48,7 @@ Page({
         library: wxMarkerData[0].title
       });
       //保存图书馆的选择
-      app.saveCache('selectLibrary', that.data.library);
+      app.globalData.G_selectLibrary = that.data.library;
     }
     //找到附近地点
       BMap.search({
@@ -85,10 +82,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
     this.setData({
-      library:app.cache.selectLibrary||'',
-      borrowBook: app.cache.borrowBook || []
+      library:app.globalData.G_selectLibrary||'',
+      waitToBorrow: app.cache.waitToBorrow || []
     })
   },
 
@@ -185,60 +181,57 @@ Page({
   ScanCode: function (e) {
     var that = this;
     var bookId;
-    var qualify =true; 
-    if (that.data.borrowBook.length >= 2) {
-        qualify= false
-    }
-    console.log(qualify)
-    console.log(that.data.borrowBook.length)
     wx.scanCode({
       success: (res) => {
-        console.log(res)
         bookId = res.result;
-        if (!qualify) {
-          wx.showToast({
-            title: '每人每次只允许借两本书，您可选择删除借书栏内的图书或者下次再借',
-            image: '../../img/icon/warn.png'
-          })
-        } else {
-          wx.showModal({
+        // 为防止重复借同一本书，在扫码后先检索此书是否已存在
+        for(var i=0;i<that.data.waitToBorrow.length;i++){
+          if(that.data.waitToBorrow[i].BookId == bookId){
+            wx.showToast({
+              title: "此书已在待借栏中",
+              image: "../../img/icon/warn.png"
+            })
+            return false;
+          }
+        }
+        wx.showModal({
             title: '提示',
             content: '确认要借此书吗？',
             success: function (res) {
+            //  确认借书,从图书馆数据库获取本书的图书信息
               if (res.confirm) {
                 wx.request({
                   url: 'http://localhost:8080/Server_Java/DbOperations',
                   data: {
-                    request: "get_bookmsg_2",
-                    bookId:bookId
+                    dbName:"Library",
+                    table:"V_INFORMATION_BOOKDETAIL",
+                    typeName:"inquire",
+                    field:{BookId:'',BooklistISBN:'',BooklistTitle:'',BooklistAuthor:'',BooklistPublish:'',BooklistImage:''},
+                    factor:{BookId:bookId}
                   },
                   header: {
                     'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
                   },
-                  method: 'POST',
+                  method: 'GET',
                   success:function(res){
-                    res.data.book[0].bookAddress = app.cache.selectLibrary
-                    res.data.book[0].collectStatus ="dislike"
-                    res.data.book[0].borrowTime = that.getTime()
-                    console.log(res.data.book[0].borrowTime)
-                    that.data.borrowBook.push(res.data.book[0]);
-                    app.saveCache('borrowBook', that.data.borrowBook)
+                    if(res.data){
+                      res.data.result[0].bookAddress = app.globalData.G_selectLibrary
+                      res.data.result[0].collectStatus ="dislike"
+                      that.data.waitToBorrow.push(res.data.result[0]);
+                      app.saveCache('waitToBorrow', that.data.waitToBorrow);
+                      wx.showToast({
+                        title: '录入成功',
+                        icon: 'success'
+                      }) 
+                    }
                   }
                 })
-                that.data.borrowCode.push(bookId);
-                wx.showToast({
-                  title: '录入成功',
-                  icon: 'success'
-                }) 
-
-                app.saveCache('borrowCode', that.data.borrowCode)
-                
               } else if (res.cancel) {
                 return false;
               }
             }
           })
-        }
+
       }
     })
 
@@ -273,18 +266,7 @@ Page({
     wx.navigateTo({
       url: 'functions/bookOrder'
     })
-  },
-
-  /**
-   * 获取时间
-   */
-  getTime:function(){
-      var year = date.getFullYear()
-      var month = date.getMonth() + 1
-      var day = date.getDate()
-      return year+'-'+month+'-'+day;
   }
-
 
 
 })

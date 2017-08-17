@@ -170,6 +170,8 @@ App({
     //可使用窗口高度
     winHeight: '',
     //宽度
-    width: '' 
+    width: '' ,
+    //选择的图书馆
+    G_selectLibrary:''
   }
 })

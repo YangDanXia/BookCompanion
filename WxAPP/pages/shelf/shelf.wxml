@@ -35,7 +35,7 @@
 <!--第一个格子-->
 <view class="first-box">
   <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz/photo/zhu.jpg"></image>
+    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/zhu.jpg"></image>
   </view>
   <view class="first-boxtwo" >
     <text class="main-text">大谋小计五十年：诸葛亮传\n</text>
@@ -47,7 +47,7 @@
 <!--第二格子-->
 <view class="first-box">
   <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz/photo/gudai.jpg"></image>
+    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/gudai.jpg"></image>
   </view>
   <view class="first-boxtwo" >
     <text class="main-text">《簪中录》\n</text>
@@ -59,7 +59,7 @@
 <!--第三格子-->
 <view class="first-box">
   <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz/photo/girl.jpg"></image>
+    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/girl.jpg"></image>
   </view>
   <view class="first-boxtwo" >
     <text class="main-text">阿飞街女生\n</text>
@@ -71,7 +71,7 @@
 <!--第四格子-->
 <view class="first-box">
   <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz/photo/xiaogu.jpg"></image>
+    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/xiaogu.jpg"></image>
   </view>
   <view class="first-boxtwo" >
     <text class="main-text">书单：70本与影视同样精彩的原著小说大集合！\n</text>

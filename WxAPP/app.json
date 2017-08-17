@@ -1,6 +1,6 @@
 {
   "pages": [
-    "pages/index/functions/bookOrder",
+
     "pages/me/me",
     "pages/index/index",
     "pages/shelf/shelf",
@@ -9,7 +9,7 @@
     "pages/index/functions/map",
     "pages/index/functions/search",
     "pages/index/functions/bookNavigateList",
-
+    "pages/index/functions/bookOrder",
     "pages/index/functions/borrowProcess/QRcode",
 
     "pages/shelf/functions/shelfDetails",
@@ -59,7 +59,7 @@
       },
       {
         "pagePath": "pages/me/functions/changePhone",
-        "text": "跳蚤市场",
+        "text": "发现",
         "iconPath": "img/icon/market.png",
         "selectedIconPath": "img/icon/marketing.png"
       },      

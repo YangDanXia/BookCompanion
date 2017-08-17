@@ -21,7 +21,7 @@ Page{
   }
 
 .swiper-tab-list{ 
-   margin: 0 100rpx;  
+   margin: 0 7%;  
    font-size: 35rpx; 
    font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif 
   }
@@ -75,15 +75,15 @@ Page{
   flex-direction:row;  /*默认值*/
   flex-wrap:wrap; 
   align-content:stretch; 
-  margin: 20rpx 25rpx 20rpx 25rpx; 
+  margin: 20rpx 10rpx 20rpx 25rpx; 
   width:180rpx;
   height:220rpx;
   overflow: hidden;
 }
 .first-boxonepicture
 {
-  width:180rpx;
-  height:220rpx;
+  width:160rpx;
+  height:200rpx;
   background-size:contain;
 }
 .first-boxtwo
@@ -95,7 +95,7 @@ Page{
   flex-direction:row;  /*默认值*/
   flex-wrap:wrap; 
   align-content:stretch; 
-  margin: 20rpx 25rpx 15rpx 10rpx; 
+  margin: 20rpx 25rpx 10rpx 0rpx;
   width:500rpx;
   height:230rpx;
   overflow: hidden;
@@ -143,8 +143,9 @@ Page{
    font-size:35rpx;
    color: #666;
    padding-top:20rpx;
-   padding-bottom:30rpx;
-   padding-left:110rpx;
+   padding-left:35%;
+   display:flex;
+
 }
 
 .shelf-btn{
@@ -154,6 +155,8 @@ Page{
 
 .shelf-text{
   padding:20rpx;
+  margin-top:-10rpx;
+
 }
 
 navigator {

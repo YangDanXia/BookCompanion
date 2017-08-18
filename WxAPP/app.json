@@ -1,11 +1,11 @@
 {
   "pages": [
-    "pages/bookDetails/bookDetails",
-    "pages/index/functions/search",
+    
+        "pages/shelf/shelf",
     "pages/index/index",
     "pages/me/me",
 
-    "pages/shelf/shelf",
+
 
     "pages/index/functions/library",
     "pages/index/functions/map",
@@ -13,11 +13,11 @@
     "pages/index/functions/bookNavigateList",
     "pages/index/functions/bookOrder",
     "pages/index/functions/borrowProcess/QRcode",
-
+    "pages/index/functions/search",
     "pages/shelf/functions/shelfDetails",
     "pages/shelf/functions/addShelf",
 
-
+    "pages/bookDetails/bookDetails",
     "pages/bookDetails/relatedBooks",
 
     "pages/me/account/login",

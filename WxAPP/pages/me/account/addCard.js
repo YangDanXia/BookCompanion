@@ -4,7 +4,7 @@ var app = getApp()
 Page({
 
   data: {
-    array: ['广东海洋大学图书馆', '中国', '巴西', '日本'],
+    array: ['广东海洋大学图书馆', '湛江市图书馆'],
     index: 0,
     phone:app.cache.userInfo.phone
   },
@@ -50,6 +50,14 @@ Page({
      method: 'GET',
      success: function (res) {
        if(res.data){
+         var obj = app.cache.bookCard;
+         var newCard = { history_borrow: "0", library: that.data.array[that.data.index], uk_bookCardId: that.data.cardNum, current_borrow:"0"};
+        //  newCard.history_borrow = "0";
+        //  newCard.library = library;
+        //  newCard.uk_bookCardId = that.data.cardNum;
+        //  newCard.current_borrow = "0";
+         obj.push(newCard);
+         app.saveCache('bookCard', obj);
          wx.showToast({
            title: '添加成功',
            icon:'success'

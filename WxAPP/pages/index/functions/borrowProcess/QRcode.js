@@ -1,4 +1,26 @@
 // pages/index/functions/borrowProcess/QRcode.js
+var codeContent;
+var countdown = 60;
+var settime = function (that) {
+  if (countdown == 0) {
+    that.setData({
+      toSend: true
+    })
+    countdown = 60;
+    return;
+  } else {
+    that.setData({
+      toSend: false,
+      second: countdown
+    })
+
+    countdown--;
+  }
+  setTimeout(function () {
+    settime(that)
+  }
+    , 1000)
+}
 Page({
 
   /**
@@ -10,7 +32,9 @@ Page({
     //判断管理员是否同意
     flag: false,
     //图片地址
-    path:''
+    path:'',
+    toSend: true,
+    second: 60,
   },
 
 
@@ -18,37 +42,35 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     var codeContent = options.content;
-     //替换所以，为；
-     var str = codeContent.replace(/\,/g, ';')
+     var str = options.content;
+     //替换所有，为；
+     var replace = str.replace(/\,/g, ';')
+     codeContent = replace+";"
+     console.log("替换后二维码内容："+codeContent)
      var that = this
   //生成二维码
      wx.getImageInfo({
-       src:"http://localhost:8080/Library_WxApp/EnQRcode?code="+str,
+       src: "http://localhost:8080/Server_Java/EnQRcode?code=" + codeContent,
        success:function(res){
          that.setData({
            path:res.path
          })
        }
      })
+  },
 
-
-  // 进入付款页面
-     var interval;
-     interval = setInterval(function () {
-       wx.request({
-         url: 'http://119.29.104.141:8088/ServerForCommunicate/Get?request=getMsg',
-         success: function (res) {
-           if (res.data != "") {//一接收到指定的数据就停止
-             clearInterval(interval)
-             wx.redirectTo({
-               url: 'pay',
-             })
-           }
-         }
-       })
-     }, 1500)
+  refresh:function(){
+    var that = this
+    //生成二维码
+    wx.getImageInfo({
+      src: "http://localhost:8080/Server_Java/EnQRcode?code=" + codeContent,
+      success: function (res) {
+        that.setData({
+          path: res.path
+        })
+      }
+    })
+    settime(that)
   }
-
 
 })

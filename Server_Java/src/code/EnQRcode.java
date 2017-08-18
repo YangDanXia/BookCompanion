@@ -49,10 +49,8 @@ public class EnQRcode extends HttpServlet {
 		 ServletOutputStream stream = null; 
 	     try{
 	            StringBuilder sb = new StringBuilder(1024);
-	            sb.append("1;");
                 // 二维码内容
 	            sb.append(book);
-	            sb.append("rjb;");
 	            String str = sb.toString();
 	            str = new String(str.getBytes("UTF-8"), "ISO-8859-1"); 
 	            stream = response.getOutputStream();  
@@ -60,6 +58,7 @@ public class EnQRcode extends HttpServlet {
 	            BitMatrix bitMatrix =  new QRCodeWriter().encode(str, BarcodeFormat.QR_CODE, 200, 200);
                 // 在页面上显示二维码
 	            MatrixToImageWriter.writeToStream(bitMatrix,"png", stream);   
+	            System.out.println("1");
 	        }catch(Exception ex){
 	            System.out.println(ex.toString());
 	        }finally {  

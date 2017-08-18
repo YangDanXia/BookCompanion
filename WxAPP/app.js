@@ -23,13 +23,27 @@ App({
       success: function (res) { return; },
       fail: function () {
         var newBookShelf = [{
-          "idx_bookList_id":0,
           "shelf_photo": "../../../img/show/book.png",
           "shelf_name": "我喜欢的图书",
           "shelf_intro": "",
           "shelf_bookList": []
         }]
         that.saveCache('bookShelf', newBookShelf)
+      }
+    })
+    
+    /**
+     * 自动建立签到机制
+     */
+    wx.getStorage({
+      key: 'checkIn',
+      success: function (res) { return; },
+      fail: function () {
+        var newCheck = {
+         "data":"0",
+         "days":"0"
+        }
+        that.saveCache('checkIn', newCheck)
       }
     })
 

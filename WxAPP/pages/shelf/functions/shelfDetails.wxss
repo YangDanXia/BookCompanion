@@ -119,6 +119,8 @@ Page{
 
 .fun-list{
     flex-flow:row wrap;
+    display:block;
+
 }
 
 .wrap-item{
@@ -146,4 +148,65 @@ navigator{
 .themes-list-name {
   font-size:30rpx;
   height:auto
+}
+
+/* 图书列表 */
+
+.themes-list-description{
+  font-size:28rpx;
+  color:#8a8a8a;
+  overflow:hidden;
+  text-align: left;
+}
+.themes-list-name {
+  font-size:30rpx;
+  font-weight:normal;  
+  text-align: left;
+}
+
+.themes-list-main{
+  margin-top:20rpx;
+  margin-left:23%;
+
+}
+.themes-list{ 
+    background: #fff; 
+    display: flex;
+    margin-top:7px;
+    }
+
+.themes-list-box{ 
+    display: flex; 
+    position: relative; 
+    padding: 15rpx 0rpx; 
+    border-bottom: 0px solid  #D3D3D3;
+    height:220rpx;
+    width:95%;
+    left:20rpx;
+  }
+
+.themes-list-thumbnail {
+  top:20rpx;
+  height:150rpx;
+  width:115rpx;
+
+}
+
+.operate-type{
+  margin:15rpx;
+}
+
+.operate-toDo{
+margin-left:9%;
+margin-right:17%;
+  display:flex;
+}
+.operate-toDo text{
+  margin-top:14%;
+}
+
+.operate{
+  display: flex; 
+  background:#ebf1f4;
+
 }

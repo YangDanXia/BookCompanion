@@ -1,4 +1,5 @@
 // pages/me/me.js
+const date = new Date()
 var app = getApp()
 Page({
 
@@ -8,7 +9,9 @@ Page({
   data: {
     userInfo: app.globalData.userInfo,
     //登录状态
-    loginFlag: app.cache.loginFlag || false
+    loginFlag: app.cache.loginFlag || false,
+    // 打卡天数
+    days:app.cache.checkIn.days
   },
 
 
@@ -57,6 +60,43 @@ Page({
     }
   },
 
+ /**
+  * 查看借阅历史
+  */
+  historyBorrow: function () {
+    if (!this.data.loginFlag) {
+      this.login()
+    } else {
+      wx.navigateTo({
+        url: 'account/bookCard'
+      })
+    }
+  },
+
+  /**
+   * 打卡
+   */
+  checkIn:function(){
+    var content = app.cache.checkIn || [];
+    var data = this.getTime()
+    var days = content.days || 0;
+    var arr;
+    if(content.data!= data){
+      days++ ;
+      arr = { data: data, days:days }
+      this.setData({
+        days:days
+      })
+      app.saveCache('checkIn',arr)
+    }else{
+      wx.showToast({
+        title: "今天已完成打卡了哦~",
+        image: "../../img/icon/warn.png"
+      })
+      return;
+    }
+  },
+
 
 
   /**
@@ -70,5 +110,18 @@ Page({
       duration: 1000
     })
     this.onShow();
-  }
+  },
+
+
+  /**
+   * 获取时间
+   */
+  getTime: function () {
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    return year + '-' + month + '-' + day;
+  },
+
+
 })

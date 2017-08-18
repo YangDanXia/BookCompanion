@@ -50,6 +50,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    console.log("show")
     this.setData({
       bookCard: app.cache.bookCard 
     })
@@ -121,11 +122,8 @@ Page({
             success: function (res) {
               if (res.data) {
                 wx.showToast({
-                  title: '添加成功',
+                  title: '删除成功',
                   icon: 'success'
-                })
-                wx.navigateBack({
-                  delta: 1
                 })
               }
             }

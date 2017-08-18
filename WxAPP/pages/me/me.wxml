@@ -12,7 +12,7 @@
 
 <view class="container">
 
-    <view bindtap="bookCard" class="issue-link">
+    <view bindtap="historyBorrow" class="issue-link">
       <view class="more-btn">
         <image class="btn-icon" src="../../img/icon/infor.png"></image>
         <text class="btn-text">我的消息</text>
@@ -22,22 +22,22 @@
       </view>
     </view>
 
-    <view bindtap="bookCard" class="issue-link">
+    <view class="issue-link">
       <view class="more-btn">
         <view class="list">
-          <view class="items" data-id="borrow" bindtap="ViewQRcode">
+          <view class="items" bindtap="checkIn">
            <image src="../../img/icon/infor.png"></image>
-           <text>打卡{{day}}天</text>
+           <text>打卡{{days}}天</text>
           </view>
         </view>
         <view class="list">
-          <view class="items" data-id="borrow" bindtap="ViewQRcode">
+          <view class="items" bindtap="ViewQRcode">
            <image src="../../img/icon/infor.png"></image>
            <text>书票</text>
           </view>
         </view>
         <view class="list">
-          <view class="items" data-id="borrow" bindtap="ViewQRcode">
+          <view class="items" bindtap="ViewQRcode">
            <image src="../../img/icon/infor.png"></image>
            <text>借阅历史</text>
           </view>

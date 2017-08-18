@@ -4,3 +4,7 @@ image {
  width:320px;
  height:320px;
 }
+
+.butt{
+  width:300rpx;
+}

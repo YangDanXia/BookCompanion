@@ -3,10 +3,7 @@
 page{
      background-color: #f6f6f6;
 }
-
-.swiper-box{
-  
-}
+ 
 .swiper-tab{ 
    height: 70rpx; 
    line-height: 60rpx; 
@@ -75,11 +72,6 @@ padding:0 10rpx;
 
 /* 图书列表 */
 
-.bookList{
-  background:#fff;
-
-}
-
 checkbox{
   margin:10% 0;
   margin-left:10rpx;
@@ -100,15 +92,13 @@ checkbox{
 
 .themes-list-main{
   margin-top:10rpx;
-  margin-left:35%;
+  margin-left:30%;
 
 }
 .themes-list{ 
     background: #fff; 
     display: flex;
-    margin-bottom:15rpx;
-    margin:7px 0;
-
+    margin-top:7px;
     }
 
 .themes-list-box{ 

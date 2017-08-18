@@ -48,8 +48,7 @@ Page({
       url: 'http://localhost:8080/Server_Java/GetBooksInfo',
       data: {
         request: "isbn",
-        // ISBN: options.isbn
-        ISBN: "9787121221248"
+        ISBN: options.isbn
       },
       success: function (res) {
         bookNeedInfo = {
@@ -77,7 +76,7 @@ Page({
       }
     });
     this.toQualify();
-    this.libraryBook();
+    this.libraryBook(options.isbn);
   },
 
   /**
@@ -94,7 +93,9 @@ Page({
   },
 
   onShow: function () {
-    // Do something when page show.
+   this.setData({
+     loginFlag: app.cache.loginFlag || false
+   })
   },
 
   /**
@@ -124,8 +125,9 @@ Page({
    * 预约图书资格判断
    */
   toQualify:function(){
-    var card = app.cache.BookCard || [];
+    var card = app.cache.bookCard || [];
       for (var i = 0; i < card.length; i++) {
+        console.log(card[i].library)
         if (card[i].library == app.globalData.G_selectLibrary) {
           this.setData({
             isBookCard: true
@@ -144,7 +146,7 @@ Page({
   /**
    * 查看图书馆馆藏情况
    */
-  libraryBook:function(){
+  libraryBook:function(isbn){
     var that = this;
     wx.request({
       url: 'http://localhost:8080/Server_Java/DbOperations',
@@ -153,7 +155,7 @@ Page({
         table: "INFORMATION_BOOK",
         typeName: "inquire",
         field: { BookId: '', BooklistISBN: '', BookAddress: '', BookStatus: ''},
-        factor: { BooklistISBN: "9787121221248"}
+        factor: { BooklistISBN: isbn}
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
@@ -239,7 +241,7 @@ Page({
    * 收藏图书
    */
   addBookToShelf: function () {
-    var obj = app.cache.bookShelf;//收藏记录
+    var obj = app.cache.bookShelf || [];//收藏记录
     bookNeedInfo.collectStatus = "like";
     obj[0].shelf_bookList.push(bookNeedInfo)
     wx.showToast({
@@ -283,17 +285,14 @@ Page({
       })
       return false;
     };
-    var obj = app.cache.reserveBook;
-    that.data.bookNeedInfo.bookId = that.data.bookId;
-    that.data.bookNeedInfo.bookAddress = app.globalData.G_selectLibrary;
-    obj.push(that.data.bookNeedInfo);
+
     if (this.data.isBookIn){
       wx.showToast({
         title: '请选择取书时间',
         icon: 'success'
       })
-      app.saveCache('reserveBook', obj);
     }else{
+
       wx.showModal({
         title: '提示',
         content: '馆中已无藏书,若需继续预约请点击确定，我们将会在有藏书时通知您',
@@ -303,6 +302,10 @@ Page({
               title: '预约完成，请注意查收推送信息',
               icon: 'success'
             })
+            var obj = app.cache.reserveBook || [];
+            bookNeedInfo.bookId = that.data.bookId;
+            bookNeedInfo.bookAddress = app.globalData.G_selectLibrary;
+            obj.push(bookNeedInfo);
             app.saveCache('reserveBook',obj);
           } else if (res.cancel) {
             wx.showToast({
@@ -317,11 +320,14 @@ Page({
 
   //获取预约时间并保存
   bindDateChange: function (e) {
-    var obj = app.cache.reserveBook;
-    this.data.bookNeedInfo.reserveTime = e.detail.value;
-    obj.push(this.data.bookNeedInfo);
+    var that = this;
+    var obj = app.cache.reserveBook || [];
+    bookNeedInfo.bookId = that.data.bookId;
+    bookNeedInfo.bookAddress = app.globalData.G_selectLibrary;
+    bookNeedInfo.reserveTime = e.detail.value;
+    obj.push(bookNeedInfo);
     app.saveCache('reserveBook',obj);
-  },
+  }
 
 
 

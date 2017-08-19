@@ -14,14 +14,14 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   success: function (res) {
         wx.request({
-          url: 'http://localhost:8080/Server_Java/GetMap',
+          url: 'https://www.hqinfo.xyz/Server_Java/GetMap',
           data: {
-            latitude: res.latitude,
-            longitude: res.longitude
+            latitude: app.globalData.latitude,
+            longitude: app.globalData.longitude
           },
           header: {
             'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
@@ -34,8 +34,8 @@ Page({
             })
           }
         })
-      }
-    })
+      // }
+    // })
   },
 
   choosed: function (e) {
@@ -44,5 +44,13 @@ Page({
     wx.switchTab({
       url: '../index'
     })
+  },
+
+  Map:function(){
+    wx.navigateTo({
+      url: 'map'
+    })
   }
+
+
 })

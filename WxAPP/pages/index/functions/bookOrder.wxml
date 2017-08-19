@@ -52,6 +52,7 @@
            <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"/>
            <text>收藏</text>
         </view>
+
         <view class="operate-toDo" data-index="{{index}}" bindtap="borrowDelete">
            <image class="operate-type" src="../../../img/icon/del.png"/>
            <text>删除</text>
@@ -65,75 +66,76 @@
 
 <!--还书栏-->
 <swiper-item>
- <view class="list" wx:if="{{isBookCard}}">
-   <picker mode="date" value="{{index}}" range="{{array}}" bindchange="bindPickerChange">
-      <view class="items" data-id="borrow" bindtap="viewQRcode">
+  <view class="list" wx:if="{{isBookCard}}">
+   <view class="items" data-id="back" bindtap="viewQRcode">
+      <picker bindchange="bindPickerChange" value="{{card_index}}" range="{{arrayCard}}">
         <image src="../../../img/icon/qcode.png"></image>
         <text>我要还书</text>
-      </view>
-   </picker>
+      </picker>
+   </view>
  </view>
  <view class="list" wx:else>
-      <view class="items" data-id="borrow" bindtap="viewQRcode">
+      <view class="items" data-id="back" bindtap="viewQRcode">
         <image src="../../../img/icon/qcode.png"></image>
         <text>我要还书</text>
       </view>
  </view>
 
 
-<view wx:if="{{waitToReturn ==''}}" class="login-warn">目前没有待还图书</view>
-  <view wx:else class="bookList"> 
-  <block wx:for="{{waitToBorrow}}" wx:key="item"> 
+<view wx:if="{{waitToReturn ==''}}" class="login-warn">目前没有借阅书籍</view>
+<view wx:else> 
+  <checkbox-group bindchange="checkboxChange">
+  <block wx:for="{{waitToReturn}}" wx:key="item"> 
    <view class="themes-list">
     <view class="themes-list-box">
-    <checkbox value="item.name" checked="checked"/>
-     <navigator url="../../bookDetails/bookDetails?isbn={{item.ISBN}}" hover-class="none">
+    <checkbox value="{{item.BookId}}"/>
+     <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
        <view class="themes-list-thumbnail">
-         <image class="themes-list-img" src='{{item.image}}' />
+         <image class="themes-list-img" src='{{item.BooklistImage}}' />
        </view>
        <view class="themes-list-main">
-         <view class="themes-list-name">{{item.title}}</view>
-         <view class="themes-list-description">{{item.author}}</view>
+         <view class="themes-list-name">{{item.BooklistTitle}}</view>
+         <view class="themes-list-description">{{item.BooklistAuthor}}</view>
          <view class="themes-list-name">索书号：{{item.BookId}}</view>
-         <view class="themes-list-name">借书时间：{{item.borrowTime}}</view>
          <view class="themes-list-name">借书地点：{{item.bookAddress}}</view>
        </view>
       </navigator>
      </view>
     </view>
       <view class="operate">
-        <view class="operate-toDo">
-           <image class="operate-type" src="../../../img/icon/dislike.png"/>
+        <view class="operate-toDo" data-index="{{index}}" bindtap="returnCollect">
+           <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"/>
            <text>收藏</text>
         </view>
-        <view class="operate-toDo">
+
+        <view class="operate-toDo" data-index="{{index}}" bindtap="borrowAgain">
            <image class="operate-type" src="../../../img/icon/continue.png"/>
            <text>续借</text>
         </view>
       </view>
     </block> 
- </view>
-
+  </checkbox-group>
+</view>
 </swiper-item>
 
 
 
 <!--预约栏-->
 <swiper-item>
-<view wx:if="{{reserveBook ==''}}" class="login-warn">目前没有预约图书</view>
-  <view wx:else class="bookList"> 
+<view wx:if="{{reserveBook ==''}}" class="login-warn">目前没有预约书籍</view>
+<view wx:else> 
   <block wx:for="{{reserveBook}}" wx:key="item"> 
    <view class="themes-list">
     <view class="themes-list-box">
-     <navigator url="../../bookDetails/bookDetails?isbn={{item.ISBN}}" hover-class="none">
-       <view class="themes-list-thumbnail" style="left:20rpx;">
-         <image class="themes-list-img" src='{{item.image}}' />
+     <navigator url="../../bookDetails/bookDetails?isbn={{item.book_isbn}}" hover-class="none">
+       <view class="themes-list-thumbnail" style="left:20rpx">
+         <image class="themes-list-img" src='{{item.book_photo}}' />
        </view>
        <view class="themes-list-main">
-         <view class="themes-list-name">{{item.title}}</view>
-         <view class="themes-list-description">{{item.author}}</view>
-         <view class="themes-list-name">索书号：{{item.BookId}}</view>
-         <view class="themes-list-name">借书时间：{{item.borrowTime}}</view>
+         <view class="themes-list-name">{{item.book_name}}</view>
+         <view class="themes-list-description">{{item.book_author}}</view>
+         <view class="themes-list-name">索书号：{{item.bookId}}</view>
+         <view class="themes-list-name">取书时间：{{item.reserveTime}}</view>
          <view class="themes-list-name">借书地点：{{item.bookAddress}}</view>
        </view>
       </navigator>
@@ -144,14 +146,14 @@
            <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"/>
            <text>收藏</text>
         </view>
+
         <view class="operate-toDo" data-index="{{index}}" bindtap="reserveDelete">
            <image class="operate-type" src="../../../img/icon/del.png"/>
            <text>删除</text>
         </view>
       </view>
     </block> 
- </view>
-
+  </view>
 </swiper-item>
 
 

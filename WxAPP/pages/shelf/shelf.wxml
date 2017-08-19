@@ -21,7 +21,7 @@
  <scroll-view style="height:{{winHeight}}px" scroll-y="true" enable-back-to-top="true" >
 <!--滚动图片-->
   <swiper indicator-dots="{{indicatorDots}}"autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}">
+    <block wx:for="{{imgUrls}}" wx:key="{{item}}">
       <swiper-item>
         <image src="{{item}}" class="slide-image" />
       </swiper-item>
@@ -37,7 +37,7 @@
   <view class="first-boxone">
     <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/zhu.jpg"></image>
   </view>
-  <view class="first-boxtwo" >
+  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;">
     <text class="main-text">大谋小计五十年：诸葛亮传\n</text>
       <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 14本  </text>
       <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 655\n</text>
@@ -49,7 +49,7 @@
   <view class="first-boxone">
     <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/gudai.jpg"></image>
   </view>
-  <view class="first-boxtwo" >
+  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;" >
     <text class="main-text">《簪中录》\n</text>
       <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 1本  </text>
       <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 345\n</text>
@@ -61,7 +61,7 @@
   <view class="first-boxone">
     <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/girl.jpg"></image>
   </view>
-  <view class="first-boxtwo" >
+  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;" >
     <text class="main-text">阿飞街女生\n</text>
       <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 3本  </text>
       <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 452\n</text>
@@ -73,7 +73,7 @@
   <view class="first-boxone">
     <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/xiaogu.jpg"></image>
   </view>
-  <view class="first-boxtwo" >
+  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;" >
     <text class="main-text">书单：70本与影视同样精彩的原著小说大集合！\n</text>
       <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 12本  </text>
       <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 1200\n</text>
@@ -101,23 +101,18 @@
   <view wx:else>
     <block wx:for="{{bookShelf}}" wx:key="{{item}}"> 
       <view class="themes-list">
-        <view class="themes-list-box">
-          <navigator url="functions/shelfDetails?index={{index}}" hover-class="none">
+        <view class="themes-list-box" data-index="{{index}}" bindtap="shelfDetail" bindlongpress="delBookShelf">
            <view class="shelf-box">
              <view class="first-boxone">
               <image class="first-boxonepicture" src="{{item.shelf_photo}}"></image>
              </view>
              <view class="first-boxtwo shelf-boxtwo" >
               <text class="main-text">{{item.shelf_name}}\n</text>
-              <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 3本\n  </text>
+              <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> {{item.bookNum}}本\n  </text>
               <text class="box-subtitle">{{item.shelf_intro}}</text>
              </view>
            </view>
-          </navigator>
         </view>
-        <view class="books-operate">
-          <image class="operate-type" src="../../img/icon/del.png" data-index="{{index}}" bindtap="delBookShlef"/>
-       </view>
       </view>
     </block>
   </view>

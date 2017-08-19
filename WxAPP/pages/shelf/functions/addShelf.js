@@ -1,5 +1,8 @@
 // pages/shelf/functions/addShelf.js
 var app =getApp()
+var name = '';
+var intro;
+var tag;
 Page({
 
   /**
@@ -8,10 +11,6 @@ Page({
   data: {
     //封面图片
     img: "../../../img/show/book.png",
-    //是否隐藏弹窗
-    modalHidden:true,
-    //弹窗内容
-    content:[],
     //书单内容
     bookShelf:app.cache.bookShelf||[]
   },
@@ -22,12 +21,6 @@ Page({
   onLoad: function (options) {
   },
 
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
 
   /**
    * 生命周期函数--监听页面显示
@@ -57,37 +50,22 @@ Page({
    /**
     * 设置名称
     */
-    doShelfName:function(){
-      this.setData({
-        modalHidden: false,
-        index:0,
-        value: this.data.content[0] || ''
-      })
+    nameInput:function(e){
+      name = e.detail.value
     },
 
-    doShelfIntro:function(){
-      this.setData({
-        modalHidden: false,
-        index: 1,
-        value:this.data.content[1]||''
-      })
+    introInput:function(e){
+      intro = e.detail.value
     },
 
-    bindInput: function (e) {
-      var index = e.currentTarget.dataset.index
-      var newContent = this.data.content
-      if(index==1&&!newContent[0]){
-        newContent[0] =''
-      }
-      newContent[index] = e.detail.value
-      this.setData({
-        content: newContent
-      })
+    tagInput: function (e) {
+      tag = e.detail.value
+      tag = tag.split(",")
     },
 
-    /**
-  * 保存修改信息
-  */
+   /**
+    * 保存修改信息
+    */
     submit: function (e) {
       var index = e.currentTarget.dataset.index
       if (!this.data.content[index]) {
@@ -108,31 +86,24 @@ Page({
 
     },
 
-
-    /**
-     * 关闭弹窗
-     */
-    modalHide: function () {
-      this.setData({
-        modalHidden: true
-      })
-    },
-
+ 
 
     /**
      * 创建书单
      */
     createShelf:function(){
-      if (this.data.content.length == 0 || !this.data.content[0]){
+      if (name == ''){
           wx.showToast({
             title: '请填写完整信息',
             image:'../../../img/icon/warn.png'
           })
           return false;
         }
-
       var obj = this.data.bookShelf;
-      var newShelf = {"img":this.data.img,"name":this.data.content[0],"intro":this.data.content[1],"detail":[]}
+      console.log(obj)
+      var len = obj.length;
+      var newShelf = { "idx_shelfId":len,"shelf_photo": this.data.img, "shelf_name": name, "shelf_intro": intro, "shelf_bookList": [], shelf_tag:tag}
+      console.log("添加的书单信息："+newShelf)
       obj.push(newShelf);
       wx.showToast({
         title: '创建书单成功',

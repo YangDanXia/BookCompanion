@@ -102,7 +102,7 @@ Page({
   getBooksList: function (tag) {
     var that = this
     wx.request({ 
-      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
+      url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
       data: {
         request: "tag",
         tag: tag,

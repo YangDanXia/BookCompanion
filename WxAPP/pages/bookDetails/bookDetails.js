@@ -49,11 +49,11 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
+      url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
       data: {
         request: "isbn",
-        // ISBN: options.isbn
-        ISBN:"9787121221248"
+        ISBN: options.isbn
+        // ISBN:"9787121221248"
       },
       success: function (res) {
         bookNeedInfo = {
@@ -154,14 +154,14 @@ Page({
   libraryBook:function(isbn){
     var that = this;
     wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data: {
         dbName: "Library",
         table: "INFORMATION_BOOK",
         typeName: "inquire",
         field: { BookId: '', BooklistISBN: '', BookAddress: '', BookStatus: ''},
-        // factor: { BooklistISBN: isbn}
-        factor: { BooklistISBN: "9787121221248"}
+        factor: { BooklistISBN: isbn}
+        // factor: { BooklistISBN: "9787121221248"}
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'

@@ -20,16 +20,14 @@ page {
 
 .box-text{
   padding-left:25rpx; 
+  font-size:38rpx;
 }
 
 .content{
    padding-top: 30rpx;
-   padding-bottom:10rpx;
+   display:flex;
 }
-
-.titleImage{
-  padding-bottom:100rpx;
-}
+ 
 
 .middle{
    padding-bottom:15rpx;
@@ -40,7 +38,7 @@ page {
 .detail{
    float: right;
    color:#888888;
-   margin-right: 30rpx;
+   margin-left:40rpx;
 }
 
 .detail-input{
@@ -53,12 +51,13 @@ page {
   width:160rpx;
   height:160rpx;
   margin-top:-20rpx;
+  margin-left:50%;
 
 }
 
 /*弹出窗*/
-input{font-size:38rpx;color:black;padding-top:30rpx;border-bottom: 1px solid #888888;}
-
+input{font-size:38rpx;width:75%;}
+textarea{font-size:38rpx;width:75%;}
  .submit-btn {
     display: flex;
     align-items: center;

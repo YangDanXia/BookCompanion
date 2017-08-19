@@ -3,7 +3,7 @@
   <view class="search search-btn"  bindtap="search">
      <image class="search-scan" src="../../../img/icon/location.png" />
    </view>
-   <navigator url="map" class="search search-input"><text class="search-text"> 查看地图</text></navigator>
+   <view class="search search-input" bindtap="Map"><text class="search-text"> 查看地图</text></view>
    <view class="search search-right"  bindtap="search"> </view>
 </view>
    <view class="themes-list" wx:for="{{wxMarkerData}}" wx:key="{{item}}">

@@ -64,7 +64,7 @@ Page({
     var that = this;
     settime(that);
     wx.request({
-      url: 'http://localhost:8080/Server_Java/SendMessage',
+      url: 'https://www.hqinfo.xyz/Server_Java/SendMessage',
       data: {
         phone: oldPhone,
         template: "SMS_84345006",
@@ -128,7 +128,7 @@ Page({
      * 需要的数据：数据表，操作类型，手机号，密码
      */
     wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",

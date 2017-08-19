@@ -39,8 +39,10 @@ Page({
     wx.getLocation({
       type: 'wgs84',
       success: function (res) {
+        app.globalData.latitude = res.latitude
+        app.globalData.longitude = res.longitude
         wx.request({
-          url: 'http://localhost:8080/Server_Java/GetMap',
+          url: 'https://www.hqinfo.xyz/Server_Java/GetMap',
           data:{
             latitude: res.latitude,
             longitude: res.longitude
@@ -106,14 +108,20 @@ Page({
     var history_length = this.data.historicalSearch.length;
     if (history_length == 0) {
       wx.request({
-        url: 'http://localhost:8080/Server_Java/GetBooksInfo',
+        url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
         data: {
           request: "tag",
           tag: "计算机",
           start: '11',
           count: "6"
         },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        method: 'GET',
         success: function (res) {
+          console.log(res)
+          console.log(res.data)
           that.setData({
             recommendItems: res.data.books 
           })
@@ -130,14 +138,20 @@ Page({
       var re_tag = this.data.historicalSearch[re_index];
 
       wx.request({
-        url: 'http://localhost:8080/Server_Java/GetBooksInfo',
+        url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
         data: {
           request: "tag",
           tag: re_tag,
           start: re_index,
           count: "6"
         },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        method: 'GET',
         success: function (res) {
+          console.log(res)
+          console.log(res.data)
           that.setData({
             recommendItems: res.data.books,//推荐图书列表
           })
@@ -159,14 +173,20 @@ Page({
     var that = this
     var index = app.getRandom(20);
     wx.request({
-      url: 'http://localhost:8080/Server_Java/GetBooksInfo',
+      url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
       data: {
         request: "tag",
         tag: "语言",
         start: index,
         count: "6"
       },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
       success: function (res) {
+        console.log(res)
+        console.log(res.data)
         that.setData({
           commendItems: res.data.books
         })
@@ -207,7 +227,7 @@ Page({
             //  确认借书,从图书馆数据库获取本书的图书信息
               if (res.confirm) {
                 wx.request({
-                  url: 'http://localhost:8080/Server_Java/DbOperations',
+                  url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
                   data: {
                     dbName:"Library",
                     table:"V_INFORMATION_BOOKDETAIL",
@@ -253,7 +273,7 @@ Page({
     })
   },
 
-
+ 
 
   /**
   * 查看附近图书馆

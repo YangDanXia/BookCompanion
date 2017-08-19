@@ -26,26 +26,26 @@
       <view class="more-btn">
         <view class="list">
           <view class="items" bindtap="checkIn">
-           <image src="../../img/icon/sign.png" style="width:50rpx;height:50rpx;"></image>
+           <image src="../../img/icon/sign.png" style="width:55rpx;height:55rpx;"></image>
            <text>打卡{{days}}天</text>
           </view>
         </view>
         <view class="list">
           <view class="items" bindtap="ViewQRcode">
-           <image src="../../img/icon/notice.png" style="width:50rpx;height:50rpx;"></image>
+           <image src="../../img/icon/notice.png" style="width:55rpx;height:55rpx;"></image>
            <text>通知</text>
           </view>
         </view>
         <view class="list">
-          <view class="items" bindtap="ViewQRcode">
-           <image src="../../img/icon/intergral.png"></image>
-           <text>书票</text>
+          <view class="items" bindtap="ViewQRcode" >
+           <image src="../../img/icon/intergral.png" style="margin-top:-3px;"></image>
+           <text style="margin-top:-5px;">书票</text>
           </view>
         </view>
         <view class="list">
           <view class="items" bindtap="ViewQRcode">
-           <image src="../../img/icon/histroyBorrow.png" style="width:50rpx;height:50rpx;"></image>
-           <text>借阅历史</text>
+           <image src="../../img/icon/histroyBorrow.png" style="width:55rpx;height:55rpx;"></image>
+           <text style="margin-top:3rpx;">借阅历史</text>
           </view>
         </view>
 

@@ -1,15 +1,23 @@
 package books;
 
 import java.io.IOException;
+
+import java.io.InputStream;
 import java.io.PrintWriter;
-import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.github.kevinsawicki.http.HttpRequest;
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpEntity;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClients;
+
+//import com.github.kevinsawicki.http.HttpRequest;
 
 /**
  * Servlet implementation class GetBooksInfo
@@ -39,15 +47,18 @@ public class GetBooksInfo extends HttpServlet {
 		if(appRequest.equals("isbn")){
 			try{
                 // 获取ISBN编号
-				 System.out.println("1/"+new Date());
 				String ISBN = request.getParameter("ISBN");
                 // 通过ISBN找到此书的相关信息
 				String url_getBookInfo = "https://api.douban.com/v2/book/isbn/"+ISBN;
-                // 获取页面内容即图书信息
-				String data = HttpRequest.get(url_getBookInfo).body();
+		        // 获取页面内容即图书信息
+			    CloseableHttpClient client = HttpClients.createDefault();
+			    HttpGet get = new HttpGet(url_getBookInfo);
+				HttpResponse resp = client.execute(get);
+				HttpEntity entity = resp.getEntity();
+				InputStream is = entity.getContent();
+				String data =IOUtils.toString(is,"UTF-8");
                 // 写入到反馈给小程序的数据上
 				w.print(data); 
-				 System.out.println("2/"+new Date());
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -59,19 +70,22 @@ public class GetBooksInfo extends HttpServlet {
 		if(appRequest.equals("tag")){
 			try{
                 // 获取关键字，有可能是中文，所以要注意编码问题
-//				String tag = new String(request.getParameter("tag").getBytes("ISO-8859-1"),"utf-8");
-				System.out.println("1/"+new Date());
-				String tag = request.getParameter("tag");
-				System.out.println(tag);
+				String tag = new String(request.getParameter("tag").getBytes("ISO-8859-1"),"utf-8");
+//				String tag = request.getParameter("tag");
                 // 获取起始指针
 				String start = request.getParameter("start");
                 // 每次获取的图书量
 				String count =request.getParameter("count");
                 // 根据关键字、起始指针和图书量返回一定量的图书
 				String url_getBookInfo = "https://api.douban.com/v2/book/search?q="+tag+"&start="+start+"&count="+count;
-				String data = HttpRequest.get(url_getBookInfo).body(); 
+				// 获取页面内容即图书信息
+			    CloseableHttpClient client = HttpClients.createDefault();
+			    HttpGet get = new HttpGet(url_getBookInfo);
+				HttpResponse resp = client.execute(get);
+				HttpEntity entity = resp.getEntity();
+				InputStream is = entity.getContent();
+				String data =IOUtils.toString(is,"UTF-8");
 				w.print(data);
-				System.out.println("2/"+new Date());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

@@ -15,20 +15,19 @@ Page({
    */
   onLoad: function (options) {
     var that = this
-
   //  获取当前位置及附近图书馆
-    wx.getLocation({
-      type: 'wgs84',
-      success: function (res) {
+    // wx.getLocation({
+    //   type: 'wgs84',
+    //   success: function (res) {
         that.setData({
-          longitude: res.longitude,
-          latitude: res.latitude
+          longitude: app.globalData.longitude,
+          latitude: app.globalData.latitude
         })
         wx.request({
-          url: 'http://localhost:8080/Server_Java/GetMap',
+          url: 'https://www.hqinfo.xyz/Server_Java/GetMap',
           data: {
-            latitude: res.latitude,
-            longitude: res.longitude
+            latitude: app.globalData.latitude,
+            longitude: app.globalData.longitude
           },
           header: {
             'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
@@ -40,8 +39,8 @@ Page({
             for (var i = 0; i < wxMarkerData.length; i++) {
               wxMarkerData[i].latitude = wxMarkerData[i].location.lat
               wxMarkerData[i].longitude = wxMarkerData[i].location.lng
-              wxMarkerData[i].title = wxMarkerData[i].name;
               wxMarkerData[i].iconPath = '../../../img/icon/location1.png';
+              wxMarkerData[i].callout = { content: wxMarkerData[i].name, color: "black", borderRadius: "2", bgColor: "#B0B0B0", padding: "3", display: "ALWAYS" }
               wxMarkerData[i].height = 30;
               wxMarkerData[i].width = 30;
             }
@@ -52,6 +51,6 @@ Page({
           }
         })
       }
-    })
-  }
+  //   })
+  // }
 })

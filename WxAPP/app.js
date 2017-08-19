@@ -23,10 +23,13 @@ App({
       success: function (res) { return; },
       fail: function () {
         var newBookShelf = [{
+          "	idx_shelfId":0,
           "shelf_photo": "../../../img/show/book.png",
           "shelf_name": "我喜欢的图书",
           "shelf_intro": "",
-          "shelf_bookList": []
+          "shelf_bookList": [],
+          "shelf_tag":[],
+          "bookNum":0
         }]
         that.saveCache('bookShelf', newBookShelf)
       }
@@ -80,7 +83,7 @@ App({
 
     //  启动连接池
     wx.request({
-      url: 'http://localhost:8080/Server_Java/InitSql',
+      url: 'https://www.hqinfo.xyz/Server_Java/InitSql',
       data:{
         dbName:"WxApp"
       },      
@@ -187,6 +190,9 @@ App({
     //宽度
     width: '' ,
     //选择的图书馆
-    G_selectLibrary:''
+    G_selectLibrary:'',
+    // 地理位置
+    latitude:'',
+    longitude:''
   }
 })

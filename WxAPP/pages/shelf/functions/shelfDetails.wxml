@@ -52,7 +52,6 @@
     <block wx:for="{{bookShelfValue.shelf_bookList}}"  wx:key="item"> 
       <view class="themes-list">
         <view class="themes-list-box">
-         <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
            <view class="themes-list-thumbnail">
             <image class="themes-list-img" src='{{item.BooklistImage|| item.book_photo}}' />
            </view>
@@ -60,7 +59,6 @@
             <view class="themes-list-name">{{item.BooklistTitle||item.book_name}}</view>
             <view class="themes-list-description">{{item.BooklistAuthor||item.book_author}}</view>
            </view>
-         </navigator>
         </view>
       </view>
       <view class="operate">
@@ -68,9 +66,15 @@
            <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"/>
            <text>收藏</text>
         </view>
-        <view class="operate-toDo" data-index="{{index}}" bindtap="borrowDelete">
-           <image class="operate-type" src="../../../img/icon/del.png"/>
+        <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
+           <image class="operate-type" src="../../../img/icon/detail.png"/>
            <text style="margin-top:10%;">查看详情</text>
+        </navigator>
+        <view class="operate-toDo">
+         <picker bindchange="bindPickerChange" data-index="{{index}}" value="{{card_index}}" range="{{bookShelf}}" range-key="shelf_name">
+           <image class="operate-type" src="../../../img/icon/addCard.png"/>
+           <text style="margin-top:10%;">添加至</text>
+          </picker>
         </view>
       </view>
           </block>

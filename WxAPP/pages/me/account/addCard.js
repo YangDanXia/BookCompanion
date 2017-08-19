@@ -34,7 +34,7 @@ Page({
  addCard:function(){
    var that = this;
    wx.request({
-     url: 'http://localhost:8080/Server_Java/DbOperations',
+     url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
      data:
      {
        dbName: "WxApp",

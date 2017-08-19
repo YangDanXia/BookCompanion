@@ -1,11 +1,5 @@
 // pages/shelf/shelf.js
 var app = getApp();
-function initSubMenuDisplay() {
-  return ['show', 'show'];
-}
-function initImage() {
-  return ["../../img/icon/down.png", "../../img/icon/down.png"]
-}
 
 Page({
   data: {
@@ -27,10 +21,6 @@ Page({
     autoplay: true,
     interval: 2000,
     duration: 1000,
-    //下拉菜单显示
-    subMenuDisplay: initSubMenuDisplay(),
-    //下拉菜单的显示图标
-    img: initImage(),
     //收藏的图书
     bookShelf: app.cache.bookShelf || []
   },
@@ -41,9 +31,7 @@ Page({
    * 加载数据,通过接收的ISBN请求链接获取图书信息
    */
   onLoad: function (query) {
-    this.setData({
-      bookShelf: app.cache.bookShelf || []
-    })
+    this.bookNum()
   },
 
 
@@ -52,6 +40,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.setData({
+      bookShelf: app.cache.bookShelf || []
+    })
+    this.bookNum()
 
   },
 
@@ -68,26 +60,6 @@ Page({
         hidden: true
       })
     }, 500);
-  },
-
-  /**
-   * 下拉显示，上拉隐藏
-   */
-  tapMainMenu: function (e) {
-    var index = parseInt(e.currentTarget.dataset.index);
-    var newSubMenuDisplay = this.data.subMenuDisplay;
-    var newImage = this.data.img;
-    if (this.data.subMenuDisplay[index] == 'hidden') {
-      newImage[index] = "../../img/icon/down.png";
-      newSubMenuDisplay[index] = 'show';
-    } else {
-      newImage[index] = "../../img/icon/enter.png";
-      newSubMenuDisplay[index] = 'hidden';
-    }
-    this.setData({
-      subMenuDisplay: newSubMenuDisplay,
-      img: newImage
-    })
   },
 
   /**
@@ -111,6 +83,65 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
-  }
+  },
+
+  /**
+   * 计算图书数量
+   */
+  bookNum:function(){
+    var obj = this.data.bookShelf;
+    for(var i=0;i<obj.length;i++){
+      obj[i].bookNum = this.data.bookShelf[i].shelf_bookList.length
+    }
+    app.saveCache('bookShelf',obj )
+    this.setData({
+      bookShelf:obj
+    })
+  },
+
+  /**
+   * 删除书单
+   */
+   delBookShelf: function (e) {
+    var index = e.currentTarget.dataset.index;
+    if (index == 0) {
+      wx.showToast({
+        title: '请勿删除此书单',
+        image: '../../img/icon/warn.png'
+      })
+      return;
+    }
+    wx.showModal({
+      title: '提示',
+      content: '确认删除此书单吗？',
+      success: function (res) {
+        if (res.confirm) {
+          this.data.bookShelf.splice(index, 1);
+          var newBookShelf = this.data.bookShelf;
+          app.saveCache('bookShelf', newBookShelf);
+          wx.showToast({
+            title: "删除成功",
+            icon: 'success'
+          });
+          this.setData({
+            bookShelf: newBookShelf
+          })
+        } else if (res.cancel) {
+          return;
+        }
+      }
+    })
+
+  },
+
+  /**
+   * 查看图书详情
+   */
+   shelfDetail:function(e){
+     var index = e.currentTarget.dataset.index;
+     wx.navigateTo({
+       url: 'functions/shelfDetails?index='+index,
+     })
+   }
 
 })

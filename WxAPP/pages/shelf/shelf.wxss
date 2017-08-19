@@ -77,13 +77,13 @@ Page{
   align-content:stretch; 
   margin: 20rpx 10rpx 20rpx 25rpx; 
   width:180rpx;
-  height:220rpx;
+ 
   overflow: hidden;
 }
 .first-boxonepicture
 {
-  width:160rpx;
-  height:200rpx;
+  width:140rpx;
+  height:180rpx;
   background-size:contain;
 }
 .first-boxtwo
@@ -95,9 +95,7 @@ Page{
   flex-direction:row;  /*默认值*/
   flex-wrap:wrap; 
   align-content:stretch; 
-  margin: 20rpx 25rpx 10rpx 0rpx;
-  width:500rpx;
-  height:230rpx;
+  margin: 60rpx 35rpx 30rpx -20rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -111,13 +109,15 @@ Page{
 .main-text
 {
   color: #000000;
-  font-size:30rpx;
+  font-size:33rpx;
 }
 
 .shuxian
 {
   width:35rpx;
   height:30rpx;
+  margin-top:10rpx;
+
 }
 
 
@@ -160,7 +160,7 @@ Page{
 }
 
 navigator {
-width:auto;
+width:80%;
 height:auto;
 
 }
@@ -168,7 +168,9 @@ height:auto;
 .themes-list{ 
     background: #fff; 
     display: flex;
-   /* margin-bottom:15rpx;*/
+   border-bottom:1px solid #B0B0B0;
+margin:0 10px;
+
     }
 
 .themes-list-box{ 
@@ -176,7 +178,7 @@ height:auto;
     position: relative; 
     padding: 15rpx 0rpx; 
     border-bottom: 0px solid  #D3D3D3;
-    width:90%;
+    width:85%;
   }
 
 .shelf-box
@@ -189,7 +191,7 @@ height:auto;
   flex-wrap:nowrap; /*如果一条轴线排不下，如何换行。*/
   align-content:stretch; /*定义了多根轴线的对齐方式。如果项目只有一根轴线，该属性不起作用。*/
   width:750rpx;
-  height: 270rpx; 
+ 
   background-color: transparent;
 
  /* border-bottom:1px solid #cdcdcd;*/

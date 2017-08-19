@@ -9,6 +9,18 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+    <servlet>
+    <description></description>
+    <display-name>InitSql</display-name>
+    <servlet-name>InitSql</servlet-name>
+    <servlet-class>db.InitSql</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>InitSql</servlet-name>
+    <url-pattern>/InitSql</url-pattern>
+  </servlet-mapping>
+  
+  
   <servlet>
     <description></description>
     <display-name>GetBooksInfo</display-name>
@@ -19,6 +31,7 @@
     <servlet-name>GetBooksInfo</servlet-name>
     <url-pattern>/GetBooksInfo</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <description></description>
     <display-name>EnQRcode</display-name>
@@ -38,5 +51,16 @@
   <servlet-mapping>
     <servlet-name>DbOperations</servlet-name>
     <url-pattern>/DbOperations</url-pattern>
+  </servlet-mapping>
+  
+    <servlet>
+    <description></description>
+    <display-name>GetMap</display-name>
+    <servlet-name>GetMap</servlet-name>
+    <servlet-class>map.GetMap</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>GetMap</servlet-name>
+    <url-pattern>/GetMap</url-pattern>
   </servlet-mapping>
 </web-app>

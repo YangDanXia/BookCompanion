@@ -11,7 +11,8 @@ public class Library  implements DbConnect{
 		// TODO Auto-generated method stub
 		dsLibrary = new ComboPooledDataSource();
 		dsLibrary.setDriverClass(driver);
-		dsLibrary.setJdbcUrl("jdbc:mysql://591ba57a49ec3.gz.cdb.myqcloud.com:3806/GDOULibrary");
+//		dsLibrary.setJdbcUrl("jdbc:mysql://591ba57a49ec3.gz.cdb.myqcloud.com:3806/GDOULibrary");
+		dsLibrary.setJdbcUrl("jdbc:mysql://10.66.192.197:3306/GDOULibrary");
 		dsLibrary.setUser(user);
 		dsLibrary.setPassword(password);
 		dsLibrary.setMaxPoolSize(40);

@@ -1,0 +1,47 @@
+<!-- pages/bookDetails/bookBuy.wxml
+ <view class="list">
+      <view class="items">
+        <image src="https://img3.doubanio.com/mpic/s27205750.jpg"></image>
+        <text>书名</text>
+        <text>作者</text>
+        <text>价格</text>
+      </view>
+ </view>
+
+ <view class="buy">
+      <view class="buy-items">
+        <image src="../../img/icon/addBuy.png"></image>
+        <image src="../../img/icon/addBuy.png"></image>
+        <image src="../../img/icon/addBuy.png"></image>
+        <image src="../../img/icon/addBuy.png"></image>
+      </view>
+ </view> -->
+
+
+<view class="main-wrap">
+	<view class="main">
+		<view class="song-info">
+			<image class="img" src="../../img/icon/desc.png"></image>
+			<view class="info">
+				<text class="song-name">凑单功能说明：</text>
+				<view class="singer-name">
+					<text>“凑单买书”的目的是解决因没有足够财力，却又想要获取某本电子书的需求。你可以与有同样需求的小伙伴一起凑单买一本电子书，一旦凑单的条件满足，小助手会将电子书文件以附件或网盘链接的形式发送到参与凑单者填写的接收邮箱中。（注：单价为5元以下的电子书不参与凑单活动）。</text>
+				</view>
+			</view>
+			<view class="play {{isPlaying ? '' : 'pause'}}" bindtap="songToggle"></view>
+		</view>
+		<view class="song-lyric">
+			<image class="img {{isPlaying ? '' : 'pause'}}" src="https://img3.doubanio.com/mpic/s27205750.jpg"></image>
+		</view>
+
+    		<view class="song-info">
+			      <view class="buy-items">
+        <image src="../../img/icon/addBuy.png"></image>
+        <image src="../../img/icon/addBuy.png"></image>
+        <image src="../../img/icon/addBuy.png"></image>
+        <image src="../../img/icon/addBuy.png"></image>
+      </view>
+		</view>
+	</view>
+	<view class="bg" style="background-image:url(https://img3.doubanio.com/mpic/s27205750.jpg)"></view>
+</view>

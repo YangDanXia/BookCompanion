@@ -1,92 +1,12 @@
 <!--pages/shelf/shelf.wxml-->
-<!--pages/bookDetails/bookDetails.wxml-->
-
 <!-- loading -->
 <loading hidden="{{hidden}}">
     加载中...
 </loading>
 
-<!--标题栏-->
-<view class="swiper-tab">
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">个性推荐</view>
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">自建书单</view>
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">收藏书单</view>
-</view>
-
-
-
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
-<!--个性推荐-->
-<swiper-item>
- <scroll-view style="height:{{winHeight}}px" scroll-y="true" enable-back-to-top="true" >
-<!--滚动图片-->
-  <swiper indicator-dots="{{indicatorDots}}"autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-    <block wx:for="{{imgUrls}}" wx:key="{{item}}">
-      <swiper-item>
-        <image src="{{item}}" class="slide-image" />
-      </swiper-item>
-    </block>
-  </swiper>
-
-
-   <view>
-    <view class="title"><image class="title-btn" src="../../img/icon/h.png"/>精品书单<image class="title-btn" src="../../img/icon/h.png"/></view>
-    </view>
-<!--第一个格子-->
-<view class="first-box">
-  <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/zhu.jpg"></image>
-  </view>
-  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;">
-    <text class="main-text">大谋小计五十年：诸葛亮传\n</text>
-      <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 14本  </text>
-      <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 655\n</text>
-    <text class="box-subtitle">草船借箭、空城计子虚乌有？他究竟是怎么死的？揭秘历史上真实的诸葛亮。</text>
-  </view>
-</view>
-<!--第二格子-->
-<view class="first-box">
-  <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/gudai.jpg"></image>
-  </view>
-  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;" >
-    <text class="main-text">《簪中录》\n</text>
-      <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 1本  </text>
-      <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 345\n</text>
-    <text class="box-subtitle">对于女生来说，很多悬疑小说读起来情感和文笔总是与言情小说差了那么一些，让人有冷冰冰的感觉。今天，我就来推荐一些经典的古风悬疑小说，兼顾了优秀细腻的文笔，充沛的感情描写，让你在黑暗汹涌之下的故事里感受那么一些慰藉和温暖。 </text>
-  </view>
-</view>
-<!--第三格子-->
-<view class="first-box">
-  <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/girl.jpg"></image>
-  </view>
-  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;" >
-    <text class="main-text">阿飞街女生\n</text>
-      <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 3本  </text>
-      <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 452\n</text>
-    <text class="box-subtitle">曾经上海最小资的弄堂里一群个性张扬、活泼多姿的女孩，因打扮不俗而使她们居住的街区有了个惊世骇俗的称呼“阿飞街”。几十年后，从“阿飞街”走出的五个女生，往来于纽约和上海之间，但心灵深处仍然藏着一段身为女性不敢触碰与无法回避的青春期创伤故事。唐颖细腻地勾勒了那些年轻、可爱、娇气、洋气、敏感、忧伤、强韧、拥抱时尚、不鄙薄物欲、讲究品味的女性成长的心路历程。 </text>
-  </view>
-</view>
-<!--第四格子-->
-<view class="first-box">
-  <view class="first-boxone">
-    <image class="first-boxonepicture" src="http://www.hqinfo.xyz:8080/photo/xiaogu.jpg"></image>
-  </view>
-  <view class="first-boxtwo" style="margin:20rpx 25rpx 10rpx 0rpx;width:500rpx;height:230rpx;" >
-    <text class="main-text">书单：70本与影视同样精彩的原著小说大集合！\n</text>
-      <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 12本  </text>
-      <image class="shuxian" src="../../img/icon/collect.png"></image><text class="box-imgtext"> 1200\n</text>
-    <text class="box-subtitle">如果你已经有些厌倦不停的追剧，找电影资源，如果你还是个原著党，喜欢探寻影视作品外那些原作者隐蔽的细节和情感，那么下面推荐的这70本原著小说，你可千万不能错过。</text>
-  </view>
-</view>
-</scroll-view>
-</swiper-item>
-
 
 
 <!--自建书单-->
-<swiper-item>
 <view class="myShelfTop">
     <navigator class="shelfTop" url="functions/addShelf" hover-class="none">
       <image class="shelf-btn" src="../../img/icon/addShelfs.png"/>
@@ -118,52 +38,6 @@
   </view>
  </dd>
 </view>
-</swiper-item>
-
-<!--收藏书单-->
-<swiper-item>
-<view class="myShelfTop">
-    <view class="shelfTop">
-      <image class="shelf-btn" src="../../img/icon/toCollect.png"/>
-      <text class="shelf-text">收藏书单</text>
-    </view>
-</view>
-
-<!--收藏书单-->
-<view class="more-list">
- 
- <dd class="{{subMenuDisplay[1]}}">
-  <view wx:if="{{bookShelf==''}}" class="login-warn">您还没有收藏书单哦..</view>
-  <view wx:else>
-    <block wx:for="{{bookShelf}}" wx:key="{{item}}"> 
-      <view class="themes-list">
-        <view class="themes-list-box">
-          <navigator url="functions/shelfDetails?index={{index}}" hover-class="none">
-           <view class="shelf-box">
-             <view class="first-boxone">
-              <image class="first-boxonepicture" src="{{item.img}}"></image>
-             </view>
-             <view class="first-boxtwo shelf-boxtwo" >
-              <text class="main-text">阿飞街女生\n</text>
-              <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> 3本\n  </text>
-              <text class="box-subtitle">曾经上海最小资的弄堂里一群个性张扬、活泼多姿的女孩，因打扮不俗而使她们居住的街区有了个惊世骇俗的称呼“阿飞街”。几十年后，从“阿飞街”走出的五个女生，往来于纽约和上海之间，但心灵深处仍然藏着一段身为女性不敢触碰与无法回避的青春期创伤故事。唐颖细腻地勾勒了那些年轻、可爱、娇气、洋气、敏感、忧伤、强韧、拥抱时尚、不鄙薄物欲、讲究品味的女性成长的心路历程。 </text>
-             </view>
-           </view>
-          </navigator>
-        </view>
-        <view class="books-operate">
-          <image class="operate-type" src="../../img/icon/del.png" data-index="{{index}}" bindtap="delBookShlef"/>
-       </view>
-      </view>
-    </block>
-  </view>
- </dd>
-</view>
-
-</swiper-item>
-
-</swiper>
-
 
  
 

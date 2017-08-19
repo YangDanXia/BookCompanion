@@ -9,14 +9,17 @@ public class preparedSql {
 	
 	public static Connection connWx;
 	public static Connection connLib;
+	public static Connection connBook;
 	public final void runSQL() throws Exception {
 //		启动数据库
 		ConnectionPoolFactory dataBase =  ConnectionPoolFactory.getInstance();
 		ComboPooledDataSource dsWx =dataBase.getDB("WxApp");
 		ComboPooledDataSource dsLib=dataBase.getDB("Library");
+		ComboPooledDataSource dsBook=dataBase.getDB("gdou_book");
 //		连接数据库
 		connWx = dsWx.getConnection();
 		connLib = dsLib.getConnection();
+		connBook = dsBook.getConnection();
 	}
 	
 	//模板
@@ -32,6 +35,8 @@ public class preparedSql {
 			pstmt = connLib.prepareStatement(sql);
 		}else if(dbName.equalsIgnoreCase("WxApp")) {
 		   pstmt = connWx.prepareStatement(sql);
+		}else if(dbName.equalsIgnoreCase("gdou_book")) {
+			pstmt = connBook.prepareStatement(sql);
 		}
 
 //		占位符中对应的值
@@ -43,9 +48,11 @@ public class preparedSql {
 		}
 
 		for(String key:factor.keySet()) {
+			System.out.println(factor.get(key));
 			pstmt.setString(index, factor.get(key));
 			index++;
 		}
+		System.out.println(pstmt);
 		return pstmt;
 	}
 	 

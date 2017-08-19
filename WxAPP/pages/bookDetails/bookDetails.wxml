@@ -114,5 +114,5 @@
 
 <!-- 购票 -->
 <view class="book-buy">
-  <text class="btn-buy" bindtap="buyTickets">立即购票</text>
+  <navigator url="bookBuy?isbn={{item.isbn13}}" hover-class="none" class="btn-buy">>凑单买书</navigator>
 </view>

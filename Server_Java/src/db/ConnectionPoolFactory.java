@@ -16,10 +16,12 @@ public class ConnectionPoolFactory {
 		 if(dbName.equalsIgnoreCase("Library")){
 			 new Library().connection();
 		     return Library.dsLibrary;
-	      } else 
-		if (dbName.equalsIgnoreCase("WxApp")){
+	      } else if (dbName.equalsIgnoreCase("WxApp")){
 	    	  new WxApp().connection();
 			 return WxApp.dsWxApp;
+	      }else if (dbName.equalsIgnoreCase("gdou_book")){
+	    	  new BookData().connection();
+			 return BookData.dsBook;
 	      }
 		return null;
 	}

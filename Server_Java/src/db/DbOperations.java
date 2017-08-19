@@ -2,6 +2,7 @@ package db;
 
 import java.io.IOException;
 
+
 import java.io.PrintWriter;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -51,8 +52,6 @@ public class DbOperations extends HttpServlet {
 		// 获取条件值
 		String factorStr = request.getParameter("factor"); 
 		
-        System.out.print("获取字段数据"+fieldStr);
-        
 		 @SuppressWarnings("unchecked")
 		Map<String,String> field =(Map<String,String>)JSON.parse(fieldStr);    
 		 @SuppressWarnings("unchecked")

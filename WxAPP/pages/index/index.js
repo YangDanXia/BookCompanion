@@ -172,31 +172,55 @@ Page({
   newBooks: function () {
     var that = this
     var index = app.getRandom(20);
+    // wx.request({
+    //   url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
+    //   data: {
+    //     request: "tag",
+    //     tag: "语言",
+    //     start: index,
+    //     count: "6"
+    //   },
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+    //   },
+    //   method: 'GET',
+    //   success: function (res) {
+    //     console.log(res)
+    //     console.log(res.data)
+    //     that.setData({
+    //       commendItems: res.data.books
+    //     })
+    //   },
+    //   fail: function (res) {
+    //     that.setData({
+    //       errHidden: false
+    //     })
+    //   }
+    // });
+
     wx.request({
-      url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
-      data: {
-        request: "tag",
-        tag: "语言",
-        start: index,
-        count: "6"
+      url: 'http://localhost:8080/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "gdou_book",
+        table: "novel",
+        typeName: "inquire",
+        field: { title:'',author:'',isbn13:'',images:''},
+        factor: { respect_type:"作品集"}
       },
+      //请求头
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
       method: 'GET',
-      success: function (res) {
-        console.log(res)
+      success:function(res){
         console.log(res.data)
         that.setData({
-          commendItems: res.data.books
+          commendItems: res.data.result
         })
-      },
-      fail: function (res) {
-        that.setData({
-          errHidden: false
-        })
+        console.log(res.data.result)
       }
-    });
+    })
   },
 
 

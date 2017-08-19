@@ -1,23 +1,8 @@
-<!--pages/bookDetails/bookDetails.wxml-->
-<!-- loading -->
 <loading hidden="{{hidden}}">
-    加载中...
+  玩命加载中...
 </loading>
-
-<!--标题栏-->
-<view class="swiper-tab">
-    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">简介</view>
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">内容</view>
-    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">书评</view>
-</view>
-
-
-
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
-<!--书籍信息-->
-<swiper-item>
- <scroll-view style="height:{{winHeight}}px" scroll-y="true" enable-back-to-top="true" >
-  <view class="book-details">
+<!-- 概要 -->
+<view class="book-details">
    <view class="book-cover">
      <image class="cover" src="{{bookInfo.images.large}}"></image>
    </view>
@@ -34,8 +19,6 @@
   </view>
    <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder"></image>
 </view>
-
-
 
 <!--功能栏-->
 
@@ -95,54 +78,41 @@
 </view>
 
 
-
-
 <!--简介-->
 <view class="book-desc">
  <view class="title"  >作者简介</view>
-  <view class="{{!isDescripte?'desc-limit':'desc-limit-show'}}">
+  <view class="{{!intro_isDescripte?'desc-limit_intro':'desc-limit-show'}}">
    <text wx:if="{{bookInfo.author_intro==''}}">暂无作者信息</text>
    <text wx:else>{{bookInfo.author_intro}}</text>
   </view>
- <view class="desc-button" wx:if="{{!isDescripte}}" bindtap="showDesc">展开   
+ <view class="desc-button" wx:if="{{!intro_isDescripte}}" bindtap="intro_showDesc">展开   
  </view>
- <view class="desc-button" wx:elif="{{isDescripte}}" bindtap="hideDesc">关闭   </view>
+ <view class="desc-button" wx:elif="{{intro_isDescripte}}" bindtap="intro_hideDesc">关闭   </view>
 </view>
 
-</scroll-view>
-</swiper-item>
-
-<!--目录-->
-<swiper-item>
-<view class="list-main">
-<!--<view class="list-name"></view>-->
-<view class="line"></view>
-  <view class="list-name" wx:if="{{bookInfo.summary==''}}">暂无内容简介</view>
-  <view class="list-name">{{bookInfo.summary}}</view>
-</view>
-</swiper-item>
-
-<!--书评-->
-<swiper-item>
-<block wx:for="{{viewItem}}" wx:key="{{item}}"> 
-  <view class="comment-list">
-   <view class="view-list-box">
-     <view class="comment-list-thumbnail">
-      <image class="view-list-img" src="{{item.img}}" />
-     </view>
-     <view class="view-list-main">
-      <view class="comment-list-name">{{item.name}}</view>
-      <view class="comment-list-description">{{item.time}}</view>
-      <view class="comment-list-description">{{item.content}}</view>
-     </view>
-   </view>
+<!--简介-->
+<view class="book-desc">
+ <view class="title"  >内容简介</view>
+  <view class="{{!sum_isDescripte?'desc-limit':'desc-limit-show'}}">
+   <text wx:if="{{bookInfo.summary==''}}">暂无内容介绍</text>
+   <text wx:else>{{bookInfo.summary}}</text>
   </view>
-</block>
-</swiper-item>
+ <view class="desc-button" wx:if="{{!sum_isDescripte}}" bindtap="sum_showDesc">展开   
+ </view>
+ <view class="desc-button" wx:elif="{{sum_isDescripte}}" bindtap="sum_hideDesc">关闭   </view>
+</view>
 
+<!-- 剧照 -->
+<view class="movie-photos">
+  <view class="title">剧照</view>
+  <scroll-view scroll-x="true" style="width: 100%" scroll-left="0">
+    <block wx:for="{{bookThumbs}}" wx:key="index">
+      <image class="photo" src="{{item}}" data-index="{{index}}" bindtap="showAlbum"></image>
+    </block>
+  </scroll-view>
+</view>
 
-
-</swiper>
-
-
- 
+<!-- 购票 -->
+<view class="book-buy">
+  <text class="btn-buy" bindtap="buyTickets">立即购票</text>
+</view>

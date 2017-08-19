@@ -54,17 +54,17 @@
         <view class="themes-list-box">
          <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
            <view class="themes-list-thumbnail">
-            <image class="themes-list-img" src='{{item.BooklistImage}}' />
+            <image class="themes-list-img" src='{{item.BooklistImage|| item.book_photo}}' />
            </view>
            <view class="themes-list-main">
-            <view class="themes-list-name">{{item.BooklistTitle}}</view>
-            <view class="themes-list-description">{{item.BooklistAuthor}}</view>
+            <view class="themes-list-name">{{item.BooklistTitle||item.book_name}}</view>
+            <view class="themes-list-description">{{item.BooklistAuthor||item.book_author}}</view>
            </view>
          </navigator>
         </view>
       </view>
       <view class="operate">
-        <view class="operate-toDo" data-index="{{index}}" bindtap="borrowCollect">
+        <view class="operate-toDo" data-index="{{index}}" bindtap="collectOrNot">
            <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"/>
            <text>收藏</text>
         </view>

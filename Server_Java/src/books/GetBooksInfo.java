@@ -2,6 +2,7 @@ package books;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -38,6 +39,7 @@ public class GetBooksInfo extends HttpServlet {
 		if(appRequest.equals("isbn")){
 			try{
                 // 获取ISBN编号
+				 System.out.println("1/"+new Date());
 				String ISBN = request.getParameter("ISBN");
                 // 通过ISBN找到此书的相关信息
 				String url_getBookInfo = "https://api.douban.com/v2/book/isbn/"+ISBN;
@@ -45,6 +47,7 @@ public class GetBooksInfo extends HttpServlet {
 				String data = HttpRequest.get(url_getBookInfo).body();
                 // 写入到反馈给小程序的数据上
 				w.print(data); 
+				 System.out.println("2/"+new Date());
 			}catch(Exception e){
 				e.printStackTrace();
 			}
@@ -57,6 +60,7 @@ public class GetBooksInfo extends HttpServlet {
 			try{
                 // 获取关键字，有可能是中文，所以要注意编码问题
 //				String tag = new String(request.getParameter("tag").getBytes("ISO-8859-1"),"utf-8");
+				System.out.println("1/"+new Date());
 				String tag = request.getParameter("tag");
 				System.out.println(tag);
                 // 获取起始指针
@@ -67,6 +71,7 @@ public class GetBooksInfo extends HttpServlet {
 				String url_getBookInfo = "https://api.douban.com/v2/book/search?q="+tag+"&start="+start+"&count="+count;
 				String data = HttpRequest.get(url_getBookInfo).body(); 
 				w.print(data);
+				System.out.println("2/"+new Date());
 			}catch(Exception e){
 				e.printStackTrace();
 			}

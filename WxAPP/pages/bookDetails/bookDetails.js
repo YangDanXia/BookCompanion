@@ -35,11 +35,15 @@ Page({
   // 是否可以借书
   isReserve:true,
   // 是否显示内容简介
-  isDescripte: false,
+  sum_isDescripte: false,
+  // 是否显示作者简介
+  intro_isDescripte: false,
   // 在馆图书索书号
   bookId:'',
   // 保存图书馆藏情况
-  bookOfLib:[]
+  bookOfLib:[],
+  // 推荐内容
+  bookThumbs: ['http://www.hqinfo.xyz:8080/photo/girl.jpg', 'http://www.hqinfo.xyz:8080/photo/girl.jpg', 'http://www.hqinfo.xyz:8080/photo/girl.jpg', 'http://www.hqinfo.xyz:8080/photo/girl.jpg','http://www.hqinfo.xyz:8080/photo/girl.jpg']
   },
 
   onLoad: function (options) {
@@ -48,7 +52,8 @@ Page({
       url: 'http://localhost:8080/Server_Java/GetBooksInfo',
       data: {
         request: "isbn",
-        ISBN: options.isbn
+        // ISBN: options.isbn
+        ISBN:"9787121221248"
       },
       success: function (res) {
         bookNeedInfo = {
@@ -155,7 +160,8 @@ Page({
         table: "INFORMATION_BOOK",
         typeName: "inquire",
         field: { BookId: '', BooklistISBN: '', BookAddress: '', BookStatus: ''},
-        factor: { BooklistISBN: isbn}
+        // factor: { BooklistISBN: isbn}
+        factor: { BooklistISBN: "9787121221248"}
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
@@ -194,18 +200,36 @@ Page({
   /**
    * 显示作者简介 
    */
-  showDesc: function () {
+  intro_showDesc: function () {
     this.setData({
-      isDescripte: true
+      intro_isDescripte: true
     })
   },
 
   /**
    * 隐藏作者简介 
    */
-  hideDesc: function () {
+  intro_hideDesc: function () {
     this.setData({
-      isDescripte: false
+      intro_isDescripte: false
+    })
+  },
+
+  /**
+ * 显示内容简介 
+ */
+  sum_showDesc: function () {
+    this.setData({
+      sum_isDescripte: true
+    })
+  },
+
+  /**
+   * 隐藏内容简介 
+   */
+  sum_hideDesc: function () {
+    this.setData({
+      sum_isDescripte: false
     })
   },
 

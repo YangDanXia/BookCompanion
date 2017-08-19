@@ -1,7 +1,7 @@
 /* pages/shelf/functions/shelfDetails.wxss */
 
 Page{
-    background:#fff;
+    background:#f6f6f6;
     height:0;
 }
 
@@ -50,8 +50,8 @@ Page{
 
 }
 .book-cover .cover{
-  width: 180rpx;
-  height: 180rpx;
+  width: 170rpx;
+  height: 190rpx;
 }
 .book-title{
   font-size: 18px;
@@ -113,7 +113,7 @@ Page{
   display: flex;
   flex-direction: row;
   flex:1;
-  background:white;
+  background:#f6f6f6;
 
 }
 

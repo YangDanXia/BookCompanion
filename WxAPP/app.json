@@ -1,9 +1,10 @@
 {
   "pages": [
-    
-        "pages/shelf/shelf",
+        "pages/me/me",
     "pages/index/index",
-    "pages/me/me",
+    "pages/shelf/shelf",
+
+
 
 
 

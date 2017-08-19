@@ -25,20 +25,20 @@
 
 <view class="themes-box-top">
     <view class="classname">
-      <view bindtap="{{item.bindtap}}">
+      <view bindtap="collectShelf">
         <image  class="themes-box-title" src="../../../img/icon/addToShelf.png" />
         <text class="themes-box-subtitle">收藏</text>
       </view>
     </view>
 
     <view class="classname">
-      <view bindtap="{{item.bindtap}}">
+      <view bindtap="viewShelf">
         <image  class="themes-box-title"  src="../../../img/icon/discuss.png"  />
         <text class="themes-box-subtitle">评论</text>
       </view>
     </view>
     <view class="classname">
-      <view bindtap="{{item.bindtap}}">
+      <view bindtap="shareShelf">
         <image  class="themes-box-title"  src="../../../img/icon/share.png"  />
         <text class="themes-box-subtitle">分享</text>
       </view>

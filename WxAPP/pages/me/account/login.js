@@ -49,7 +49,7 @@ Page({
       return false;
     }
     wx.request({
-      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      url: 'http://localhost:8080/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",
@@ -65,7 +65,7 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res.data.result)
-        result=res.data.result[0].info_password;
+        var result=res.data.result[0].info_password;
         if (result == that.data.passwd) {//验证成功，则返回的数据为TRUE,失败则返回false
           //保存登录态，只要用户不删除缓存记录和自动退出，以后都不需要再登录
           app.saveCache('loginFlag',true)

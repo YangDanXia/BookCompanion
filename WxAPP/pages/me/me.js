@@ -20,7 +20,9 @@ Page({
    */
   onLoad: function () {
     var that = this
+    var info;
     app.getUserInfo(function (userInfo) {
+      info = userInfo
       that.setData({
         userInfo: userInfo
       })
@@ -103,6 +105,7 @@ Page({
    * 退出登录
    */
   logOut: function () {
+    app.removeCache('userInfo')
     app.saveCache('loginFlag', false)
     wx.showToast({
       title: '注销成功',

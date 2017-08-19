@@ -50,7 +50,9 @@ public class DbOperations extends HttpServlet {
 		String fieldStr = request.getParameter("field"); 
 		// 获取条件值
 		String factorStr = request.getParameter("factor"); 
-
+		
+        System.out.print("获取字段数据"+fieldStr);
+        
 		 @SuppressWarnings("unchecked")
 		Map<String,String> field =(Map<String,String>)JSON.parse(fieldStr);    
 		 @SuppressWarnings("unchecked")

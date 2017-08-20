@@ -1,0 +1,161 @@
+/* pages/find/find.wxss */
+/**index.wxss**/
+ 
+.from
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:center;
+  width:750rpx;
+}
+.from-headpicture
+{
+   display: flex;
+   margin:0rpx 35rpx 0rpx 35rpx;
+   width:70rpx;
+   height:70rpx;
+   border-radius:100px;
+}
+.from-other
+{
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  width:600rpx;
+  height:90rpx;
+}
+.from-othercontent
+{
+  display:block;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:center;
+margin-top:10rpx;
+
+}
+.from-nametext
+{
+  font-size: 38rpx;
+}
+.from-othertext
+{
+  font-size: 24rpx;
+  color:#bfbfbf;
+}
+.sex
+{
+  display: flex;
+  margin:0rpx 20rpx 0rpx 20rpx;
+  width:35rpx;
+  height:35rpx;
+  border-radius:100px;
+}
+.main
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:center;
+  width:750rpx;
+  height:240rpx;
+}
+.mainpicture
+{
+  display: flex;
+  width:210rpx;
+  height:210rpx;
+  margin:0rpx 5rpx 0rpx 35rpx;
+}
+.price
+{
+  margin:0rpx 35rpx 0rpx 35rpx;
+  font-size:38rpx;
+  color:red;
+}
+.second-price
+{
+  font-size:28rpx;
+  color:#bfbfbf;
+  text-decoration:line-through;
+}
+
+.main-text
+{
+  display: flex;
+  margin:0rpx 35rpx 0rpx 35rpx;
+  width:700rpx;
+  height:suto;
+}
+.main-text1
+{
+  font-size:27rpx;
+  line-height: 47rpx;
+}
+.tubiao
+{
+  display: flex;
+  flex-direction:row-reverse;
+  justify-content:flex-start;
+  align-items:flex-start;
+ 
+}
+.tubiao1
+{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  width:80rpx;
+  height:35rpx;
+  border-radius: 20px;
+  background:#efb336;
+  margin: 0rpx 35rpx 0rpx 0rpx;
+}
+.tubiao-text
+{
+  display:flex;
+  flex-direction:row;
+  justify-content:center;
+  align-items:center;
+  height:40rpx;  
+  font-size:28rpx;
+  color:white;
+}
+
+.box-top{
+  margin:25rpx; 
+  background: #fff;
+  font-size: 34rpx;
+  border: 1px solid #e0e0e0; 
+  border-radius:20rpx;
+ }
+
+.box-text{
+  padding-left:25rpx; 
+}
+
+.content{
+   margin-left:30rpx;
+   padding-top: 15rpx;
+   display:flex;
+
+}
+
+.buy{
+margin:20rpx;
+margin-left:70%;
+display:flex;
+margin-top:0;
+}
+
+.btn-buy{
+  display: block;
+  background-color: #73b4ef;
+  font-size: 20px;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 4px;
+  width:100%;
+
+}

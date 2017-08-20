@@ -11,7 +11,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    app.getUserInfo()
+    var that = this
+    app.getUserInfo(function (userInfo) {
+      that.setData({
+        userInfo: userInfo
+      })
+    })
   },
 
 
@@ -70,7 +75,7 @@ Page({
         if (result == that.data.passwd) {//验证成功，则返回的数据为TRUE,失败则返回false
           //保存登录态，只要用户不删除缓存记录和自动退出，以后都不需要再登录
           app.saveCache('loginFlag',true)
-          app.saveCache('userInfo', { phone: that.data.userPhone,password: that.data.passwd})
+          app.saveCache('userInfo', { phone: that.data.userPhone,password: that.data.passwd,photo:that.data.userInfo.avatarUrl,name:that.data.userInfo.nickName})
           //返回上一层
           wx.navigateBack({
             delta: 1

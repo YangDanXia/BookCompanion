@@ -92,7 +92,7 @@
     <view class="list fun-list"  wx:if="{{errHidden}}">
      <block wx:for="{{commendItems}}"  wx:key="item"> 
            <view class="wrap-item">  
-             <navigator url="../bookDetails/bookDetails?isbn={{item.isbn13}}"  hover-class="none" class="navs">
+             <navigator url="../bookDetails/bookDetails?isbn={{item.isbn13}}&table={{item.total_type}}"  hover-class="none" class="navs">
                 <image class="book" src="{{item.images}}"></image>
              </navigator>
                  <view>

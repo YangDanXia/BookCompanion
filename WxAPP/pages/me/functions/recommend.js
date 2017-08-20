@@ -17,7 +17,7 @@ Page({
  * 获取图书馆的输入
  */
   bindPickerChange: function (e) {
-    library = array[e.detail.value]
+    library = this.data.array[e.detail.value]
     this.setData({
       index: e.detail.value
     })

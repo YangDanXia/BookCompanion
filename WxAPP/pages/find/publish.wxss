@@ -1,0 +1,145 @@
+/* pages/find/find.wxss */
+page{
+  background:#f6f6f6;
+}
+
+.headline-content
+{
+  display: flex; 
+}
+.head
+{
+  display: flex; 
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+  width:700rpx;
+  height:120rpx;
+  padding:0rpx 20rpx;
+}
+.headline-text
+{
+  font-size:35rpx;
+  color:#1296db;
+}
+.headline-close1
+{
+  display: flex;
+  width:45rpx;
+  height:45rpx;
+}
+.camera
+{
+  display: flex; 
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:center;
+  height:200rpx; 
+  background:#fff;
+  margin-bottom:20rpx;
+
+}
+.camera-picture
+{
+  display: flex;
+  width:180rpx;
+  height:180rpx; 
+  margin-left: 20rpx;
+}
+.form-control
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:flex-start;
+ background:#fff;
+ 
+}
+.control
+{
+  width:700rpx;
+  font-size: 35rpx;
+}
+.three
+{
+  display: flex; 
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+ margin-bottom:20rpx;
+  height:60rpx;
+  padding:0rpx 20rpx;
+  background:#fff;
+}
+.three-picture
+{
+  display:flex; 
+  width:40rpx;
+  height:40rpx;
+}
+.three-text
+{
+  font-size: 28rpx;
+  color:#cdcdcd;
+}
+.four
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:flex-start;
+ 
+  height:80rpx; 
+  border-bottom:1px solid #cdcdcd;
+  background:#fff;
+}
+.four-sale
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:space-around;
+  align-items:center;
+  margin-left:50rpx;
+ 
+  height:80rpx; 
+  border-bottom:1px solid #cdcdcd;
+}
+.four-saleprice
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:center;
+ margin-left:50rpx;
+
+  height:80rpx; 
+}
+.four-check
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:center;
+  width:200rpx;
+  height:70rpx; 
+}
+
+
+.book-buy{
+  position: fixed;
+
+  width: 100%;
+  background:#fff linear-gradient(180deg,#e1e1e1,#e1e1e1 50%,transparent 0) 0 0/100% 1px no-repeat;
+  text-align: center;
+}
+.book-buy .btn-buy{
+  display: block;
+  margin: 20rpx 30rpx;
+  background-color: #73b4ef;
+  font-size: 20px;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 4px;
+  width:90%;
+
+}

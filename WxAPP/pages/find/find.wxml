@@ -1,0 +1,43 @@
+<!--pages/find/find.wxml-->
+<view class="box-top">
+  <view class="content" style="padding-top:25rpx;">
+     <image class="from-headpicture" src="http://www.hqinfo.xyz:8080/photo/book3.jpg"></image>
+     <view class="from-othercontent">
+        <text class="from-nametext">阿芒</text>
+     </view>
+  </view>
+  <view class="middle"></view>
+  <view class="content" bindtap="modify_tel">
+    <view class="main">
+      <image class="mainpicture" src="http://www.hqinfo.xyz:8080/photo/book3.jpg"></image>
+      <image class="mainpicture" src="http://www.hqinfo.xyz:8080/photo/book3.jpg"></image>
+    </view>
+  </view>
+  <view class="content" bindtap="modify_tel">
+    <view class="from">
+      <text class="price">￥  40.00</text>
+      <text class="second-price">￥  80.00</text>
+    </view>
+  </view>
+  <view class="content" bindtap="modify_tel">
+    <view class="main-text">
+      <text class="main-text1">成长总是个让人烦恼的命题。成长有时会很缓慢，如小溪般唱着叮咚的歌曲趟过，有时却如此突如其来，如暴雨般劈头盖脸……三个孩子因为小镇上的几桩冤案经历了猝不及防的成长——痛苦与迷惑，悲伤与愤怒，也有温情与感动…</text>
+    </view>
+  </view>
+  <view class="content">
+    <view class="tubiao">
+      <view class="tubiao1">
+        <text class="tubiao-text">本校</text>
+      </view>
+      <view class="tubiao1">
+        <text class="tubiao-text">包邮</text>
+      </view>
+    </view>
+  </view>
+  <view class="buy">
+      <view class="ttobuy1">
+        <button class="btn-buy">我想买</button>
+      </view>
+ </view>
+</view>
+ 

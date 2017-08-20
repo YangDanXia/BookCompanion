@@ -1,0 +1,38 @@
+<!--pages/find/find.wxml--> 
+   <view class="camera">
+     <image class="camera-picture" src="../../img/icon/camera.png"></image>
+   </view>
+   <view class="form-control">
+      <form class="bs-example bs-example-form" role="form">
+        <textarea class="control" placeholder="详细描述有助于吸引更多人的关注哦！" style="padding:30rpx 20rpx;"/>
+      </form>
+   </view>
+   <view class="three">
+     <text class="three-text">140字</text>
+   </view>
+
+  <view class="four">
+     <view class="four-sale">
+       <text>想卖</text>
+     </view>
+  <view class="four-saleprice">
+    <form class="bs-example bs-example-form" role="form">
+      <input type="text" placeholder="￥0.00"></input>
+    </form>
+  </view>
+</view>
+<view class="four">
+  <view class="four-sale">
+    <text>原价</text>
+  </view>
+  <view class="four-saleprice">
+    <form class="bs-example bs-example-form" role="form">
+      <input type="text" placeholder="￥0.00"></input>
+    </form>
+  </view>
+</view>
+<view class="book-buy">
+  <navigator url="bookBuy?isbn={{item.isbn13}}" hover-class="none" class="btn-buy">发布</navigator>
+</view>
+
+  

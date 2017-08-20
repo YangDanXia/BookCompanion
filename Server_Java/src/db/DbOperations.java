@@ -64,6 +64,7 @@ public class DbOperations extends HttpServlet {
 			if(type.equalsIgnoreCase("inquire")) {
 				ResultSet rs = pstmt.executeQuery();
 			    String str = getResult(rs, field);
+			    System.out.print("返回的结果："+str);
 			    w.print(str);
 			}else {
 				int rs = pstmt.executeUpdate();
@@ -73,6 +74,8 @@ public class DbOperations extends HttpServlet {
 					w.print("没有该内容");
 				}
 			}
+			ConnectionPoolFactory dataBase =  ConnectionPoolFactory.getInstance();
+			dataBase.closeConn();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			w.print("error");
@@ -94,9 +97,12 @@ public class DbOperations extends HttpServlet {
 		json.append("{\"result\":[");
 		while(rs.next())
 		  {
+			 
 			  json.append("{");	
 			  for(String key:field.keySet()) {
-			     json.append("\""+key+"\":").append("\""+rs.getString(key)+"\",");
+				 String value = rs.getString(key).replaceAll(" ", "");
+				 String str = value.replaceAll("\"", "");
+			     json.append("\""+key+"\":").append("\""+str+"\",");
 			  }
 			  json.append("},");	
 			

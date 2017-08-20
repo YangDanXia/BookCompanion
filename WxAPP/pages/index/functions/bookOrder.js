@@ -90,16 +90,10 @@ Page({
   checkboxChange: function(e) {
     console.log("图书选择情况:" + e.detail.value)
     codeValue =  e.detail.value;
-    this.setData({
-      isBookCard: true
-    })
     if (codeValue.length == 0) {
       wx.showToast({
         title: '请至少选择一本书',
         image: '../../../img/icon/warn.png'
-      })
-      this.setData({
-        isBookCard: false
       })
       return false;
     };
@@ -108,11 +102,11 @@ Page({
         title: '每次只能选择两本图书',
         image: '../../../img/icon/warn.png'
       })
-      this.setData({
-        isBookCard: false
-      })
       return false;
     };
+    this.setData({
+      isBookCard: true
+    })
 
   },
 
@@ -126,6 +120,7 @@ Page({
     var cardNum = this.data.bookCard[index].uk_bookCardId
     var content = [codeValue.length, cardNum];
     if (codeType == 'borrow') {
+      console.log("类型为借书")
       content.push(codeValue)
     } else if (codeType == 'back') {
     }
@@ -141,6 +136,7 @@ Page({
    * 查看二维码
    */
   viewQRcode:function(e){
+    codeType = e.currentTarget.dataset.id;
     if (codeValue.length == 0) {
       wx.showToast({
         title: '请至少选择一本书',
@@ -148,7 +144,14 @@ Page({
       })
       return false;
     };
-    codeType = e.currentTarget.dataset.id;
+
+    var card = app.cache.bookCard || [];
+    if (card.length == 0) {
+      wx.showToast({
+        title: '目前没有借书证可以使用，请前往前台办理借书证',
+        image: '../../../img/icon/warn.png'
+      })
+    }
   },
 
 
@@ -157,10 +160,11 @@ Page({
    */
   reserveCollect:function(e){
    var index = e.currentTarget.dataset.index;
+  //  书单
    var obj = this.data.bookShelf
+  //  预约的图书
    var rese = this.data.reserveBook
-   console.log("书单"+obj)
-   console.log("预约"+rese)
+  //  收藏状态
    var value = this.data.reserveBook[index].collectStatus
    if(value == "like"){
      rese[index].collectStatus = "dislike"

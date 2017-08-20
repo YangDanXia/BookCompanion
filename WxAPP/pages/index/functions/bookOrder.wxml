@@ -12,10 +12,10 @@
 <!--借书栏-->
 <swiper-item>
  <view class="list" wx:if="{{isBookCard}}">
-   <view class="items" data-id="borrow" bindtap="viewQRcode">
+   <view class="items" data-id="borrow">
       <picker bindchange="bindPickerChange" value="{{card_index}}" range="{{arrayCard}}">
         <image src="../../../img/icon/qcode.png"></image>
-        <text>我要借书</text>
+        <text>我要借</text>
       </picker>
    </view>
  </view>

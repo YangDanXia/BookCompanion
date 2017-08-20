@@ -17,7 +17,7 @@ public class Library  implements DbConnect{
 		dsLibrary.setPassword(password);
 		dsLibrary.setMaxPoolSize(40);
 		dsLibrary.setMinPoolSize(2);
-		dsLibrary.setInitialPoolSize(10);
+		dsLibrary.setInitialPoolSize(5);
 		dsLibrary.setMaxStatements(180);
 	}
 

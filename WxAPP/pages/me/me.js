@@ -53,13 +53,13 @@ Page({
    * 查看借书证
    */
   bookCard: function () {
-    if (!this.data.loginFlag) {
-      this.login()
-    } else {
+    // if (!this.data.loginFlag) {
+    //   this.login()
+    // } else {
       wx.navigateTo({
         url: 'account/bookCard'
       })
-    }
+    // }
   },
 
  /**

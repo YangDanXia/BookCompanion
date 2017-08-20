@@ -1,15 +1,16 @@
 // pages/me/account/bookCard.js
-var app = getApp();
+var app = getApp()
 
 Page({
   data: {
     //是否隐藏弹窗
     modalHidden: true,
     bookCard:app.cache.bookCard||[],
-    phone:app.cache.userInfo.phone
+    phone:app.cache.userInfo.phone || ''
   },
 
   onLoad: function(options) {
+    console.log(this.data.phone)
     var length = this.data.bookCard.length;
     var that = this;
     // 若本地有缓存则在本地获取数据，若无则从数据库获取数据
@@ -34,8 +35,8 @@ Page({
         },
         method: 'GET',
         success:function(res){
+          console.log("借书证：")
           console.log(res.data)
-          console.log(res.data.result)
           that.setData({
             bookCard:res.data.result
           })

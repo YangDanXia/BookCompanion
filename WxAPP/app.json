@@ -1,43 +1,33 @@
 {
   "pages": [
-        "pages/index/index",
-    "pages/bookDetails/bookBuy",
-
-    "pages/shelf/shelf",
-    "pages/shelf/functions/addShelf",
-    "pages/me/me",
 
 
- 
- 
+       "pages/index/index",
+       "pages/me/me",
+       "pages/me/account/bookCard",
+       "pages/me/functions/recommend",
+        "pages/me/account/login",
+        "pages/me/account/enroll",
+        "pages/me/account/findPassword",
+        "pages/me/functions/service",
+        "pages/me/functions/suggest",
+        "pages/me/account/addCard",
+    "pages/find/publish",
+    "pages/find/find",
+
     "pages/index/functions/library",
     "pages/index/functions/map",
-
     "pages/index/functions/bookNavigateList",
     "pages/index/functions/bookOrder",
-    "pages/index/functions/borrowProcess/QRcode",
     "pages/index/functions/search",
     "pages/shelf/functions/shelfDetails",
-
-
+    "pages/index/functions/borrowProcess/QRcode",
     "pages/bookDetails/bookDetails",
     "pages/bookDetails/relatedBooks",
+    "pages/bookDetails/bookBuy",
+    "pages/shelf/shelf",
+    "pages/shelf/functions/addShelf"
 
-    "pages/me/account/login",
-    "pages/me/account/enroll",
-
-    "pages/me/account/addCard",
-    "pages/me/account/findPassword",
-    "pages/me/account/bookCard",
-    "pages/me/functions/service",
-    "pages/me/functions/suggest",
-    "pages/me/functions/recommend",
-    "pages/me/functions/set",
-    "pages/me/functions/changePhone",
-    "pages/me/functions/changePassword"
-
-
- 
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -61,13 +51,13 @@
         "text": "书单",
         "iconPath": "img/icon/shelf.png",
         "selectedIconPath": "img/icon/shelfing.png"
-      },
+      },   
       {
-        "pagePath": "pages/me/functions/changePhone",
+        "pagePath": "pages/find/find",
         "text": "发现",
         "iconPath": "img/icon/market.png",
         "selectedIconPath": "img/icon/marketing.png"
-      },      
+      },   
       {
         "pagePath": "pages/me/me",
         "text": "我",

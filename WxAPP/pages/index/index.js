@@ -115,7 +115,7 @@ Page({
           dbName: "gdou_book",
           table: "novel",
           typeName: "inquire",
-          field: { title: '', author: '', isbn13: '', images: '' },
+          field: { title: '', author: '', isbn13: '', images: '', total_type: ''},
           factor: { respect_type: "作品集" }
         },
         //请求头
@@ -185,10 +185,10 @@ Page({
       data:
       {
         dbName: "gdou_book",
-        table: "novel",
+        table: "sucess_motivation",
         typeName: "inquire",
-        field: { title:'',author:'',isbn13:'',images:''},
-        factor: { respect_type:"作品集"}
+        field: { title: '', author: '', isbn13: '', images: '',total_type:''},
+        factor: { respect_type:"财商-财富智慧"}
       },
       //请求头
       header: {
@@ -224,6 +224,7 @@ Page({
     var bookId;
     wx.scanCode({
       success: (res) => {
+        console.log("扫码结果"+res.result)
         bookId = res.result;
         // 为防止重复借同一本书，在扫码后先检索此书是否已存在
         for(var i=0;i<that.data.waitToBorrow.length;i++){
@@ -242,20 +243,28 @@ Page({
             //  确认借书,从图书馆数据库获取本书的图书信息
               if (res.confirm) {
                 wx.request({
-                  url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+                  // url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+                  url: 'http://localhost:8080/Server_Java/DbOperations',
                   data: {
                     dbName:"Library",
                     table:"V_INFORMATION_BOOKDETAIL",
                     typeName:"inquire",
-                    field:{BookId:'',BooklistISBN:'',BooklistTitle:'',BooklistAuthor:'',BooklistPublish:'',BooklistImage:''},
-                    factor:{BookId:bookId}
+                    field:{BooklistISBN:''},
+                    factor: { BookId:bookId}
                   },
                   header: {
                     'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
                   },
                   method: 'GET',
                   success:function(res){
-                    if (res.data) {
+                    console.log("扫码借书：")
+                    console.log(res.data)
+                    if(res.data == "error"){
+                      wx.showToast({
+                        title: "系统故障，请稍后重试",
+                        image: "../../img/icon/warn.png"
+                      })
+                    }else{
                       res.data.result[0].bookAddress = app.globalData.G_selectLibrary
                       res.data.result[0].collectStatus = "dislike"
                       that.data.waitToBorrow.push(res.data.result[0]);

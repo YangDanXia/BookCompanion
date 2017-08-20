@@ -1,7 +1,7 @@
 // pages/index/functions/borrowProcess/QRcode.js
 var codeContent;
 var countdown = 60;
-var count = 3;
+var count =180;
 var settime = function (that) {
   if (countdown == 0) {
     that.setData({
@@ -27,7 +27,7 @@ var waitResult = function (that) {
     that.setData({
       path: ''
     })
-    count = 3;
+    count = 180;
     return;
   } else {
     wx.request({
@@ -38,7 +38,16 @@ var waitResult = function (that) {
       },
       method: 'GET',
       success:function(res){
-        console.log(res)
+        if(res.data == 1){
+          wx.showToast({
+            title: '操作成功',
+            icon:" success"
+          })
+          wx.navigateTo({
+            url: '../bookOrder',
+          })
+          clearTimeout(t)
+        }
       }
       ,fail:function(){
         wx.showToast({
@@ -49,7 +58,7 @@ var waitResult = function (that) {
     })
     count--;
   }
-  setTimeout(function () {
+  var t = setTimeout(function () {
     waitResult(that)
   }
     , 1000)
@@ -82,26 +91,40 @@ Page({
      console.log("替换后二维码内容："+codeContent)
      var that = this
   //生成二维码
-     wx.getImageInfo({
-       src: "https://www.hqinfo.xyz/Server_Java/EnQRcode?code=" + codeContent,
-       success:function(res){
+     wx.request({
+       url: 'https://www.hqinfo.xyz/Server_Java/EnQRcode',
+       data:{
+         code: codeContent
+       },
+      header: {
+       'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success:function(res){
          that.setData({
-           path:res.path
+           path: "https://www.hqinfo.xyz/Server_Java/EnQRcode?code=" + codeContent
          })
-       }
-     })
-     waitResult(that)
+      }
+    })
+    waitResult(that)
   },
 
   
   refresh:function(){
     var that = this
     //生成二维码
-    wx.getImageInfo({
-      src: "https://www.hqinfo.xyz/Server_Java/EnQRcode?code=" + codeContent,
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/EnQRcode',
+      data: {
+        code: codeContent
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
       success: function (res) {
         that.setData({
-          path: res.path
+          path: "https://www.hqinfo.xyz/Server_Java/EnQRcode?code=" + codeContent
         })
       }
     })

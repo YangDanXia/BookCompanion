@@ -57,7 +57,8 @@ public class DML {
 		System.out.println(keyFactor.toString());
 		keys.delete((keys.length())-1, keys.length());
 		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
-		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() + "limit 0,6 ";
+//		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() + "limit 0,6 ";
+		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() ;
 		return sql;
 	}
 

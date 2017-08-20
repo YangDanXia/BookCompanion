@@ -55,7 +55,7 @@ Page({
       data:
       {
         dbName: "gdou_book",
-        table: "novel",
+        table: options.table,
         typeName: "inquire",
         field: {title: '', author: '', isbn13: '', images: '',publisher:'',pubdate:'',price:'',ebook_price:'',summary:'' },
         factor: { isbn13:options.isbn }
@@ -66,7 +66,7 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log("图书详情："+res.data)
+        console.log(res.data)
         bookNeedInfo = {
           "book_photo": res.data.result[0].images,
           "book_isbn": res.data.result[0].isbn13,

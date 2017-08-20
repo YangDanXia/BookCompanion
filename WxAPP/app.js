@@ -34,6 +34,22 @@ App({
       }
     })
     
+     /**
+      * 建立用户信息
+      */
+    wx.getStorage({
+      key: 'userInfo',
+      success: function (res) { return; },
+      fail: function () {
+        var newInfo = {
+          phone:'',
+          password:''
+        }
+        that.saveCache('userInfo', newInfo)
+      }
+    })
+
+
     /**
      * 自动建立签到机制
      */
@@ -81,20 +97,20 @@ App({
     } catch (e) { console.warn('获取缓存失败'); }
 
     //  启动连接池
-    wx.request({
-      url: 'https://www.hqinfo.xyz/Server_Java/InitSql',
-      // url: 'http://localhost:8080/Server_Java/InitSql',
-      data:{
-        dbName:"WxApp"
-      },      
-      header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      method: 'GET',
-      success:function(res){
+    // wx.request({
+    //   // url: 'https://www.hqinfo.xyz/Server_Java/InitSql',
+    //   url: 'http://localhost:8080/Server_Java/InitSql',
+    //   data:{
+    //     dbName:"WxApp"
+    //   },      
+    //   header: {
+    //     'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+    //   },
+    //   method: 'GET',
+    //   success:function(res){
         
-      }
-    })
+    //   }
+    // })
 
 
   },
@@ -149,18 +165,18 @@ App({
     } else {
       wx.login({
         success: function (res) {
-          if (res.code) {
-            wx.request({
-              url: "https://api.weixin.qq.com/sns/jscode2session?appid=wx2b32ac8600d1cef0&secret=e3b94eafd696bc0913cc1dd40f0b7069&js_code=" + res.code + "&grant_type=authorization_code",
-              success: function (res) {
-                wx.setStorage({
-                  key: 'openId',
-                  data: res.data.openid
-                });
-                console.log(res.data.openid)
-              }
-            });
-          }
+          // if (res.code) {
+          //   wx.request({
+          //     url: "https://api.weixin.qq.com/sns/jscode2session?appid=wx2b32ac8600d1cef0&secret=e3b94eafd696bc0913cc1dd40f0b7069&js_code=" + res.code + "&grant_type=authorization_code",
+          //     success: function (res) {
+          //       wx.setStorage({
+          //         key: 'openId',
+          //         data: res.data.openid
+          //       });
+          //       console.log(res.data.openid)
+          //     }
+          //   });
+          // }
           wx.getUserInfo({
             success: function (res) {
               that.globalData.userInfo = res.userInfo

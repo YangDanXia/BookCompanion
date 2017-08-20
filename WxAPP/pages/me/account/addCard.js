@@ -1,12 +1,12 @@
 // pages/me/account/addCard.js
  
-var app = getApp()
+var app = getApp();
 Page({
 
   data: {
     array: ['广东海洋大学图书馆', '湛江市图书馆'],
     index: 0,
-    phone:app.cache.userInfo.phone
+    phone: app.cache.userInfo.phone || ''
   },
 
 
@@ -71,4 +71,4 @@ Page({
    })
  }
 
-})
+});

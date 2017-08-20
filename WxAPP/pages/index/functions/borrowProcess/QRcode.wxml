@@ -5,9 +5,9 @@
   <button class="butt" bindtap="refresh" wx:if="{{toSend}}" style="background:#73b4ef">
     <text>刷新二维码</text>
   </button>
-  <view class="butt" wx:else style="background:#A0A0A0">
+  <button class="butt" wx:else style="background:#A0A0A0" disabled="true">
     <text>等待{{second}}秒</text>
-  </view>
+  </button>
 </view>
 
 <view class="contain" wx:else>

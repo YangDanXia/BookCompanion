@@ -153,6 +153,13 @@ display:flex;
 
 /* 图书列表 */
 
+.themes-list-img {
+  width:150%;
+  height:120%;
+  border:0px solid #999;
+}
+
+
 .themes-list-description{
   font-size:28rpx;
   color:#8a8a8a;
@@ -167,7 +174,7 @@ display:flex;
 
 .themes-list-main{
   margin-top:20rpx;
-  margin-left:23%;
+  margin-left:30%;
 
 }
 .themes-list{ 
@@ -183,7 +190,7 @@ display:flex;
     border-bottom: 0px solid  #D3D3D3;
     height:220rpx;
     width:95%;
-    left:20rpx;
+
   }
 
 .themes-list-thumbnail {

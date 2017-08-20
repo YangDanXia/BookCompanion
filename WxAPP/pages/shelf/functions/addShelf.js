@@ -101,8 +101,7 @@ Page({
         }
       var obj = this.data.bookShelf;
       console.log(obj)
-      var len = obj.length;
-      var newShelf = { "idx_shelfId":len,"shelf_photo": this.data.img, "shelf_name": name, "shelf_intro": intro, "shelf_bookList": [], shelf_tag:tag}
+      var newShelf = {"shelf_photo": this.data.img, "shelf_name": name, "shelf_intro": intro, "shelf_bookList": [], shelf_tag:tag}
       console.log("添加的书单信息："+newShelf)
       obj.push(newShelf);
       wx.showToast({

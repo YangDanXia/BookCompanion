@@ -28,6 +28,14 @@ Page({
      }) 
   },
 
+
+  onShow:function(){
+    this.setData({
+      //书单内容
+      bookShelfValue: app.cache.bookShelf[shelfIndex]
+    }) 
+  },
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -47,16 +55,10 @@ Page({
    */
    collectOrNot:function(e){
      var index = e.currentTarget.dataset.index;
-     console.log("图书位置:"+index)
-     console.log("书单"+this.data.bookShelf)
-     var obj = this.data.bookShelf[shelfIndex].shelf_bookList
-     console.log("书单内容："+obj)
-     obj.splice(index, 1);
-     console.log("修改后的书单"+this.data.bookShelf)
-     app.saveCache('bookShelf', this.data.bookShelf);
-     this.setData({
-       bookShelfValue: obj
-     })
+     var obj = this.data.bookShelf
+     obj[shelfIndex].shelf_bookList.splice(index, 1);
+     app.saveCache('bookShelf', obj);
+     this.onShow()
    },
 
   /**
@@ -69,94 +71,6 @@ Page({
     var selectShelf = this.data.bookShelf[shelf_index]
     selectShelf.shelf_bookList.push(currentShelf.shelf_bookList[index])
     app.saveCache('bookShelf', this.data.bookShelf);
-  },
-
-  /**
-   * 收藏书单
-   */
-  collectShelf:function(){
-    var currentShelf = this.data.bookShelf[shelfIndex]
-    var obj = this.data.bookShelfLike
-    console.log(currentShelf)
-    obj.push(currentShelf)
-    // wx.request({
-    //   url: 'http://localhost:8080/Server_Java/DbOperations',
-    //   data:
-    //   {
-    //     dbName: "WxApp",
-    //     table: "user_collectShelf",
-    //     typeName: "insert",
-    //     field: { info_password: that.data.passwd },
-    //     factor: { uk_phone: that.data.userPhone }
-    //   },
-    //   //请求头
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-    //   },
-    //   method: 'GET',
-    //   success: function (res) {
-    //     console.log(res.data.result)
-    //     result = res.data.result[0].info_password;
-    //   }, fail: function () {
-    //     wx.showToast({
-    //       title: '网络异常',
-    //       image: '../../../img/icon/warn.png'
-    //     })
-    //   }
-    // })
-    app.saveCache('bookShelfLike', this.data.bookShelfLike);
-    wx.showToast({
-      title: '收藏成功',
-      icon:'success'
-    })
-  },
-
-
-
-  /**
-   * 评论书单
-   */
-
-  /**
-   * 分享书单
-   */
-  shareShelf:function(){
-    var currentShelf = this.data.bookShelf[shelfIndex]
-    currentShelf.idx_shelfId = "0"
-    currentShelf.shelf_tag = "0"
-    currentShelf.bookNum = "0"
-    currentShelf.idx_phone = app.cache.userInfo.phone
-    console.log(app.globalData.userInfo)
-    currentShelf.info_photo = app.globalData.userInfo.avatarUrl
-    currentShelf.info_name = app.globalData.userInfo.nickName
-    currentShelf.shelf_bookList = ''
-    console.log("分享书单的内容："+currentShelf)
-    wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
-      data:
-      {
-        dbName: "WxApp",
-        table: "shelf_share",
-        typeName: "insert",
-        field: currentShelf,
-        factor: {}
-      },
-      //请求头
-      header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      method: 'GET',
-      success: function (res) {
-        console.log(res.data)
-
-      }, fail: function () {
-        wx.showToast({
-          title: '网络异常',
-          image: '../../../img/icon/warn.png'
-        })
-      }
-    })
-
   }
 
 

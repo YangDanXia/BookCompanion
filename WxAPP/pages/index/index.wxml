@@ -60,11 +60,11 @@
      <block wx:for="{{recommendItems}}"  wx:key="item"> 
           <view class="wrap-item">  
              <navigator url="../bookDetails/bookDetails?isbn={{item.isbn13}}"  hover-class="none" class="navs">
-                <image class="book" src="{{item.image}}"></image>
+                <image class="book" src="{{item.images}}"></image>
              </navigator>
                 <view>
                   <view class="themes-list-name">{{item.title}}</view>
-                  <view class="themes-list-description">{{item.author[0]}}</view>
+                  <view class="themes-list-description">{{item.author}}</view>
                 </view>
             </view>
           </block>

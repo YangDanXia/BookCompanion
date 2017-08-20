@@ -23,7 +23,6 @@ App({
       success: function (res) { return; },
       fail: function () {
         var newBookShelf = [{
-          "	idx_shelfId":0,
           "shelf_photo": "../../../img/show/book.png",
           "shelf_name": "我喜欢的图书",
           "shelf_intro": "",
@@ -50,21 +49,21 @@ App({
       }
     })
 
-    wx.login({
-      success: function (res) {
-        if (res.code) {
-          wx.request({
-            url: "https://api.weixin.qq.com/sns/jscode2session?appid=wx2b32ac8600d1cef0&secret=e3b94eafd696bc0913cc1dd40f0b7069&js_code=" + res.code + "&grant_type=authorization_code",
-            success: function (res) {
-              console.log(res.data.openid)
-            }
-          });
-        }
-      },
-      fail: function () {
-        that.showWarnModal('提示', '拒绝授权将导致部分功能无法使用，请重新打开再点击允许授权！')
-      }
-    })
+    // wx.login({
+    //   success: function (res) {
+    //     if (res.code) {
+    //       wx.request({
+    //         url: "https://api.weixin.qq.com/sns/jscode2session?appid=wx2b32ac8600d1cef0&secret=e3b94eafd696bc0913cc1dd40f0b7069&js_code=" + res.code + "&grant_type=authorization_code",
+    //         success: function (res) {
+    //           console.log(res.data.openid)
+    //         }
+    //       });
+    //     }
+    //   },
+    //   fail: function () {
+    //     that.showWarnModal('提示', '拒绝授权将导致部分功能无法使用，请重新打开再点击允许授权！')
+    //   }
+    // })
     
     /**
      * 读取缓存

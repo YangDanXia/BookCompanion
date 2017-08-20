@@ -2,7 +2,7 @@
 var app = getApp();
 // 功能栏信息
 var option = require('../../utils/infor.js');
-// 需要保存的图书信息
+// 通用的图书信息
 var bookNeedInfo = [];
 // 展开或收起
 function initSubMenuDisplay() {
@@ -43,7 +43,9 @@ Page({
   // 保存图书馆藏情况
   bookOfLib:[],
   // 推荐内容
-  bookThumbs: ['http://www.hqinfo.xyz:8080/photo/girl.jpg', 'http://www.hqinfo.xyz:8080/photo/girl.jpg', 'http://www.hqinfo.xyz:8080/photo/girl.jpg', 'http://www.hqinfo.xyz:8080/photo/girl.jpg','http://www.hqinfo.xyz:8080/photo/girl.jpg']
+  bookThumbs: ['http://www.hqinfo.xyz:8080/photo/girl.jpg'],
+  // 浏览记录
+  browsingHistory: app.cache.browsingHistory||[]
   },
 
   onLoad: function (options) {
@@ -69,13 +71,13 @@ Page({
           "book_photo": res.data.result[0].images,
           "book_isbn": res.data.result[0].isbn13,
           "book_name": res.data.result[0].title,
-          "book_author": res.data.result[0].author,
-          "collectStatus": "dislike"
+          "book_author": res.data.result[0].author
         };
         res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
         that.setData({
           bookInfo: res.data.result[0]
         })
+        that.browsHistroy();   
       },
       fail: function (res) {
         wx.showModal({
@@ -159,6 +161,33 @@ Page({
   },
 
   /**
+   * 保存浏览记录
+   */
+  browsHistroy:function(){
+    // 浏览记录
+    var obj = this.data.browsingHistory;
+    // 浏览次数
+    if (obj.length == 0){
+      bookNeedInfo.brows_time = "1"
+      obj.push(bookNeedInfo)
+      app.saveCache("browsingHistory", obj);
+      return;
+    }
+    for (var i = 0; i < obj.length; i++) {
+      if (obj[i].book_isbn == bookNeedInfo.book_isbn) {
+        obj[i].brows_time++;
+        app.saveCache("browsingHistory", obj);
+        return;
+      }else{
+        bookNeedInfo.brows_time="1"
+        obj.push(bookNeedInfo)
+        app.saveCache("browsingHistory",obj);
+        return;
+      }
+   }
+},
+
+  /**
    * 查看图书馆馆藏情况
    */
   libraryBook:function(isbn){
@@ -171,7 +200,6 @@ Page({
         typeName: "inquire",
         field: { BookId: '', BooklistISBN: '', BookAddress: '', BookStatus: ''},
         factor: { BooklistISBN: isbn}
-        // factor: { BooklistISBN: "9787121221248"}
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
@@ -275,14 +303,33 @@ Page({
    * 收藏图书
    */
   addBookToShelf: function () {
-    var obj = app.cache.bookShelf || [];//收藏记录
-    bookNeedInfo.collectStatus = "like";
-    obj[0].shelf_bookList.push(bookNeedInfo)
-    wx.showToast({
-      title: '收藏成功',
-      icon: 'success'
-    })
-    app.saveCache('bookShelf', obj);
+    var obj = app.cache.bookShelf;//收藏记录
+    if (obj[0].shelf_bookList.length == 0){
+      console.log("没有书")
+      obj[0].shelf_bookList.push(bookNeedInfo)
+      wx.showToast({
+        title: '收藏成功',
+        icon: 'success'
+      })
+      app.saveCache('bookShelf', obj);
+    }else{
+      for (var i = 0; i <obj[0].shelf_bookList.length; i++) {
+        if (bookNeedInfo.book_isbn == obj[0].shelf_bookList[i].book_isbn) {
+          wx.showToast({
+            title: '已有收藏',
+            image: '../../img/icon/warn.png'
+          })
+          return;
+        } else {
+          obj[0].shelf_bookList.push(bookNeedInfo)
+          wx.showToast({
+            title: '收藏成功',
+            icon: 'success'
+          })
+          app.saveCache('bookShelf', obj);
+        }
+      }
+    }
   },
 
   /**
@@ -326,27 +373,9 @@ Page({
         icon: 'success'
       })
     }else{
-
-      wx.showModal({
-        title: '提示',
-        content: '馆中已无藏书,若需继续预约请点击确定，我们将会在有藏书时通知您',
-        success: function (res) {
-          if (res.confirm) {
-            wx.showToast({
-              title: '预约完成，请注意查收推送信息',
-              icon: 'success'
-            })
-            var obj = app.cache.reserveBook || [];
-            bookNeedInfo.bookId = that.data.bookId;
-            bookNeedInfo.bookAddress = app.globalData.G_selectLibrary;
-            obj.push(bookNeedInfo);
-            app.saveCache('reserveBook',obj);
-          } else if (res.cancel) {
-            wx.showToast({
-              title: '感谢您的支持！'
-            })
-          }
-        }
+      wx.showToast({
+        title: '图书馆已无在馆图书，若需借阅，请留意',
+        image: '../../img/icon/warn.png'
       })
     }
   },
@@ -362,9 +391,6 @@ Page({
     obj.push(bookNeedInfo);
     app.saveCache('reserveBook',obj);
   }
-
-
-
 
 
 

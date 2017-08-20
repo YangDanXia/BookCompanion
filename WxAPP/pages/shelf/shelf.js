@@ -89,9 +89,9 @@ Page({
    * 计算图书数量
    */
   bookNum:function(){
-    var obj = this.data.bookShelf;
+    var obj = app.cache.bookShelf;
     for(var i=0;i<obj.length;i++){
-      obj[i].bookNum = this.data.bookShelf[i].shelf_bookList.length
+      obj[i].bookNum = app.cache.bookShelf[i].shelf_bookList.length
     }
     app.saveCache('bookShelf',obj )
     this.setData({

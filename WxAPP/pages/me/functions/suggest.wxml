@@ -1,25 +1,13 @@
 <!--pages/me/functions/suggest.wxml-->
-<view class="container">
-  <view class="list-btn" bindtap="openList">
-    <image class="btn-icon" src="../../../img/icon/back.png"></image>
-      <view class="input-group">
- 
-      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"  class="picker">
-          {{array[index]}}
-      </picker>
-    </view>
- 
-  </view>
- 
+<view>
   <block>
     <text class="issues-label">新建反馈</text>
     <view class="issues-panel">
-      <view class="issues-input {{(showError&&!title)?'error':''}}">
-        <input placeholder="请输入反馈标题" bindinput="listenerTitle" />
+      <view class="issues-input">
+        <input placeholder="请输入联系方式" bindinput="titleInput" />
       </view>
-      <textarea class="issues-textarea {{(showError&&!content)?'error':''}}" cursor-spacing="50" placeholder="请输入反馈内容" bindinput="listenerTextarea"></textarea>
+      <textarea class="issues-textarea" cursor-spacing="50" placeholder="请输入反馈内容" bindinput="contentInput"></textarea>
     </view>
-
     <view class="submit-btn {{uploading?'disabled':''}}" bindtap="submit">
       <text>提交反馈</text>
     </view>

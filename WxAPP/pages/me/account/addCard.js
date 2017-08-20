@@ -52,10 +52,6 @@ Page({
        if(res.data){
          var obj = app.cache.bookCard;
          var newCard = { history_borrow: "0", library: that.data.array[that.data.index], uk_bookCardId: that.data.cardNum, current_borrow:"0"};
-        //  newCard.history_borrow = "0";
-        //  newCard.library = library;
-        //  newCard.uk_bookCardId = that.data.cardNum;
-        //  newCard.current_borrow = "0";
          obj.push(newCard);
          app.saveCache('bookCard', obj);
          wx.showToast({
@@ -66,6 +62,11 @@ Page({
            delta:1
          })
        }
+     },fail: function () {
+       wx.showToast({
+         title: '网络异常',
+         image: '../../../img/icon/warn.png'
+       })
      }
    })
  }

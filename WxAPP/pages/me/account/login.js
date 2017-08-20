@@ -79,7 +79,7 @@ Page({
           //显示密码或账号错误的提示
           wx.showToast({
             title: '手机号或密码错误！',
-            img: "../../../img/icon/warn.png"
+            image: "../../../img/icon/warn.png"
           })
         }
       }, fail: function () {

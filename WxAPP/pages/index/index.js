@@ -18,14 +18,15 @@ Page({
      errHidden: true,
     //待借图书
     waitToBorrow: app.cache.waitToBorrow || [],
-
     //搜索历史，用于图书推荐
      historicalSearch: app.cache.historicalSearch || [],
     //图书导航栏内容
      bookTypeUp: option.BookNavigationUp,
      bookTypeDown: option.BookNavigationDown,
     //附近图书馆名称
-     library: app.globalData.G_selectLibrary || ''
+     library: app.globalData.G_selectLibrary || '',
+     // 收藏情况
+     bookShelf: app.cache.bookShelf
   },
 
 
@@ -108,30 +109,37 @@ Page({
     var history_length = this.data.historicalSearch.length;
     if (history_length == 0) {
       wx.request({
-        url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
-        data: {
-          request: "tag",
-          tag: "计算机",
-          start: '11',
-          count: "6"
+        url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+        data:
+        {
+          dbName: "gdou_book",
+          table: "novel",
+          typeName: "inquire",
+          field: { title: '', author: '', isbn13: '', images: '' },
+          factor: { respect_type: "作品集" }
         },
+        //请求头
         header: {
           'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
         },
         method: 'GET',
         success: function (res) {
-          console.log(res)
           console.log(res.data)
+          var obj = res.data.result
+          for (var i = 0; i < obj.length; i++) {
+            obj[i].title = obj[i].title.substr(0, 10) + "..."
+          }
           that.setData({
-            recommendItems: res.data.books 
+            recommendItems: res.data.result
           })
+          console.log(res.data.result)
         },
         fail: function (res) {
           that.setData({
             errHidden: false
           })
         }
-      });
+      })
     } else {
       //随机抽取历史记录
       var re_index = app.getRandom(history_length);
@@ -197,6 +205,11 @@ Page({
           commendItems: res.data.result
         })
         console.log(res.data.result)
+      },
+      fail: function (res) {
+        that.setData({
+          errHidden: false
+        })
       }
     })
   },
@@ -242,9 +255,9 @@ Page({
                   },
                   method: 'GET',
                   success:function(res){
-                    if(res.data){
+                    if (res.data) {
                       res.data.result[0].bookAddress = app.globalData.G_selectLibrary
-                      res.data.result[0].collectStatus ="dislike"
+                      res.data.result[0].collectStatus = "dislike"
                       that.data.waitToBorrow.push(res.data.result[0]);
                       app.saveCache('waitToBorrow', that.data.waitToBorrow);
                       wx.showToast({

@@ -14,31 +14,32 @@
     <text class="issues-label">图书信息</text>
     <view class="issues-panel">
         <view class="issues-input">
-        <input placeholder="请输入书名" bindinput="listenerTitle" />
+        <input placeholder="请输入书名(必填)" bindinput="titleInput"/>
       </view>
 
       <view class="issues-input">
-        <input placeholder="请输入作者" bindinput="listenerTitle" />
+        <input placeholder="请输入作者(必填)" bindinput="authorInput"/>
       </view>
       <view class="issues-input">
-        <input placeholder="请输入出版社" bindinput="listenerTitle" />
+        <input placeholder="请输入出版社(选填)" bindinput="publishInput" />
       </view>
     </view>
     
     <text class="issues-label">荐购原因</text>
     <view class="issues-panel">
-     <textarea class="issues-textarea {{(showError&&!content)?'error':''}}" cursor-spacing="50" placeholder="请输入荐购理由" bindinput="listenerTextarea">
+     <textarea placeholder="选填" class="issues-textarea {{(showError&&!content)?'error':''}}" cursor-spacing="50" placeholder="请输入荐购理由" bindinput="reasonInput">
      </textarea>
+    </view>
+
+    <text class="issues-label">联系方式</text>
+    <view class="issues-panel">
+      <view class="issues-input">
+        <input placeholder="请留下您的联系方式，方便回复(选填)" bindinput="phoneInput" />
+      </view>
     </view>
 
     <view class="submit-btn"  bindtap="submit">
       <text>提交反馈</text>
     </view>
 </view>
-
-<!-- <modal class="modal" hidden="{{modalHidden}}" no-cancel bindconfirm="hideModal">
-  <view>添加成功</view>
-</modal>
-<modal class="modal" hidden="{{alertHidden}}" no-cancel bindconfirm="hideAlertView">
-  <view>{{alertTitle}}</view>
-</modal> -->
+ 

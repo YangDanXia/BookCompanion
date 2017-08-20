@@ -1,6 +1,7 @@
 // pages/index/functions/borrowProcess/QRcode.js
 var codeContent;
 var countdown = 60;
+var count = 3;
 var settime = function (that) {
   if (countdown == 0) {
     that.setData({
@@ -18,6 +19,38 @@ var settime = function (that) {
   }
   setTimeout(function () {
     settime(that)
+  }
+    , 1000)
+}
+var waitResult = function (that) {
+  if (count == 0) {
+    that.setData({
+      path: ''
+    })
+    count = 3;
+    return;
+  } else {
+    wx.request({
+      url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success:function(res){
+        console.log(res)
+      }
+      ,fail:function(){
+        wx.showToast({
+          title: '网络异常',
+          image: '../../../../img/icon/warn.png'
+        })
+      }
+    })
+    count--;
+  }
+  setTimeout(function () {
+    waitResult(that)
   }
     , 1000)
 }
@@ -50,20 +83,22 @@ Page({
      var that = this
   //生成二维码
      wx.getImageInfo({
-       src: "http://localhost:8080/Server_Java/EnQRcode?code=" + codeContent,
+       src: "https://www.hqinfo.xyz/Server_Java/EnQRcode?code=" + codeContent,
        success:function(res){
          that.setData({
            path:res.path
          })
        }
      })
+     waitResult(that)
   },
 
+  
   refresh:function(){
     var that = this
     //生成二维码
     wx.getImageInfo({
-      src: "http://localhost:8080/Server_Java/EnQRcode?code=" + codeContent,
+      src: "https://www.hqinfo.xyz/Server_Java/EnQRcode?code=" + codeContent,
       success: function (res) {
         that.setData({
           path: res.path
@@ -71,6 +106,7 @@ Page({
       }
     })
     settime(that)
+    waitResult(that)
   }
 
 })

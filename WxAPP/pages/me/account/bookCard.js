@@ -65,15 +65,64 @@ Page({
 
 // 扫码添加借书证
   addByScan:function(){
+    var that = this;
     wx.scanCode({
       success: (res) => {
         console.log(res)
+        var that =this;
+        var rs = res.result
+        var arr = rs.split(";")
+        if(arr[0] == this.data.phone){
+          wx.request({
+            url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+            data:
+            {
+              dbName: "WxApp",
+              table: "bookcard_record",
+              typeName: "insert",
+              field: { idx_phone: that.data.phone, uk_bookCardId:arr[1], library:arr[2] },
+              factor: {}
+            },
+            //请求头
+            header: {
+              'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+            },
+            method: 'GET',
+            success: function (res) {
+              if (res.data) {
+                var obj = app.cache.bookCard;
+                var newCard = { history_borrow: "0", library: arr[2], uk_bookCardId: arr[1], current_borrow: "0" };
+                obj.push(newCard);
+                app.saveCache('bookCard', obj);
+                wx.showToast({
+                  title: '添加成功',
+                  icon: success
+                })
+              }
+            }, fail: function () {
+              wx.showToast({
+                title: '网络异常',
+                image: '../../../img/icon/warn.png'
+              })
+            }
+          })
+        } else {
+        //显示手机号错误的提示
+        wx.showToast({
+          title: '添加失败：该账户与借书证账户无法匹配！',
+          img: "../../../img/icon/warn.png"
+        })
+        }
       }
     })
     this.setData({
       modalHidden: true
     })
   },
+
+
+
+  
 
 // 手动添加借书证
   addByManual:function(){

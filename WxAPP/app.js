@@ -83,8 +83,8 @@ App({
 
     //  启动连接池
     wx.request({
-      // url: 'https://www.hqinfo.xyz/Server_Java/InitSql',
-      url: 'http://localhost:8080/Server_Java/InitSql',
+      url: 'https://www.hqinfo.xyz/Server_Java/InitSql',
+      // url: 'http://localhost:8080/Server_Java/InitSql',
       data:{
         dbName:"WxApp"
       },      
@@ -158,7 +158,7 @@ App({
                   key: 'openId',
                   data: res.data.openid
                 });
-                console.log(res.data.openid+"last")
+                console.log(res.data.openid)
               }
             });
           }

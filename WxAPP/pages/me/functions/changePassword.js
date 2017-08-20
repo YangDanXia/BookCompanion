@@ -83,7 +83,7 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data);
+        console.log("修改密码："+res.data);
         if (res.data == "error") {
           wx.showToast({
             title: "系统繁忙",

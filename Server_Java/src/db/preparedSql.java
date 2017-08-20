@@ -48,11 +48,10 @@ public class preparedSql {
 		}
 
 		for(String key:factor.keySet()) {
-			System.out.println(factor.get(key));
-			pstmt.setString(index, factor.get(key));
+			String value = new String(factor.get(key).getBytes("ISO-8859-1"),"utf-8");
+			pstmt.setString(index, value);
 			index++;
 		}
-		System.out.println(pstmt);
 		return pstmt;
 	}
 	 

@@ -64,7 +64,6 @@ public class DbOperations extends HttpServlet {
 			if(type.equalsIgnoreCase("inquire")) {
 				ResultSet rs = pstmt.executeQuery();
 			    String str = getResult(rs, field);
-			    System.out.println(str);
 			    w.print(str);
 			}else {
 				int rs = pstmt.executeUpdate();
@@ -78,6 +77,7 @@ public class DbOperations extends HttpServlet {
 			// TODO Auto-generated catch block
 			w.print("error");
 			e.printStackTrace();
+			w.print(e);
 		}
 	}
 
@@ -99,6 +99,7 @@ public class DbOperations extends HttpServlet {
 			     json.append("\""+key+"\":").append("\""+rs.getString(key)+"\",");
 			  }
 			  json.append("},");	
+			
 	  	  }
         json.append("]}"); 
         String str = json.toString().replaceAll(",}","}");

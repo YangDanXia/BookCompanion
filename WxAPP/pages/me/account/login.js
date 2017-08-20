@@ -49,7 +49,7 @@ Page({
       return false;
     }
     wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",
@@ -64,6 +64,7 @@ Page({
       },
       method: 'GET',
       success: function (res) {
+        console.log("登录："+res.data)
         console.log(res.data.result)
         var result=res.data.result[0].info_password;
         if (result == that.data.passwd) {//验证成功，则返回的数据为TRUE,失败则返回false

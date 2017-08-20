@@ -49,22 +49,32 @@ Page({
   onLoad: function (options) {
     var that = this;
     wx.request({
-      url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
-      data: {
-        request: "isbn",
-        ISBN: options.isbn
-        // ISBN:"9787121221248"
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "gdou_book",
+        table: "novel",
+        typeName: "inquire",
+        field: {title: '', author: '', isbn13: '', images: '',publisher:'',pubdate:'',price:'',ebook_price:'',summary:'' },
+        factor: { isbn13:options.isbn }
       },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
       success: function (res) {
+        console.log("图书详情："+res.data)
         bookNeedInfo = {
-          "book_photo": res.data.images.large,
-          "book_isbn": res.data.isbn13,
-          "book_name": res.data.title,
-          "book_author": res.data.author[0],
+          "book_photo": res.data.result[0].images,
+          "book_isbn": res.data.result[0].isbn13,
+          "book_name": res.data.result[0].title,
+          "book_author": res.data.result[0].author,
           "collectStatus": "dislike"
         };
+        res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
         that.setData({
-          bookInfo: res.data
+          bookInfo: res.data.result[0]
         })
       },
       fail: function (res) {

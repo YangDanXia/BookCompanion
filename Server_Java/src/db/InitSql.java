@@ -2,8 +2,6 @@ package db;
 
 import java.io.IOException;
 
-import java.util.Date;
-
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -37,7 +35,6 @@ public class InitSql extends HttpServlet {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		 System.out.println("2/"+new Date());
 	}
 
 	/**

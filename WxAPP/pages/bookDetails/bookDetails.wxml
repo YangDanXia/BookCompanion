@@ -4,7 +4,7 @@
 <!-- 概要 -->
 <view class="book-details">
    <view class="book-cover">
-     <image class="cover" src="{{bookInfo.images.large}}"></image>
+     <image class="cover" src="{{bookInfo.images}}"></image>
    </view>
    <view class="book-synopsis">
     <view class="book-title">
@@ -14,8 +14,7 @@
     <view class="book-brief">作者：{{bookInfo.author}}</view>
     <view class="book-brief">出版社：{{bookInfo.publisher}}</view>
     <view class="book-brief">出版时间：{{bookInfo.pubdate}}</view>
-    <view class="book-brief">售价：{{bookInfo.price}}</view>
-    <view class="book-brief">页码：{{bookInfo.pages}}页</view>
+    <view class="book-brief">售价：{{bookInfo.price}}元</view>
   </view>
    <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder"></image>
 </view>
@@ -77,19 +76,6 @@
   </table>
 </view>
 
-
-<!--简介-->
-<view class="book-desc">
- <view class="title"  >作者简介</view>
-  <view class="{{!intro_isDescripte?'desc-limit_intro':'desc-limit-show'}}">
-   <text wx:if="{{bookInfo.author_intro==''}}">暂无作者信息</text>
-   <text wx:else>{{bookInfo.author_intro}}</text>
-  </view>
- <view class="desc-button" wx:if="{{!intro_isDescripte}}" bindtap="intro_showDesc">展开   
- </view>
- <view class="desc-button" wx:elif="{{intro_isDescripte}}" bindtap="intro_hideDesc">关闭   </view>
-</view>
-
 <!--简介-->
 <view class="book-desc">
  <view class="title"  >内容简介</view>
@@ -114,5 +100,5 @@
 
 <!-- 购票 -->
 <view class="book-buy">
-  <navigator url="bookBuy?isbn={{item.isbn13}}" hover-class="none" class="btn-buy">>凑单买书</navigator>
+  <navigator url="bookBuy?isbn={{item.isbn13}}" hover-class="none" class="btn-buy">凑单买书</navigator>
 </view>

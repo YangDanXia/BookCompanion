@@ -1,7 +1,8 @@
 {
   "pages": [
 
-
+    "pages/find/find",
+        "pages/find/publish",
        "pages/index/index",
        "pages/me/me",
        "pages/me/account/bookCard",
@@ -12,8 +13,10 @@
         "pages/me/functions/service",
         "pages/me/functions/suggest",
         "pages/me/account/addCard",
-    "pages/find/publish",
-    "pages/find/find",
+
+"pages/me/functions/set",
+"pages/me/functions/changePhone",
+"pages/me/functions/changePassword",
 
     "pages/index/functions/library",
     "pages/index/functions/map",

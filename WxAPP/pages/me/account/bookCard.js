@@ -27,7 +27,8 @@ Page({
           table: "bookcard_record",
           typeName: "inquire",
           field: { uk_bookCardId: '', library: '', current_borrow:'',history_borrow:''},
-          factor: { idx_phone: that.data.phone}
+          factor: { idx_phone: that.data.phone},
+          limit:"10"
         },
         //请求头
         header: {

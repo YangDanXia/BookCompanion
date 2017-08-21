@@ -110,13 +110,15 @@ Page({
     if (history_length == 0) {
       wx.request({
         url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+        // url: 'http://localhost:8080/Server_Java/DbOperations',
         data:
         {
           dbName: "gdou_book",
           table: "novel",
           typeName: "inquire",
           field: { title: '', author: '', isbn13: '', images: '', total_type: ''},
-          factor: { respect_type: "作品集" }
+          factor: { respect_type: "作品集" },
+          limit:"0,6"
         },
         //请求头
         header: {
@@ -188,7 +190,8 @@ Page({
         table: "sucess_motivation",
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '',total_type:''},
-        factor: { respect_type:"财商-财富智慧"}
+        factor: { respect_type:"财商-财富智慧"},
+        limit: "0,6"
       },
       //请求头
       header: {
@@ -243,14 +246,15 @@ Page({
             //  确认借书,从图书馆数据库获取本书的图书信息
               if (res.confirm) {
                 wx.request({
-                  // url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
-                  url: 'http://localhost:8080/Server_Java/DbOperations',
+                  url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+                  // url: 'http://localhost:8080/Server_Java/DbOperations',
                   data: {
                     dbName:"Library",
                     table:"V_INFORMATION_BOOKDETAIL",
                     typeName:"inquire",
-                    field:{BooklistISBN:''},
-                    factor: { BookId:bookId}
+                    field: {BookId:'',BooklistISBN:'',BooklistTitle:'',BooklistAuthor:''},
+                    factor: { BookId:bookId},
+                    limit:"10"
                   },
                   header: {
                     'content-type': 'application/x-www-form-urlencoded; charset=utf-8'

@@ -12,7 +12,25 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    console.log("1")
+     wx.request({
+       url: 'http://139.199.205.225:5000/lang',
+       data:{
+         dbName: "WxApp",
+         table: "user_info",
+         typeName: "inquire"
+       },
+       header: {
+         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+       },
+       method: 'POST',
+       success:function(res){
+         console.log(res)
+       },
+       fail:function(res){
+         console.log(res)
+       }
+     })
   },
 
   /**

@@ -88,7 +88,8 @@ Page({
    * 选择要借/还的书
    */
   checkboxChange: function(e) {
-    console.log("图书选择情况:" + e.detail.value)
+    console.log("图书选择情况:")
+    console.log(e.detail.value)
     codeValue =  e.detail.value;
     if (codeValue.length == 0) {
       wx.showToast({
@@ -110,33 +111,12 @@ Page({
 
   },
 
-  // 选择借书证,在点击确认时跳转至二维码界面
-  bindPickerChange: function (e) {
-    var index = e.detail.value
-    this.setData({
-      card_index:index
-    })
-
-    var cardNum = this.data.bookCard[index].uk_bookCardId
-    var content = [codeValue.length, cardNum];
-    if (codeType == 'borrow') {
-      console.log("类型为借书")
-      content.push(codeValue)
-    } else if (codeType == 'back') {
-    }
-    console.log("二维码内容："+content)
-    wx.navigateTo({
-      url: 'borrowProcess/QRcode?content=' +content
-    })
-
-  },
 
 
   /**
    * 查看二维码
    */
   viewQRcode:function(e){
-    codeType = e.currentTarget.dataset.id;
     if (codeValue.length == 0) {
       wx.showToast({
         title: '请至少选择一本书',
@@ -153,6 +133,37 @@ Page({
       })
     }
   },
+
+
+  // 选择借书证,在点击确认时跳转至二维码界面
+  bindPickerChange: function (e) {
+    var index = e.detail.value
+    this.setData({
+      card_index:index
+    })
+
+    var cardNum = this.data.bookCard[index].uk_bookCardId
+    var content = [codeValue.length, cardNum];
+    // 为0表示在待借栏，为1表示在待还栏
+    if (this.data.currentTab == '0') {
+      // 传递索书号生成二维码
+      for(var i=0;i<codeValue.length;i++){
+        var book_index = codeValue[i]
+        content.push(this.data.waitToBorrow[book_index].BookId)
+        var choose =[];
+        choose.push(this.data.waitToBorrow[book_index])
+        app.saveCache("chooseToBorrow",choose)
+      }
+      console.log("类型为借书")
+    } else if (codeType == '1') {
+    }
+    console.log("二维码内容："+content)
+    wx.navigateTo({
+      url: 'borrowProcess/QRcode?content=' +content
+    })
+
+  },
+
 
 
   /**

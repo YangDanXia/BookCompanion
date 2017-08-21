@@ -14,9 +14,9 @@ public class DML {
 	}
 	
 	
-	public String getDML(String type,String table,Map<String,String> field,Map<String,String> factor) {
+	public String getDML(String type,String table,Map<String,String> field,Map<String,String> factor,String limit) {
 		if(type.equalsIgnoreCase("inquire")) {
-			String sql = inquire(table,field,factor);
+			String sql = inquire(table,field,factor,limit);
 			System.out.println(sql);
 			return sql;
 		}else if(type.equalsIgnoreCase("insert")) {
@@ -38,7 +38,7 @@ public class DML {
 	
 	
 //查询数据
-	public static String inquire(String table,Map<String,String> field,Map<String,String> factor) {
+	public static String inquire(String table,Map<String,String> field,Map<String,String> factor,String limit) {
 //		sql语句
 		String sql;
 //		键名
@@ -57,8 +57,7 @@ public class DML {
 		System.out.println(keyFactor.toString());
 		keys.delete((keys.length())-1, keys.length());
 		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
-//		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() + "limit 0,6 ";
-		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() ;
+		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() + "limit " +limit;
 		return sql;
 	}
 

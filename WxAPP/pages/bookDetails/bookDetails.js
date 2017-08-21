@@ -58,7 +58,8 @@ Page({
         table: options.table,
         typeName: "inquire",
         field: {title: '', author: '', isbn13: '', images: '',publisher:'',pubdate:'',price:'',ebook_price:'',summary:'' },
-        factor: { isbn13:options.isbn }
+        factor: { isbn13:options.isbn },
+        limit:"0,1"
       },
       //请求头
       header: {
@@ -74,8 +75,13 @@ Page({
           "book_author": res.data.result[0].author
         };
         res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
+        console.log("图书信息")
+        console.log(res.data.result[0])
         that.setData({
           bookInfo: res.data.result[0]
+        })
+        that.setData({
+          transData:res.data
         })
         that.browsHistroy();   
       },

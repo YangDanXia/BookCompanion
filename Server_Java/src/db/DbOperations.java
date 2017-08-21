@@ -51,16 +51,19 @@ public class DbOperations extends HttpServlet {
 		String fieldStr = request.getParameter("field"); 
 		// 获取条件值
 		String factorStr = request.getParameter("factor"); 
+		// 查找的行数
+		String limit = request.getParameter("limit");
 		
 		 @SuppressWarnings("unchecked")
 		Map<String,String> field =(Map<String,String>)JSON.parse(fieldStr);    
 		 @SuppressWarnings("unchecked")
 		Map<String,String> factor =(Map<String,String>)JSON.parse(factorStr);    
 		 
+		 
 		preparedSql object = new preparedSql();
 		try {
 			PreparedStatement pstmt;
-			pstmt = object.prepared(dbName,type, table, field, factor);
+			pstmt = object.prepared(dbName,type, table, field, factor,limit);
 			if(type.equalsIgnoreCase("inquire")) {
 				ResultSet rs = pstmt.executeQuery();
 			    String str = getResult(rs, field);

@@ -22,47 +22,7 @@ var settime = function (that) {
   }
     , 1000)
 }
-var waitResult = function (that) {
-  if (count == 0) {
-    that.setData({
-      path: ''
-    })
-    count = 180;
-    return;
-  } else {
-    wx.request({
-      url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
-      //请求头
-      header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      method: 'GET',
-      success:function(res){
-        if(res.data == 1){
-          wx.showToast({
-            title: '操作成功',
-            icon:" success"
-          })
-          wx.navigateTo({
-            url: '../bookOrder',
-          })
-          clearTimeout(t)
-        }
-      }
-      ,fail:function(){
-        wx.showToast({
-          title: '网络异常',
-          image: '../../../../img/icon/warn.png'
-        })
-      }
-    })
-    count--;
-  }
-  var t = setTimeout(function () {
-    waitResult(that)
-  }
-    , 1000)
-}
+
 Page({
 
   /**
@@ -106,7 +66,7 @@ Page({
          })
       }
     })
-    waitResult(that)
+    this.waitResult(that)
   },
 
   
@@ -129,7 +89,53 @@ Page({
       }
     })
     settime(that)
-    waitResult(that)
+    this.waitResult(that)
+  },
+
+
+  // 倒计时
+  waitResult: function (that) {
+    if (count == 0) {
+      that.setData({
+        path: ''
+      })
+      count = 180;
+      return;
+    } else {
+      wx.request({
+        url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
+        //请求头
+        header: {
+          'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        method: 'GET',
+        success: function (res) {
+          if (res.data == 1) {
+            wx.showToast({
+              title: '操作成功',
+              icon: " success"
+            })
+            var arr = codeContent.split(";");
+            wx.navigateTo({
+              url: '../bookOrder',
+            })
+            clearTimeout(t)
+          }
+          console.log("申请失败")
+        }
+        , fail: function () {
+          wx.showToast({
+            title: '网络异常',
+            image: '../../../../img/icon/warn.png'
+          })
+        }
+      })
+      count--;
+    }
+    var t = setTimeout(function () {
+      waitResult(that)
+    }
+      , 1000)
   }
 
 })

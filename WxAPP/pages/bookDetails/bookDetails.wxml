@@ -100,5 +100,5 @@
 
 <!-- 购票 -->
 <view class="book-buy">
-  <navigator url="bookBuy?isbn={{item.isbn13}}" hover-class="none" class="btn-buy">凑单买书</navigator>
+  <navigator url="bookBuy?info={{transData}}" hover-class="none" class="btn-buy">凑单买书</navigator>
 </view>

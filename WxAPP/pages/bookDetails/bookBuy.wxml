@@ -31,7 +31,7 @@
 			<view class="play {{isPlaying ? '' : 'pause'}}" bindtap="songToggle"></view>
 		</view>
 		<view class="song-lyric">
-			<image class="img {{isPlaying ? '' : 'pause'}}" src="https://img3.doubanio.com/mpic/s27205750.jpg"></image>
+			<image class="img {{isPlaying ? '' : 'pause'}}" src="{{bookinfo}}"></image>
 		</view>
 
     		<view class="song-info">

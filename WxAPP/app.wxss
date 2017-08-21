@@ -119,7 +119,8 @@ navigator{
 /*订单显示*/
 .fixed{
   position: fixed;
-  right:10rpx;
-  width:75rpx;
-  height: 75rpx;
+right:15rpx;
+width:85rpx;
+height:85rpx;
+
 }

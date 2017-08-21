@@ -9,12 +9,12 @@ public class preparedSql {
 	
 
 	//Ä£°å
-	public final PreparedStatement prepared(String dbName,String type,String table,Map<String,String> field,Map<String,String> factor) throws Exception {
+	public final PreparedStatement prepared(String dbName,String type,String table,Map<String,String> field,Map<String,String> factor,String limit) throws Exception {
 		ConnectionPoolFactory dataBase =  ConnectionPoolFactory.getInstance();
 		int index=1;
 //		Ð´sqlÓï¾ä
 		DML dml =  DML.getInstance();
-		String  sql =dml.getDML(type, table, field, factor);
+		String  sql =dml.getDML(type, table, field, factor,limit);
 		PreparedStatement pstmt = null ;
 //		Ö´ÐÐSQLÓï¾ä
 		if(dbName.equalsIgnoreCase("Library")) {

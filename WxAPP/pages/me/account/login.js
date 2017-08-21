@@ -61,7 +61,8 @@ Page({
         table: "user_info",
         typeName: "inquire",
         field: { info_password: that.data.passwd},
-        factor: { uk_phone: that.data.userPhone}
+        factor: { uk_phone: that.data.userPhone},
+        limit:"0,1"
       },
       //请求头
       header: {

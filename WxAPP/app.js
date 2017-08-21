@@ -209,6 +209,10 @@ App({
     G_selectLibrary:'',
     // 地理位置
     latitude:'',
-    longitude:''
+    longitude:'',
+    // 图书选择的下标
+    codeValue:[],
+    // 类型的选择
+    currentTab:0
   }
 })

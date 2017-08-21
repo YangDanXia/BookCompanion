@@ -1,7 +1,11 @@
 // pages/index/functions/borrowProcess/QRcode.js
+// const声明的变量不能被改变
+const date = new Date()
 var codeContent;
 var countdown = 60;
 var count =180;
+var app =getApp()
+
 var settime = function (that) {
   if (countdown == 0) {
     that.setData({
@@ -110,12 +114,57 @@ Page({
         },
         method: 'GET',
         success: function (res) {
-          if (res.data == 1) {
+          if (res.data == 0) {
             wx.showToast({
               title: '操作成功',
               icon: " success"
             })
-            var arr = codeContent.split(";");
+            // 选择的类型
+            var tab = app.globalData.currentTab
+            // 选择的图书位置
+            var codeValue = app.globalData.codeValue
+            // 选择的数量
+            var len = codeValue.length
+             if(tab == 0){//借书
+               // 添加图书到待还栏
+               // 删除待借栏的图书
+                var time = that.getTime()
+                var choose = app.cache.chooseToBorrow
+                var returnBook ;
+                for(var i = 0 ;i<choose.length;i++){
+                  choose[i].book_borrowTime = time
+                }
+                app.saveCache("waitToReturn",choose)
+               // 获取选择的下标，如果第一位比第二位小则删除第一位之后 第二位下标减一，如果第一位比第二位大，则不改变
+                var waitToBorrow = app.cache.waitToBorrow
+                if(len == 1){
+                  waitToBorrow.splice(codeValue[0], 1);
+                }else if(len == 2){
+                  if(codeValue[0]<codeValue[1]){
+                    waitToBorrow.splice(codeValue[0], 1);
+                    waitToBorrow.splice(codeValue[1]-1, 1);
+                 }else{
+                    waitToBorrow.splice(codeValue[0], 1);
+                    waitToBorrow.splice(codeValue[1], 1);
+                 }    
+               }
+               app.clearCache("chooseToBorrow")
+               app.saveCache("waitToBorrow",waitToBorrow)
+             }else if(tab == 1){
+                var waitToReturn = app.cache.waitToReturn
+                if(len == 1){
+                  waitToReturn.splice(codeValue[0], 1);
+                }else if(len == 2){
+                  if(codeValue[0]<codeValue[1]){
+                    waitToReturn.splice(codeValue[0], 1);
+                    waitToReturn.splice(codeValue[1]-1, 1);
+                  }else{
+                  waitToReturn.splice(codeValue[0], 1);
+                  waitToReturn.splice(codeValue[1], 1);
+                 }    
+               }
+               app.saveCache("waitToReturn",waitToReturn)
+             }
             wx.navigateTo({
               url: '../bookOrder',
             })
@@ -133,9 +182,19 @@ Page({
       count--;
     }
     var t = setTimeout(function () {
-      waitResult(that)
+      that.waitResult(that)
     }
       , 1000)
-  }
+  },
+
+    /**
+   * 获取时间
+   */
+  getTime:function(){
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    return year+'-'+month+'-'+day;
+}
 
 })

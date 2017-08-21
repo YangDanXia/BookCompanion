@@ -88,7 +88,7 @@
   <block wx:for="{{waitToReturn}}" wx:key="item"> 
    <view class="themes-list">
     <view class="themes-list-box">
-    <checkbox value="{{item.BookId}}"/>
+    <checkbox value="{{index}}"/>
      <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
        <view class="themes-list-thumbnail">
          <image class="themes-list-img" src='{{item.BooklistImage}}' />

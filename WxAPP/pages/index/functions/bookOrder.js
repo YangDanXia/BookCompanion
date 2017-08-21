@@ -4,7 +4,7 @@ var app =getApp()
 var codeValue = [];
 // 二维码类型
 var codeType;
-
+const date = new Date()
 Page({
 
   /**
@@ -91,6 +91,9 @@ Page({
     console.log("图书选择情况:")
     console.log(e.detail.value)
     codeValue =  e.detail.value;
+    app.globalData.codeValue = codeValue
+    app.globalData.currentTab = this.data.currentTab
+    console.log(app.globalData.codeValue)
     if (codeValue.length == 0) {
       wx.showToast({
         title: '请至少选择一本书',
@@ -137,6 +140,7 @@ Page({
 
   // 选择借书证,在点击确认时跳转至二维码界面
   bindPickerChange: function (e) {
+    console.log("选择的类型："+codeType)
     var index = e.detail.value
     this.setData({
       card_index:index
@@ -152,10 +156,21 @@ Page({
         content.push(this.data.waitToBorrow[book_index].BookId)
         var choose =[];
         choose.push(this.data.waitToBorrow[book_index])
-        app.saveCache("chooseToBorrow",choose)
       }
+      app.saveCache("chooseToBorrow",choose)
       console.log("类型为借书")
-    } else if (codeType == '1') {
+    } else if (this.data.currentTab == '1') {
+      content.push(this.getTime())
+      for(var i=0;i<codeValue.length;i++){
+        var book_index = codeValue[i]
+        content.push(this.data.waitToReturn[book_index].BookId)
+        content.push(this.data.waitToReturn[book_index].BooklistImage)        
+        content.push(this.data.waitToReturn[book_index].BooklistTitle)
+        content.push(this.data.waitToReturn[book_index].BooklistAuthor)
+        content.push(this.data.waitToReturn[book_index].BooklistPublish)
+        content.push(this.data.waitToReturn[book_index].book_borrowTime)
+      }
+      console.log("类型为还书")
     }
     console.log("二维码内容："+content)
     wx.navigateTo({
@@ -294,6 +309,16 @@ Page({
     wx.navigateTo({
       url: '../../me/account/login'
     })
-  }
+  },
+
+ /**
+   * 获取时间
+   */
+  getTime:function(){
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    return year+'-'+month+'-'+day;
+}
 
 })

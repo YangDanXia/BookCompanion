@@ -394,12 +394,37 @@ Page({
     bookNeedInfo.bookId = that.data.bookId;
     bookNeedInfo.bookAddress = app.globalData.G_selectLibrary;
     bookNeedInfo.reserveTime = e.detail.value;
-    obj.push(bookNeedInfo);
-    app.saveCache('reserveBook',obj);
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName:"Library",
+        table:"RECORD_RESERVATION",
+        typeName:"insert",
+        field:{uk_phone:app.cache.userInfo.phone,book_takeTime:e.detail.value,book_id:that.data.bookId,book_isbn:bookNeedInfo.book_isbn},
+        factor:{}
+      }, 
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success:function(res){
+         console.log(res.data)
+         obj.push(bookNeedInfo);
+         app.saveCache('reserveBook',obj);
+         wx.showToast({
+          title: '预约成功',
+          icon: 'success'
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: "网络异常",
+          image: "../../../img/icon/warn.png"
+        })
+      }
+    })
+
   }
-
-
-
-
 
 })

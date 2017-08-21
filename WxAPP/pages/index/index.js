@@ -252,7 +252,7 @@ Page({
                     dbName:"Library",
                     table:"V_INFORMATION_BOOKDETAIL",
                     typeName:"inquire",
-                    field: {BookId:'',BooklistISBN:'',BooklistTitle:'',BooklistAuthor:''},
+                    field: {BookId:'',BooklistISBN:'',BooklistTitle:'',BooklistAuthor:'',BooklistImage:'',BooklistPublish:''},
                     factor: { BookId:bookId},
                     limit:"10"
                   },

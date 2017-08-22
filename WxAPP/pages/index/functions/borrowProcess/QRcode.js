@@ -151,13 +151,16 @@ Page({
           }
           app.removeCache("chooseToBorrow")
           app.saveCache("waitToBorrow",waitToBorrow)
-          wx.navigateTo({
-              url: '../bookOrder',
+          // wx.navigateTo({
+          //     url: '../bookOrder',
+          //   })
+            wx.navigateBack({
+              delta:1
             })
             clearTimeout(t)
           }
-        }
-        , fail: function () {
+        }, 
+        fail: function () {
           wx.showToast({
             title: '网络异常',
             image: '../../../../img/icon/warn.png'
@@ -193,8 +196,9 @@ Page({
               }
             }
             app.saveCache("waitToReturn", waitToReturn)
-            wx.navigateTo({
-              url: '../bookOrder',
+            console.log("退出")
+            wx.navigateBack({
+              delta: 1
             })
             clearTimeout(t)
           }

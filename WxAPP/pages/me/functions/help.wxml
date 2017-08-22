@@ -1,2 +1,112 @@
 <!--pages/me/functions/help.wxml-->
-<text>pages/me/functions/help.wxml</text>
+
+<view class="all">
+ <view class="yijian">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../pages/img/后退.png"></image>
+    </view>
+    <view class="question">
+      <text class="yijian-text">意见反馈</text>
+    </view>
+  </view>
+</view>
+
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../pages/img/数字一.png"></image>
+    </view>
+    <view class="question">
+      <text>如何向我们推荐书籍</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">我们将根据您的长期阅读及一段时间的多次搜索习惯向您定期推荐相关书籍。您可以自己设置推荐频率：打开APP，点击“我”—“设置”—“允许推荐书籍”，我们默认为每日推荐。您可以手动关闭，再开启时将会自动弹出推荐频率的显示框，点击之后将完成您的选择。</text>
+  </view>
+</view>
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../pages/img/数字二.png"></image>
+    </view>
+    <view class="question">
+      <text>如何预约书籍</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">您在图书馆可以使用APP借阅书籍，一次可借2本书。图书上贴有二维码，点击APP中的“发现”，应用左上角的扫码功能，扫描图书二维码，将书放入借书栏，在出图书馆之前出示自己的借书二维码给图书管理员。管理员会扫描您出示的二维码来调出您的借书单，并与事物进行比较。之后您通过微信支付手段的方式提交押金。</text>
+  </view>
+</view>
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../pages/img/数字三.png"></image>
+    </view>
+    <view class="question">
+      <text>如何有效的借阅书籍</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">您在图书馆可以使用APP借阅书籍，一次可借2本书。图书上贴有二维码，点击APP中的“发现”，应用左上角的扫码功能，扫描图书二维码，将书放入借书栏，在出图书馆之前出示自己的借书二维码给图书管理员。管理员会扫描您出示的二维码来调出您的借书单，并与事物进行比较。之后您通过微信支付手段的方式提交押金。</text>
+  </view>
+</view>
+
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../pages/img/数字四.png"></image>
+    </view>
+    <view class="question">
+      <text>怎样开启或关闭还书提醒</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">为了方便您的使用，我们推出贴心的“藏书到馆提醒”功能。从离还书日期倒计时一周开始我们会提醒您去图书馆还书。如果不想收到该提醒，则在APP中点击“我”—“设置”—“藏书到馆提醒”手动关闭。</text>
+  </view>
+</view>
+
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../pages/img/数字五.png"></image>
+    </view>
+    <view class="question">
+      <text>怎样使用图书荐购</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">我们诚挚的邀请您来为我们推荐您阅读过而我们APP中没有的精彩书籍。打开APP点击“我”—“图书荐购”，按照提示输入完整的书籍相关信息，最后点击添加我们就会收到您推荐的精彩书籍。希望您能够热心推荐，在此我们不胜感激。</text>
+  </view>
+</view>
+
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../pages/img/数字六.png"></image>
+    </view>
+    <view class="question">
+      <text>关于我们</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">Hello亲爱的书友，很高兴在这里遇见你。我们是海洋技术团队，一群热爱生活的年轻人因爱好软件开发而聚集在一起。在这您能够更好地了解我们APP主要功能的使用，包括在线预订，借书等，还可设置贴心的“还书提醒”喔！如果有什么好的建议或想法可以在APP中“我”—“意见反馈”留下您宝贵的笔迹。我们一定会认真对待，努力将我们的产品完善的更好。</text>
+  </view>
+</view>

@@ -49,6 +49,7 @@ Page({
      },
      method: 'GET',
      success: function (res) {
+       console.log("手动添加借书证："+res.data)
        if(res.data){
          var obj = app.cache.bookCard;
          var newCard = { history_borrow: "0", library: that.data.array[that.data.index], uk_bookCardId: that.data.cardNum, current_borrow:"0"};

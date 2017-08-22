@@ -1,1 +1,73 @@
 /* pages/me/functions/help.wxss */
+.all
+{
+  display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items:center;
+  width:745rpx;
+}
+.yijian
+{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:center;
+  width:680rpx;
+  height:100rpx;
+  background-color:#83c6c2 ;
+}
+.yijian-text
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:center;
+  width:400rpx;
+  height:80rpx;
+  margin-left:80rpx;
+  color: white;
+}
+.first
+{
+  display:flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:center;
+  width:680rpx;
+  height:80rpx;
+}
+.numberpicture
+{
+  display:flex;
+  width:50rpx;
+  height:50rpx;
+}
+.question
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:center;
+  width:550rpx;
+  height:80rpx;
+  margin-left:25rpx;
+}
+.second
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items:flex-start;
+  width:680rpx;
+  height:140rpx;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  overflow: hidden;
+}
+.second-text
+{
+  font-size:30rpx;
+  color:#707070;
+}

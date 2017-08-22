@@ -1,5 +1,5 @@
 <!-- pages/bookDetails/bookBuy.wxml -->
-<view class="main-wrap" style="height:{{winHeight}}px" >
+<view class="main-wrap" >
 
 	<view class="warnShow" wx:if="{{warnShow}}" bindtap="closeWarn">
 		<view class="song-info">
@@ -33,3 +33,4 @@
 	</view>
 </view>
 	<view class="bg" style="background-image:url({{bookInfo.images}})"></view>
+ 

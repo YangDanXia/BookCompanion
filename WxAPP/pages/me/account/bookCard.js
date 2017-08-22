@@ -122,6 +122,7 @@ Page({
       modalHidden: true,
       bookCard:obj
     })
+    this.onShow()
   },
 
 
@@ -147,16 +148,13 @@ Page({
       title: '提示',
       content: '是否确认删除此借书证',
       success: function (res) {
+        console.log("借书证编号：" + e.currentTarget.dataset.id)
         if (res.confirm) {
-          var index = e.currentTarget.dataset.index;
+          var index = e.currentTarget.dataset.id;
           that.data.bookCard.splice(index, 1);
           console.log(that.data.bookCard)
           app.saveCache('bookCard', that.data.bookCard);
-          wx.showToast({
-            title: "删除成功",
-            icon: 'success'
-          });
-          that.onShow()
+
           wx.request({
             url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
             data:
@@ -175,9 +173,10 @@ Page({
             success: function (res) {
               if (res.data) {
                 wx.showToast({
-                  title: '删除成功',
+                  title: "删除成功",
                   icon: 'success'
-                })
+                });
+                that.onShow()
               }
             }
           })

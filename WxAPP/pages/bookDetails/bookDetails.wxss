@@ -45,14 +45,18 @@ Page{
   flex: 1;
 }
 .book-cover{
-  position: relative;
-  margin-right: 25rpx;
-  box-shadow:0 30rpx 150rpx rgba(255, 255, 255, .3);
+position:relative;
+ 
+box-shadow:0 30rpx 150rpx rgba(255, 255, 255, .3);
+margin-top:15rpx;
+margin-left:-25rpx;
+
 }
 .book-cover .cover{
-  width:300rpx;
-  height:320rpx;
+  width:340rpx;
+  height:340rpx;
   border-radius:8rpx;
+margin-left:-20rpx;
 
 }
 .book-title{

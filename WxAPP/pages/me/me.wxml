@@ -1,8 +1,8 @@
 <!--pages/me/me.wxml-->
 <!--信息栏-->
 <view class="themes-box-top" wx:if="{{loginFlag}}">
-  <image src="{{userInfo.avatarUrl}}" class="themes-box-title"></image>
-  <text class="themes-box-subtitle">{{userInfo.nickName}}</text>
+  <image src="{{userInfo.photo}}" class="themes-box-title"></image>
+  <text class="themes-box-subtitle">{{userInfo.name}}</text>
 </view>
 <view class="themes-box-top" wx:else>
   <image src='../../img/icon/user.png' class="themes-box-title" bindtap="login"></image>

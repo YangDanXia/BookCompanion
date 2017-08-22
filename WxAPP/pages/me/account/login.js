@@ -78,6 +78,7 @@ Page({
           app.saveCache('loginFlag',true)
           app.saveCache('userInfo', { phone: that.data.userPhone,password: that.data.passwd,photo:that.data.userInfo.avatarUrl,name:that.data.userInfo.nickName})
           //返回上一层
+          app.countDown(that,3)
           wx.navigateBack({
             delta: 1
           })

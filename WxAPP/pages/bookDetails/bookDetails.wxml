@@ -14,7 +14,10 @@
     <view class="book-brief">作者：{{bookInfo.author}}</view>
     <view class="book-brief">出版社：{{bookInfo.publisher}}</view>
     <view class="book-brief">出版时间：{{bookInfo.pubdate}}</view>
-    <view class="book-brief">售价：{{bookInfo.price}}元</view>
+    <view class="book-brief">类型：{{bookInfo.respect_type}}</view>
+    <view class="book-brief">原价：{{bookInfo.pre_price}}元</view>
+    <view class="book-brief">当当售价：{{bookInfo.price}}元</view>
+    <view class="book-brief">电子书：{{bookInfo.ebook_price}}元</view>
   </view>
    <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder"></image>
 </view>
@@ -34,7 +37,7 @@
 <!-- 可以预约图书-->
 <block wx:if="{{isBookIn&&isBookCard&&isReserve}}" >
  <view class="classname">
-  <picker mode="date" value="{{date}}" start="2017-06-30" end="2017-09-01" bindchange="bindDateChange">
+  <picker mode="date" value="{{date}}" start="{{today}}" end="2017-09-20" bindchange="bindDateChange">
     <view bindtap="booking">
       <image  class="themes-box-title" src="../../img/icon/add.png" />
       <text class="themes-box-subtitle">预约此书</text>
@@ -100,5 +103,5 @@
 
 <!-- 购票 -->
 <view class="book-buy">
-  <navigator url="bookBuy?info={{transData}}" hover-class="none" class="btn-buy">凑单买书</navigator>
+  <view bindtap="bookBuy" class="btn-buy">凑单买书</view>
 </view>

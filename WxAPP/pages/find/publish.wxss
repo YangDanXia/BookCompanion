@@ -99,7 +99,7 @@ page{
   flex-direction:row;
   justify-content:space-around;
   align-items:center;
-  margin-left:50rpx;
+  margin-left:30rpx;
  
   height:80rpx; 
   border-bottom:1px solid #cdcdcd;
@@ -110,7 +110,7 @@ page{
   flex-direction:row;
   justify-content:flex-start;
   align-items:center;
- margin-left:50rpx;
+ margin-left:20rpx;
 
   height:80rpx; 
 }

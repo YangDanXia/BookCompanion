@@ -1,10 +1,15 @@
 {
   "pages": [
+            "pages/me/functions/help",
+          "pages/index/index",
+        "pages/bookDetails/bookBuy",
+      "pages/me/me",
 
-    "pages/find/find",
-        "pages/find/publish",
-       "pages/index/index",
-       "pages/me/me",
+      "pages/shelf/shelf",
+      "pages/find/find",
+      "pages/find/publish",
+
+       
        "pages/me/account/bookCard",
        "pages/me/functions/recommend",
         "pages/me/account/login",
@@ -27,8 +32,8 @@
     "pages/index/functions/borrowProcess/QRcode",
     "pages/bookDetails/bookDetails",
     "pages/bookDetails/relatedBooks",
-    "pages/bookDetails/bookBuy",
-    "pages/shelf/shelf",
+
+    
     "pages/shelf/functions/addShelf"
 
   ],

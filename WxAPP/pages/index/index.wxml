@@ -7,7 +7,7 @@
 </loading>
 
 <!--标题栏-->
-
+<view style="height:{{winHeight}}px" >
 <view class="search-box">
    <view class="location location-btn">
      <image class="location-icon" src="../../img/icon/location.png" ></image>
@@ -59,7 +59,7 @@
     <view class="list fun-list"  wx:if="{{errHidden}}">
      <block wx:for="{{recommendItems}}"  wx:key="item"> 
           <view class="wrap-item">  
-             <navigator url="../bookDetails/bookDetails?isbn={{item.isbn13}}"  hover-class="none" class="navs">
+             <navigator url="../bookDetails/bookDetails?isbn={{item.isbn13}}&table={{item.total_type}}"  hover-class="none" class="navs">
                 <image class="book" src="{{item.images}}"></image>
              </navigator>
                 <view>
@@ -90,7 +90,7 @@
     </view>
 
     <view class="list fun-list"  wx:if="{{errHidden}}">
-     <block wx:for="{{commendItems}}"  wx:key="item"> 
+     <block wx:for="{{recommendItems}}"  wx:key="item"> 
            <view class="wrap-item">  
              <navigator url="../bookDetails/bookDetails?isbn={{item.isbn13}}&table={{item.total_type}}"  hover-class="none" class="navs">
                 <image class="book" src="{{item.images}}"></image>
@@ -114,9 +114,9 @@
     </view>
 
   </view>
- 
+
 
  
     <view class="themes-list-description" style="text-align:center">已经到底了</view>
 
-
+</view>

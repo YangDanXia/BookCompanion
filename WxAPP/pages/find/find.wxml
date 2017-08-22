@@ -40,7 +40,10 @@
       </view>
  </view>
 </view>
+
 <image class="fixed" src="../../img/icon/addTitle.png" bindtap="publish"></image>
+
+
 <view class="box-top">
   <view class="content" style="padding-top:25rpx;">
      <image class="from-headpicture" src="http://www.hqinfo.xyz:8080/photo/book3.jpg"></image>

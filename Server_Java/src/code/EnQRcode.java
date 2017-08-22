@@ -32,6 +32,8 @@ public class EnQRcode extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException { 
         //获取所借图书的索书号
+    	request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
         String code = request.getParameter("code");
         //获取需要放入二维码的内容
 		QRcode(code,response);
@@ -52,7 +54,7 @@ public class EnQRcode extends HttpServlet {
                 // 二维码内容
 	            sb.append(book);
 	            String str = sb.toString();
-	            str = new String(str.getBytes("UTF-8"), "ISO-8859-1"); 
+//	            str = new String(str.getBytes("UTF-8"), "ISO-8859-1"); 
 	            stream = response.getOutputStream();  
 	            // 需要生成的图片类型和大小
 	            BitMatrix bitMatrix =  new QRCodeWriter().encode(str, BarcodeFormat.QR_CODE, 200, 200);

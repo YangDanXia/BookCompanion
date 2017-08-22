@@ -16,6 +16,8 @@ Page({
      loadhidden: false,
     //是否隐藏网络异常：
      errHidden: true,
+     winWidth: app.globalData.width,
+     winHeight: app.globalData.winHeight,
     //待借图书
     waitToBorrow: app.cache.waitToBorrow || [],
     //搜索历史，用于图书推荐
@@ -68,7 +70,7 @@ Page({
     //每日推荐
     that.DailyRecommend();
     //最近更新
-    that.newBooks();
+    // that.newBooks();
   },
 
 
@@ -110,14 +112,13 @@ Page({
     if (history_length == 0) {
       wx.request({
         url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
-        // url: 'http://localhost:8080/Server_Java/DbOperations',
         data:
         {
           dbName: "gdou_book",
-          table: "novel",
+          table: "culture",
           typeName: "inquire",
           field: { title: '', author: '', isbn13: '', images: '', total_type: ''},
-          factor: { respect_type: "作品集" },
+          factor: { respect_type: "世界各国文化" },
           limit:"0,6"
         },
         //请求头
@@ -129,7 +130,12 @@ Page({
           console.log(res.data)
           var obj = res.data.result
           for (var i = 0; i < obj.length; i++) {
-            obj[i].title = obj[i].title.substr(0, 10) + "..."
+            if(obj[i].title.length>10){
+              obj[i].title = obj[i].title.substr(0, 8) + "..."
+            }
+            if (obj[i].author.length > 10){
+              obj[i].author = obj[i].author.substr(0, 8) + "..."
+            }
           }
           that.setData({
             recommendItems: res.data.result
@@ -179,43 +185,43 @@ Page({
   /**
    * 新书推荐模块
    */
-  newBooks: function () {
-    var that = this
-    var index = app.getRandom(20);
-    wx.request({
-      url:'https://www.hqinfo.xyz/Server_Java/DbOperations',
-      data:
-      {
-        dbName: "gdou_book",
-        table: "sucess_motivation",
-        typeName: "inquire",
-        field: { title: '', author: '', isbn13: '', images: '',total_type:''},
-        factor: { respect_type:"财商-财富智慧"},
-        limit: "0,6"
-      },
-      //请求头
-      header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      method: 'GET',
-      success:function(res){
-        console.log(res.data)
-        var obj = res.data.result
-        for(var i=0;i<obj.length;i++){
-          obj[i].title = obj[i].title.substr(0,10)+"..."
-        }
-        that.setData({
-          commendItems: res.data.result
-        })
-        console.log(res.data.result)
-      },
-      fail: function (res) {
-        that.setData({
-          errHidden: false
-        })
-      }
-    })
-  },
+  // newBooks: function () {
+  //   var that = this
+  //   var index = app.getRandom(20);
+  //   wx.request({
+  //     url:'https://www.hqinfo.xyz/Server_Java/DbOperations',
+  //     data:
+  //     {
+  //       dbName: "gdou_book",
+  //       table: "sucess_motivation",
+  //       typeName: "inquire",
+  //       field: { title: '', author: '', isbn13: '', images: '', total_type: '' },
+  //       factor: { respect_type:"财商-财富智慧"},
+  //       limit: "0,6"
+  //     },
+  //     //请求头
+  //     header: {
+  //       'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+  //     },
+  //     method: 'GET',
+  //     success:function(res){
+  //       console.log(res.data)
+  //       var obj = res.data.result
+  //       for(var i=0;i<obj.length;i++){
+  //         obj[i].title = obj[i].title.substr(0,10)+"..."
+  //       }
+  //       that.setData({
+  //         commendItems: res.data.result
+  //       })
+  //       console.log(res.data.result)
+  //     },
+  //     fail: function (res) {
+  //       that.setData({
+  //         errHidden: false
+  //       })
+  //     }
+  //   })
+  // },
 
 
 
@@ -320,6 +326,6 @@ Page({
     wx.navigateTo({
       url: 'functions/bookOrder'
     })
-  }
+  } 
 
 })

@@ -106,71 +106,56 @@ Page({
       count = 180;
       return;
     } else {
+      // 选择的类型
+      var tab = app.globalData.currentTab
+      // 选择的图书位置
+      var codeValue = app.globalData.codeValue
+      // 选择的数量
+      var len = codeValue.length
+    if(tab == 0){ // 借书
       wx.request({
-        url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
+        url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getBorrowState',
         //请求头
         header: {
           'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
         },
         method: 'GET',
         success: function (res) {
-          if (res.data == 0) {
+          console.log("状态"+res.data)
+          if (res.data == 1) {
             wx.showToast({
               title: '操作成功',
               icon: " success"
             })
-            // 选择的类型
-            var tab = app.globalData.currentTab
-            // 选择的图书位置
-            var codeValue = app.globalData.codeValue
-            // 选择的数量
-            var len = codeValue.length
-             if(tab == 0){//借书
-               // 添加图书到待还栏
-               // 删除待借栏的图书
-                var time = that.getTime()
-                var choose = app.cache.chooseToBorrow
-                var returnBook ;
-                for(var i = 0 ;i<choose.length;i++){
-                  choose[i].book_borrowTime = time
-                }
-                app.saveCache("waitToReturn",choose)
-               // 获取选择的下标，如果第一位比第二位小则删除第一位之后 第二位下标减一，如果第一位比第二位大，则不改变
-                var waitToBorrow = app.cache.waitToBorrow
-                if(len == 1){
-                  waitToBorrow.splice(codeValue[0], 1);
-                }else if(len == 2){
-                  if(codeValue[0]<codeValue[1]){
-                    waitToBorrow.splice(codeValue[0], 1);
-                    waitToBorrow.splice(codeValue[1]-1, 1);
-                 }else{
-                    waitToBorrow.splice(codeValue[0], 1);
-                    waitToBorrow.splice(codeValue[1], 1);
-                 }    
-               }
-               app.clearCache("chooseToBorrow")
-               app.saveCache("waitToBorrow",waitToBorrow)
-             }else if(tab == 1){
-                var waitToReturn = app.cache.waitToReturn
-                if(len == 1){
-                  waitToReturn.splice(codeValue[0], 1);
-                }else if(len == 2){
-                  if(codeValue[0]<codeValue[1]){
-                    waitToReturn.splice(codeValue[0], 1);
-                    waitToReturn.splice(codeValue[1]-1, 1);
-                  }else{
-                  waitToReturn.splice(codeValue[0], 1);
-                  waitToReturn.splice(codeValue[1], 1);
-                 }    
-               }
-               app.saveCache("waitToReturn",waitToReturn)
-             }
-            wx.navigateTo({
+          // 添加图书到待还栏
+          // 删除待借栏的图书
+         var time = that.getTime()
+         var choose = app.cache.chooseToBorrow
+         var returnBook ;
+         for(var i = 0 ;i<choose.length;i++){
+            choose[i].book_borrowTime = time
+         }
+         app.saveCache("waitToReturn",choose)
+      // 获取选择的下标，如果第一位比第二位小则删除第一位之后 第二位下标减一，如果第一位比第二位大，则不改变
+         var waitToBorrow = app.cache.waitToBorrow
+         if(len == 1){
+            waitToBorrow.splice(codeValue[0], 1);
+         }else if(len == 2){
+            if(codeValue[0]<codeValue[1]){
+              waitToBorrow.splice(codeValue[0], 1);
+              waitToBorrow.splice(codeValue[1]-1, 1);
+            }else{
+              waitToBorrow.splice(codeValue[0], 1);
+              waitToBorrow.splice(codeValue[1], 1);
+            }    
+          }
+          app.removeCache("chooseToBorrow")
+          app.saveCache("waitToBorrow",waitToBorrow)
+          wx.navigateTo({
               url: '../bookOrder',
             })
             clearTimeout(t)
           }
-          console.log("申请失败")
         }
         , fail: function () {
           wx.showToast({
@@ -179,6 +164,50 @@ Page({
           })
         }
       })
+  }else if(tab == 1){
+      wx.request({
+        url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
+        //请求头
+        header: {
+          'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        method: 'GET',
+        success: function (res) {
+          console.log("状态" + res.data)
+          if (res.data == 1) {
+            wx.showToast({
+              title: '操作成功',
+              icon: " success"
+            })
+            // 删除待借栏的图书
+            var waitToReturn = app.cache.waitToReturn
+            if (len == 1) {
+              waitToReturn.splice(codeValue[0], 1);
+            } else if (len == 2) {
+              if (codeValue[0] < codeValue[1]) {
+                waitToReturn.splice(codeValue[0], 1);
+                waitToReturn.splice(codeValue[1] - 1, 1);
+              } else {
+                waitToReturn.splice(codeValue[0], 1);
+                waitToReturn.splice(codeValue[1], 1);
+              }
+            }
+            app.saveCache("waitToReturn", waitToReturn)
+            wx.navigateTo({
+              url: '../bookOrder',
+            })
+            clearTimeout(t)
+          }
+        }
+        , fail: function () {
+          wx.showToast({
+            title: '网络异常',
+            image: '../../../../img/icon/warn.png'
+          })
+        }
+      })
+
+  }
       count--;
     }
     var t = setTimeout(function () {

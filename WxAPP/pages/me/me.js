@@ -7,7 +7,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: app.globalData.userInfo,
+    userInfo: app.cache.userInfo,
     //登录状态
     loginFlag: app.cache.loginFlag || false,
     // 打卡天数
@@ -20,13 +20,6 @@ Page({
    */
   onLoad: function () {
     var that = this
-    var info;
-    app.getUserInfo(function (userInfo) {
-      info = userInfo
-      that.setData({
-        userInfo: userInfo
-      })
-    })
   },
 
 
@@ -53,13 +46,13 @@ Page({
    * 查看借书证
    */
   bookCard: function () {
-    // if (!this.data.loginFlag) {
-    //   this.login()
-    // } else {
+    if (!this.data.loginFlag) {
+      this.login()
+    } else {
       wx.navigateTo({
         url: 'account/bookCard'
       })
-    // }
+    }
   },
 
  /**

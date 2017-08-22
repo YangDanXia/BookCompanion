@@ -8,11 +8,13 @@ var bookNeedInfo = [];
 function initSubMenuDisplay() {
   return 'hidden';
 }
-
+const date = new Date()
 Page({
   data: {
   // 是否隐藏加载情况
   hidden:false,
+  winWidth: app.globalData.width,
+  winHeight: app.globalData.winHeight,
   // 登录状态
   loginFlag: app.cache.loginFlag || false,
   // 页面配置
@@ -50,6 +52,8 @@ Page({
 
   onLoad: function (options) {
     var that = this;
+    console.log(options)
+    this.getTime()
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -57,7 +61,7 @@ Page({
         dbName: "gdou_book",
         table: options.table,
         typeName: "inquire",
-        field: {title: '', author: '', isbn13: '', images: '',publisher:'',pubdate:'',price:'',ebook_price:'',summary:'' },
+        field: { title: '', author: '', isbn13: '', images: '', total_type: '', pubdate: '', publisher: '', price: '', ebook_price: '', summary: '', respect_type: '', pre_price: '' },
         factor: { isbn13:options.isbn },
         limit:"0,1"
       },
@@ -72,7 +76,8 @@ Page({
           "book_photo": res.data.result[0].images,
           "book_isbn": res.data.result[0].isbn13,
           "book_name": res.data.result[0].title,
-          "book_author": res.data.result[0].author
+          "book_author": res.data.result[0].author,
+          "collectStatus": "dislike"
         };
         res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
         console.log("图书信息")
@@ -151,7 +156,8 @@ Page({
     var card = app.cache.bookCard || [];
       for (var i = 0; i < card.length; i++) {
         console.log(card[i].library)
-        if (card[i].library == app.globalData.G_selectLibrary) {
+        // if (card[i].library == app.globalData.G_selectLibrary) {
+        if (card[i].library == '广东海洋大学图书馆') {         
           this.setData({
             isBookCard: true
           })
@@ -205,13 +211,16 @@ Page({
         table: "INFORMATION_BOOK",
         typeName: "inquire",
         field: { BookId: '', BooklistISBN: '', BookAddress: '', BookStatus: ''},
-        factor: { BooklistISBN: isbn}
+        factor: { BooklistISBN: isbn},
+        limit:"10"
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
       method: 'GET',
       success: function (res) {
+        console.log("馆藏情况：")
+        console.log(res.data)
         var bookDetails = res.data.result;
         that.setData({
           bookOfLib: res.data.result
@@ -391,8 +400,10 @@ Page({
   bindDateChange: function (e) {
     var that = this;
     var obj = app.cache.reserveBook || [];
+    bookNeedInfo.book_name = bookNeedInfo.book_name.substr(0,10);
     bookNeedInfo.bookId = that.data.bookId;
     bookNeedInfo.bookAddress = app.globalData.G_selectLibrary;
+    bookNeedInfo.reserveTime = e.detail.value;
     bookNeedInfo.reserveTime = e.detail.value;
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -401,7 +412,7 @@ Page({
         dbName:"Library",
         table:"RECORD_RESERVATION",
         typeName:"insert",
-        field:{uk_phone:app.cache.userInfo.phone,book_takeTime:e.detail.value,book_id:that.data.bookId,book_isbn:bookNeedInfo.book_isbn},
+        field: {UserId: app.cache.userInfo.phone, ReservationGiveTime: e.detail.value, BookId: that.data.bookId, BooklistISBN:bookNeedInfo.book_isbn},
         factor:{}
       }, 
       header: {
@@ -420,11 +431,44 @@ Page({
       fail: function (res) {
         wx.showToast({
           title: "网络异常",
-          image: "../../../img/icon/warn.png"
+          image: "../../img/icon/warn.png"
         })
       }
     })
 
+  },
+
+  /**
+   * 凑单买书
+   */
+  bookBuy:function(){
+    var info = this.data.bookInfo
+    if (info.ebook_price<5){
+      wx.showToast({
+        title: "低于5元的电子书不参与活动",
+        image: "../../img/icon/warn.png"
+      })
+    }else{
+      wx.navigateTo({
+        url: 'bookBuy?isbn=' + info.isbn13+'&table='+info.total_type
+      })
+    }
+  },
+
+  onReachBottom: function () {
+    // Do something when page reach bottom.
+  },
+
+  /**
+  * 获取时间
+  */
+  getTime: function () {
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    this.setData({
+      today: year + '-' + month + '-' + day
+    })
   }
 
 })

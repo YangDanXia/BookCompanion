@@ -6,7 +6,7 @@ App({
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
-
+ 
     wx.getSystemInfo({
       success: function (res) {
         that.globalData.width = res.windowWidth
@@ -191,6 +191,20 @@ App({
     }
   },
 
+  /**
+   * 倒计时
+   */
+  countDown: function (that,num) {
+    if (num == 0) {
+      return;
+    } else {
+      num--;
+    }
+    setTimeout(function () {
+      settime(that)
+    }
+      , 1000)
+  },
  
 
   //缓存内容

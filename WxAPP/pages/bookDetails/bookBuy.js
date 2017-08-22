@@ -1,21 +1,59 @@
 // pages/bookDetails/bookBuy.js
+var app = getApp()
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+    // 显示提示
+    warnShow:true,
+    // 页面配置
+    winWidth: app.globalData.width,
+    winHeight: app.globalData.winHeight
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options.info)
-    // this.setData({
-    //   bookinfo : options.result[0]
-    // })
+    console.log(options)
+    var that = this
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "gdou_book",
+        table: options.table,
+        typeName: "inquire",
+        field: { title: '', author: '', isbn13: '', images: '', ebook_price: ''},
+        factor: { isbn13:options.isbn },
+        limit:"0,1"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        // res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
+        that.setData({
+          bookInfo: res.data.result[0]
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '无法连接数据库!请检查网络是否连接',
+          showCancel: false,
+          success: function (res) {
+            wx.navigateBack({
+              delta: 1
+            })
+          }
+        })
+      }
+    });
     
   },
 
@@ -62,9 +100,11 @@ Page({
   },
 
   /**
-   * 用户点击右上角分享
+   * 关闭提示
    */
-  onShareAppMessage: function () {
-  
+  closeWarn:function(){
+    this.setData({
+      warnShow:false
+    })
   }
 })

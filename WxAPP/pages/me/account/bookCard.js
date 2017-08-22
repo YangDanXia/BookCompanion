@@ -6,7 +6,7 @@ Page({
     //是否隐藏弹窗
     modalHidden: true,
     bookCard:app.cache.bookCard||[],
-    phone:app.cache.userInfo.phone || ''
+    phone: app.cache.userInfo.phone || ''
   },
 
   onLoad: function(options) {
@@ -68,12 +68,14 @@ Page({
 // 扫码添加借书证
   addByScan:function(){
     var that = this;
+    var obj = app.cache.bookCard;
     wx.scanCode({
       success: (res) => {
         console.log(res)
         var that =this;
         var rs = res.result
         var arr = rs.split(";")
+
         if(arr[0] == this.data.phone){
           wx.request({
             url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -92,7 +94,6 @@ Page({
             method: 'GET',
             success: function (res) {
               if (res.data) {
-                var obj = app.cache.bookCard;
                 var newCard = { history_borrow: "0", library: arr[2], uk_bookCardId: arr[1], current_borrow: "0" };
                 obj.push(newCard);
                 app.saveCache('bookCard', obj);
@@ -118,7 +119,8 @@ Page({
       }
     })
     this.setData({
-      modalHidden: true
+      modalHidden: true,
+      bookCard:obj
     })
   },
 

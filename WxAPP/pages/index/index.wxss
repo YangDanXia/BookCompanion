@@ -243,7 +243,7 @@ margin-left:40%;
   margin-bottom:10rpx;
   color: #333;
   margin:13rpx 0;
-  height:700rpx;
+  height:70%;
 
 }
 
@@ -257,6 +257,8 @@ margin-left:40%;
 
 .fun-list{
     flex-flow:row wrap;
+    height:91%;
+
 }
 
 .items{

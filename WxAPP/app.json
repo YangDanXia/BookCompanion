@@ -1,15 +1,20 @@
 {
   "pages": [
+          "pages/find/find",
+          "pages/find/publish",
+                  "pages/index/index",
+            "pages/bookDetails/bookBuy",
 
-          "pages/index/index",
-        "pages/bookDetails/bookBuy",
+"pages/bookDetails/function/pay",
+
+
       "pages/me/me",
 
       "pages/shelf/shelf",
-      "pages/find/find",
-      "pages/find/publish",
 
-                  "pages/me/functions/help",
+
+
+      "pages/me/functions/help",
        "pages/me/account/bookCard",
        "pages/me/functions/recommend",
         "pages/me/account/login",

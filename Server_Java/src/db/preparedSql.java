@@ -26,7 +26,7 @@ public class preparedSql {
 		}
 
 //		占位符中对应的值
-		if(!type.equalsIgnoreCase("inquire")) {
+		if(!type.equalsIgnoreCase("inquire")||!type.equalsIgnoreCase("inquireAll")) {
 			for(String key:field.keySet()) {
 				String value = new String(field.get(key).getBytes("ISO-8859-1"),"utf-8");
 				pstmt.setString(index, value);
@@ -35,7 +35,6 @@ public class preparedSql {
 		}
 
 		for(String key:factor.keySet()) {
-
 			String value = new String(factor.get(key).getBytes("ISO-8859-1"),"utf-8");
 			System.out.println("条件值："+value);
 			pstmt.setString(index, value);

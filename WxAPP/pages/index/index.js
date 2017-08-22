@@ -70,7 +70,7 @@ Page({
     //每日推荐
     that.DailyRecommend();
     //最近更新
-    // that.newBooks();
+    that.newBooks();
   },
 
 
@@ -185,43 +185,46 @@ Page({
   /**
    * 新书推荐模块
    */
-  // newBooks: function () {
-  //   var that = this
-  //   var index = app.getRandom(20);
-  //   wx.request({
-  //     url:'https://www.hqinfo.xyz/Server_Java/DbOperations',
-  //     data:
-  //     {
-  //       dbName: "gdou_book",
-  //       table: "sucess_motivation",
-  //       typeName: "inquire",
-  //       field: { title: '', author: '', isbn13: '', images: '', total_type: '' },
-  //       factor: { respect_type:"财商-财富智慧"},
-  //       limit: "0,6"
-  //     },
-  //     //请求头
-  //     header: {
-  //       'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-  //     },
-  //     method: 'GET',
-  //     success:function(res){
-  //       console.log(res.data)
-  //       var obj = res.data.result
-  //       for(var i=0;i<obj.length;i++){
-  //         obj[i].title = obj[i].title.substr(0,10)+"..."
-  //       }
-  //       that.setData({
-  //         commendItems: res.data.result
-  //       })
-  //       console.log(res.data.result)
-  //     },
-  //     fail: function (res) {
-  //       that.setData({
-  //         errHidden: false
-  //       })
-  //     }
-  //   })
-  // },
+  newBooks: function () {
+    var that = this
+    var index = app.getRandom(20);
+    wx.request({
+      url:'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "gdou_book",
+        table: "sucess_motivation",
+        typeName: "inquire",
+        field: { title: '', author: '', isbn13: '', images: '', total_type: '' },
+        factor: { respect_type:"财商-财富智慧"},
+        limit: "0,6"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success:function(res){
+        console.log(res.data)
+        var obj = res.data.result
+        for(var i=0;i<obj.length;i++){
+          obj[i].title = obj[i].title.substr(0,10)+"..."
+        }
+        that.setData({
+          commendItems: res.data.result
+        })
+        console.log(res.data.result)
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
+      },
+      fail: function (res) {
+        that.setData({
+          errHidden: false
+        })
+      }
+    })
+  },
 
 
 

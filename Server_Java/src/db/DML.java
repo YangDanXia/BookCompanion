@@ -19,7 +19,13 @@ public class DML {
 			String sql = inquire(table,field,factor,limit);
 			System.out.println(sql);
 			return sql;
-		}else if(type.equalsIgnoreCase("insert")) {
+		}else if(type.equalsIgnoreCase("inquireAll")) {
+			String sql = inquireAll(table,field);
+			System.out.println(sql);
+			return sql;
+		}
+		
+		else if(type.equalsIgnoreCase("insert")) {
 			String sql = insertDML(table, field);
 			System.out.println(sql);
 			return sql;
@@ -37,7 +43,21 @@ public class DML {
 	}
 	
 	
-//查询数据
+    public String inquireAll(String table, Map<String, String> field) {
+    //	  sql语句
+	    String sql;
+   //   键名
+	    StringBuilder keys = new StringBuilder();
+	    for(String key:field.keySet()) {
+		    keys.append(key);
+	    	keys.append(",");
+	    }
+	   keys.delete((keys.length())-1, keys.length());
+	   sql = "select "+keys.toString() +" from "+table;
+	   return sql;
+	}
+
+	//查询数据
 	public static String inquire(String table,Map<String,String> field,Map<String,String> factor,String limit) {
 //		sql语句
 		String sql;

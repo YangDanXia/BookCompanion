@@ -64,7 +64,7 @@ public class DbOperations extends HttpServlet {
 		try {
 			PreparedStatement pstmt;
 			pstmt = object.prepared(dbName,type, table, field, factor,limit);
-			if(type.equalsIgnoreCase("inquire")) {
+			if(type.equalsIgnoreCase("inquire")||type.equalsIgnoreCase("inquireAll")) {
 				ResultSet rs = pstmt.executeQuery();
 			    String str = getResult(rs, field);
 			    System.out.print("返回的结果："+str);
@@ -77,8 +77,6 @@ public class DbOperations extends HttpServlet {
 					w.print("没有该内容");
 				}
 			}
-			ConnectionPoolFactory dataBase =  ConnectionPoolFactory.getInstance();
-			dataBase.closeConn();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			w.print("error");

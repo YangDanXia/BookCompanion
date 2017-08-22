@@ -1,10 +1,11 @@
 <!--pages/find/find.wxml--> 
    <view class="camera">
-     <image class="camera-picture" src="../../img/icon/camera.png"></image>
+     <view bindtap="chooseImg"><image class="camera-picture" src="{{img}}"/></view>
+     <view wx:if="{{isContinue}}" bindtap="chooseImgs"><image  class="camera-picture" src="{{imgs}}"/></view>
    </view>
    <view class="form-control">
       <form class="bs-example bs-example-form" role="form">
-        <textarea class="control" placeholder="详细描述有助于吸引更多人的关注哦！" style="padding:30rpx 20rpx;"/>
+        <textarea class="control" placeholder="详细描述有助于吸引更多人的关注哦！" style="padding:30rpx 20rpx;" bindinput="contentInput"/>
       </form>
    </view>
    <view class="three">
@@ -17,7 +18,7 @@
      </view>
   <view class="four-saleprice">
     <form class="bs-example bs-example-form" role="form">
-      <input type="text" placeholder="￥0.00"></input>
+      <input type="text" placeholder="￥0.00" bindinput="newPrice"></input>
     </form>
   </view>
 </view>
@@ -27,12 +28,12 @@
   </view>
   <view class="four-saleprice">
     <form class="bs-example bs-example-form" role="form">
-      <input type="text" placeholder="￥0.00"></input>
+      <input type="text" placeholder="￥0.00" bindinput="oldPrice"></input>
     </form>
   </view>
 </view>
 <view class="book-buy">
-  <navigator url="bookBuy?isbn={{item.isbn13}}" hover-class="none" class="btn-buy">发布</navigator>
+  <view bindtap="publishTo" hover-class="none" class="btn-buy">发布</view>
 </view>
 
   

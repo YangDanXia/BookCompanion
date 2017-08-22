@@ -79,5 +79,4 @@
     <servlet-name>CloseConn</servlet-name>
     <url-pattern>/CloseConn</url-pattern>
   </servlet-mapping>
-  
 </web-app>

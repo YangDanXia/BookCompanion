@@ -26,7 +26,7 @@ public class preparedSql {
 		}
 
 //		占位符中对应的值
-		if(!type.equalsIgnoreCase("inquire")||!type.equalsIgnoreCase("inquireAll")) {
+		if(!type.equalsIgnoreCase("inquire")) {
 			for(String key:field.keySet()) {
 				String value = new String(field.get(key).getBytes("ISO-8859-1"),"utf-8");
 				pstmt.setString(index, value);

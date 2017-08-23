@@ -1,66 +1,98 @@
 // pages/me/functions/help.js
+//获取应用实例
+var app = getApp();
+var title = '';
+var content = '';
+var library;
+var phone;
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    // tab切换
+    currentTab: 0,
+    // 屏幕高度
+    winHeight: app.globalData.winHeight
+  },
+
+  onLoad:function(){
+
   },
 
   /**
-   * 生命周期函数--监听页面加载
+   * 滑动切换Tab
    */
-  onLoad: function (options) {
-  
+  bindChange: function (e) {
+    this.setData({
+      currentTab: e.detail.current
+    });
+  },
+
+
+  /**
+   * 点击Tab切换
+   */
+  swichNav: function (e) {
+    if (this.data.currentTab === e.target.dataset.current) {
+      return false;
+    } else {
+      this.setData({
+        currentTab: e.target.dataset.current
+      })
+    }
   },
 
   /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+ * 获取图书馆的输入
+ */
+  bindPickerChange: function (e) {
+    library = array[e.detail.value]
+    this.setData({
+      index: e.detail.value
+    })
   },
 
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
+  titleInput: function (e) {
+    title = e.detail.value
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
+  contentInput: function (e) {
+    content = e.detail.value
   },
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
+  phoneInput: function (e) {
+    phone = e.detail.value
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
+  submit: function (e) {
+    if (content == '') {
+      wx.showToast({
+        title: "请填写反馈内容~",
+        image: "../../../img/icon/warn.png"
+      })
+    } else {
+      wx.request({
+        url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+        data: {
+          dbName: "WxApp",
+          table: "user_suggestion",
+          typeName: "insert",
+          field: { uk_phone: phone, suggestion: content },
+          factor: {}
+        },
+        header: {
+          'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+        },
+        method: 'GET',
+        success: function (res) {
+          console.log(res.data)
+          if (res.data) {
+            wx.showToast({
+              title: '反馈成功',
+              icon: 'success'
+            })
+          }
+        }
+      })
+    }
 
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
-})
+});

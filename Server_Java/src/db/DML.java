@@ -71,7 +71,7 @@ public class DML {
 		}
 		for(String key:factor.keySet()) {
 			keyFactor.append(key);
-			keyFactor.append("=? and");
+			keyFactor.append("=? and ");
 		}
 		System.out.println(keys.toString());
 		System.out.println(keyFactor.toString());
@@ -115,10 +115,10 @@ public class DML {
 		}
 		for(String key:factor.keySet()) {
 			keyFactor.append(key);
-			keyFactor.append("=? and");
+			keyFactor.append("=? and ");
 		}
 		keys.delete((keys.length())-1, keys.length());
-		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
+		keyFactor.delete((keyFactor.length())-4, keyFactor.length());
 		sql = "update "+table+" set "+keys.toString()+" where " + keyFactor.toString();
 		return sql;
 	}
@@ -130,7 +130,7 @@ public class DML {
 		StringBuilder keyFactor = new StringBuilder();
 		for(String key:factor.keySet()) {
 			keyFactor.append(key);
-			keyFactor.append("=? and");
+			keyFactor.append("=? and ");
 		}
 		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
 		sql = "delete from "+table+" where " + keyFactor.toString();

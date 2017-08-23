@@ -1,49 +1,37 @@
 {
   "pages": [
-              "pages/find/find",
-              "pages/find/publish",
-        "pages/index/functions/bookOrder",
-
-
-                  "pages/index/index",
-            "pages/bookDetails/bookBuy",
-
-"pages/bookDetails/function/pay",
-
-
-      "pages/me/me",
-
-      "pages/shelf/shelf",
-
-
-
+          "pages/me/functions/bookTicket",
       "pages/me/functions/help",
-       "pages/me/account/bookCard",
-       "pages/me/functions/recommend",
-        "pages/me/account/login",
-        "pages/me/account/enroll",
-        "pages/me/account/findPassword",
-        "pages/me/functions/service",
-        "pages/me/functions/suggest",
-        "pages/me/account/addCard",
 
-"pages/me/functions/set",
-"pages/me/functions/changePhone",
-"pages/me/functions/changePassword",
-
-    "pages/index/functions/library",
-    "pages/index/functions/map",
-    "pages/index/functions/bookNavigateList",
-
-    "pages/index/functions/search",
-    "pages/shelf/functions/shelfDetails",
-    "pages/index/functions/borrowProcess/QRcode",
-    "pages/bookDetails/bookDetails",
-    "pages/bookDetails/relatedBooks",
-
-    
-    "pages/shelf/functions/addShelf"
-
+      "pages/index/index",
+      "pages/shelf/shelf",
+      "pages/find/find",
+      "pages/me/me",
+      "pages/find/publish",
+      "pages/bookDetails/bookDetails",
+      "pages/bookDetails/relatedBooks",
+      "pages/bookDetails/bookBuy",
+      "pages/me/account/bookCard",
+      "pages/me/functions/recommend",
+      "pages/me/account/login",
+      "pages/me/account/enroll",
+      "pages/me/account/findPassword",
+      "pages/me/functions/service",
+      "pages/me/functions/suggest",
+      "pages/me/account/addCard",
+      "pages/me/functions/set",
+      "pages/me/functions/changePhone",
+      "pages/me/functions/changePassword",
+      "pages/index/functions/bookOrder",
+      "pages/index/functions/library",
+      "pages/index/functions/map",
+      "pages/index/functions/bookNavigateList",
+      "pages/index/functions/search",
+      "pages/shelf/functions/shelfDetails",
+      "pages/shelf/functions/addShelf",
+      "pages/bookDetails/function/pay",
+      "pages/index/functions/borrowProcess/QRcode"
+      
   ],
   "window": {
     "backgroundTextStyle": "light",

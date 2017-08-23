@@ -1,0 +1,151 @@
+<!--pages/me/functions/bookTicket.wxml-->
+<view class="general">
+  <view class="head">
+    <image class="picture-one" src="../../../img/icon/money.png"></image>
+    <text class="ticket">5</text>
+  </view>
+</view>
+
+
+
+<view class="movie-photos">
+  <view class="positon">
+  <view class="make">
+    <text class="more">做任务赚书卷</text>
+    <text class="more1">更多任务</text>
+    <view class="picture">
+      <image class="picture" src="../../../img/icon/go.png"></image>
+    </view>
+  </view>
+</view>
+  <scroll-view scroll-x="true" style="width: 100%" scroll-left="0">
+   <view class="shiyan">
+
+     <view class="box-top">
+       <view class="box-one">
+          <text class="box-textone">每日打卡</text>
+       </view>
+     </view>
+
+
+     <view class="box-top">
+       <view class="box-one">
+          <text class="box-textone">借阅图书</text>
+       </view>
+     </view>
+
+     <view class="box-top">
+       <view class="box-one">
+          <text class="box-textone">按时还书</text>
+       </view>
+     </view>
+
+     <view class="box-top">
+       <view class="box-one">
+          <text class="box-textone">收藏图书</text>
+       </view>
+     </view>
+
+     <view class="box-top">
+      <view class="box-one">
+        <text class="box-textone">购买电子书</text>
+      </view>
+     </view>
+
+     <view class="box-top">
+      <view class="box-one">
+        <text class="box-textone">发布</text>
+      </view>
+     </view>
+
+     <view class="box-top">
+      <view class="box-one">
+        <text class="box-textone">意见反馈</text>
+      </view>
+     </view>
+
+    </view>
+
+  </scroll-view>
+</view>
+
+
+<view class="help">
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../../img/icon/one.png"></image>
+    </view>
+    <view class="question">
+      <text class="help-title">书卷有什么用？</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">
+    1.由于平台的“凑单买书”功能的收费的计算是向上取数的，所以为了更好的服务大家，此书卷可用于抵消现金即1张书卷可抵消0.1元。\n
+    2.为防止人为恶意发布虚假消息，故要求发布消息者每发布一条消息都需缴纳1张书卷。\n
+    3.书卷数量越高，也代表着守信度越高、读书频率越高，因此在部分合作图书馆中，可凭借书卷增加借书时长。\n
+    </text>
+  </view>
+</view>
+
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../../img/icon/two.png"></image>
+    </view>
+    <view class="question">
+      <text>为什么要设置书卷？</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">
+    1.鼓励大家多读书，帮助用户形成好的阅读习惯。\n
+    2.由于存在有借书不还或逾期还书的情况，故为了帮助图书馆的管理，我们设置此功能意在帮助读者形成及时还书的习惯。\n
+    3.在本平台不只有奖励也有惩罚，用户可以获得书卷，也会被扣除书卷。\n
+    4.当用户书卷数过低时，可能会面临无法使用本程序的情况。\n
+    </text>
+  </view>
+</view>
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../../img/icon/three.png"></image>
+    </view>
+    <view class="question">
+      <text>如何获得书卷？</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">在完成上方的任务后，您即可获得相应数量的书卷。书卷越多，代表您守信度越高。要想获得多多的书卷，就要勤读书哦~</text>
+  </view>
+</view>
+
+<view class="all">
+ <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../../img/icon/four.png"></image>
+    </view>
+    <view class="question">
+      <text>什么情况下会扣除书卷？</text>
+    </view>
+  </view>
+</view>
+<view class="all">
+  <view class="second">
+    <text class="second-text">
+     1.逾期未归还图书：在计时3天后，每天扣除1张书卷直至读者归还图书
+     2.发布二手图书消息：每发布一条消息需扣除1张书卷
+    </text>
+  </view>
+</view>
+
+</view>

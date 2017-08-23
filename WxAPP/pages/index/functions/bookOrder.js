@@ -185,24 +185,31 @@ Page({
    * 收藏预约的图书
    */
   reserveCollect:function(e){
-   var index = e.currentTarget.dataset.index;
-  //  书单
-   var obj = this.data.bookShelf
-  //  预约的图书
-   var rese = this.data.reserveBook
-  //  收藏状态
-   var value = this.data.reserveBook[index].collectStatus
-   if(value == "like"){
-     rese[index].collectStatus = "dislike"
-   }else if(value == "dislike"){
-     rese[index].collectStatus = "like"
-   }
-   obj[0].shelf_bookList.push(rese[index])
-   app.saveCache('bookShelf', this.data.bookShelf);
-   app.saveCache('reserveBook', rese);
-   this.setData({
-     reserveBook:rese
-   })
+    var index = e.currentTarget.dataset.index;
+    var obj = this.data.bookShelf
+    var bor = this.data.reserveBook
+    var bookList = obj[0].shelf_bookList
+    // 书单内容中第几本书
+    var location;
+    for (var i = 0; i < bookList.length; i++) {
+      if (bookList[i].BooklistISBN == bor[index].BooklistISBN) {
+        location = i;
+      }
+    }
+    var value = bor[index].collectStatus
+    if (value == "like") {
+      bor[index].collectStatus = "dislike"
+      bookList.splice(location, 1);
+    } else if (value == "dislike") {
+      bor[index].collectStatus = "like"
+      bookList.push(bor[index])
+    }
+    // obj[0].shelf_bookList.push(bor[index])
+    app.saveCache('bookShelf', obj);
+    app.saveCache('reserveBook', bor);
+    this.setData({
+      reserveBook: bor
+    })
   },
 
 
@@ -242,21 +249,30 @@ Page({
    * 收藏待还的图书
    */
   returnCollect:function(e){
-      var index = e.currentTarget.dataset.index;
-      var obj = this.data.bookShelf
-      var ret = this.data.waitToReturn
-      var value = this.data.waitToReturn[index].collectStatus
-      if (value == "like") {
-        ret[index].collectStatus = "dislike"
-      } else if (value == "dislike") {
-        ret[index].collectStatus = "like"
+    var index = e.currentTarget.dataset.index;
+    var obj = this.data.bookShelf
+    var bor = this.data.waitToReturn
+    var bookList = obj[0].shelf_bookList
+    // 书单内容中第几本书
+    var location;
+    for (var i = 0; i < bookList.length; i++) {
+      if (bookList[i].BooklistISBN == bor[index].BooklistISBN) {
+        location = i;
       }
-      obj[0].shelf_bookList.push(ret[index])
-      app.saveCache('bookShelf', this.data.bookShelf);
-      app.saveCache('waitToReturn', ret);
-      this.setData({
-        waitToReturn: ret
-      })
+    }
+    var value = bor[index].collectStatus
+    if (value == "like") {
+      bor[index].collectStatus = "dislike"
+      bookList.splice(location, 1);
+    } else if (value == "dislike") {
+      bor[index].collectStatus = "like"
+      bookList.push(bor[index])
+    }
+    app.saveCache('bookShelf', obj);
+    app.saveCache('waitToReturn', bor);
+    this.setData({
+      waitToReturn: bor
+    })
     },
 
 
@@ -290,13 +306,87 @@ Page({
     this.onShow()
   },
 
+  /**
+   * 续借图书
+   */
+  borrowAgain:function(e){
+    var that = this
+    var index = e.currentTarget.dataset.index; 
+    var obj = that.data.waitToReturn
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "Library",
+        table: "RECORD_CIRCULATION",
+        typeName: "update",
+        field: { BorrowTime:that.getTime()},
+        factor: {
+          BookId: obj[index].BookId,
+          UserId: app.cache.userInfo.phone
+        },
+        limit: "1"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+      if(res.data){
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+          data:
+          {
+            dbName: "WxApp",
+            table: "book_borrow",
+            typeName: "update",
+            field: {book_takeTime: that.getTime() },
+            factor: {
+              book_id: obj[index].BookId,
+              idx_phone: app.cache.userInfo.phone
+            },
+            limit: "1"
+          },
+          //请求头
+          header: {
+            'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+          },
+          method: 'GET',
+          success: function (res) {
+            console.log(res.data)
+            if(res.data){
+              wx.showToast({
+                title: '续借成功',
+                icon: " success"
+              })
+              obj[index].book_borrowTime = that.getTime()
+              var newBook = obj[index];
+              obj.splice(index, 1);
+              obj.push(newBook)
+              app.saveCache("waitToReturn", obj)
+            }
+          }
+        })
+      }
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '网络异常',
+          image: '../../../img/icon/warn.png'
+        })
+      }
+    })
+  },
+
 
   /**
    * 获取时间
    */
   getTime: function () {
     var year = date.getFullYear()
-    var month = date.getMonth() + 1
+    var month = date.getMonth() +  1
     var day = date.getDate()
     return year + '-' + month + '-' + day;
   },
@@ -309,16 +399,6 @@ Page({
     wx.navigateTo({
       url: '../../me/account/login'
     })
-  },
-
- /**
-   * 获取时间
-   */
-  getTime:function(){
-    var year = date.getFullYear()
-    var month = date.getMonth() + 1
-    var day = date.getDate()
-    return year+'-'+month+'-'+day;
-}
+  }
 
 })

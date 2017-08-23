@@ -17,6 +17,7 @@ public class DataBase {
 			 @SuppressWarnings("unchecked")
 			Map<String,String> field =(Map<String,String>)JSON.parse(fieldStr);    
 		    String sql =  inquireAll(table, field);
+		    System.out.println(sql);
 		    PreparedStatement pstmt = conn.prepareStatement(sql);
 		    pstmt.setString(1, time);
 		    String str = null;
@@ -69,7 +70,7 @@ public class DataBase {
 	    
 		
 	    private Connection SQLinit() throws IOException {
-	    	final String url = "jdbc:mysql://591ba57a49ec3.gz.cdb.myqcloud.com:3806/GDOULibrary";
+	    	final String url = "jdbc:mysql://591ba57a49ec3.gz.cdb.myqcloud.com:3806/WxApp";
 			final String user_name = "cdb_outerroot";
 			final String passeword = "haiqian@2017";
 			Connection conn = null;

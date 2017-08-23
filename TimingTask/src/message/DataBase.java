@@ -1,6 +1,7 @@
 package message;
 
 import java.io.IOException;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -43,7 +44,7 @@ public class DataBase {
 	    	    	keys.append(",");
 	    	    }
 	    	   keys.delete((keys.length())-1, keys.length());
-	    	   sql = "select "+keys.toString() +" from "+table+" where book_ takeTime=?";
+	    	   sql = "select "+keys.toString() +" from "+table+" where book_takeTime=?";
 	    	   return sql;
 	    	}
 	    

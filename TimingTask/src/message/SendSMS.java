@@ -31,7 +31,7 @@ public class SendSMS {
     static final String accessKeyId = "LTAIPn82P2LKTcEB";
     static final String accessKeySecret = "jnqIHeLWA752HcQQmHBlO5EFPquSMO";
 
-    public static SendSmsResponse sendSms(String phone,String template,String param) throws ClientException {
+    public SendSmsResponse sendSms(String phone,String template,String param) throws ClientException {
 
         //可自助调整超时时间
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");

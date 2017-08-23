@@ -1,11 +1,10 @@
 // pages/find/find.js
 var app = getApp()
-var content;
-var price;
-var ex_price;
-var img1;
-var img2;
-var tag;
+var content='';
+var price='';
+var photoShow;
+var ex_price='';
+var tag='';
 Page({
   data: {
     img:"../../img/icon/camera.png",
@@ -34,9 +33,10 @@ Page({
           img: res.tempFilePaths,
           isContinue:true
         })
-        img1 = res.tempFilePaths
+        photoShow = res.tempFilePaths[0]
       }
     })
+    console.log(photoShow)
   },
 
   /**
@@ -52,7 +52,7 @@ Page({
         that.setData({
           imgs: res.tempFilePaths
         })
-        img2 = res.tempFilePaths
+        photoShow = photoShow +";"+ res.tempFilePaths[0]
       }
 
     })
@@ -71,6 +71,7 @@ Page({
    */
   tagInput:function(e){
    tag = e.detail.value
+   console.log(tag)
   },
 
 
@@ -99,19 +100,15 @@ Page({
   publishTo:function(){
     var userInfo = app.cache.userInfo
     var that = this
-    var picture; 
-    if (!content || !price || !ex_price || !img1||!tag) {
+    var picture=''; 
+    if (!content || !price || !ex_price || !photoShow||!tag) {
       wx.showToast({
         title: '请输入完整信息',
         image: '../../img/icon/warn.png'
       })
       return;
     } 
-    if(!img2){
-      picture = img1
-    } else if(img2){
-      picture = img1+";"+img2
-    }
+    console.log(photoShow)
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -119,7 +116,7 @@ Page({
         dbName: "WxApp",
         table: "sellBook_record",
         typeName: "insert",
-        field: { idx_phone: userInfo.phone, name: userInfo.name, photo: userInfo.photo,picture:picture,content:content,tag:tag,price:price,ex_price:ex_price},
+        field: { idx_phone: userInfo.phone, name: userInfo.name, photo: userInfo.photo, picture: photoShow,content:content,tag:tag,price:price,ex_price:ex_price},
         factor: {},
         limit: "1"
       },
@@ -129,12 +126,12 @@ Page({
       },
       method: 'GET',
       success: function (res) {
+        console.log(res.data)
         wx.showToast({
           title: '发布成功',
           icon:"success",
           duration:0
         })
-
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })

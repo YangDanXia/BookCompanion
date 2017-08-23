@@ -13,43 +13,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var that =this 
-    wx.request({
-      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
-      data:
-      {
-        dbName: "WxApp",
-        table: "sellBook_record",
-        typeName: "inquireAll",
-        field: { idx_phone: '', name: '', photo: '', picture: '', content: '',tag:'', price: '', ex_price:''},
-        factor: {},
-        limit: "1"
-      },
-      //请求头
-      header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      method: 'GET',
-      success: function (res) {
-          console.log(res.data)
-          var obj = res.data.result
-          for(var i=0;i<obj.length;i++){
-            obj[i].tag = obj[i].tag.split(",");
-            obj[i].picture = obj[i].picture.split(";")
-          }
-          that.setData({
-            list:obj
-          })
-          wx.request({
-            url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
-          })
-      },
-      fail: function (res) {
-        that.setData({
-          errHidden:false
-        })
-      }
-    })
   },
 
 
@@ -71,7 +34,50 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.refresh()
+  },
+
+  /**
+   * 刷新界面
+   */
+  refresh:function(){
+    var that = this
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "WxApp",
+        table: "sellBook_record",
+        typeName: "inquireAll",
+        field: { idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
+        factor: {},
+        limit: "1"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+        var obj = res.data.result
+        for (var i = 0; i < obj.length; i++) {
+          obj[i].tag = obj[i].tag.split(",");
+          obj[i].picture = obj[i].picture.split(";")
+        }
+        that.setData({
+          list: obj
+        })
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
+      },
+      fail: function (res) {
+        that.setData({
+          errHidden: false
+        })
+      }
+    })
   },
 
 

@@ -13,8 +13,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that =this 
     wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",

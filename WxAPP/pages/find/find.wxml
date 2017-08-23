@@ -2,39 +2,40 @@
 <view wx:if="{{errHidden}}">
 <image class="fixed" src="../../img/icon/addTitle.png" bindtap="publish"></image>
 
-<view class="box-top">
+<view class="box-top" wx:for="{{list}}" wx:for-item="item" wx:key="x">
   <view class="content" style="padding-top:25rpx;">
-     <image class="from-headpicture" src="http://www.hqinfo.xyz:8080/photo/book3.jpg"></image>
+     <image class="from-headpicture" src="{{item.photo}}"></image>
      <view class="from-othercontent">
-        <text class="from-nametext">阿芒</text>
+        <text class="from-nametext">{{item.name}}</text>
      </view>
   </view>
   <view class="middle"></view>
   <view class="content" bindtap="modify_tel">
     <view class="main">
-      <image class="mainpicture" src="http://www.hqinfo.xyz:8080/photo/book3.jpg"></image>
-      <image class="mainpicture" src="http://www.hqinfo.xyz:8080/photo/book3.jpg"></image>
+     <view  wx:for="{{item.picture}}" wx:for-item="i" wx:key="y">
+         <image class="mainpicture" src="{{i}}"></image>
+     </view>
     </view>
   </view>
   <view class="content" bindtap="modify_tel">
     <view class="from">
-      <text class="price">￥  40.00</text>
-      <text class="second-price">￥  80.00</text>
+      <text class="price">￥  {{item.price}}</text>
+      <text class="second-price">￥  {{item.ex_price}}</text>
     </view>
   </view>
   <view class="content" bindtap="modify_tel">
     <view class="main-text">
-      <text class="main-text1">成长总是个让人烦恼的命题。成长有时会很缓慢，如小溪般唱着叮咚的歌曲趟过，有时却如此突如其来，如暴雨般劈头盖脸……三个孩子因为小镇上的几桩冤案经历了猝不及防的成长——痛苦与迷惑，悲伤与愤怒，也有温情与感动…</text>
+      <text class="main-text1">{{item.content}}</text>
     </view>
   </view>
   <view class="content">
     <view class="tubiao">
-      <view class="tubiao1">
-        <text class="tubiao-text">本校</text>
+      <view class="tubiao1" wx:for="{{item.tag}}" wx:for-item="t" wx:key="z">
+        <text class="tubiao-text">{{t}}</text>
       </view>
-      <view class="tubiao1">
+      <!-- <view class="tubiao1">
         <text class="tubiao-text">包邮</text>
-      </view>
+      </view> -->
     </view>
   </view>
   <view class="buy">

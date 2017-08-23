@@ -69,7 +69,6 @@ public class DbOperations extends HttpServlet {
 			    String str = getResult(rs, field);
 			    System.out.print("返回的结果："+str);
 			    w.print(str);
-			    Map.clear();
 			}else {
 				int rs = pstmt.executeUpdate();
 				w.print("true");

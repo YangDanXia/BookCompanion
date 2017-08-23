@@ -1,8 +1,9 @@
 {
   "pages": [
+              "pages/find/find",
               "pages/find/publish",
         "pages/index/functions/bookOrder",
-          "pages/find/find",
+
 
                   "pages/index/index",
             "pages/bookDetails/bookBuy",

@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -35,12 +36,15 @@ public class DbOperations extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
+	@SuppressWarnings("unchecked")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
     	request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
         // 创建输出管道
 		PrintWriter w = response.getWriter();   
+		Map<String, String>  field = new HashMap<String, String>();
+		Map<String,String> factor = new HashMap<String, String>();
 		// 获取数据库名
 		String dbName = request.getParameter("dbName"); 
 		// 获取数据表名
@@ -54,10 +58,9 @@ public class DbOperations extends HttpServlet {
 		// 查找的行数
 		String limit = request.getParameter("limit");
 		
-		 @SuppressWarnings("unchecked")
-		Map<String,String> field =(Map<String,String>)JSON.parse(fieldStr);    
-		 @SuppressWarnings("unchecked")
-		Map<String,String> factor =(Map<String,String>)JSON.parse(factorStr);    
+
+		field =(Map<String, String>)JSON.parse(fieldStr);    
+	    factor =(Map<String,String>)JSON.parse(factorStr);    
 		 
 		 
 		preparedSql object = new preparedSql();

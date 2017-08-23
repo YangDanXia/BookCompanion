@@ -25,6 +25,10 @@ public class preparedSql {
 			pstmt = dataBase.getDB(dbName).prepareStatement(sql);
 		}
 
+		if(type.equalsIgnoreCase("inquireAll")) {
+			return pstmt;
+		}
+		
 //		占位符中对应的值
 		if(!type.equalsIgnoreCase("inquire")) {
 			for(String key:field.keySet()) {

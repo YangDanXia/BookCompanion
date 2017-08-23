@@ -5,6 +5,7 @@ var price;
 var ex_price;
 var img1;
 var img2;
+var tag;
 Page({
   data: {
     img:"../../img/icon/camera.png",
@@ -65,6 +66,13 @@ Page({
     console.log(content)
   },
 
+  /**
+   * 标签描述
+   */
+  tagInput:function(e){
+   tag = e.detail.value
+  },
+
 
  /**
   * 新价格
@@ -82,19 +90,27 @@ Page({
     console.log(ex_price)
   },
 
+
+
+
   /**
    * 发布
    */
   publishTo:function(){
     var userInfo = app.cache.userInfo
-    var picture =img1+";"+img2
     var that = this
-    if(!content||!price||!ex_price){
+    var picture; 
+    if (!content || !price || !ex_price || !img1||!tag) {
       wx.showToast({
         title: '请输入完整信息',
         image: '../../img/icon/warn.png'
       })
       return;
+    } 
+    if(!img2){
+      picture = img1
+    } else if(img2){
+      picture = img1+";"+img2
     }
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -103,7 +119,7 @@ Page({
         dbName: "WxApp",
         table: "sellBook_record",
         typeName: "insert",
-        field: { idx_phone: userInfo.phone, name: userInfo.name, photo: userInfo.photo,picture:picture,content:content,price:price,ex_price:ex_price},
+        field: { idx_phone: userInfo.phone, name: userInfo.name, photo: userInfo.photo,picture:picture,content:content,tag:tag,price:price,ex_price:ex_price},
         factor: {},
         limit: "1"
       },

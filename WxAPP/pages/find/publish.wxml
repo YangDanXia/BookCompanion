@@ -12,6 +12,10 @@
      <text class="three-text">140字</text>
    </view>
 
+   <view class="tag">
+     <input class="tag-text" placeholder="请输入标签，并用逗号区分" bindinput="tagInput"/>
+   </view>
+
   <view class="four">
      <view class="four-sale">
        <text>想卖</text>

@@ -5,7 +5,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-  
+    // 提示错误图片
+    errHidden:true
   },
 
   /**
@@ -19,7 +20,7 @@ Page({
         dbName: "WxApp",
         table: "sellBook_record",
         typeName: "inquireAll",
-        field: { idx_phone: '', name: '', photo: '', picture: '', content: '', price: '', ex_price:''},
+        field: { idx_phone: '', name: '', photo: '', picture: '', content: '',tag:'', price: '', ex_price:''},
         factor: {},
         limit: "1"
       },
@@ -30,13 +31,22 @@ Page({
       method: 'GET',
       success: function (res) {
           console.log(res.data)
-
+          var obj = res.data.result
+          for(var i=0;i<obj.length;i++){
+            obj[i].tag = obj[i].tag.split(",");
+            obj[i].picture = obj[i].picture.split(";")
+          }
+          that.setData({
+            list:obj
+          })
           wx.request({
             url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
           })
       },
       fail: function (res) {
-        
+        that.setData({
+          errHidden:false
+        })
       }
     })
   },

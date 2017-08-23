@@ -40,7 +40,7 @@ Page({
     //图片地址
     path:'',
     toSend: true,
-    second: 60,
+    second: 60
   },
 
 
@@ -122,11 +122,8 @@ Page({
         method: 'GET',
         success: function (res) {
           console.log("状态"+res.data)
-          if (res.data == 1) {
-            wx.showToast({
-              title: '操作成功',
-              icon: " success"
-            })
+          if (res.data == 0) {
+
           // 添加图书到待还栏
           // 删除待借栏的图书
          var time = that.getTime()
@@ -134,6 +131,41 @@ Page({
          var returnBook ;
          for(var i = 0 ;i<choose.length;i++){
             choose[i].book_borrowTime = time
+            wx.request({
+              url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+              data: {
+                dbName: "WxApp",
+                table: "book_borrow",
+                typeName: "insert",
+                field: {
+                  idx_phone:app.cache.userInfo.phone,
+                  book_id: choose[i].BookId,
+                  book_isbn:choose[i].BooklistISBN,
+                  book_photo: choose[i].BooklistImage,
+                  book_name: choose[i].BooklistAuthor,
+                  book_publish: choose[i].BooklistPublish,
+                  book_library: choose[i].bookAddress,
+                  book_takeTime: choose[i].book_borrowTime,
+                  collectStatus: choose[i].collectStatus
+                },
+                factor: {},
+                limit: "1"
+              },
+              header: {
+                'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+              },
+              method: 'GET',
+              success: function (res) {
+                if (res.data == "error") {
+                  return;
+                } else {
+                  wx.showToast({
+                    title: '操作成功',
+                    icon: " success"
+                  })
+                }
+              }
+            })
          }
          app.saveCache("waitToReturn",choose)
       // 获取选择的下标，如果第一位比第二位小则删除第一位之后 第二位下标减一，如果第一位比第二位大，则不改变
@@ -151,17 +183,13 @@ Page({
           }
           app.removeCache("chooseToBorrow")
           app.saveCache("waitToBorrow",waitToBorrow)
-          // wx.navigateTo({
-          //     url: '../bookOrder',
-          //   })
-            wx.navigateBack({
+          wx.navigateBack({
               delta:1
-            })
-
-            wx.request({
-              url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
-            })
-            clearTimeout(t)
+          })
+          wx.request({
+             url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+          })
+          clearTimeout(t)
           }
         }, 
         fail: function () {
@@ -182,9 +210,32 @@ Page({
         success: function (res) {
           console.log("状态" + res.data)
           if (res.data == 1) {
-            wx.showToast({
-              title: '操作成功',
-              icon: " success"
+            wx.request({
+              url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+              data: {
+                dbName: "WxApp",
+                table: "book_borrow",
+                typeName: "delete",
+                field: {},
+                factor: {
+                  idx_phone: app.cache.userInfo.phone,
+                  book_id: choose[i].BookId},
+                limit: "1"
+              },
+              header: {
+                'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+              },
+              method: 'GET',
+              success: function (res) {
+                if (res.data == "error") {
+                  return;
+                } else {
+                  wx.showToast({
+                    title: '操作成功',
+                    icon: " success"
+                  })
+                }
+              }
             })
             // 删除待借栏的图书
             var waitToReturn = app.cache.waitToReturn
@@ -204,7 +255,6 @@ Page({
             wx.navigateBack({
               delta: 1
             })
-
             wx.request({
               url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
             })

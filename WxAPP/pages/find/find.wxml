@@ -1,5 +1,5 @@
 <!--pages/find/find.wxml-->
-
+<view wx:if="{{errHidden}}">
 <image class="fixed" src="../../img/icon/addTitle.png" bindtap="publish"></image>
 
 <view class="box-top">
@@ -43,4 +43,11 @@
       </view>
  </view>
 </view>
+</view>
 
+<view class="contain" wx:else>
+ <view>
+  <image class="img" src="../../img/show/unload.png"/>
+ </view>
+ <text>网络异常</text>
+</view>

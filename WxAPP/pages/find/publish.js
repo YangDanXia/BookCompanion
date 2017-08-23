@@ -118,9 +118,14 @@ Page({
           icon:"success",
           duration:0
         })
+
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
         wx.navigateBack({
           delta:1
         })
+        
       },
       fail: function (res) {
         wx.showToast({

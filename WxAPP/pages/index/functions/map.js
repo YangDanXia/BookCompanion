@@ -48,7 +48,11 @@ Page({
             that.setData({
               markers: wxMarkerData
             });
+            wx.request({
+              url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+            })
           }
+
         })
       }
   //   })

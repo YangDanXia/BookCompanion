@@ -47,6 +47,10 @@ Page({
         that.setData({
           bookInfo: res.data.result[0]
         })
+
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
       },
       fail: function (res) {
         wx.showModal({

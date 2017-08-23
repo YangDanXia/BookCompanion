@@ -256,7 +256,6 @@ Page({
               if (res.confirm) {
                 wx.request({
                   url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
-                  // url: 'http://localhost:8080/Server_Java/DbOperations',
                   data: {
                     dbName:"Library",
                     table:"V_INFORMATION_BOOKDETAIL",
@@ -288,6 +287,9 @@ Page({
                       }) 
                     }
                   }
+                })
+                wx.request({
+                  url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
                 })
               } else if (res.cancel) {
                 return false;

@@ -30,6 +30,10 @@ Page({
       method: 'GET',
       success: function (res) {
           console.log(res.data)
+
+          wx.request({
+            url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+          })
       },
       fail: function (res) {
         

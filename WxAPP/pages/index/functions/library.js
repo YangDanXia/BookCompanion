@@ -32,6 +32,10 @@ Page({
             that.setData({
               wxMarkerData: res.data.results
             })
+
+            wx.request({
+              url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+            })
           }
         })
       // }

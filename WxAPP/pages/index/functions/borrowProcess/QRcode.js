@@ -3,7 +3,7 @@
 const date = new Date()
 var codeContent;
 var countdown = 60;
-var count =180;
+var count =60;
 var app =getApp()
 
 var settime = function (that) {
@@ -103,7 +103,7 @@ Page({
       that.setData({
         path: ''
       })
-      count = 180;
+      count = 60;
       return;
     } else {
       // 选择的类型
@@ -157,6 +157,10 @@ Page({
             wx.navigateBack({
               delta:1
             })
+
+            wx.request({
+              url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+            })
             clearTimeout(t)
           }
         }, 
@@ -199,6 +203,10 @@ Page({
             console.log("退出")
             wx.navigateBack({
               delta: 1
+            })
+
+            wx.request({
+              url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
             })
             clearTimeout(t)
           }

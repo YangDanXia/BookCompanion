@@ -42,7 +42,12 @@ Page({
             bookCard:res.data.result
           })
           app.saveCache("bookCard",res.data.result)
+
+          wx.request({
+            url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+          })
         }
+        
       })
     }
 

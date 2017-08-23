@@ -150,6 +150,10 @@ Page({
             }
           })
         }
+
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
       },
       fail: function (res) {
         wx.showToast({

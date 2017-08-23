@@ -89,6 +89,10 @@ Page({
             image: "../../../img/icon/warn.png"
           })
         }
+
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
       }, fail: function () {
         wx.showToast({
           title: '网络异常',

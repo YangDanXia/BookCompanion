@@ -39,7 +39,7 @@
         <view class="list">
           <navigator url="functions/bookTicket" class="items" >
            <image src="../../img/icon/intergral.png" style="margin-top:-3px;"></image>
-           <text style="margin-top:-5px;">书票</text>
+           <text style="margin-top:-5px;">书卷</text>
           </navigator>
         </view>
         <view class="list">

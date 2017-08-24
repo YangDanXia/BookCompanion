@@ -58,7 +58,7 @@
       },   
       {
         "pagePath": "pages/find/find",
-        "text": "发现",
+        "text": "淘书",
         "iconPath": "img/icon/market.png",
         "selectedIconPath": "img/icon/marketing.png"
       },   

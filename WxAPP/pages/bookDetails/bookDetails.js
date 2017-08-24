@@ -4,6 +4,8 @@ var app = getApp();
 var option = require('../../utils/infor.js');
 // 通用的图书信息
 var bookNeedInfo = [];
+// 图书类型
+var total_type;
 // 展开或收起
 function initSubMenuDisplay() {
   return 'hidden';
@@ -72,6 +74,7 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res.data)
+        total_type = res.data.result[0].total_type
         bookNeedInfo = {
           "book_photo": res.data.result[0].images,
           "book_isbn": res.data.result[0].isbn13,
@@ -496,7 +499,7 @@ Page({
       })
     }else{
       wx.navigateTo({
-        url: 'bookBuy?isbn=' + info.isbn13+'&table='+info.total_type
+        url: 'bookBuy?isbn=' + info.isbn13 + '&table=' + total_type
       })
     }
   },

@@ -49,7 +49,7 @@ Page({
         dbName: "gdou_book",
         table: table,
         typeName: "inquire",
-        field: { title: '', author: '', isbn13: '', images: '', total_type: '' },
+        field: { title: '', author: '', isbn13: '', images: '', total_type: '', publisher: '', summary: '' },
         factor: { respect_type:tag },
         limit: "0,30"
       },
@@ -61,17 +61,14 @@ Page({
       success: function (res) {
         console.log(res.data)
         var obj = res.data.result
-        // for (var i = 0; i < obj.length; i++) {
-        //   if (obj[i].title.length > 10) {
-        //     obj[i].title = obj[i].title.substr(0, 8) + "..."
-        //   }
-        //   if (obj[i].author.length > 10) {
-        //     obj[i].author = obj[i].author.substr(0, 8) + "..."
-        //   }
-        // }
-        // that.setData({
-        //   commendItems: res.data.result
-        // })
+        for (var i = 0; i < obj.length; i++) {
+          if (obj[i].title.length > 10) {
+            obj[i].title = obj[i].title.substr(0, 16) + "..."
+          }
+        }
+        that.setData({
+          bookList: res.data.result
+        })
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
@@ -81,6 +78,16 @@ Page({
           errHidden: false
         })
       }
+    })
+  },
+
+  /**
+   * 跳转页面
+   */
+  bookDetail:function(e){
+    var isbn = e.target.dataset.isbn
+    wx.redirectTo({
+      url: 'bookDetails?isbn='+ isbn
     })
   }
 

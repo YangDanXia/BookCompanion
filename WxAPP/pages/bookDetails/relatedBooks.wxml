@@ -9,7 +9,7 @@
   <block wx:for="{{bookList}}" wx:key="{{item}}"> 
    <view class="themes-list">
     <view class="themes-list-box">
-     <navigator url="bookDetails?isbn={{item.isbn13}}" hover-class="none">
+     <view bindtap="bookDetail" data-isbn="{{item.isbn13}}">
        <view class="themes-list-thumbnail">
          <image class="themes-list-img" src='{{item.images}}' />
        </view>
@@ -20,7 +20,7 @@
          <view class="themes-list-description">{{item.publisher}}</view>
          <view class="list-description">{{item.summary}}</view>
        </view>
-      </navigator>
+      </view>
      </view>
     </view>
    </block>

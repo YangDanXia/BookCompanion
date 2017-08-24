@@ -34,7 +34,7 @@
     <checkbox value="{{index}}"/>
      <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
        <view class="themes-list-thumbnail">
-         <image class="themes-list-img" src='{{item.BooklistImage}}' style="width:200rpx;height:100%;"/>
+         <image class="themes-list-img" src='{{item.BooklistImage}}' style="width:200rpx;height:100%;margin-left:-9%;"/>
        </view>
        <view class="themes-list-main">
          <view class="themes-list-name">{{item.BooklistTitle}}</view>
@@ -89,7 +89,7 @@
     <checkbox value="{{index}}"/>
      <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
        <view class="themes-list-thumbnail">
-         <image class="themes-list-img" src='{{item.BooklistImage}}' />
+         <image class="themes-list-img" src='{{item.BooklistImage}}' style="width:200rpx;height:100%;margin-left:-9%;"/>
        </view>
        <view class="themes-list-main">
          <view class="themes-list-name">{{item.BooklistTitle}}</view>

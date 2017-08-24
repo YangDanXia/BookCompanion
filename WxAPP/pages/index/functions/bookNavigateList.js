@@ -44,7 +44,7 @@ Page({
       that.setData({
         loadhidden: true
       })
-    }, 2500);
+    }, 2000);
   },
 
 
@@ -81,8 +81,10 @@ Page({
         newSubMenuLight[index] = 'agree';
         this.setData({
           showTab: false,
-          subMenuDisplay: 'hidden'
+          subMenuDisplay: 'hidden',
+          loadhidden:false
         })
+
         this.getBooksList(tag)
       } else {
         newSubMenuLight[i] = 'disagree';
@@ -100,7 +102,6 @@ Page({
    */
   getBooksList: function (tag) {
     var that = this
-    // var index = app.getRandom(20);
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -120,17 +121,19 @@ Page({
       success: function (res) {
         console.log(res.data)
         var obj = res.data.result
-        // for (var i = 0; i < obj.length; i++) {
-        //   if (obj[i].title.length > 10) {
-        //     obj[i].title = obj[i].title.substr(0, 16) + "..."
-        //   }
-        //   // if (obj[i].author.length > 10) {
-        //   //   obj[i].author = obj[i].author.substr(0, ) + "..."
-        //   // }
-        // }
+        for (var i = 0; i < obj.length; i++) {
+          if (obj[i].title.length > 10) {
+            obj[i].title = obj[i].title.substr(0, 16) + "..."
+          }
+        }
         that.setData({
           booksList: res.data.result
         })
+        setTimeout(function () {
+          that.setData({
+            loadhidden: true
+          })
+        }, 1000);
         console.log(res.data.result)
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'

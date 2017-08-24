@@ -6,6 +6,7 @@ var option = require('../../utils/infor.js');
 var bookNeedInfo = [];
 // 图书类型
 var total_type;
+var options;
 //图书进一步类型
 var respect_type;
 
@@ -57,7 +58,7 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    console.log(options)
+    options = options
     this.getTime()
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -110,8 +111,8 @@ Page({
         })
       }
     });
-    this.toQualify();
-    this.libraryBook(options.isbn);
+    // this.toQualify();
+    // this.libraryBook(options.isbn);
   },
 
   /**
@@ -131,6 +132,8 @@ Page({
    this.setData({
      loginFlag: app.cache.loginFlag || false
    })
+   this.toQualify();
+   this.libraryBook(options.isbn);
   },
 
   /**
@@ -326,7 +329,8 @@ Page({
    */
   addBookToShelf: function () {
     var obj = app.cache.bookShelf;//收藏记录
-    if (obj[0].shelf_bookList.length == 0){
+    var len = obj[0].shelf_bookList.length
+    if (len == 0){
       console.log("没有书")
       bookNeedInfo.collectStatus = "like"
       obj[0].shelf_bookList.push(bookNeedInfo)
@@ -337,7 +341,7 @@ Page({
       app.saveCache('bookShelf', obj);
       return false;
     }else{
-      for (var i = 0; i <obj[0].shelf_bookList.length; i++) {
+      for (var i = 0; i <len; i++) {
         console.log(obj[0].shelf_bookList[i].book_isbn)
         console.log(bookNeedInfo.book_isbn)
         if (obj[0].shelf_bookList[i].book_isbn == bookNeedInfo.book_isbn ) {
@@ -354,6 +358,7 @@ Page({
             icon: 'success'
           })
           app.saveCache('bookShelf', obj);
+          return false;
         }
       }
     }

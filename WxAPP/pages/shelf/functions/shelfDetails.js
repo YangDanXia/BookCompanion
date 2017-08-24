@@ -72,7 +72,7 @@ Page({
       wx.showToast({
         title: '当前书单已有藏书',
         image: "../../../img/icon/warn.png",
-        duration: 0
+        duration: 1000
       })
       return false;
     }
@@ -80,6 +80,10 @@ Page({
     var selectShelf = this.data.bookShelf[shelf_index]
     selectShelf.shelf_bookList.push(currentShelf.shelf_bookList[index])
     app.saveCache('bookShelf', this.data.bookShelf);
+    wx.showToast({
+      title: '添加成功',
+      icon:"success"
+    })
   }
 
 

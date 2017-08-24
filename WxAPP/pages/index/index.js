@@ -186,6 +186,7 @@ Page({
    * 新书推荐模块
    */
   newBooks: function () {
+
     var that = this
     var index = app.getRandom(20);
     wx.request({
@@ -207,8 +208,13 @@ Page({
       success:function(res){
         console.log(res.data)
         var obj = res.data.result
-        for(var i=0;i<obj.length;i++){
-          obj[i].title = obj[i].title.substr(0,10)+"..."
+        for (var i = 0; i < obj.length; i++) {
+          if (obj[i].title.length > 10) {
+            obj[i].title = obj[i].title.substr(0, 8) + "..."
+          }
+          if (obj[i].author.length > 10) {
+            obj[i].author = obj[i].author.substr(0, 8) + "..."
+          }
         }
         that.setData({
           commendItems: res.data.result

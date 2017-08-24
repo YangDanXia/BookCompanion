@@ -1,4 +1,9 @@
 <!--pages/index/functions/borrowProcess/QRcode.wxml-->
+<loading hidden="{{loadhidden}}">
+    正在生成二维码...
+</loading>
+
+
 <view class="classname">{{QRcode}}</view>
 <view wx:if="{{errHidden}}" style="text-align:center;">
 <image src="{{path}}"/>

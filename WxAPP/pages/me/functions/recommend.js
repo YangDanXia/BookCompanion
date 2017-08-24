@@ -13,6 +13,9 @@ Page({
     index: 0
   },
 
+  onShow:function(){    
+  },
+
   /**
  * 获取图书馆的输入
  */
@@ -44,6 +47,7 @@ Page({
   },
 
   submit:function(e){
+    var that = this
     if(title =='' || author ==''){
       wx.showToast({
         title: "书名和作者必填~",
@@ -71,12 +75,12 @@ Page({
               icon: 'success'
             })
           }
-
           wx.request({
             url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
           })
         }
       })
+      that.onShow()
     }
   }
 });

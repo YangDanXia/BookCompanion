@@ -63,6 +63,7 @@ Page({
           }
         }
       })
+      this.onShow()
     }
 
   }

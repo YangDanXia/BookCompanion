@@ -57,11 +57,14 @@ Page({
          app.saveCache('bookCard', obj);
          wx.showToast({
            title: '添加成功',
-           icon:'success'
+           icon:'success',
+           duration: 1000
          })
-         wx.navigateBack({
-           delta:1
-         })
+         setTimeout(function () {
+           wx.navigateBack({
+             delta: 1
+           })
+         }, 1000);  
        }
 
        wx.request({

@@ -31,6 +31,8 @@ Page({
    * 加载数据,通过接收的ISBN请求链接获取图书信息
    */
   onLoad: function (query) {
+    console.log(app.cache.bookShelf)
+    console.log(this.data.bookShelf)
     this.bookNum()
   },
 

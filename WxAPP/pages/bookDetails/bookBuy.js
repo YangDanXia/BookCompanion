@@ -13,7 +13,7 @@ Page({
     // 页面配置
     winWidth: app.globalData.width,
     winHeight: app.globalData.winHeight,
-    // 弹出框显示
+    // 是否隐藏弹出框
     modalHidden:true,
     // 显示的图书
     bookInfo:[]
@@ -43,7 +43,7 @@ Page({
       method: 'GET',
       success: function (res) {
         // res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
-        res.data.result[0].average =Math.round(res.data.result[0].ebook_price / 4)
+        res.data.result[0].average =Math.ceil(res.data.result[0].ebook_price / 4)
         that.setData({
           bookInfo: res.data.result[0]
         })
@@ -72,14 +72,16 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
-  
+    
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      modalHidden: true
+    })
   },
 
   /**

@@ -130,14 +130,16 @@ Page({
         wx.showToast({
           title: '发布成功',
           icon:"success",
-          duration:0
+          duration:1000
         })
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
-        wx.navigateBack({
-          delta:1
-        })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000);  
         
       },
       fail: function (res) {

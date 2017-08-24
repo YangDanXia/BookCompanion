@@ -35,6 +35,7 @@ Page({
   data: {
     //是否隐藏网络异常界面
     errHidden: true,
+    loadhidden:false,
     //判断管理员是否同意
     flag: false,
     //图片地址
@@ -71,6 +72,17 @@ Page({
       }
     })
     this.waitResult(that)
+  },
+
+
+  onReady: function () {
+    var that = this;
+    // 数据加载完成后 延迟隐藏loading
+    setTimeout(function () {
+      that.setData({
+        loadhidden: true
+      })
+    }, 500);
   },
 
   

@@ -90,11 +90,12 @@ checkbox{
   font-size:30rpx;
   font-weight:normal;  
   text-align: left;
+  overflow:hidden;
 }
 
 .themes-list-main{
   margin-top:10rpx;
-  margin-left:30%;
+  margin-left:32%;
 
 }
 .themes-list{ 
@@ -108,7 +109,7 @@ checkbox{
     position: relative; 
     padding: 15rpx 0rpx; 
     border-bottom: 0px solid  #D3D3D3;
-    height:220rpx;
+    height:240rpx;
     width:95%;
   }
 
@@ -119,6 +120,14 @@ checkbox{
   width:155rpx;
 }
 
+.themes-list-img {
+width:230rpx;
+margin-left:-15%;
+height:110%;
+
+border:0px solid #999;
+
+}
 .operate-type{
   margin:15rpx;
 }

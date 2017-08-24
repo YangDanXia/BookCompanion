@@ -59,7 +59,7 @@ Page({
       data:
       {
         dbName: "gdou_book",
-        table: options.table,
+        table: "all_books",
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '', pubdate: '', publisher: '', price: '', ebook_price: '', summary: '', respect_type: '', pre_price: '' },
         factor: { isbn13:options.isbn },
@@ -322,16 +322,18 @@ Page({
    */
   addBookToShelf: function () {
     var obj = app.cache.bookShelf;//收藏记录
-    // if (obj[0].shelf_bookList.length == 0){
-    //   console.log("没有书")
-    //   obj[0].shelf_bookList.push(bookNeedInfo)
-    //   wx.showToast({
-    //     title: '收藏成功',
-    //     icon: 'success'
-    //   })
-    //   app.saveCache('bookShelf', obj);
-    // }else{
-      for (var i = 0; i <=obj[0].shelf_bookList.length; i++) {
+    if (obj[0].shelf_bookList.length == 0){
+      console.log("没有书")
+      bookNeedInfo.collectStatus = "like"
+      obj[0].shelf_bookList.push(bookNeedInfo)
+      wx.showToast({
+        title: '收藏成功',
+        icon: 'success'
+      })
+      app.saveCache('bookShelf', obj);
+      return false;
+    }else{
+      for (var i = 0; i <obj[0].shelf_bookList.length; i++) {
         console.log(obj[0].shelf_bookList[i].book_isbn)
         console.log(bookNeedInfo.book_isbn)
         if (obj[0].shelf_bookList[i].book_isbn == bookNeedInfo.book_isbn ) {
@@ -350,7 +352,7 @@ Page({
           app.saveCache('bookShelf', obj);
         }
       }
-    // }
+    }
   },
 
   /**

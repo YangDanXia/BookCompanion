@@ -172,18 +172,19 @@
 <!--还书栏-->
 <swiper-item>
 <view>
-  <block>
-    <text class="issues-label">新建反馈</text>
+    <text class="issues-label">荐购原因</text>
+    <view class="issues-panel">
+        <textarea class="issues-textarea" cursor-spacing="50"  bindinput="contentInput"></textarea>
+ 
+    </view>
+
+    <text class="issues-label">联系方式</text>
     <view class="issues-panel">
       <view class="issues-input">
-        <input placeholder="请输入联系方式" bindinput="titleInput" />
+        <input placeholder="请留下您的联系方式，方便回复(选填)" bindinput="phoneInput" />
       </view>
-      <textarea class="issues-textarea" cursor-spacing="50" placeholder="请输入反馈内容" bindinput="contentInput"></textarea>
     </view>
-    <view class="submit-btn {{uploading?'disabled':''}}" bindtap="submit">
-      <text>提交反馈</text>
-    </view>
-  </block>
 </view>
 </swiper-item>
 </swiper>
+

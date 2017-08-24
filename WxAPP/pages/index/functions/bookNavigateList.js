@@ -5,7 +5,6 @@ function initSubMenuDisplay() {
   return 'hidden';
 }
 
-
 Page({
   data: {
     //是否隐藏正在加载
@@ -30,7 +29,7 @@ Page({
    */
   onLoad: function (query) {
     //一开始进入页面，先从0位置开始
-    this.getBooksList(query.tag, "0")
+    this.getBooksList(query.tag)
   },
 
 
@@ -101,27 +100,48 @@ Page({
    */
   getBooksList: function (tag) {
     var that = this
-    wx.request({ 
-      url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
-      data: {
-        request: "tag",
-        tag: tag,
-        count: "100",
-        start:"29"
+    // var index = app.getRandom(20);
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "gdou_book",
+        table: tag,
+        typeName: "inquire",
+        field: { title: '', author: '', isbn13: '', images: '', total_type: '',publisher:'',summary:'' },
+        factor: { total_type: tag },
+        limit: "0,30"
       },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
       success: function (res) {
-        var books = res.data.books;
+        console.log(res.data)
+        var obj = res.data.result
+        // for (var i = 0; i < obj.length; i++) {
+        //   if (obj[i].title.length > 10) {
+        //     obj[i].title = obj[i].title.substr(0, 16) + "..."
+        //   }
+        //   // if (obj[i].author.length > 10) {
+        //   //   obj[i].author = obj[i].author.substr(0, ) + "..."
+        //   // }
+        // }
         that.setData({
-          booksList: books
+          booksList: res.data.result
+        })
+        console.log(res.data.result)
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
       },
       fail: function (res) {
         that.setData({
-          loadhidden: true,
-          errHidden: false
+          errHidden: true
         })
       }
-    });
+    })
   }
 
 })

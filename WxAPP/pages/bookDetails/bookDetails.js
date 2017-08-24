@@ -6,6 +6,9 @@ var option = require('../../utils/infor.js');
 var bookNeedInfo = [];
 // 图书类型
 var total_type;
+//图书进一步类型
+var respect_type;
+
 // 展开或收起
 function initSubMenuDisplay() {
   return 'hidden';
@@ -75,6 +78,7 @@ Page({
       success: function (res) {
         console.log(res.data)
         total_type = res.data.result[0].total_type
+        respect_type = res.data.result[0].respect_type
         bookNeedInfo = {
           "book_photo": res.data.result[0].images,
           "book_isbn": res.data.result[0].isbn13,
@@ -311,11 +315,8 @@ Page({
    * 相关书籍推荐
    */
   relevant: function () {
-    var tags = this.data.bookInfo.tags;
-    var index = app.getRandom(tags.length);//获取随机数
-    var tag = tags[index].title;
     wx.navigateTo({
-      url: 'relatedBooks?tag=' + tag
+      url: 'relatedBooks?tag=' + respect_type + '&table=' + total_type
     })
   },
 

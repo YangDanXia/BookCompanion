@@ -11,12 +11,12 @@
     <view class="themes-list-box">
      <navigator url="bookDetails?isbn={{item.isbn13}}" hover-class="none">
        <view class="themes-list-thumbnail">
-         <image class="themes-list-img" src='{{item.image}}' />
+         <image class="themes-list-img" src='{{item.images}}' />
        </view>
 
        <view class="themes-list-main">
          <view class="themes-list-name">{{item.title}}</view>
-         <view class="themes-list-description">{{item.author[0]}}</view>
+         <view class="themes-list-description">{{item.author}}</view>
          <view class="themes-list-description">{{item.publisher}}</view>
          <view class="list-description">{{item.summary}}</view>
        </view>

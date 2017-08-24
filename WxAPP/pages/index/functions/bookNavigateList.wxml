@@ -4,6 +4,7 @@
 <loading hidden="{{loadhidden}}">
     玩命加载中...
 </loading>
+
 <view class="swiper-tab" bindtap="tapMainMenu">
     <view class="swiper-tab-list" data-current="0" >全部分类
     <image src="../../../img/icon/down.png"  class="swiper-tab-icon"></image>
@@ -25,12 +26,12 @@
     <view class="themes-list-box">
      <navigator url="../../bookDetails/bookDetails?isbn={{item.isbn13}}" hover-class="none">
        <view class="themes-list-thumbnail">
-         <image class="themes-list-img" src='{{item.image}}' />
+         <image class="themes-list-img" src='{{item.images}}' />
        </view>
 
        <view class="themes-list-main">
          <view class="themes-list-name">{{item.title}}</view>
-         <view class="themes-list-description">{{item.author[0]}}/{{item.binding}}</view>
+         <view class="themes-list-description">{{item.author}}</view>
          <view class="themes-list-description">{{item.publisher}}</view>
          <view class="list-description">{{item.summary}}</view>
        </view>

@@ -50,5 +50,5 @@
  <view>
   <image class="img" src="../../img/show/unload.png"/>
  </view>
- <text>网络异常</text>
+ <text style="font-size:50rpx; margin-left:-10%;">网络异常</text>
 </view>

@@ -106,12 +106,16 @@ Page({
       obj.push(newShelf);
       wx.showToast({
         title: '创建书单成功',
-        icon:'success'
+        icon:'success',
+        duration:1000
+
       })
-      app.saveCache('bookShelf',this.data.bookShelf)
-      wx.navigateBack({
-        delta:'1'
-      })
+      app.saveCache('bookShelf',obj)
+      setTimeout(function () {
+        wx.navigateBack({
+          delta: 1
+        })
+      }, 1500);  
 
     }
 

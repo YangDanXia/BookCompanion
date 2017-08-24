@@ -37,16 +37,13 @@
       <view class="operate">
         <view class="operate-toDo" data-index="{{index}}" bindtap="collectOrNot">
            <image class="operate-type" src="../../../img/icon/{{item.collectStatus}}.png"/>
-           <text>收藏</text>
         </view>
         <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
            <image class="operate-type" src="../../../img/icon/detail.png"/>
-           <text style="margin-top:10%;">查看详情</text>
         </navigator>
         <view class="operate-toDo">
          <picker bindchange="bindPickerChange" data-index="{{index}}" value="{{card_index}}" range="{{bookShelf}}" range-key="shelf_name">
            <image class="operate-type" src="../../../img/icon/addCard.png"/>
-           <text style="margin-top:10%;">添加至</text>
           </picker>
         </view>
       </view>

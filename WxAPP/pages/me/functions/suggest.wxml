@@ -1,5 +1,18 @@
 <!--pages/me/functions/suggest.wxml-->
-<view>
+
+<view class="container">
+
+
+
+  <view class="list-btn" bindtap="openList">
+    <image class="btn-icon" src="../../../img/icon/recommend.png"></image>
+      <view class="input-group">
+      <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"  class="picker">
+          {{array[index]}}
+      </picker>
+    </view>
+ 
+  </view>
   <block>
     <text class="issues-label">新建反馈</text>
     <view class="issues-panel">

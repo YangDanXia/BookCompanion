@@ -76,7 +76,7 @@ public class DML {
 		System.out.println(keys.toString());
 		System.out.println(keyFactor.toString());
 		keys.delete((keys.length())-1, keys.length());
-		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
+		keyFactor.delete((keyFactor.length())-4, keyFactor.length());
 		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() + "limit " +limit;
 		return sql;
 	}
@@ -132,7 +132,7 @@ public class DML {
 			keyFactor.append(key);
 			keyFactor.append("=? and ");
 		}
-		keyFactor.delete((keyFactor.length())-3, keyFactor.length());
+		keyFactor.delete((keyFactor.length())-4, keyFactor.length());
 		sql = "delete from "+table+" where " + keyFactor.toString();
 		return sql;
 	}

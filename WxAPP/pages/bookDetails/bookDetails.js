@@ -322,23 +322,26 @@ Page({
    */
   addBookToShelf: function () {
     var obj = app.cache.bookShelf;//收藏记录
-    if (obj[0].shelf_bookList.length == 0){
-      console.log("没有书")
-      obj[0].shelf_bookList.push(bookNeedInfo)
-      wx.showToast({
-        title: '收藏成功',
-        icon: 'success'
-      })
-      app.saveCache('bookShelf', obj);
-    }else{
-      for (var i = 0; i <obj[0].shelf_bookList.length; i++) {
-        if (bookNeedInfo.book_isbn == obj[0].shelf_bookList[i].book_isbn) {
+    // if (obj[0].shelf_bookList.length == 0){
+    //   console.log("没有书")
+    //   obj[0].shelf_bookList.push(bookNeedInfo)
+    //   wx.showToast({
+    //     title: '收藏成功',
+    //     icon: 'success'
+    //   })
+    //   app.saveCache('bookShelf', obj);
+    // }else{
+      for (var i = 0; i <=obj[0].shelf_bookList.length; i++) {
+        console.log(obj[0].shelf_bookList[i].book_isbn)
+        console.log(bookNeedInfo.book_isbn)
+        if (obj[0].shelf_bookList[i].book_isbn == bookNeedInfo.book_isbn ) {
           wx.showToast({
             title: '已有收藏',
             image: '../../img/icon/warn.png'
           })
-          return;
+          return false;
         } else {
+          bookNeedInfo.collectStatus= "like"
           obj[0].shelf_bookList.push(bookNeedInfo)
           wx.showToast({
             title: '收藏成功',
@@ -347,7 +350,7 @@ Page({
           app.saveCache('bookShelf', obj);
         }
       }
-    }
+    // }
   },
 
   /**
@@ -427,6 +430,44 @@ Page({
          obj.push(bookNeedInfo);
          app.saveCache('reserveBook',obj);
          wx.showToast({
+          title: '预约成功',
+          icon: 'success'
+        })
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: "网络异常",
+          image: "../../img/icon/warn.png"
+        })
+      }
+    })
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "WxApp",
+        table: "booking_record",
+        typeName: "insert",
+        field: { idx_phone: app.cache.userInfo.phone, 
+        book_takeTime: e.detail.value, 
+        book_id: that.data.bookId, 
+        book_isbn: bookNeedInfo.book_isbn,
+        book_photo: bookNeedInfo.book_photo,
+        book_name: bookNeedInfo.book_name,
+        book_author: bookNeedInfo.book_author,
+        book_library: app.globalData.G_selectLibrary
+        },
+        factor: {}
+      },
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+        obj.push(bookNeedInfo);
+        app.saveCache('reserveBook', obj);
+        wx.showToast({
           title: '预约成功',
           icon: 'success'
         })

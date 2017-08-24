@@ -148,7 +148,9 @@ display:flex;
 
 .themes-list-name {
   font-size:30rpx;
-  height:auto
+  height:65%;
+overflow:hidden;
+
 }
 
 /* 图书列表 */
@@ -205,8 +207,8 @@ display:flex;
 }
 
 .operate-toDo{
-margin-left:5%;
-margin-right:7%;
+margin-left:13%;
+margin-right:19%;
   display:flex;
 }
 .operate-toDo text{

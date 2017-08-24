@@ -129,9 +129,11 @@ Page({
          var time = that.getTime()
          var choose = app.cache.chooseToBorrow
          var returnBook = app.cache.waitToReturn || []
+         console.log(returnBook)
          for(var i = 0 ;i<choose.length;i++){
             choose[i].book_borrowTime = time
-            console.log(choose)
+            var arr = choose[i]
+            console.log(arr)
             wx.request({
               url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
               data: {
@@ -159,20 +161,21 @@ Page({
               method: 'GET',
               success: function (res) {
                 console.log(res.data)
-                if (res.data == "error") {
-                  return;
-                } else {
-                  returnBook = returnBook.push(choose[i])
+                if(res.data){
+                  console.log(arr)
+                  returnBook.push(arr)
+                  console.log(returnBook)
                   wx.showToast({
                     title: '操作成功',
-                    icon: " success"
+                    icon: " success",
+                    duration: 1000
                   })
-
+                  app.saveCache("waitToReturn", returnBook)
                 }
               }
             })
          }
-         app.saveCache("waitToReturn",returnBook)
+
       // 获取选择的下标，如果第一位比第二位小则删除第一位之后 第二位下标减一，如果第一位比第二位大，则不改变
          var waitToBorrow = app.cache.waitToBorrow
          if(len == 1){
@@ -192,9 +195,12 @@ Page({
              url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
           })
           clearTimeout(t)
-          wx.navigateBack({
-            delta: 1
-          })
+          setTimeout(function(){
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 1500);  
+
           }
         }, 
         fail: function () {
@@ -240,10 +246,11 @@ Page({
                   console.log(res.data)
                   if (res.data == "error") {
                     return;
-                  } else {
+                  } else if(res.data == true){
                     wx.showToast({
                       title: '操作成功',
-                      icon: " success"
+                      icon: " success",
+                      duration: 1000
                     })
                   }
                 }
@@ -269,9 +276,11 @@ Page({
               url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
             })
             clearTimeout(t)
-            wx.navigateBack({
-              delta: 1
-            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1500);  
           }
         }
         , fail: function () {

@@ -55,7 +55,7 @@ Page({
         wx.showToast({
           title: '购买成功！',
           icon: 'success',
-          duration: 2000
+          duration: 1000
         })
       },
       fail: function (res) {
@@ -72,9 +72,11 @@ Page({
       }
     });
 
-   wx.switchTab({
-       url: '../../index/index'
-   })
+    setTimeout(function () {
+      wx.navigateBack({
+        delta: 1
+      })
+    }, 1500);  
   },
 
  /**

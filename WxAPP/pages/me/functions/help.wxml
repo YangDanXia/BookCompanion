@@ -14,13 +14,16 @@
       <image class="numberpicture" src="../../../img/icon/one.png"></image>
     </view>
     <view class="question">
-      <text>如何向我们推荐书籍</text>
+      <text>关于图书推荐</text>
     </view>
   </view>
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">我们将根据您的长期阅读及一段时间的多次搜索习惯向您定期推荐相关书籍。您可以自己设置推荐频率：打开APP，点击“我”—“设置”—“允许推荐书籍”，我们默认为每日推荐。您可以手动关闭，再开启时将会自动弹出推荐频率的显示框，点击之后将完成您的选择。</text>
+    <text class="second-text">
+     [书途Life]拥有专门的推荐系统，您使用[书途Life]的次数越多，则推荐的准确率就越高。
+     [书途Life]每天为您量身定制一份专属书单，再也不用为找书烦恼。
+    </text>
   </view>
 </view>
 
@@ -30,7 +33,7 @@
       <image class="numberpicture" src="../../../img/icon/two.png"></image>
     </view>
     <view class="question">
-      <text>如何预约书籍</text>
+      <text>关于“附近图书馆”功能</text>
     </view>
   </view>
 </view>

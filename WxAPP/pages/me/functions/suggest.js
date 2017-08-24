@@ -43,10 +43,10 @@ Page({
       wx.request({
         url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
         data: {
-          dbName: "WxApp",
-          table: "user_suggestion",
+          dbName: "Library",
+          table: "RECORD_SUGGESTION",
           typeName: "insert",
-          field: { uk_phone: phone, suggestion: content },
+          field: { ReaderId: phone, SuggestionContent: content },
           factor: {}
         },
         header: {

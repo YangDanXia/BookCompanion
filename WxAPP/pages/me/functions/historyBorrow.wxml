@@ -5,7 +5,6 @@
 
 <!--设置下滑更新数据-->
 <view wx:if="{{errHidden}}">
-<scroll-view class="scolly" scroll-y="true" style="height:{{winHeight}}px">
   <block wx:for="{{bookList}}" wx:key="{{item}}"> 
    <view class="themes-list">
     <view class="themes-list-box">
@@ -23,7 +22,23 @@
      </view>
     </view>
    </block>
-</scroll-view>
+     <block wx:for="{{bookList}}" wx:key="{{item}}"> 
+   <view class="themes-list">
+    <view class="themes-list-box">
+     <view bindtap="bookDetail" data-isbn="{{item.BooklistISBN}}">
+       <view class="themes-list-thumbnail">
+         <image class="themes-list-img" src='{{item.BooklistImage}}' />
+       </view>
+
+       <view class="themes-list-main">
+         <view class="themes-list-name">{{item.BooklistTitle}}</view>
+         <view class="themes-list-description">{{item.BooklistAuthor}}</view>
+         <view class="themes-list-description">{{item.BooklistPublish}}</view>
+       </view>
+      </view>
+     </view>
+    </view>
+   </block>
 </view>
 
 

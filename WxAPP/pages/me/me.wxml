@@ -12,8 +12,8 @@
 
 <view class="container">
 
-    <view bindtap="historyBorrow" class="issue-link">
-      <view class="more-btn">
+    <view bindtap="historyMess" class="issue-link">
+      <view class="more-btn" >
         <image class="btn-icon" src="../../img/icon/info.png"></image>
         <text class="btn-text">我发布过的消息</text>
         <view class="btn-open">

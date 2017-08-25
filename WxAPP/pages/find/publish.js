@@ -58,8 +58,7 @@ Page({
           tempFilePath: res.tempFilePaths[0],
           success: function (res) {
             that.setData({
-              img: res.savedFilePath,
-              isContinue: true
+              img1: res.savedFilePath
             })
             photoShow =photoShow+";"+res.savedFilePath
           }

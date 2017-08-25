@@ -60,14 +60,14 @@ Page({
   },
 
  /**
-  * 查看借阅历史
+  * 发布的历史消息
   */
-  historyBorrow: function () {
+  historyMess: function () {
     if (!this.data.loginFlag) {
       this.login()
     } else {
       wx.navigateTo({
-        url: 'account/bookCard'
+        url: 'myPublished'
       })
     }
   },

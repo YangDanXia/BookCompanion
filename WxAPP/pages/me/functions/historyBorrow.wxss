@@ -23,6 +23,10 @@ page
   line-height:45rpx;
 } 
 
+.themes-list-box{
+  height:180rpx;
+} 
+
 .themes-list-description{
   text-align:left;
   line-height:45rpx;
@@ -31,6 +35,8 @@ page
 .themes-list-thumbnail{
     top:15rpx;
     left:0;
+    height:95%;
+    width:26%;
 }
 
 .themes-list-img {
@@ -38,4 +44,7 @@ width:110%;
 height:90%;
 border-radius:2%;
 border:0px solid #999;
+}
+.themes-list{
+  margin:15rpx 0;
 }

@@ -1,5 +1,5 @@
-// pages/find/find.js
-var app=getApp()
+// pages/find/publish.js
+var app = getApp()
 Page({
 
   /**
@@ -7,8 +7,8 @@ Page({
    */
   data: {
     // 提示错误图片
-    errHidden:true,
-   //登录状态
+    errHidden: true,
+    //登录状态
     loginFlag: app.cache.loginFlag || false
   },
 
@@ -43,7 +43,7 @@ Page({
   /**
    * 刷新界面
    */
-  refresh:function(){
+  refresh: function () {
     var that = this
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -52,9 +52,9 @@ Page({
         dbName: "WxApp",
         table: "sellBook_record",
         typeName: "inquireOrder",
-        field: { idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
-        factor: {},
-        limit: "1"
+        field: {id:'',idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
+        factor: { idx_phone:app.cache.userInfo.phone},
+        limit: "0,20"
       },
       //请求头
       header: {
@@ -84,51 +84,54 @@ Page({
   },
 
 
-  /**
-   * 发布文章
-   */
-  publish:function(){
-    if (!this.data.loginFlag) {
-      this.login()
-    } else {
-      wx.navigateTo({
-        url: 'publish'
-      })
-    }
-  },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
+ /**
+  * 删除发布的消息
+  */
+  delMessage:function(e){
+    var _id = e.currentTarget.dataset.id
+    console.log(e)
+    console.log(_id)
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "WxApp",
+        table: "sellBook_record",
+        typeName: "delete",
+        field: {},
+        factor: { idx_phone: app.cache.userInfo.phone,id:_id },
+        limit: "1"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+        if(res.data){
+          wx.showToast({
+            title: "删除成功",
+            icon: "success",
+            duration: 1000
+          })
+        }
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
+      },
+      fail: function (res) {
+        that.setData({
+          errHidden: false
+        })
+      }
+    })
+    setTimeout(function () {
+      this.onShow()
+    }, 500);
 
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
+
+
 })

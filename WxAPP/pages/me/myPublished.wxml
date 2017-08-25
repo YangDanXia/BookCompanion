@@ -1,7 +1,5 @@
-<!--pages/find/find.wxml-->
+<!--pages/me/myPublished.wxml-->
 <view wx:if="{{errHidden}}">
-<image class="fixed" src="../../img/icon/addTitle.png" bindtap="publish"></image>
-
 <view class="box-top" wx:for="{{list}}" wx:for-item="item" wx:key="x">
   <view class="content" style="padding-top:25rpx;">
      <image class="from-headpicture" src="{{item.photo}}"></image>
@@ -38,7 +36,7 @@
 
       <view class="buy">
       <view class="ttobuy1">
-        <button style="border-radius:0px;">我想买</button>
+        <button class="btn-buy" bindtap="delMessage" data-id="{{item.id}}">删除此消息</button>
       </view>
  </view>
   </view>
@@ -52,3 +50,4 @@
  </view>
  <text style="font-size:50rpx; margin-left:-10%;">网络异常</text>
 </view>
+

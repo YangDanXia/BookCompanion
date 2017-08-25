@@ -67,7 +67,7 @@ public class DbOperations extends HttpServlet {
 		try {
 			PreparedStatement pstmt;
 			pstmt = object.prepared(dbName,type, table, field, factor,limit);
-			if(type.equalsIgnoreCase("inquire")||type.equalsIgnoreCase("inquireAll")) {
+			if(type.equalsIgnoreCase("inquire")||type.equalsIgnoreCase("inquireAll")||type.equalsIgnoreCase("inquireLike")||type.equalsIgnoreCase("inquireOrder")) {
 				ResultSet rs = pstmt.executeQuery();
 			    String str = getResult(rs, field);
 			    System.out.print("返回的结果："+str);

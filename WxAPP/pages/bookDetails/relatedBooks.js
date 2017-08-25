@@ -96,16 +96,29 @@ Page({
     var table = query.table
     // 查找的内容
     var tag = query.tag
+    var factorType;
     var that = this
+    switch (table) {
+      case "title":
+        factorType ={title:"%"+tag};
+        break;
+      case "author":
+        factorType = { author: "%" +tag};
+        break;
+      case "publisher":
+        factorType = { publisher: "%" +tag };
+        break;
+      default:break;
+    }
     wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "gdou_book",
         table: "all_books",
-        typeName: "inquire",
+        typeName: "inquireLike",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '', publisher: '', summary: '' },
-        factor: { table: tag },
+        factor: factorType,
         limit: "0,30"
       },
       //请求头

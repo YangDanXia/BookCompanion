@@ -17,8 +17,15 @@ page{
   display: -webkit-box;
   box-sizing: border-box;
   position: relative;
-  padding-left:10rpx;
+  padding-left:17%;
   background-color: #fff;
+}
+.radio-group{
+  width:100%;
+}
+.radio{
+  padding-right:5%;
+
 }
 
 .search-input{

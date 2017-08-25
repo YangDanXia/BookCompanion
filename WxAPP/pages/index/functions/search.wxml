@@ -15,7 +15,7 @@
 </view>
 <view class="search-radio">
   <radio-group class="radio-group" bindchange="bindPickerChange">
-  <label class="radio" wx:for="{{array}}">
+  <label class="radio" wx:for="{{array}}" wx:key="item">
     <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
   </label>
 </radio-group>
@@ -31,6 +31,6 @@
 <view clas="wrap">
 
 <block wx:if="{{historySearch!=[]}}"  wx:for="{{historySearch}}" wx:key="{{item}}">
-<navigator url="../../bookDetails/relatedBooks?tag={{item}}" class="content" hover-class="none"><text class="record">{{item}}</text></navigator>
+<navigator url="../../bookDetails/relatedBooks?tag={{item.input}}&table={{item.val_type}}&way=find" class="content" hover-class="none"><text class="record">{{item.input}}</text></navigator>
 </block>
 </view>

@@ -48,7 +48,7 @@ Page({
       {
         dbName: "WxApp",
         table: "sellBook_record",
-        typeName: "inquireAll",
+        typeName: "inquireOrder",
         field: { idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
         factor: {},
         limit: "1"

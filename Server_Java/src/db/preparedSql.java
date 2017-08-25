@@ -25,12 +25,12 @@ public class preparedSql {
 			pstmt = dataBase.getDB(dbName).prepareStatement(sql);
 		}
 
-		if(type.equalsIgnoreCase("inquireAll")) {
+		if(type.equalsIgnoreCase("inquireAll")||type.equalsIgnoreCase("inquireOrder")) {
 			return pstmt;
 		}
 		
-//		占位符中对应的值
-		if(!type.equalsIgnoreCase("inquire")) {
+//		占位符中对应的值。只要发送的请求是inquire或者是inquireLike都不执行下面的语句
+		if(!type.equalsIgnoreCase("inquire")&&!type.equalsIgnoreCase("inquireLike")) {
 			for(String key:field.keySet()) {
 				String value = new String(field.get(key).getBytes("ISO-8859-1"),"utf-8");
 				pstmt.setString(index, value);

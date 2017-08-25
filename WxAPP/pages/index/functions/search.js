@@ -1,7 +1,7 @@
 // pages/index/functions/search.js
 var app = getApp();
 // 搜索的类型
-var val_type;
+var val_type ='';
 Page({
 
   /**
@@ -54,22 +54,30 @@ Page({
    */
   formSubmit: function () {
     var input = this.data.searchContent;
-    // 添加搜索内容到历史记录的数组中
-    this.data.historySearch.push(input);
+
     //输入内容不能为空
     if (input == '') {
-      wx.showModal({
-        title: '提示',
-        content: '请输入关键字',
-        showCancel: false
+      wx.showToast({
+        title: '请输入关键字',
+        image: '../../../img/icon/warn.png'
+      })
+      return false;
+    }else if(val_type == ''){
+      wx.showToast({
+        title: '请选择搜索类型',
+        image: '../../../img/icon/warn.png'
       })
       return false;
     }
+    // 添加搜索内容到历史记录的数组中
+    var obj = this.data.historySearch;
+    var cont = {input:input,val_type:val_type}
+    this.data.historySearch.push(cont);
     // 本地缓存搜索记录
-    app.saveCache("historySearch", this.data.historySearch);
+    app.saveCache("historySearch",obj);
     // 显示搜索结果
     wx.redirectTo({
-      url: 'relatedBooks?tag=' + input + '&table=' + val_type + '&way=find'
+      url: '../../bookDetails/relatedBooks?tag=' + input + '&table=' + val_type + '&way=find'
     })
   },
 

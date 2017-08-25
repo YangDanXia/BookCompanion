@@ -23,6 +23,14 @@ public class DML {
 			String sql = inquireAll(table,field);
 			System.out.println(sql);
 			return sql;
+		}else if(type.equalsIgnoreCase("inquireLike")) {
+			String sql = inquire(table,field,factor,limit);
+			System.out.println(sql);
+			return sql;
+		}else if(type.equalsIgnoreCase("inquireOrder")) {
+			String sql = inquireOrder(table,field);
+			System.out.println(sql);
+			return sql;
 		}
 		
 		else if(type.equalsIgnoreCase("insert")) {
@@ -42,8 +50,8 @@ public class DML {
 		
 	}
 	
-	
-    public String inquireAll(String table, Map<String, String> field) {
+	//取出表中所有书
+    public static String inquireAll(String table, Map<String, String> field) {
     //	  sql语句
 	    String sql;
    //   键名
@@ -55,6 +63,45 @@ public class DML {
 	   keys.delete((keys.length())-1, keys.length());
 	   sql = "select "+keys.toString() +" from "+table;
 	   return sql;
+	}
+    
+    //按照降序取书
+    public static String inquireOrder(String table, Map<String, String> field) {
+    //	  sql语句
+	    String sql;
+   //   键名
+	    StringBuilder keys = new StringBuilder();
+	    for(String key:field.keySet()) {
+		    keys.append(key);
+	    	keys.append(",");
+	    }
+	   keys.delete((keys.length())-1, keys.length());
+	   sql = "select "+keys.toString() +" from "+table +" order by id DESC" ;
+	   return sql;
+	}
+    
+    
+	//近似取书
+	public static String inquireLike(String table,Map<String,String> field,Map<String,String> factor,String limit) {
+//		sql语句
+		String sql;
+//		键名
+		StringBuilder keys = new StringBuilder();
+//		查询条件
+		StringBuilder keyFactor = new StringBuilder();
+		for(String key:field.keySet()) {
+			keys.append(key);
+			keys.append(",");
+		}
+		for(String key:factor.keySet()) {
+			keyFactor.append(key);
+			keyFactor.append("like ");
+		}
+		System.out.println(keys.toString());
+		System.out.println(keyFactor.toString());
+		keys.delete((keys.length())-1, keys.length());
+		sql = "select "+keys.toString() +" from "+table+" where  "+keyFactor.toString() + " limit " +limit;
+		return sql;
 	}
 
 	//查询数据

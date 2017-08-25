@@ -16,7 +16,13 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onLoad: function (query) {
-    this.getBooksList(query);
+    console.log(query.way)
+    if(query.way == 'relate'){
+      this.getBooksList(query);
+    }else if(query.way == 'find'){
+      this.findBooksList(query);
+    }
+
   },
 
 
@@ -51,6 +57,55 @@ Page({
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '', publisher: '', summary: '' },
         factor: { respect_type:tag },
+        limit: "0,30"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+        var obj = res.data.result
+        for (var i = 0; i < obj.length; i++) {
+          if (obj[i].title.length > 10) {
+            obj[i].title = obj[i].title.substr(0, 16) + "..."
+          }
+        }
+        that.setData({
+          bookList: res.data.result
+        })
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
+      },
+      fail: function (res) {
+        that.setData({
+          errHidden: false
+        })
+      }
+    })
+  },
+
+
+  /**
+   * 通过搜索查找图书
+   */
+  findBooksList:function(query){
+    // 查找的类型：作者、书名、出版社
+    var table = query.table
+    // 查找的内容
+    var tag = query.tag
+    var that = this
+    wx.request({
+      url: 'http://localhost:8080/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "gdou_book",
+        table: "all_books",
+        typeName: "inquire",
+        field: { title: '', author: '', isbn13: '', images: '', total_type: '', publisher: '', summary: '' },
+        factor: { table: tag },
         limit: "0,30"
       },
       //请求头

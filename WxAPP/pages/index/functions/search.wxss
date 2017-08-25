@@ -12,6 +12,15 @@ page{
   padding-left:5rpx;
   background-color: #fff;
 }
+
+.search-radio{
+  display: -webkit-box;
+  box-sizing: border-box;
+  position: relative;
+  padding-left:10rpx;
+  background-color: #fff;
+}
+
 .search-input{
 background-color: #fff;
   padding-left: 50rpx;

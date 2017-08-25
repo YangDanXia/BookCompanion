@@ -21,12 +21,14 @@
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-     [书途Life]拥有专门的推荐系统，您使用[书途Life]的次数越多，则推荐的准确率就越高。
+    <text class="second-text">[书途Life]拥有专门的推荐系统，您使用[书途Life]的次数越多，则推荐的准确率就越高。
      [书途Life]每天为您量身定制一份专属书单，再也不用为找书烦恼。
     </text>
+  
   </view>
 </view>
+
+
 
 <view class="all">
  <view class="first">
@@ -34,15 +36,13 @@
       <image class="numberpicture" src="../../../img/icon/two.png"></image>
     </view>
     <view class="question">
-      <text>关于“附近图书馆”功能</text>
+    <text>关于“附近图书馆”功能</text>
     </view>
   </view>
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-      您可直接点击图书馆地址栏，查看所在地附近哪里有图书馆，点击查看地图还可查看具体位置。
-    </text>
+    <text class="second-text">您可直接点击图书馆地址栏，查看所在地附近哪里有图书馆，点击查看地图还可查看具体位置。</text>
   </view>
 </view>
 
@@ -58,9 +58,7 @@
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text"> 
-      首页的扫码功能是图书馆借阅图书时扫描图书条形码时所使用的，请勿用其扫描其它无效的条形码或二维码
-    </text>
+    <text class="second-text">首页的扫码功能是图书馆借阅图书时扫描图书条形码时所使用的，请勿用其扫描其它无效的条形码或二维码。</text>
   </view>
 </view>
 
@@ -77,8 +75,7 @@
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-      读者可以直接在[书途Life]上预约指定图书馆内的图书，在预约前可先查看是否有图书在馆再进行预约。在预约生效后，相应的图书馆将会处理您的预约情况，请及时查看手机短信。
+    <text class="second-text">读者可以直接在[书途Life]上预约指定图书馆内的图书，在预约前可先查看是否有图书在馆再进行预约。在预约生效后，相应的图书馆将会处理您的预约情况，请及时查看手机短信。
       （注：在距离取书时间到期前3天，系统将会提醒您前去取书，在也不用担心错过取书时间~）
     </text>
   </view>
@@ -98,8 +95,7 @@
  
 <view class="all">
   <view class="second">
-    <text class="second-text">
-    “凑单买书”的目的是解决因没有足够财力，却又想要获取某本电子书的需求。
+    <text class="second-text">“凑单买书”的目的是解决因没有足够财力，却又想要获取某本电子书的需求。
     您可以与有同样需求的小伙伴一起凑单买一本电子书，下单成功后，小助手会将电子书文件以附件或网盘链接的形式发送到参与凑单者填写的接收邮箱中。
     电子书的费用：将电子书原价由4人平摊并向上取整。
     （注：单价为5元以下的电子书不参与凑单活动，还可以使用书卷抵消现金）。
@@ -120,8 +116,7 @@
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-      在这里，用户可以发布图书的买卖信息。
+    <text class="second-text">在这里，用户可以发布图书的买卖信息。
       每天淘一淘，可能一个不小心就以合心意的价格收入一本心仪已久的图书~
     </text>
   </view>
@@ -141,9 +136,7 @@
 
 <view class="all">
   <view class="second">
-    <text class="second-text">
-      读者必须在图书馆办理借书证后，才可在[书途Life]上使用一系列与图书馆相关的功能（如预约图书、借阅图书）。
-    </text>
+    <text class="second-text">读者必须在图书馆办理借书证后，才可在[书途Life]上使用一系列与图书馆相关的功能（如预约图书、借阅图书）。</text>
   </view>
 </view>
  
@@ -159,9 +152,7 @@
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-      读者可向指定图书馆反馈图书馆存在问题，当图书馆方回复了您的反馈后将会以短信的形式通知您。
-    </text>
+    <text class="second-text">读者可向指定图书馆反馈图书馆存在问题，当图书馆方回复了您的反馈后将会以短信的形式通知您。</text>
   </view>
 </view>
  

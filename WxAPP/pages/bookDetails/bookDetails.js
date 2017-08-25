@@ -319,7 +319,7 @@ Page({
    */
   relevant: function () {
     wx.navigateTo({
-      url: 'relatedBooks?tag=' + respect_type + '&table=' + total_type
+      url: 'relatedBooks?tag=' + respect_type + '&table=' + total_type +'&way=relate'
     })
   },
 
@@ -342,27 +342,25 @@ Page({
       return false;
     }else{
       for (var i = 0; i <len; i++) {
-        console.log(obj[0].shelf_bookList[i].book_isbn)
-        console.log(bookNeedInfo.book_isbn)
         if (obj[0].shelf_bookList[i].book_isbn == bookNeedInfo.book_isbn ) {
           wx.showToast({
             title: '已有收藏',
             image: '../../img/icon/warn.png'
           })
           return false;
-        } else {
-          bookNeedInfo.collectStatus= "like"
-          obj[0].shelf_bookList.push(bookNeedInfo)
-          wx.showToast({
-            title: '收藏成功',
-            icon: 'success'
-          })
-          app.saveCache('bookShelf', obj);
-          return false;
         }
-      }
+      } 
     }
+      bookNeedInfo.book_name = bookNeedInfo.book_name.substr(0, 16) + "..."
+      bookNeedInfo.collectStatus= "like"
+      obj[0].shelf_bookList.push(bookNeedInfo)
+      wx.showToast({
+         title: '收藏成功',
+         icon: 'success'
+       })
+      app.saveCache('bookShelf', obj);
   },
+
 
   /**
    * 预约图书，登录后才能预定图书

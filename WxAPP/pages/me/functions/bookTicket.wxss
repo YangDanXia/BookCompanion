@@ -120,18 +120,17 @@ height:auto;
 .second
 {
   display: flex;
-  flex-direction: row;
+  flex-direction:row;
   justify-content: flex-start;
-  align-items:flex-start;
-  width:680rpx;
-  height:140rpx;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  overflow: hidden;
+  align-items:center;
+  width:90%;
 }
 .second-text
 {
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:flex-start;
   font-size:30rpx;
   color:#707070;
 }

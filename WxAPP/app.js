@@ -23,7 +23,7 @@ App({
       success: function (res) { return; },
       fail: function () {
         var newBookShelf = [{
-          "shelf_photo": "../../../img/show/book.png",
+          "shelf_photo": "../../img/show/book.png",
           "shelf_name": "我喜欢的图书",
           "shelf_intro": "",
           "shelf_bookList": [],

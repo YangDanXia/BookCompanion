@@ -6,6 +6,7 @@
       "pages/find/find",
       "pages/me/me",
       "pages/find/publish",
+      "pages/shelf/addShelf",
       "pages/bookDetails/bookDetails",
       "pages/bookDetails/relatedBooks",
       "pages/bookDetails/bookBuy",
@@ -28,7 +29,6 @@
       "pages/index/functions/bookNavigateList",
       "pages/index/functions/search",
       "pages/shelf/functions/shelfDetails",
-      "pages/shelf/functions/addShelf",
       "pages/bookDetails/function/pay",
       "pages/index/functions/borrowProcess/QRcode"
       

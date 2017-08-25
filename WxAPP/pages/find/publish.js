@@ -29,11 +29,16 @@ Page({
       sizeType: 'compressed', // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        that.setData({
-          img: res.tempFilePaths,
-          isContinue:true
+        wx.saveFile({
+          tempFilePath: res.tempFilePaths[0],
+          success: function (res) {
+              that.setData({
+                img: res.savedFilePath,
+                isContinue:true
+              })
+              photoShow = res.savedFilePath
+          }
         })
-        photoShow = res.tempFilePaths[0]
       }
     })
     console.log(photoShow)
@@ -49,10 +54,16 @@ Page({
       sizeType: 'compressed', // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        that.setData({
-          imgs: res.tempFilePaths
+        wx.saveFile({
+          tempFilePath: res.tempFilePaths[0],
+          success: function (res) {
+            that.setData({
+              img: res.savedFilePath,
+              isContinue: true
+            })
+            photoShow =photoShow+";"+res.savedFilePath
+          }
         })
-        photoShow = photoShow +";"+ res.tempFilePaths[0]
       }
 
     })

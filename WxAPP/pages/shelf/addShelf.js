@@ -10,7 +10,7 @@ Page({
    */
   data: {
     //封面图片
-    img: "../../../img/show/book.png",
+    img: "../../img/show/book.png",
     //书单内容
     bookShelf:app.cache.bookShelf||[]
   },
@@ -40,8 +40,13 @@ Page({
       sizeType: 'compressed', // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        that.setData({
-          img:res.tempFilePaths
+        wx.saveFile({
+          tempFilePath: res.tempFilePaths[0],
+          success: function (res) {
+            that.setData({
+              img: res.savedFilePath
+            })
+          }
         })
       }
     })
@@ -71,7 +76,7 @@ Page({
       if (!this.data.content[index]) {
         wx.showToast({
           title: "请输入信息",
-          image: "../../../img/icon/warn.png"
+          image: "../../img/icon/warn.png"
         })
       } else {
         wx.showToast({
@@ -95,7 +100,7 @@ Page({
       if (name == ''){
           wx.showToast({
             title: '请填写完整信息',
-            image:'../../../img/icon/warn.png'
+            image:'../../img/icon/warn.png'
           })
           return false;
         }

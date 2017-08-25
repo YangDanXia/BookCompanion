@@ -77,14 +77,13 @@
       <image class="numberpicture" src="../../../img/icon/one.png"></image>
     </view>
     <view class="question">
-      <text class="help-title">书卷有什么用？</text>
+      <text>书卷有什么用？</text>
     </view>
   </view>
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-    1.由于平台的“凑单买书”功能的收费的计算是向上取数的，所以为了更好的服务大家，此书卷可用于抵消现金即1张书卷可抵消0.1元。\n
+    <text class="second-text">1.由于平台的“凑单买书”功能的收费的计算是向上取数的，所以为了更好的服务大家，此书卷可用于抵消现金即1张书卷可抵消0.1元。\n
     2.为防止人为恶意发布虚假消息，故要求发布消息者每发布一条消息都需缴纳1张书卷。\n
     3.书卷数量越高，也代表着守信度越高、读书频率越高，因此在部分合作图书馆中，可凭借书卷增加借书时长。\n
     </text>
@@ -104,8 +103,7 @@
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-    1.鼓励大家多读书，帮助用户形成好的阅读习惯。\n
+    <text class="second-text">1.鼓励大家多读书，帮助用户形成好的阅读习惯。\n
     2.由于存在有借书不还或逾期还书的情况，故为了帮助图书馆的管理，我们设置此功能意在帮助读者形成及时还书的习惯。\n
     3.在本平台不只有奖励也有惩罚，用户可以获得书卷，也会被扣除书卷。\n
     4.当用户书卷数过低时，可能会面临无法使用本程序的情况。\n
@@ -141,8 +139,7 @@
 </view>
 <view class="all">
   <view class="second">
-    <text class="second-text">
-     1.逾期未归还图书：在计时3天后，每天扣除1张书卷直至读者归还图书
+    <text class="second-text">1.逾期未归还图书：在计时3天后，每天扣除1张书卷直至读者归还图书
      2.发布二手图书消息：每发布一条消息需扣除1张书卷
     </text>
   </view>

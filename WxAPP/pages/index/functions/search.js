@@ -1,6 +1,7 @@
 // pages/index/functions/search.js
 var app = getApp();
-
+// 搜索的类型
+var val_type;
 Page({
 
   /**
@@ -10,7 +11,13 @@ Page({
     //历史记录
     historySearch: app.cache.historySearch || [],
     //搜索内容
-    searchContent: ''
+    searchContent: '',
+    array:[
+      { name:'title',value:'书名'},
+      { name: 'author', value: '作者' },
+      { name: 'publisher', value: '出版社' }
+      ]
+
   },
 
 
@@ -23,6 +30,14 @@ Page({
     })
   },
 
+
+ /**
+ * 类型的输入
+ */
+  bindPickerChange: function (e) {
+    val_type= e.detail.value
+    console.log(val_type)
+  },
 
   /**
    * 输入框失焦时触发,获取输入框内容
@@ -53,8 +68,8 @@ Page({
     // 本地缓存搜索记录
     app.saveCache("historySearch", this.data.historySearch);
     // 显示搜索结果
-    wx.navigateTo({
-      url: '../../bookDetails/relatedBooks?tag=' + input
+    wx.redirectTo({
+      url: 'relatedBooks?tag=' + input + '&table=' + val_type + '&way=find'
     })
   },
 

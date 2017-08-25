@@ -8,7 +8,7 @@
 
 <!--自建书单-->
 <view class="myShelfTop">
-    <navigator class="shelfTop" url="functions/addShelf" hover-class="none">
+    <navigator class="shelfTop" url="addShelf" hover-class="none">
       <image class="shelf-btn" src="../../img/icon/addShelfs.png"/>
       <text class="shelf-text">创建书单</text>
     </navigator>

@@ -1,5 +1,11 @@
 <!--pages/index/functions/search.wxml-->
 <!--搜索/扫一扫-->
+<!-- <view class="input-group">
+  <picker bindchange="bindPickerChange" value="{{index}}" range="{{array}}"  class="picker">
+       {{array[index]}}
+ </picker>
+</view> -->
+
 <view class="search-box">
  <image class="search-vacate"/>
    <input class="search-input" placeholder="请输入关键字" placeholder-class="placeholder-style" bindchange="bindChange" confirm-type="search"/>
@@ -7,6 +13,14 @@
      <icon type="search"  bindtap="formSubmit"/>
    </view>
 </view>
+<view class="search-radio">
+  <radio-group class="radio-group" bindchange="bindPickerChange">
+  <label class="radio" wx:for="{{array}}">
+    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+  </label>
+</radio-group>
+</view>
+
 
 
 <view class="history">

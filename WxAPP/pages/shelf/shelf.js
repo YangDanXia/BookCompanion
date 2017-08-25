@@ -65,29 +65,6 @@ Page({
   },
 
   /**
-   * 滑动切换Tab
-   */
-  bindChange: function (e) {
-    this.setData({
-      currentTab: e.detail.current
-    });
-  },
-
-
-  /**
-   * 点击Tab切换
-   */
-  swichNav: function (e) {
-    if (this.data.currentTab === e.target.dataset.current) {
-      return false;
-    } else {
-      this.setData({
-        currentTab: e.target.dataset.current
-      })
-    }
-  },
-
-  /**
    * 计算图书数量
    */
   bookNum:function(){

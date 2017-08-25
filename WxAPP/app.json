@@ -1,6 +1,6 @@
 {
   "pages": [
-        "pages/index/functions/search",
+  
       "pages/index/index",
       "pages/shelf/shelf",
       "pages/find/find",
@@ -27,7 +27,7 @@
       "pages/index/functions/library",
       "pages/index/functions/map",
       "pages/index/functions/bookNavigateList",
-
+      "pages/index/functions/search",
       "pages/shelf/functions/shelfDetails",
       "pages/bookDetails/function/pay",
       "pages/index/functions/borrowProcess/QRcode"

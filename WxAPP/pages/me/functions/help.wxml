@@ -5,7 +5,7 @@
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">意见反馈</view>
 </view>
 
-<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight+400}}px" bindchange="bindChange">
 <swiper-item>
 <view class="help">
 
@@ -155,6 +155,11 @@
     <text class="second-text">读者可向指定图书馆反馈图书馆存在问题，当图书馆方回复了您的反馈后将会以短信的形式通知您。</text>
   </view>
 </view>
+<view class="all warn" >
+  <view class="second">
+    <text class="second-text">版权所有@海洋技术团队</text>
+  </view>
+</view>
  
 
 </view>
@@ -176,6 +181,10 @@
       </view>
     </view>
 </view>
+
+    <view class="submit-btn"  bindtap="submit">
+      <text>提交反馈</text>
+    </view>
 </swiper-item>
 </swiper>
 

@@ -2,7 +2,7 @@
 <view class="general">
   <view class="head">
     <image class="picture-one" src="../../../img/icon/money.png"></image>
-    <text class="ticket">5</text>
+    <text class="ticket">{{num}}</text>
   </view>
 </view>
 
@@ -11,7 +11,7 @@
 <view class="movie-photos">
   <view class="positon">
   <view class="make">
-    <text class="more">做任务赚书卷</text>
+    <text class="more">做任务赚书卷(点击查看)</text>
     <text class="more1">更多任务</text>
     <view class="picture">
       <image class="picture" src="../../../img/icon/go.png"></image>
@@ -21,49 +21,11 @@
   <scroll-view scroll-x="true" style="width: {{winWidth}}px" scroll-left="0">
    <view class="shiyan">
 
-     <view class="box-top">
-       <view class="box-one">
-          <text class="box-textone">每日打卡</text>
+     <view class="box-top" wx:for="{{array}}" wx:key="item">
+       <view class="box-one" data-index="{{index}}" bindtap="tellIntro">
+          <text class="box-textone">{{item}}</text>
        </view>
      </view>
-
-
-     <view class="box-top">
-       <view class="box-one">
-          <text class="box-textone">借阅图书</text>
-       </view>
-     </view>
-
-     <view class="box-top">
-       <view class="box-one">
-          <text class="box-textone">按时还书</text>
-       </view>
-     </view>
-
-     <view class="box-top">
-       <view class="box-one">
-          <text class="box-textone">收藏图书</text>
-       </view>
-     </view>
-
-     <view class="box-top">
-      <view class="box-one">
-        <text class="box-textone">购买电子书</text>
-      </view>
-     </view>
-
-     <view class="box-top">
-      <view class="box-one">
-        <text class="box-textone">发布</text>
-      </view>
-     </view>
-
-     <view class="box-top">
-      <view class="box-one">
-        <text class="box-textone">意见反馈</text>
-      </view>
-     </view>
-
     </view>
 
   </scroll-view>
@@ -146,3 +108,4 @@
 </view>
 
 </view>
+ 

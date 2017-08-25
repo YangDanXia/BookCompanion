@@ -1,6 +1,9 @@
 // pages/me/me.js
 const date = new Date()
 var app = getApp()
+// 书卷数量
+var num = app.cache.bookTicket || 0
+
 Page({
 
   /**
@@ -12,6 +15,7 @@ Page({
     loginFlag: app.cache.loginFlag || false,
     // 打卡天数
     days:app.cache.checkIn.days
+
   },
 
 
@@ -78,11 +82,18 @@ Page({
     var arr;
     if(content.data!= data){
       days++ ;
+      num++;
       arr = { data: data, days:days }
       this.setData({
         days:days
       })
+      wx.showToast({
+        title: "书卷+1",
+        icon:"success",
+        duration:1000
+      })
       app.saveCache('checkIn',arr)
+      app.saveCache('bookTicket',num)
     }else{
       wx.showToast({
         title: "今天已完成打卡了哦~",

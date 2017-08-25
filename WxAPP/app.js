@@ -33,7 +33,7 @@ App({
         that.saveCache('bookShelf', newBookShelf)
       }
     })
-    
+
      /**
       * 建立用户信息
       */
@@ -65,21 +65,6 @@ App({
       }
     })
 
-    // wx.login({
-    //   success: function (res) {
-    //     if (res.code) {
-    //       wx.request({
-    //         url: "https://api.weixin.qq.com/sns/jscode2session?appid=wx2b32ac8600d1cef0&secret=e3b94eafd696bc0913cc1dd40f0b7069&js_code=" + res.code + "&grant_type=authorization_code",
-    //         success: function (res) {
-    //           console.log(res.data.openid)
-    //         }
-    //       });
-    //     }
-    //   },
-    //   fail: function () {
-    //     that.showWarnModal('提示', '拒绝授权将导致部分功能无法使用，请重新打开再点击允许授权！')
-    //   }
-    // })
     
     /**
      * 读取缓存
@@ -95,23 +80,6 @@ App({
         });
       }
     } catch (e) { console.warn('获取缓存失败'); }
-
-    //  启动连接池
-    // wx.request({
-    //   // url: 'https://www.hqinfo.xyz/Server_Java/InitSql',
-    //   url: 'http://localhost:8080/Server_Java/InitSql',
-    //   data:{
-    //     dbName:"WxApp"
-    //   },      
-    //   header: {
-    //     'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-    //   },
-    //   method: 'GET',
-    //   success:function(res){
-        
-    //   }
-    // })
-
 
   },
 
@@ -191,6 +159,8 @@ App({
     }
   },
 
+
+
   /**
    * 倒计时
    */
@@ -205,7 +175,7 @@ App({
     }
       , 1000)
   },
- 
+
 
   //缓存内容
   cache: {},

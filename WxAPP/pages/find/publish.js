@@ -112,14 +112,21 @@ Page({
     var userInfo = app.cache.userInfo
     var that = this
     var picture=''; 
+    var num = app.cache.bookTicket || 0
     if (!content || !price || !ex_price || !photoShow||!tag) {
       wx.showToast({
         title: '请输入完整信息',
         image: '../../img/icon/warn.png'
       })
-      return;
+      return false;
     } 
-    console.log(photoShow)
+    if(num<1){
+      wx.showToast({
+        title: '先赚够书卷再发布消息吧~',
+        image: '../../img/icon/warn.png'
+      })
+      return false;
+    }
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -143,6 +150,13 @@ Page({
           icon:"success",
           duration:1000
         })
+        num--
+        wx.showToast({
+          title: "书卷-1",
+          icon: "success",
+          duration: 1000
+        })
+        app.saveCache('bookTicket', num)
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })

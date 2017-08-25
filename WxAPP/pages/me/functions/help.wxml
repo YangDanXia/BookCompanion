@@ -126,7 +126,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/six.png"></image>
+      <image class="numberpicture" src="../../../img/icon/seven.png"></image>
     </view>
     <view class="question">
       <text>关于"借书证"</text>
@@ -143,7 +143,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/six.png"></image>
+      <image class="numberpicture" src="../../../img/icon/eight.png"></image>
     </view>
     <view class="question">
       <text>关于"图书荐购与图书馆反馈"</text>

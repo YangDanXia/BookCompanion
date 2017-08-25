@@ -1,6 +1,6 @@
 {
   "pages": [
-  
+       
       "pages/index/index",
       "pages/shelf/shelf",
       "pages/find/find",
@@ -22,7 +22,8 @@
       "pages/me/functions/help",
       "pages/me/functions/changePhone",
       "pages/me/functions/changePassword",
-      "pages/me/functions/bookTicket",
+      "pages/me/functions/bookTicket", 
+      "pages/me/functions/historyBorrow",
       "pages/index/functions/bookOrder",
       "pages/index/functions/library",
       "pages/index/functions/map",

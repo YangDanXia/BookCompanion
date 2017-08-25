@@ -2,8 +2,6 @@
 var app =getApp()
 // 二维码中图书内容
 var codeValue = [];
-// 二维码类型
-var codeType;
 const date = new Date()
 Page({
 
@@ -140,7 +138,6 @@ Page({
 
   // 选择借书证,在点击确认时跳转至二维码界面
   bindPickerChange: function (e) {
-    console.log("选择的类型："+codeType)
     var index = e.detail.value
     this.setData({
       card_index:index

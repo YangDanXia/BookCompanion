@@ -1,0 +1,41 @@
+/* pages/me/functions/historyBorrow.wxss */
+ 
+page
+{
+    background-color:rgb(240,240,240); 
+    font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif;
+}
+
+
+/*显示异常*/
+.img{
+  width:280rpx;
+  height:300rpx;
+}
+
+.contain{
+  text-align: center;
+  margin-top:280rpx;
+}
+ 
+.themes-list-name{
+  text-align:left;
+  line-height:45rpx;
+} 
+
+.themes-list-description{
+  text-align:left;
+  line-height:45rpx;
+ }
+
+.themes-list-thumbnail{
+    top:15rpx;
+    left:0;
+}
+
+.themes-list-img {
+width:110%;
+height:90%;
+border-radius:2%;
+border:0px solid #999;
+}

@@ -57,6 +57,14 @@ Page({
           icon: 'success',
           duration: 1000
         })
+        var num = app.cache.bookTicket||0
+        num++;
+        wx.showToast({
+          title: "书卷+1",
+          icon: "success",
+          duration: 1000
+        })
+        app.saveCache('bookTicket', num)
       },
       fail: function (res) {
         wx.showModal({

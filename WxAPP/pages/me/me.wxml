@@ -15,7 +15,7 @@
     <view bindtap="historyBorrow" class="issue-link">
       <view class="more-btn">
         <image class="btn-icon" src="../../img/icon/info.png"></image>
-        <text class="btn-text">小纸条</text>
+        <text class="btn-text">我发布过的消息</text>
         <view class="btn-open">
           <image class="btn-enter" src="../../img/icon/enter.png"></image>
         </view>
@@ -37,16 +37,16 @@
           </view>
         </view>
         <view class="list">
-          <navigator url="functions/bookTicket" class="items" >
+          <navigator url="functions/bookTicket" class="items" hover-class="none">
            <image src="../../img/icon/intergral.png" style="margin-top:-3px;"></image>
            <text style="margin-top:-5px;">书卷</text>
           </navigator>
         </view>
         <view class="list">
-          <view class="items" bindtap="ViewQRcode">
+          <navigator url="functions/historyBorrow" class="items" hover-class="none">
            <image src="../../img/icon/histroyBorrow.png" style="width:55rpx;height:55rpx;"></image>
            <text style="margin-top:3rpx;">借阅历史</text>
-          </view>
+          </navigator>
         </view>
 
       </view>

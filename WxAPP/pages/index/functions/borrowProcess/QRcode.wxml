@@ -1,6 +1,6 @@
 <!--pages/index/functions/borrowProcess/QRcode.wxml-->
 <loading hidden="{{loadhidden}}">
-    正在生成二维码...
+    正在生成二维码
 </loading>
 
 

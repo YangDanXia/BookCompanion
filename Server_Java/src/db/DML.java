@@ -24,7 +24,7 @@ public class DML {
 			System.out.println(sql);
 			return sql;
 		}else if(type.equalsIgnoreCase("inquireLike")) {
-			String sql = inquire(table,field,factor,limit);
+			String sql = inquireLike(table,field,factor,limit);
 			System.out.println(sql);
 			return sql;
 		}else if(type.equalsIgnoreCase("inquireOrder")) {
@@ -95,7 +95,7 @@ public class DML {
 		}
 		for(String key:factor.keySet()) {
 			keyFactor.append(key);
-			keyFactor.append("like ");
+			keyFactor.append(" like ? ");
 		}
 		System.out.println(keys.toString());
 		System.out.println(keyFactor.toString());

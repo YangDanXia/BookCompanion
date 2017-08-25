@@ -100,18 +100,18 @@ Page({
     var that = this
     switch (table) {
       case "title":
-        factorType ={title:"%"+tag};
+        factorType = { title:tag};
         break;
       case "author":
-        factorType = { author: "%" +tag};
+        factorType = { author: tag };
         break;
       case "publisher":
-        factorType = { publisher: "%" +tag };
+        factorType = { publisher:tag };
         break;
       default:break;
     }
     wx.request({
-      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      url: 'http://localhost:8080/Server_Java/DbOperations',
       data:
       {
         dbName: "gdou_book",
@@ -129,6 +129,12 @@ Page({
       success: function (res) {
         console.log(res.data)
         var obj = res.data.result
+        if(obj.length == 0){
+          that.setData({
+            errHidden: false
+          })
+          return false;
+        }
         for (var i = 0; i < obj.length; i++) {
           if (obj[i].title.length > 10) {
             obj[i].title = obj[i].title.substr(0, 16) + "..."

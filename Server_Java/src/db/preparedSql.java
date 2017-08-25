@@ -29,6 +29,15 @@ public class preparedSql {
 			return pstmt;
 		}
 		
+		if(type.equalsIgnoreCase("inquireLike")) {
+			for(String key:factor.keySet()) {
+				String value = new String(factor.get(key).getBytes("ISO-8859-1"),"utf-8");
+				pstmt.setString(index, "%"+value+"%");
+				index++;
+			}
+			return pstmt;
+		}
+		
 //		占位符中对应的值。只要发送的请求是inquire或者是inquireLike都不执行下面的语句
 		if(!type.equalsIgnoreCase("inquire")&&!type.equalsIgnoreCase("inquireLike")) {
 			for(String key:field.keySet()) {
@@ -37,6 +46,8 @@ public class preparedSql {
 				index++;
 			}
 		}
+		
+
 
 		for(String key:factor.keySet()) {
 			String value = new String(factor.get(key).getBytes("ISO-8859-1"),"utf-8");

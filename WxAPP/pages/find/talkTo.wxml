@@ -1,2 +1,45 @@
-<!--pages/find/talkTo.wxml-->
-<text>pages/find/talkTo.wxml</text>
+<!--pages/me/functions/service.wxml-->
+<view class="container">
+ 
+  <!--反馈内容-->
+     <ul class="scrollwechat"  bindtap="closeimg">
+      <scroll-view class="scrollview" scroll-y="true" >
+      <block  wx:for="{{feedback}}" wx:key="index">
+       <li wx:if="{{item.myDate}}" class="mydate">
+            <view class="mydatebox">
+              <text class="mydatetext">{{item.myDate}}</text>
+             </view>
+        </li>
+      <li class="{{item.role?'admin':'user'}}">
+      <!--头像-->
+        <view class="imgview"><image class="headimg" src="{{item.img}}"></image></view>
+        <!--三角-->
+         <view class="triangle">
+              <image wx:if="{{item.role}}"  src="../../../img/icon/Right.png"></image>
+              <image wx:else  src="../../../img/icon/Left.png"></image>
+         </view>
+         <!--内容 ：图片/文字-->
+        <view class="{{item.role?'textview2':'textview'}}">
+          <view class="feedbackimg" wx:if="{{item.content_type}}">  <image  src="{{item.content}}"></image></view>
+          <text class="feedbacktext" wx:else>{{item.content}}</text>
+        </view>
+        <view wx:if="{{networkType=='fail'}}"><icon type="warn" size="20"/></view>
+        <view class="imgview"></view>
+      </li>
+      </block>
+      <view class="link"></view>
+       </scroll-view>
+    </ul>
+
+ 
+  <!--提交框-->
+  <view  class="footer">
+      <view  class="footinput">
+        <view class="input"><input bindinput='bindInput' type="text" value="{{addinput}}"/></view>
+      </view>
+      <view class="foodsend" bindtap="sendKeyWord">
+        <view class="send">发送</view>
+      </view>
+  </view>
+
+</view>

@@ -10,8 +10,16 @@ Page({
   data: {
     toSend: true,
     second: 60,
-    oldPasswd: app.cache.userInfo.password,
-    phone: app.cache.userInfo.phone
+  },
+
+  onShow: function () {
+    var info = app.cache.userInfo || ''
+    var phone = info.phone || ''
+    var oldPasswd = info.password ||''
+    this.setData({
+      phone: phone,
+      oldPasswd: oldPasswd
+    })
   },
 
   /**
@@ -92,18 +100,18 @@ Page({
         } else {
           wx.showToast({
             icon: 'success',
-            duration: 2000,
-            success: function () {
-              wx.navigateTo({
-                url:'../account/login'
-              })
-            }
+            duration: 1000
           })
-        }
 
+        }
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '../account/login'
+          })
+        }, 1000);  
       },
       fail: function (res) {
         wx.showToast({

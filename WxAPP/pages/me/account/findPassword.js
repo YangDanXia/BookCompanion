@@ -137,23 +137,24 @@ Page({
         if (res.data == "error") {
           wx.showToast({
             title: "系统繁忙",
-            image: "../../../img/icon/warn.png"
+            image: "../../../img/icon/warn.png",
+            duration: 1000
           })
+          return false;
         } else {
           wx.showToast({
             icon: 'success',
-            duration: 2000,
-            success: function () {
-              wx.navigateBack({
-                delta: 1
-              })
-            }
+            duration: 1000
           })
         }
-
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000);  
       },
       fail: function (res) {
         wx.showToast({

@@ -38,7 +38,7 @@
 
       <view class="buy">
       <view class="ttobuy1">
-        <button style="border-radius:0px;" bindtap="talkTo">我想买</button>
+        <button style="border-radius:0px;" bindtap="talkTo">我想要</button>
       </view>
  </view>
   </view>

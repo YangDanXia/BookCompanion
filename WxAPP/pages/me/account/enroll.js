@@ -134,12 +134,14 @@ Page({
       method: 'GET',
       success: function (res) {
         console.log(res.data);
-        if (res.data.indexOf("error")) {
+        if (res.data =="error") {
           wx.showToast({
             title: "手机号已存在",
-            image: "../../../img/icon/warn.png"
+            image: "../../../img/icon/warn.png",
+            duration: 1000
           })
-        } else{
+          return false;
+        } else if(res.data == ""){
           wx.showToast({
             title: '注册成功',
             icon: 'success',

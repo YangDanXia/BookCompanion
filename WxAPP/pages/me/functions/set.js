@@ -15,7 +15,9 @@ Page({
     //功能列表
     functionList: option.ReminderFunction,
     //功能设置情况
-    remindFlag: app.cache.remindFlag || ['0', '0', '0', '0']
+    remindFlag: app.cache.remindFlag || ['0', '0', '0', '0'],
+    //登录状态
+    loginFlag: app.cache.loginFlag || false
   },
 
 
@@ -111,6 +113,35 @@ Page({
       }
     })
 
+  },
+
+  changePhone:function(){
+    if (!this.data.loginFlag) {
+      this.login()
+    } else {
+      wx.navigateTo({
+        url: 'changePhone'
+      })
+    }
+  },
+
+  changePassword:function(){
+    if (!this.data.loginFlag) {
+      this.login()
+    } else {
+      wx.navigateTo({
+        url: 'changePassword'
+      })
+    }
+  },
+
+  /**
+ * 进入登录界面
+ */
+  login: function () {
+    wx.navigateTo({
+      url: '../account/login'
+    })
   },
 
   /**

@@ -12,9 +12,7 @@ Page({
   data: {
     userInfo: app.cache.userInfo,
     //登录状态
-    loginFlag: app.cache.loginFlag || false,
-    // 打卡天数
-    days:app.cache.checkIn.days || 0
+    loginFlag: app.cache.loginFlag || false
     
   },
 
@@ -32,7 +30,10 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var content = app.cache.checkIn || [];
+    var days = content.days || 0;
     this.setData({
+      days:days,
       loginFlag: app.cache.loginFlag || false,
       userInfo: app.cache.userInfo
     })

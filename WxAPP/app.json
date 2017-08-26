@@ -4,7 +4,7 @@
       "pages/index/index",
       "pages/shelf/shelf",
       "pages/find/find",
-            "pages/me/me",
+      "pages/me/me",
             
       "pages/me/myPublished",
       "pages/find/talkTo",
@@ -15,7 +15,7 @@
       "pages/bookDetails/relatedBooks",
       "pages/bookDetails/bookBuy",
 
-"pages/me/account/login",
+      "pages/me/account/login",
       "pages/me/account/bookCard",
       "pages/me/functions/recommend",
 

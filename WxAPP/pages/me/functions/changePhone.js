@@ -30,8 +30,16 @@ Page({
 
   data: {
     toSend: true,
-    second: 60,
-    phone: app.cache.userInfo.phone
+    second: 60 
+  },
+
+  onShow: function () {
+    var info = app.cache.userInfo || ''
+    var phone = info.phone || ''
+
+    this.setData({
+      phone: phone
+    })
   },
 
   /**
@@ -151,20 +159,25 @@ Page({
         if (res.data == "error") {
           wx.showToast({
             title: "系统繁忙",
-            image: "../../../img/icon/warn.png"
+            image: "../../../img/icon/warn.png",
+            duration: 1000
           })
+          return false;
         } else {
           wx.showToast({
             title: '修改成功',
             icon: 'success',
-            duration: 2000,
-            success: function () {
-              wx.navigateTo({
-                url: '../acount/login',
-              })
-            }
+            duration: 1000
           })
         }
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
+        setTimeout(function () {
+          wx.navigateTo({
+            url: '../account/login'
+          })
+        }, 1000);  
       },
       fail: function (res) {
         wx.showToast({
@@ -173,6 +186,7 @@ Page({
         })
       }
     })
+
   },
 
 

@@ -77,7 +77,7 @@ public class DbOperations extends HttpServlet {
 			    pstmt.close();
 			}else {
 				int rs = pstmt.executeUpdate();
-				w.print("true");
+				w.print("OK");
 				System.out.println(new Date());
 				if(rs == 0) {
 					w.print("没有该内容");
@@ -88,7 +88,6 @@ public class DbOperations extends HttpServlet {
 			// TODO Auto-generated catch block
 			w.print("error");
 			e.printStackTrace();
-			w.print(e);
 		}
 	}
 

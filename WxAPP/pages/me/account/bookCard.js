@@ -5,8 +5,7 @@ Page({
   data: {
     //是否隐藏弹窗
     modalHidden: true,
-    bookCard:app.cache.bookCard||[],
-    phone: app.cache.userInfo.phone || ''
+    bookCard:app.cache.bookCard||[]
   },
 
   onLoad: function(options) {
@@ -58,9 +57,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    console.log("show")
+    var info = app.cache.userInfo || ''
+    var phone = info.phone || ''
+  
     this.setData({
-      bookCard: app.cache.bookCard 
+      bookCard: app.cache.bookCard,
+      phone: phone
     })
   },
 

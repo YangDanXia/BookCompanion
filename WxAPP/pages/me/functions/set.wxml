@@ -1,15 +1,15 @@
 <!--pages/me/functions/set.wxml-->
 
 <view class="box-top">
-   <navigator url="changePhone" hover-class="none" class="content">
+   <view bindtap="changePhone" class="content">
     修改手机号
          <image class="btn-enter" src="../../../img/icon/enter.png"></image>
-    </navigator>
+    </view>
    <view class="middle"></view>
-   <navigator url="changePassword" hover-class="none"  class="content">
+   <view bindtap="changePassword"  class="content">
     修改密码
      <image class="btn-enter" src="../../../img/icon/enter.png"></image>
-    </navigator>
+    </view>
 
 </view>
 

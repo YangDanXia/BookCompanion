@@ -1,0 +1,32 @@
+<!--pages/me/functions/historyBorrow.wxml-->
+<loading hidden="{{loadhidden}}">
+    加载中...
+</loading>
+
+<!--设置下滑更新数据-->
+<view wx:if="{{errHidden}}">
+  <block wx:for="{{bookList}}" wx:key="{{item}}"> 
+   <view class="themes-list">
+    <view class="themes-list-box">
+     <view bindtap="bookDetail" data-isbn="{{item.book_isbn}}">
+       <view class="themes-list-thumbnail">
+         <image class="themes-list-img" src='{{item.book_photo}}' />
+       </view>
+
+       <view class="themes-list-main">
+         <view class="themes-list-name">{{item.book_name}}</view>
+         <view class="themes-list-description">{{item.book_author}}</view>
+         <view class="themes-list-description">点击次数：{{item.brows_time}}</view>
+       </view>
+      </view>
+     </view>
+    </view>
+   </block>
+</view>
+
+
+
+<view class="contain" wx:else>
+ <text>还没浏览过任何书籍~</text>
+</view>
+

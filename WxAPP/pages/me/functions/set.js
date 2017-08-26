@@ -93,8 +93,24 @@ Page({
   * 清理缓存
   */
   clearStorage:function(){
-    app.removeCache('historyBook');
-    app.removeCache('historySearch');
+    wx.showModal({
+      title: '提示',
+      content: '确定要清理缓存吗？',
+      success: function (res) {
+        if (res.confirm) {
+          app.removeCache('historyBook');
+          app.removeCache('historySearch');
+          app.removeCache('browsingHistory');
+          wx.showToast({
+            title: '清理完成',
+            icon: 'success'
+          })
+        } else if (res.cancel) {
+          return false;
+        }
+      }
+    })
+
   },
 
   /**

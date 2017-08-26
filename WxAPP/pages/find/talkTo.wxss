@@ -2,7 +2,8 @@
 page {
   height: 100%;
   width: 100%;
-  background: #efeff4;
+  background:#f6f6f6;
+
 }
 .container {
   height: 100%;
@@ -94,7 +95,7 @@ page {
   justify-content: center;
   align-items: center;
   flex-wrap: nowrap;
-  background: #efeff4;
+background:#f6f6f6;
 
 }
 

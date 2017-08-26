@@ -169,7 +169,7 @@ navigator{
     background: #fff;
     margin-top: 15px;
     border-radius: 2%;
-    width:250rpx;
+    width:32%;
     height: 170rpx;
     margin-bottom:90rpx;
 
@@ -262,7 +262,7 @@ margin-left:40%;
 }
 
 .items{
-  width: 100rpx;
+  width: 23%;
   flex:1;
   text-align: center;
   margin-top:20rpx;

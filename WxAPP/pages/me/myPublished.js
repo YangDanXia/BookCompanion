@@ -90,6 +90,7 @@ Page({
   */
   delMessage:function(e){
     var _id = e.currentTarget.dataset.id
+    var that =this
     console.log(e)
     console.log(_id)
     wx.request({
@@ -128,7 +129,7 @@ Page({
       }
     })
     setTimeout(function () {
-      this.onShow()
+      that.onShow()
     }, 500);
 
   }

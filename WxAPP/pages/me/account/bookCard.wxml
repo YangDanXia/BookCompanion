@@ -16,13 +16,13 @@
     <text class="box-text">所在图书馆：{{bookCard[index].library}}</text>
   </view>
   <view class="middle"></view>
-  <view class="content" bindtap="modify_tel">
+  <view class="content">
     <text class="box-text">借书证号：{{bookCard[index].uk_bookCardId}}</text>
   </view>
-  <view class="content" bindtap="modify_tel">
+  <view class="content">
     <text class="box-text">当前借阅：{{bookCard[index].current_borrow}}本</text>
   </view>
-  <view class="content" bindtap="modify_tel">
+  <view class="content">
     <text class="box-text">历史借阅：{{bookCard[index].history_borrow}}本</text>
   </view>
 </view>

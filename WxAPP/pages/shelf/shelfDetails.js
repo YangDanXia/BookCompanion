@@ -71,7 +71,7 @@ Page({
     if (shelfIndex == shelf_index){
       wx.showToast({
         title: '当前书单已有藏书',
-        image: "../../../img/icon/warn.png",
+        image: "../../img/icon/warn.png",
         duration: 1000
       })
       return false;

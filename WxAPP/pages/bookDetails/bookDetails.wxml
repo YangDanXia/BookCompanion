@@ -35,7 +35,7 @@
 </label>
 
 <!-- 可以预约图书-->
-<block wx:if="{{isBookIn&&isBookCard&&isReserve}}" >
+<block wx:if="{{isBookIn&&isBookCard&&isReserve&&loginFlag}}" >
  <view class="classname">
   <picker mode="date" value="{{date}}" start="{{today}}" end="2017-09-20" bindchange="bindDateChange">
     <view bindtap="booking">
@@ -91,12 +91,12 @@
  <view class="desc-button" wx:elif="{{sum_isDescripte}}" bindtap="sum_hideDesc">关闭   </view>
 </view>
 
-<!-- 剧照 -->
+<!-- 同类图书 -->
 <view class="movie-photos">
-  <view class="title">剧照</view>
+  <view class="title">猜你喜欢</view>
   <scroll-view scroll-x="true" style="width: 100%" scroll-left="0">
-    <block wx:for="{{bookThumbs}}" wx:key="index">
-      <image class="photo" src="{{item}}" data-index="{{index}}" bindtap="showAlbum"></image>
+    <block wx:for="{{sameBook}}" wx:key="index">
+      <image class="photo" src="{{item.images}}"></image>
     </block>
   </scroll-view>
 </view>

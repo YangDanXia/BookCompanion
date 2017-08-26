@@ -20,20 +20,24 @@
   <view wx:if="{{bookShelf==''}}" class="login-warn">您还没有创建书单哦..</view>
   <view wx:else>
     <block wx:for="{{bookShelf}}" wx:key="{{item}}"> 
-      <view class="themes-list">
-        <view class="themes-list-box" data-index="{{index}}" bindtap="shelfDetail" bindlongpress="delBookShelf">
-           <view class="shelf-box">
-             <view class="first-boxone">
-              <image class="first-boxonepicture" src="{{item.shelf_photo}}"></image>
-             </view>
-             <view class="first-boxtwo shelf-boxtwo" >
-              <text class="main-text">{{item.shelf_name}}\n</text>
-              <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> {{item.bookNum}}本\n  </text>
-              <text class="box-subtitle">{{item.shelf_intro}}</text>
-             </view>
-           </view>
-        </view>
+       <view class="themes-list">
+    <view class="themes-list-box">
+     <navigator url="shelfDetails?index={{index}}" hover-class="none">
+       <view class="themes-list-thumbnail">
+         <image class="themes-list-img" src='{{item.shelf_photo}}' />
+       </view>
+
+       <view class="themes-list-main">
+         <view class="shelf-list-name">{{item.shelf_name}}</view>
+         <image class="shuxian" src="../../img/icon/books.png"></image><text class="box-imgtext"> {{item.bookNum}}本\n  </text>
+       </view>
+      </navigator>
+     </view>
+     <view class="books-operate">
+        <image class="operate-type" src="../../img/icon/del.png" data-index="{{index}}" bindtap="delBookShelf"></image>
       </view>
+    </view>
+
     </block>
   </view>
  </dd>

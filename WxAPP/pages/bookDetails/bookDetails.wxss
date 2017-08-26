@@ -192,7 +192,7 @@ margin-left:-20rpx;
 
 .movie-photos{
   padding: 0 30rpx 50rpx 30rpx;
-  margin-bottom: 40rpx;
+  margin-bottom: 150rpx;
   background: linear-gradient(180deg,#e1e1e1,#e1e1e1 50%,transparent 0) 0 bottom/100% 1px no-repeat;
   line-height: 2;
   white-space:nowrap;
@@ -204,8 +204,9 @@ margin-left:-20rpx;
   font-weight: 700;
 }
 .movie-photos .photo{
-  width: 90px;
-  height: 70px;
+width:30%;
+height:180rpx;
+
   margin-right: 4px;
 }
 

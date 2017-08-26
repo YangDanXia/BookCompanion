@@ -6,7 +6,7 @@ var option = require('../../utils/infor.js');
 var bookNeedInfo = [];
 // 图书类型
 var total_type;
-var options;
+var query;
 //图书进一步类型
 var respect_type;
 
@@ -58,7 +58,7 @@ Page({
 
   onLoad: function (options) {
     var that = this;
-    options = options
+    query = options
     this.getTime()
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -83,7 +83,7 @@ Page({
         bookNeedInfo = {
           "book_photo": res.data.result[0].images,
           "book_isbn": res.data.result[0].isbn13,
-          "book_name": res.data.result[0].title,
+          "book_name": res.data.result[0].title.substr(0, 16) + "...",
           "book_author": res.data.result[0].author,
           "collectStatus": "dislike"
         };
@@ -96,6 +96,31 @@ Page({
         that.setData({
           transData:res.data
         })
+ 
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+          data:
+          {
+            dbName: "gdou_book",
+            table: total_type,
+            typeName: "inquire",
+            field: { isbn13: '', images: ''},
+            factor: { respect_type: respect_type },
+            limit:"10,6"
+          },
+          //请求头
+          header: {
+            'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+          },
+          method: 'GET',
+          success: function (res) {
+            console.log(res.data)
+            console.log(res.data.result[0])
+            that.setData({
+              sameBook: res.data.result
+            })
+          }
+        });
         that.browsHistroy();   
       },
       fail: function (res) {
@@ -115,6 +140,9 @@ Page({
     // this.libraryBook(options.isbn);
   },
 
+ 
+
+
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -133,7 +161,7 @@ Page({
      loginFlag: app.cache.loginFlag || false
    })
    this.toQualify();
-   this.libraryBook(options.isbn);
+   this.libraryBook(query.isbn);
   },
 
   /**
@@ -190,23 +218,22 @@ Page({
     var obj = this.data.browsingHistory;
     // 浏览次数
     if (obj.length == 0){
-      bookNeedInfo.brows_time = "1"
+      bookNeedInfo.brows_time = 1
       obj.push(bookNeedInfo)
       app.saveCache("browsingHistory", obj);
-      return;
+      return false;
     }
     for (var i = 0; i < obj.length; i++) {
       if (obj[i].book_isbn == bookNeedInfo.book_isbn) {
-        obj[i].brows_time++;
+        obj[i].brows_time = obj[i].brows_time + 1;
         app.saveCache("browsingHistory", obj);
-        return;
-      }else{
-        bookNeedInfo.brows_time="1"
-        obj.push(bookNeedInfo)
-        app.saveCache("browsingHistory",obj);
-        return;
+        return false;
       }
    }
+    bookNeedInfo.brows_time = 1
+    obj.push(bookNeedInfo)
+    app.saveCache("browsingHistory", obj);
+
 },
 
   /**

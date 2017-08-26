@@ -25,8 +25,8 @@
 .title{
   position: absolute;
   top: 60rpx;
-  left: 50%;
-  width: 800rpx;
+  left: 42%;
+  width: 1800rpx;
   height: 220rpx;
   margin-left: -300rpx;
   opacity: 0;

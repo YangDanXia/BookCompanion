@@ -12,6 +12,7 @@
 
 <view class="container">
 
+
     <view bindtap="historyMess" class="issue-link">
       <view class="more-btn" >
         <image class="btn-icon" src="../../img/icon/info.png"></image>
@@ -53,6 +54,15 @@
     </view>
 
   <view class="more-list">
+    <navigator url="functions/historyRecord" class="issue-link" hover-class="none" style="margin-bottom:0rpx;border-bottom:1rpx solid #f0f0f0">
+      <view class="more-btn">
+        <image class="btn-icon" src="../../img/icon/foot.png"></image>
+        <text class="btn-text">我的浏览记录</text>
+        <view class="btn-open">
+          <image class="btn-enter" src="../../img/icon/enter.png"></image>
+        </view>
+      </view>
+    </navigator>
     <view bindtap="bookCard" class="issue-link">
       <view class="more-btn">
         <image class="btn-icon" src="../../img/icon/infor.png"></image>

@@ -160,21 +160,20 @@ App({
   },
 
 
-
-  /**
-   * 倒计时
-   */
-  countDown: function (that,num) {
-    if (num == 0) {
-      return;
-    } else {
-      num--;
-    }
-    setTimeout(function () {
-      settime(that)
-    }
-      , 1000)
-  },
+  // /**
+  //  * 倒计时
+  //  */
+  // countDown: function (that,num) {
+  //   if (num == 0) {
+  //     return;
+  //   } else {
+  //     num--;
+  //   }
+  //   setTimeout(function () {
+  //     settime(that)
+  //   }
+  //     , 1000)
+  // },
 
 
   //缓存内容
@@ -189,6 +188,8 @@ App({
     winHeight: '',
     //宽度
     width: '' ,
+    //图书馆
+    G_Libraries: '',
     //选择的图书馆
     G_selectLibrary:'',
     // 地理位置

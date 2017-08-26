@@ -4,6 +4,7 @@
   <!--反馈内容-->
      <ul class="scrollwechat"  bindtap="closeimg">
       <scroll-view class="scrollview" scroll-y="true" >
+
       <block  wx:for="{{feedback}}" wx:key="index">
        <li wx:if="{{item.myDate}}" class="mydate">
             <view class="mydatebox">
@@ -20,13 +21,17 @@
          </view>
          <!--内容 ：图片/文字-->
         <view class="{{item.role?'textview2':'textview'}}">
-          <view class="feedbackimg" wx:if="{{item.content_type}}">  <image  src="{{item.content}}"></image></view>
+          <view class="feedbackimg" wx:if="{{item.content_type}}">  
+             <image  src="{{item.content}}"></image>
+          </view>
           <text class="feedbacktext" wx:else>{{item.content}}</text>
         </view>
+        
         <view wx:if="{{networkType=='fail'}}"><icon type="warn" size="20"/></view>
         <view class="imgview"></view>
       </li>
       </block>
+      
       <view class="link"></view>
        </scroll-view>
     </ul>

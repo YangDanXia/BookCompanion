@@ -78,10 +78,11 @@ Page({
           app.saveCache('loginFlag',true)
           app.saveCache('userInfo', { phone: that.data.userPhone,password: that.data.passwd,photo:that.data.userInfo.avatarUrl,name:that.data.userInfo.nickName})
           //返回上一层
-          app.countDown(that,3)
-          wx.navigateBack({
-            delta: 1
-          })
+          setTimeout(function () {
+            wx.navigateBack({
+              delta: 1
+            })
+          }, 500);  
         } else {
           //显示密码或账号错误的提示
           wx.showToast({

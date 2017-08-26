@@ -69,7 +69,7 @@
     <servlet-name>SendMessage</servlet-name>
     <url-pattern>/SendMessage</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>CloseConn</display-name>
     <servlet-name>CloseConn</servlet-name>

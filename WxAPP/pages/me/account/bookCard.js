@@ -13,6 +13,7 @@ Page({
     console.log(this.data.phone)
     var length = this.data.bookCard.length;
     var that = this;
+    var user = app.cache.userInfo || ''
     // 若本地有缓存则在本地获取数据，若无则从数据库获取数据
     if(length){
       this.setData({
@@ -27,7 +28,7 @@ Page({
           table: "bookcard_record",
           typeName: "inquire",
           field: { uk_bookCardId: '', library: '', current_borrow:'',history_borrow:''},
-          factor: { idx_phone: that.data.phone},
+          factor: { idx_phone: user.phone},
           limit:"10"
         },
         //请求头

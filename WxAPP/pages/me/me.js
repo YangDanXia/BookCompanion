@@ -15,7 +15,7 @@ Page({
     loginFlag: app.cache.loginFlag || false,
     // 打卡天数
     days:app.cache.checkIn.days
-
+    
   },
 
 
@@ -24,6 +24,7 @@ Page({
    */
   onLoad: function () {
     var that = this
+
   },
 
 
@@ -32,7 +33,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      loginFlag: app.cache.loginFlag || false
+      loginFlag: app.cache.loginFlag || false,
+      userInfo: app.cache.userInfo
     })
   },
 

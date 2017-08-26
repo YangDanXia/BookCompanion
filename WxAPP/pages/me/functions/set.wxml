@@ -40,16 +40,4 @@
     <view class="btn-size"> {{currentSize}} M</view>
     </view>
 </view>
-
-<!--弹出框-->
-<modal title="推荐频率" confirm-text="确定" cancel-text="取消" hidden="{{modalHidden}}" bindconfirm="AgreeRecommend" bindcancel="modalHide">
-<radio-group bindchange="radioVal">
- <label wx:for="{{radioValue}}" wx:key="{{item}}">
-  <view class="_radio">
-   <radio value="{{item.value}}" checked="{{frequency}}" />
-   {{item.name}}
-  </view>
- </label>
-</radio-group>
-</modal>
  

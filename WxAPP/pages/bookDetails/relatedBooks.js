@@ -57,7 +57,7 @@ Page({
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '', publisher: '', summary: '' },
         factor: { respect_type:tag },
-        limit: "0,30"
+        limit: "0,50"
       },
       //请求头
       header: {
@@ -119,7 +119,7 @@ Page({
         typeName: "inquireLike",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '', publisher: '', summary: '' },
         factor: factorType,
-        limit: "0,30"
+        limit: "0,50"
       },
       //请求头
       header: {

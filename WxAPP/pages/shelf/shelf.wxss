@@ -172,14 +172,7 @@ height:auto;
 margin:0 10px;
 
     }
-
-.themes-list-box{ 
-    display: block; 
-    position: relative; 
-    padding: 15rpx 0rpx; 
-    border-bottom: 0px solid  #D3D3D3;
-    width:85%;
-  }
+ 
 
 .shelf-box
 {
@@ -254,3 +247,37 @@ margin:0 10px;
 margin-top:110rpx;
 
 }
+.themes-list-description{
+  font-size:26rpx;
+  color:#8a8a8a;
+  overflow:hidden;
+}
+.shelf-list-name {
+  font-size:30rpx;
+  font-weight:normal; 
+  line-height: 40rpx
+}
+
+.themes-list-main{
+  margin-left:200rpx;
+  margin-top:30rpx;
+
+
+}
+
+.themes-list-box{ 
+    display: block; 
+    position: relative; 
+    padding: 15rpx 0rpx; 
+    border-bottom: 0px solid  #D3D3D3;
+    height:200rpx;
+    width:90%;
+  }
+
+
+.themes-list-thumbnail{ 
+    top: 17rpx; 
+    height: 190rpx; 
+    width: 150rpx; 
+    }
+ 

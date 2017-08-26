@@ -98,6 +98,28 @@ Page({
   },
 
   /**
+ * 发起聊天
+ */
+  talkTo: function () {
+    if (!this.data.loginFlag) {
+      this.login()
+    } else {
+      wx.navigateTo({
+        url: 'talkTo'
+      })
+    }
+  },
+
+  /**
+ * 进入登录界面
+ */
+  login: function () {
+    wx.navigateTo({
+      url: '../me/account/login'
+    })
+  },
+
+  /**
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {

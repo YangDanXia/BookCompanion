@@ -15,6 +15,8 @@ Page({
     winHeight: app.globalData.winHeight,
     // 是否隐藏弹出框
     modalHidden:true,
+    // 登录状态
+    loginFlag: app.cache.loginFlag || false,
     // 显示的图书
     bookInfo:[]
   },
@@ -84,20 +86,21 @@ Page({
     })
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
+ 
 /**
  * 购买电子书
  */
   wantBuy:function(){
-    this.setData({
-      modalHidden:false
-    })
+    if(!this.data.loginFlag){
+      wx.navigateTo({
+        url: '../me/account/login'
+      })
+    }else{
+      this.setData({
+        modalHidden: false
+      })
+    }
+
   },
 
   /**

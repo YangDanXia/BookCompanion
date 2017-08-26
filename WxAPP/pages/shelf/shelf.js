@@ -83,6 +83,7 @@ Page({
    */
    delBookShelf: function (e) {
     var index = e.currentTarget.dataset.index;
+    var that = this
     if (index == 0) {
       wx.showToast({
         title: '请勿删除此书单',
@@ -90,20 +91,20 @@ Page({
       })
       return;
     }
+    var books = app.cache.bookShelf || []
     wx.showModal({
       title: '提示',
       content: '确认删除此书单吗？',
       success: function (res) {
         if (res.confirm) {
-          this.data.bookShelf.splice(index, 1);
-          var newBookShelf = this.data.bookShelf;
-          app.saveCache('bookShelf', newBookShelf);
+          books.splice(index, 1);
+          app.saveCache('bookShelf', books);
           wx.showToast({
             title: "删除成功",
             icon: 'success'
           });
-          this.setData({
-            bookShelf: newBookShelf
+          that.setData({
+            bookShelf: books
           })
         } else if (res.cancel) {
           return;

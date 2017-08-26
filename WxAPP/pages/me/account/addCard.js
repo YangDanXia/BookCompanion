@@ -4,11 +4,15 @@ var app = getApp();
 Page({
 
   data: {
-    array: ['广东海洋大学图书馆', '湛江市图书馆'],
+    array: ["广东海洋大学图书馆", "湛江市图书馆", "南京信息职业技术学院-图书馆", "南京工业职业技术学院-图书馆分馆","建邺区图书馆"],
     index: 0,
     phone: app.cache.userInfo.phone || ''
   },
 
+
+onLoad:function(){
+  var that = this
+},
 
   /**
    * 获取借书证的输入
@@ -27,6 +31,8 @@ Page({
       index: e.detail.value
     })
   },
+
+ 
 
   /**
    * 点击添加

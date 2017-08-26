@@ -56,6 +56,7 @@ Page({
           method: 'GET',
           success: function (res) {
             console.log(res.data)
+            app.globalData.G_Libraries = res.data.result
             that.setData({
               library:res.data.results[0].name
             })
@@ -151,33 +152,46 @@ Page({
     } else {
       //随机抽取历史记录
       var re_index = app.getRandom(history_length);
-      var re_tag = this.data.historicalSearch[re_index];
+      var re_tag = this.data.historySearch[re_index];
 
       wx.request({
-        url: 'https://www.hqinfo.xyz/Server_Java/GetBooksInfo',
-        data: {
-          request: "tag",
-          tag: re_tag,
-          start: re_index,
-          count: "6"
+        url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+        data:
+        {
+          dbName: "gdou_book",
+          table: "all_books",
+          typeName: "inquireLike",
+          field: { title: '', author: '', isbn13: '', images: '', total_type: '' },
+          factor: factorType,
+          limit: "30,6"
         },
+        //请求头
         header: {
           'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
         },
         method: 'GET',
         success: function (res) {
-          console.log(res)
           console.log(res.data)
+          var obj = res.data.result
+          for (var i = 0; i < obj.length; i++) {
+            if (obj[i].title.length > 10) {
+              obj[i].title = obj[i].title.substr(0, 8) + "..."
+            }
+            if (obj[i].author.length > 10) {
+              obj[i].author = obj[i].author.substr(0, 8) + "..."
+            }
+          }
           that.setData({
-            recommendItems: res.data.books,//推荐图书列表
+            recommendItems: res.data.result
           })
+          console.log(res.data.result)
         },
         fail: function (res) {
           that.setData({
             errHidden: false
           })
         }
-      });
+      })
     }
   },
 
@@ -194,10 +208,10 @@ Page({
       data:
       {
         dbName: "gdou_book",
-        table: "sucess_motivation",
+        table: "all_books",
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '' },
-        factor: { respect_type:"财商-财富智慧"},
+        factor: {pubdate:"2017-01-01"},
         limit: "0,6"
       },
       //请求头

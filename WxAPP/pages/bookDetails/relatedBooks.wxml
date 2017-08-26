@@ -5,7 +5,7 @@
 
 <!--设置下滑更新数据-->
 <view wx:if="{{errHidden}}">
-<scroll-view class="scolly" scroll-y="true" style="height:{{winHeight}}px">
+<scroll-view class="scolly" scroll-y="true" style="height:{{winHeight +100}}px">
   <block wx:for="{{bookList}}" wx:key="{{item}}"> 
    <view class="themes-list">
     <view class="themes-list-box">

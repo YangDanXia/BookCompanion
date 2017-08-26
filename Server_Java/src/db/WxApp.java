@@ -1,24 +1,19 @@
 package db;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 
 public class WxApp  implements DbConnect{
 
-	public static ComboPooledDataSource dsWxApp;
+	public static Connection dsWxApp;
 
 //	@Override
 	public void connection() throws Exception {
 		// TODO Auto-generated method stub
-		dsWxApp = new ComboPooledDataSource();
-		dsWxApp.setDriverClass(driver);
-//		dsWxApp.setJdbcUrl("jdbc:mysql://591ba57a49ec3.gz.cdb.myqcloud.com:3806/WxApp");
-		dsWxApp.setJdbcUrl("jdbc:mysql://10.66.192.197:3306/WxApp");
-		dsWxApp.setUser(user);
-		dsWxApp.setPassword(password);
-		dsWxApp.setMaxPoolSize(40);
-		dsWxApp.setMinPoolSize(1);
-		dsWxApp.setInitialPoolSize(10);
-		dsWxApp.setMaxStatements(180);
+		
+		String url = "jdbc:mysql://10.66.192.197:3306/WxApp";
+		Class.forName("com.mysql.jdbc.Driver");		
+		dsWxApp = DriverManager.getConnection(url, user, password);
      }
 }

@@ -135,7 +135,7 @@ Page({
         method: 'GET',
         success: function (res) {
           console.log("状态"+res.data)
-          if (res.data == 1) {
+          if (res.data == 0) {
 
           // 添加图书到待还栏
           // 删除待借栏的图书
@@ -181,14 +181,14 @@ Page({
                   wx.showToast({
                     title: '操作成功',
                     icon: " success",
-                    duration: 1000
+                    duration: 500
                   })
                   var num = app.cache.bookTicket||0
                   num ++
                   wx.showToast({
                     title: "书卷+1",
                     icon: "success",
-                    duration: 1000
+                    duration: 800
                   })
                   app.saveCache('bookTicket', num)
                   app.saveCache("waitToReturn", returnBook)
@@ -220,7 +220,7 @@ Page({
             wx.navigateBack({
               delta: 1
             })
-          }, 1500);  
+          }, 1000);  
 
           }
         }, 
@@ -234,7 +234,8 @@ Page({
   }else if(tab == 1){
       // 删除待借栏的图书
       var waitToReturn = app.cache.waitToReturn
-      var len = waitToReturn.length
+      var chooseToReturn = app.cache.chooseToReturn
+      var len = chooseToReturn.length
       wx.request({
         url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
         //请求头
@@ -244,7 +245,7 @@ Page({
         method: 'GET',
         success: function (res) {
           console.log("状态" + res.data)
-          if (res.data == 1) {
+          if (res.data == 0) {
             for(var i=0;i<len;i++){
               wx.request({
                 url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -255,7 +256,7 @@ Page({
                   field: {},
                   factor: {
                     idx_phone: app.cache.userInfo.phone,
-                    book_id: waitToReturn[i].BookId
+                    book_id: chooseToReturn[i].BookId
                   },
                   limit: "1"
                 },
@@ -269,14 +270,14 @@ Page({
                     wx.showToast({
                       title: '操作成功',
                       icon: " success",
-                      duration: 1000
+                      duration: 500
                     })
                     var num = app.cache.bookTicket || 0
                     num++
                     wx.showToast({
                       title: "书卷+1",
                       icon: "success",
-                      duration: 1000
+                      duration: 800
                     })
                     app.saveCache('bookTicket', num)
                   }else {
@@ -286,7 +287,7 @@ Page({
               })
             }
 
-            app.saveCache("historyBook", waitToReturn)
+            app.saveCache("historyBook", chooseToReturn)
             if (len == 1) {
               waitToReturn.splice(codeValue[0], 1);
             } else if (len == 2) {
@@ -307,7 +308,7 @@ Page({
               wx.navigateBack({
                 delta: 1
               })
-            }, 1500);  
+            }, 1000);  
           }
         }
         , fail: function () {

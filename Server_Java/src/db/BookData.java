@@ -1,24 +1,19 @@
 package db;
 
-import com.mchange.v2.c3p0.ComboPooledDataSource;
-
+import java.sql.Connection;
+import java.sql.DriverManager;
 
 public class BookData  implements DbConnect{
 
-	public static ComboPooledDataSource dsBook;
+	public static Connection dsBook;
 
 //	@Override
 	public void connection() throws Exception {
 		// TODO Auto-generated method stub
-		dsBook = new ComboPooledDataSource();
-		dsBook.setDriverClass(driver);
-//		dsBook.setJdbcUrl("jdbc:mysql://591ba57a49ec3.gz.cdb.myqcloud.com:3806/gdou_book");
-		dsBook.setJdbcUrl("jdbc:mysql://10.66.192.197:3306/gdou_book");
-		dsBook.setUser(user);
-		dsBook.setPassword(password);
-		dsBook.setMaxPoolSize(10);
-		dsBook.setMinPoolSize(1);
-		dsBook.setInitialPoolSize(2);
-		dsBook.setMaxStatements(180);
+
+		String url = "jdbc:mysql://10.66.192.197:3306/gdou_book";
+		Class.forName("com.mysql.jdbc.Driver");		
+		dsBook = DriverManager.getConnection(url, user, password);
+		
      }
 }

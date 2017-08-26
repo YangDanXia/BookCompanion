@@ -73,6 +73,8 @@ public class DbOperations extends HttpServlet {
 			    String str = getResult(rs, field);
 			    System.out.print("返回的结果："+str);
 			    w.print(str);
+			    rs.close();
+			    pstmt.close();
 			}else {
 				int rs = pstmt.executeUpdate();
 				w.print("true");
@@ -80,6 +82,7 @@ public class DbOperations extends HttpServlet {
 				if(rs == 0) {
 					w.print("没有该内容");
 				}
+				pstmt.close();
 			}
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

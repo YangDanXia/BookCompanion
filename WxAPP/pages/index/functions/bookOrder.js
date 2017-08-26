@@ -166,7 +166,10 @@ Page({
         content.push(this.data.waitToReturn[book_index].BooklistAuthor)
         content.push(this.data.waitToReturn[book_index].BooklistPublish)
         content.push(this.data.waitToReturn[book_index].book_borrowTime)
+        var chooseToReturn = []
+        chooseToReturn.push(this.data.waitToReturn[book_index])
       }
+      app.saveCache("chooseToReturn", chooseToReturn)
       console.log("类型为还书")
     }
     console.log("二维码内容："+content)

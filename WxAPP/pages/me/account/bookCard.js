@@ -122,13 +122,13 @@ Page({
           img: "../../../img/icon/warn.png"
         })
         }
+        that.onShow()
       }
     })
     this.setData({
-      modalHidden: true,
-      bookCard:obj
+      modalHidden: true
     })
-    this.onShow()
+
   },
 
 

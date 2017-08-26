@@ -4,7 +4,7 @@
       "pages/index/index",
       "pages/shelf/shelf",
       "pages/find/find",
-
+            "pages/me/me",
             
       "pages/me/myPublished",
       "pages/find/talkTo",
@@ -37,8 +37,8 @@
       "pages/index/functions/search",
       "pages/bookDetails/function/pay",
       
-      "pages/index/functions/borrowProcess/QRcode",
-            "pages/me/me"
+      "pages/index/functions/borrowProcess/QRcode"
+
       
   ],
   "window": {

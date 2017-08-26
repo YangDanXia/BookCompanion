@@ -23,16 +23,16 @@ public class ConnectionPoolFactory {
 		try {
 			 if(dbName.equalsIgnoreCase("Library")){
 				 new Library().connection();
-				 connLib = Library.dsLibrary.getConnection();
+				 connLib = Library.dsLibrary;
 			     return connLib;
 		      } else if (dbName.equalsIgnoreCase("WxApp")){
 		    	  new WxApp().connection();
-		    	  connWx= WxApp.dsWxApp.getConnection();
+		    	  connWx= WxApp.dsWxApp;
 				 return connWx;
 				
 		      }else if (dbName.equalsIgnoreCase("gdou_book")){
 		    	  new BookData().connection();
-		    	  connBook = BookData.dsBook.getConnection();
+		    	  connBook = BookData.dsBook;
 				 return connBook;
 		      }
 		}catch(Exception e) {

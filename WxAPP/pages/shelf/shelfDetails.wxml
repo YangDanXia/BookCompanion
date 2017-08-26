@@ -38,7 +38,7 @@
         <view class="operate-toDo" data-index="{{index}}" bindtap="collectOrNot">
            <image class="operate-type" src="../../img/icon/{{item.collectStatus}}.png"/>
         </view>
-        <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN}}" hover-class="none">
+        <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN||item.book_isbn}}" hover-class="none">
            <image class="operate-type" src="../../img/icon/detail.png"/>
         </navigator>
         <view class="operate-toDo">

@@ -9,7 +9,7 @@ Page({
     // loading
     loadhidden: false,
     errHidden: true,
-    bookList:app.cache.historyBook || []
+    bookList: app.cache.historyBook || []
   },
 
   /**
@@ -40,7 +40,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var obj = app.cache.historyBook || []
+    var obj = app.cache.historyBook|| []
     if (obj.length == 0) {
       this.setData({
         errHidden: false
@@ -48,6 +48,13 @@ Page({
     }
     this.setData({
       bookList:obj
+    })
+  },
+
+  bookDetail: function (e) {
+    var isbn = e.currentTarget.dataset.isbn
+    wx.redirectTo({
+      url: '../../bookDetails/bookDetails?isbn=' + isbn
     })
   }
 })

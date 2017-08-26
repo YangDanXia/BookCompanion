@@ -70,8 +70,15 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log("登录："+res.data)
         console.log(res.data.result)
+        var obj = res.data.result
+        if(obj.length == 0){
+          wx.showToast({
+            title: '账号不存在！',
+            image: "../../../img/icon/warn.png"
+          })
+          return false;
+        }
         var result=res.data.result[0].info_password;
         if (result == that.data.passwd) {//验证成功，则返回的数据为TRUE,失败则返回false
           //保存登录态，只要用户不删除缓存记录和自动退出，以后都不需要再登录

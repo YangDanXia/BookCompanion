@@ -159,7 +159,7 @@ Page({
    * 跳转页面
    */
   bookDetail:function(e){
-    var isbn = e.target.dataset.isbn
+    var isbn = e.currentTarget.dataset.isbn
     wx.redirectTo({
       url: 'bookDetails?isbn='+ isbn
     })

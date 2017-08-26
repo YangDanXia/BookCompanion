@@ -52,5 +52,12 @@ Page({
     this.setData({
       bookList:obj
     })
+  },
+
+  bookDetail:function(e){
+    var isbn = e.currentTarget.dataset.isbn
+    wx.redirectTo({
+      url: '../../bookDetails/bookDetails?isbn=' + isbn
+    })
   }
 })

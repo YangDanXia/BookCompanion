@@ -135,7 +135,7 @@ Page({
         method: 'GET',
         success: function (res) {
           console.log("状态"+res.data)
-          if (res.data == 0) {
+          if (res.data == 1) {
 
           // 添加图书到待还栏
           // 删除待借栏的图书
@@ -183,7 +183,7 @@ Page({
                     icon: " success",
                     duration: 1000
                   })
-                  var num = app.cache.bookTicket
+                  var num = app.cache.bookTicket||0
                   num ++
                   wx.showToast({
                     title: "书卷+1",
@@ -244,7 +244,7 @@ Page({
         method: 'GET',
         success: function (res) {
           console.log("状态" + res.data)
-          if (res.data == 0) {
+          if (res.data == 1) {
             for(var i=0;i<len;i++){
               wx.request({
                 url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
@@ -271,7 +271,7 @@ Page({
                       icon: " success",
                       duration: 1000
                     })
-                    var num = app.cache.bookTicket
+                    var num = app.cache.bookTicket || 0
                     num++
                     wx.showToast({
                       title: "书卷+1",

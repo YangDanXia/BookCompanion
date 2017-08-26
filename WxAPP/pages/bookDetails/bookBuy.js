@@ -82,7 +82,8 @@ Page({
    */
   onShow: function () {
     this.setData({
-      modalHidden: true
+      modalHidden: true,
+      loginFlag: app.cache.loginFlag || false
     })
   },
 

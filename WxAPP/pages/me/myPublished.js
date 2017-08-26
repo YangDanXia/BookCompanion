@@ -8,6 +8,8 @@ Page({
   data: {
     // 提示错误图片
     errHidden: true,
+    // 提示没有发布过
+    warnHidden:false,
     //登录状态
     loginFlag: app.cache.loginFlag || false
   },
@@ -45,6 +47,8 @@ Page({
    */
   refresh: function () {
     var that = this
+    var phone = app.cache.userInfo.phone
+    console.log(app.cache.userInfo.phone)
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -53,7 +57,7 @@ Page({
         table: "sellBook_record",
         typeName: "inquireOrder",
         field: {id:'',idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
-        factor: { idx_phone:app.cache.userInfo.phone},
+        factor: { idx_phone:phone},
         limit: "0,20"
       },
       //请求头
@@ -64,13 +68,19 @@ Page({
       success: function (res) {
         console.log(res.data)
         var obj = res.data.result
-        for (var i = 0; i < obj.length; i++) {
-          obj[i].tag = obj[i].tag.split(",");
-          obj[i].picture = obj[i].picture.split(";")
+        if(res.data == "error"){
+          that.setData({
+            warnHidden: true
+          })
+        }else{
+          for (var i = 0; i < obj.length; i++) {
+            obj[i].tag = obj[i].tag.split(",");
+            obj[i].picture = obj[i].picture.split(";")
+          }
+          that.setData({
+            list: obj
+          })
         }
-        that.setData({
-          list: obj
-        })
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })

@@ -142,7 +142,7 @@ Page({
          var time = that.getTime()
          var choose = app.cache.chooseToBorrow
          var returnBook = app.cache.waitToReturn || []
-         console.log(returnBook)
+         var num = app.cache.bookTicket || 0
          for(var i = 0 ;i<choose.length;i++){
             choose[i].book_borrowTime = time
             var arr = choose[i]
@@ -174,29 +174,27 @@ Page({
               method: 'GET',
               success: function (res) {
                 console.log(res.data)
-                if(res.data){
+                if(res.data =="OK"){
                   console.log(arr)
                   returnBook.push(arr)
                   console.log(returnBook)
-                  wx.showToast({
-                    title: '操作成功',
-                    icon: " success",
-                    duration: 500
-                  })
-                  var num = app.cache.bookTicket||0
                   num ++
-                  wx.showToast({
-                    title: "书卷+1",
-                    icon: "success",
-                    duration: 800
-                  })
-                  app.saveCache('bookTicket', num)
-                  app.saveCache("waitToReturn", returnBook)
                 }
               }
             })
          }
-
+         app.saveCache('bookTicket', num)
+         app.saveCache("waitToReturn", returnBook)
+         wx.showToast({
+           title: '操作成功',
+           icon: " success",
+           duration: 500
+         })
+         wx.showToast({
+           title: "书卷+"+num,
+           icon: "success",
+           duration: 800
+         })
       // 获取选择的下标，如果第一位比第二位小则删除第一位之后 第二位下标减一，如果第一位比第二位大，则不改变
          var waitToBorrow = app.cache.waitToBorrow
          if(len == 1){
@@ -236,6 +234,7 @@ Page({
       var waitToReturn = app.cache.waitToReturn
       var chooseToReturn = app.cache.chooseToReturn
       var len = chooseToReturn.length
+      var num = app.cache.bookTicket || 0
       wx.request({
         url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
         //请求头
@@ -266,27 +265,29 @@ Page({
                 method: 'GET',
                 success: function (res) {
                   console.log(res.data)
-                  if(res.data == true){
-                    wx.showToast({
-                      title: '操作成功',
-                      icon: " success",
-                      duration: 500
-                    })
-                    var num = app.cache.bookTicket || 0
+                  if(res.data =="OK"){
                     num++
+                  }else if(res.data =="error") {
                     wx.showToast({
-                      title: "书卷+1",
-                      icon: "success",
-                      duration: 800
+                      title: '网络异常',
+                      image: '../../../../img/icon/warn.png'
                     })
-                    app.saveCache('bookTicket', num)
-                  }else {
                     return false;
                   }
                 }
               })
             }
-
+            wx.showToast({
+              title: '操作成功',
+              icon: " success",
+              duration: 500
+            })
+            wx.showToast({
+              title: "书卷+"+num,
+              icon: "success",
+              duration: 800
+            })
+            app.saveCache('bookTicket', num)
             app.saveCache("historyBook", chooseToReturn)
             if (len == 1) {
               waitToReturn.splice(codeValue[0], 1);

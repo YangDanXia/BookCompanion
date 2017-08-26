@@ -106,6 +106,15 @@ Page({
     }
   },
 
+  /**
+   * 提示用户
+   */
+  warnUser:function(){
+    wx.showToast({
+      title: "功能未开放，敬请期待",
+      image: "../../img/icon/warn.png"
+    })
+  },
 
 
   /**

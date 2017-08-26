@@ -448,7 +448,6 @@ Page({
     bookNeedInfo.bookId = that.data.bookId;
     bookNeedInfo.bookAddress = app.globalData.G_selectLibrary;
     bookNeedInfo.reserveTime = e.detail.value;
-    bookNeedInfo.reserveTime = e.detail.value;
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -477,6 +476,7 @@ Page({
           title: "网络异常",
           image: "../../img/icon/warn.png"
         })
+        return false;
       }
     })
     wx.request({
@@ -500,22 +500,7 @@ Page({
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
-      method: 'GET',
-      success: function (res) {
-        console.log(res.data)
-        obj.push(bookNeedInfo);
-        app.saveCache('reserveBook', obj);
-        wx.showToast({
-          title: '预约成功',
-          icon: 'success'
-        })
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: "网络异常",
-          image: "../../img/icon/warn.png"
-        })
-      }
+      method: 'GET'
     })
 
   },

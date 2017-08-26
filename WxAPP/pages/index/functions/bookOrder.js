@@ -35,21 +35,20 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    var array = [];
-    var newBookCard = this.data.bookCard
-    for (var i = 0; i < newBookCard.length;i++){
-      array.push(newBookCard[i].library + "：" + newBookCard[i].uk_bookCardId)
-    }
-    this.setData({
-      arrayCard:array
-    })
+
   },
 
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    var array = [];
+    var newBookCard = this.data.bookCard
+    for (var i = 0; i < newBookCard.length; i++) {
+      array.push(newBookCard[i].library + "：" + newBookCard[i].uk_bookCardId)
+    }
     this.setData({
+      arrayCard: array,
       loginFlag: app.cache.loginFlag || false,
       waitToBorrow: app.cache.waitToBorrow || [],
       reserveBook: app.cache.reserveBook || [],

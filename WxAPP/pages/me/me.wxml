@@ -32,7 +32,7 @@
           </view>
         </view>
         <view class="list">
-          <view class="items" bindtap="ViewQRcode">
+          <view class="items" bindtap="warnUser">
            <image src="../../img/icon/notice.png" style="width:55rpx;height:55rpx;"></image>
            <text>通知</text>
           </view>

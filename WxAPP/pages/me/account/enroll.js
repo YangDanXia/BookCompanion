@@ -141,7 +141,7 @@ Page({
             duration: 1000
           })
           return false;
-        } else if(res.data == ""){
+        } else if(res.data == "OK"){
           wx.showToast({
             title: '注册成功',
             icon: 'success',

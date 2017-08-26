@@ -14,7 +14,7 @@ Page({
     //登录状态
     loginFlag: app.cache.loginFlag || false,
     // 打卡天数
-    days:app.cache.checkIn.days
+    days:app.cache.checkIn.days || 0
     
   },
 

@@ -24,7 +24,7 @@ Page({
    */
   onLoad: function () {
     var that = this
-
+    console.log("finish")
   },
 
 

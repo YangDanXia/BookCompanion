@@ -49,7 +49,7 @@ Page({
     if (!this.data.userPhone || !this.data.passwd) {//当账号或密码为空时提示
       wx.showToast({
         title: '手机号或密码不能为空',
-        img: "../../../img/icon/warn.png"
+        image: "../../../img/icon/warn.png"
       })
       return false;
     }

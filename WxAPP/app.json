@@ -5,6 +5,7 @@
       "pages/shelf/shelf",
       "pages/find/find",
       "pages/me/me",
+            
       "pages/me/myPublished",
       "pages/find/talkTo",
       "pages/find/publish",
@@ -13,9 +14,11 @@
       "pages/bookDetails/bookDetails",
       "pages/bookDetails/relatedBooks",
       "pages/bookDetails/bookBuy",
+      "pages/me/account/login",
+
       "pages/me/account/bookCard",
       "pages/me/functions/recommend",
-      "pages/me/account/login",
+
       "pages/me/account/enroll",
       "pages/me/account/findPassword",
       "pages/me/functions/suggest",

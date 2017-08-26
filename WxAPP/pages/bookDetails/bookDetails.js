@@ -57,6 +57,7 @@ Page({
   },
 
   onLoad: function (options) {
+    console.log(options)
     var that = this;
     query = options
     this.getTime()
@@ -105,8 +106,8 @@ Page({
             table: total_type,
             typeName: "inquire",
             field: { isbn13: '', images: ''},
-            factor: { respect_type: respect_type },
-            limit:"10,6"
+            factor: { total_type: total_type },
+            limit:"50,6"
           },
           //请求头
           header: {
@@ -137,7 +138,7 @@ Page({
       }
     });
     // this.toQualify();
-    // this.libraryBook(options.isbn);
+    this.libraryBook(options.isbn);
   },
 
  
@@ -157,11 +158,12 @@ Page({
   },
 
   onShow: function () {
+    console.log(query)
    this.setData({
      loginFlag: app.cache.loginFlag || false
    })
    this.toQualify();
-   this.libraryBook(query.isbn);
+  //  this.libraryBook(query.isbn);
   },
 
   /**

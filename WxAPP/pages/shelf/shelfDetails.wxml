@@ -5,7 +5,7 @@
     加载中...
 </loading>
 
- <scroll-view style="height:{{winHeight}}px" scroll-y="true" enable-back-to-top="true" >
+ <scroll-view style="height:{{winHeight+400}}px" scroll-y="true" enable-back-to-top="true" >
  <view class="box-title-top">
   <view class="book-details">
    <view class="book-cover">

@@ -25,10 +25,10 @@
 .title{
   position: absolute;
   top: 60rpx;
-  left: 42%;
+  left: 50%;
   width: 1800rpx;
   height: 220rpx;
-  margin-left: -300rpx;
+  margin-left:-48%;
   opacity: 0;
   animation: show 0s cubic-bezier(0.19, 1, 0.22, 1) .0s forwards;
 }

@@ -57,7 +57,7 @@ Page({
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '', publisher: '', summary: '' },
         factor: { respect_type:tag },
-        limit: "0,50"
+        limit: "20,50"
       },
       //请求头
       header: {
@@ -111,7 +111,7 @@ Page({
       default:break;
     }
     wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "gdou_book",

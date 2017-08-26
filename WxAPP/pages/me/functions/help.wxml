@@ -8,7 +8,6 @@
 <swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight+400}}px" bindchange="bindChange">
 <swiper-item>
 <view class="help">
-
   <view class="all">
    <view class="first">
     <view class="numberpicture">

@@ -106,8 +106,9 @@ public class DbOperations extends HttpServlet {
 			  json.append("{");	
 			  for(String key:field.keySet()) {
 				 String value = rs.getString(key).replaceAll("\\s*", "");
-				 String str = value.replaceAll("\"", "");
-			     json.append("\""+key+"\":").append("\""+str+"\",");
+				 String str = value.replaceAll("\\\\", "");
+				 String str1 = str.replaceAll("\"", "");
+			     json.append("\""+key+"\":").append("\""+str1+"\",");
 			  }
 			  json.append("},");	
 			

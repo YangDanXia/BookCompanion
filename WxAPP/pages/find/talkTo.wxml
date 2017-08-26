@@ -40,7 +40,7 @@
   <!--提交框-->
   <view  class="footer">
       <view  class="footinput">
-        <view class="input"><input bindinput='bindInput' type="text" value="{{addinput}}"/></view>
+        <view class="input"><input bindinput='bindInput' type="text" value="{{addinput}}" placeholder="给对方留言"/></view>
       </view>
       <view class="foodsend" bindtap="sendKeyWord">
         <view class="send">发送</view>

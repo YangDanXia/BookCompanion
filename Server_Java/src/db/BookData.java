@@ -16,9 +16,9 @@ public class BookData  implements DbConnect{
 		dsBook.setJdbcUrl("jdbc:mysql://10.66.192.197:3306/gdou_book");
 		dsBook.setUser(user);
 		dsBook.setPassword(password);
-		dsBook.setMaxPoolSize(40);
+		dsBook.setMaxPoolSize(10);
 		dsBook.setMinPoolSize(1);
-		dsBook.setInitialPoolSize(10);
+		dsBook.setInitialPoolSize(2);
 		dsBook.setMaxStatements(180);
      }
 }

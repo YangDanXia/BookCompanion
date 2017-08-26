@@ -31,6 +31,7 @@ Page({
   onShow:function(){
     this.setData({
       //书单内容
+      bookShelf: app.cache.bookShelf || [],
       bookShelfValue: app.cache.bookShelf[shelfIndex]
     }) 
   },
@@ -57,6 +58,7 @@ Page({
      var index = e.currentTarget.dataset.index;
      console.log(index)
      var obj = this.data.bookShelf
+     console.log("当前书单"+obj)
      obj[shelfIndex].shelf_bookList.splice(index, 1);
      app.saveCache('bookShelf', obj);
      this.onShow()

@@ -30,7 +30,7 @@ Page({
       that.setData({
         loadhidden: true
       })
-    }, 500);
+    }, 1000);
   },
 
   /**

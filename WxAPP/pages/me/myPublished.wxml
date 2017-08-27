@@ -43,8 +43,12 @@
 
 </view>
  
+<view class="contain" wx:if="{{warnHidden}}">
+ <text style=" margin-left:-10%;">还没发布过任何信息~</text>
+</view>
 
-<view class="contain" wx:if="{{!errHidden}}">
+
+<view class="contain" wx:if="{{!errHidden&&!warnHidden}}">
  <view>
   <image class="img" src="../../img/show/unload.png"/>
  </view>
@@ -52,6 +56,3 @@
 </view>
 
 
-<view class="contain" wx:if="{{warnHidden}}">
- <text style=" margin-left:-10%;">还没发布过任何信息~</text>
-</view>

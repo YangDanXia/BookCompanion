@@ -25,8 +25,6 @@ Page({
    bookShelf:app.cache.bookShelf || [],
    //  是否能进行借还书
    isBookCard:false,
-   // 借书证
-   bookCard:app.cache.bookCard|| [],
   //  借书证选择器下标
    card_index:0
   },
@@ -35,7 +33,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
   },
 
   /**
@@ -43,16 +40,18 @@ Page({
    */
   onShow: function () {
     var array = [];
-    var newBookCard = this.data.bookCard
+    var newBookCard = app.cache.bookCard || []
     for (var i = 0; i < newBookCard.length; i++) {
       array.push(newBookCard[i].library + "：" + newBookCard[i].uk_bookCardId)
     }
     this.setData({
       arrayCard: array,
+      bookCard: app.cache.bookCard || [],
       loginFlag: app.cache.loginFlag || false,
       waitToBorrow: app.cache.waitToBorrow || [],
       reserveBook: app.cache.reserveBook || [],
-      waitToReturn: app.cache.waitToReturn || []
+      waitToReturn: app.cache.waitToReturn || [],
+      length: newBookCard.length
     })
   },
 
@@ -141,35 +140,41 @@ Page({
     this.setData({
       card_index:index
     })
-
+    var waitToReturn = app.cache.waitToReturn || []
+    var waitToBorrow = app.cache.waitToBorrow||[]
     var cardNum = this.data.bookCard[index].uk_bookCardId
     var content = [codeValue.length, cardNum];
     // 为0表示在待借栏，为1表示在待还栏
     if (this.data.currentTab == '0') {
       // 传递索书号生成二维码
+      var choose = [];
+      console.log(waitToBorrow)
       for(var i=0;i<codeValue.length;i++){
         var book_index = codeValue[i]
-        content.push(this.data.waitToBorrow[book_index].BookId)
-        var choose =[];
-        choose.push(this.data.waitToBorrow[book_index])
+        content.push(waitToBorrow[book_index].BookId)
+        choose.push(waitToBorrow[book_index])
       }
-      app.saveCache("chooseToBorrow",choose)
+      console.log(choose)
+      app.saveCache("chooseToBorrow", choose)
       console.log("类型为借书")
     } else if (this.data.currentTab == '1') {
       content.push(this.getTime())
+
+      console.log(waitToReturn)
+      var chooseToReturn = []
       for(var i=0;i<codeValue.length;i++){
         var book_index = codeValue[i]
-        content.push(this.data.waitToReturn[book_index].BookId)
-        content.push(this.data.waitToReturn[book_index].BooklistImage)        
-        content.push(this.data.waitToReturn[book_index].BooklistTitle)
-        content.push(this.data.waitToReturn[book_index].BooklistAuthor)
-        content.push(this.data.waitToReturn[book_index].BooklistPublish)
-        content.push(this.data.waitToReturn[book_index].book_borrowTime)
-        var chooseToReturn = []
-        chooseToReturn.push(this.data.waitToReturn[book_index])
+        content.push(waitToReturn[book_index].BookId)
+        content.push(waitToReturn[book_index].BooklistImage)        
+        content.push(waitToReturn[book_index].BooklistTitle)
+        content.push(waitToReturn[book_index].BooklistAuthor)
+        content.push(waitToReturn[book_index].BooklistPublish)
+        content.push(waitToReturn[book_index].book_borrowTime)
+        chooseToReturn.push(waitToReturn[book_index])
+
       }
+      console.log(chooseToReturn)
       app.saveCache("chooseToReturn", chooseToReturn)
-      console.log("类型为还书")
     }
     console.log("二维码内容："+content)
     wx.navigateTo({
@@ -185,8 +190,8 @@ Page({
    */
   reserveCollect:function(e){
     var index = e.currentTarget.dataset.index;
-    var obj = this.data.bookShelf
-    var bor = this.data.reserveBook
+    var obj = app.cache.bookShelf||[]
+    var bor = app.cache.reserveBook||[]
     var bookList = obj[0].shelf_bookList
     // 书单内容中第几本书
     var location;
@@ -203,7 +208,6 @@ Page({
       bor[index].collectStatus = "like"
       bookList.push(bor[index])
     }
-    // obj[0].shelf_bookList.push(bor[index])
     app.saveCache('bookShelf', obj);
     app.saveCache('reserveBook', bor);
     this.setData({
@@ -218,8 +222,8 @@ Page({
   borrowCollect: function (e) {
       // 待借栏中第几本书
       var index = e.currentTarget.dataset.index;
-      var obj = this.data.bookShelf
-      var bor = this.data.waitToBorrow
+      var obj = app.cache.bookShelf || []
+      var bor = app.cache.waitToBorrow || []
       var bookList = obj[0].shelf_bookList
       // 书单内容中第几本书
       var location;
@@ -249,8 +253,8 @@ Page({
    */
   returnCollect:function(e){
     var index = e.currentTarget.dataset.index;
-    var obj = this.data.bookShelf
-    var bor = this.data.waitToReturn
+    var obj = app.cache.bookShelf || []
+    var bor = app.cache.waitToReturn || []
     var bookList = obj[0].shelf_bookList
     // 书单内容中第几本书
     var location;
@@ -280,7 +284,7 @@ Page({
   */
   borrowDelete: function (e) {
     var index = e.currentTarget.dataset.index; 
-    var obj = this.data.waitToBorrow
+    var obj = app.cache.waitToBorrow || []
     obj.splice(index, 1);
     app.saveCache('waitToBorrow',obj);
     wx.showToast({
@@ -295,7 +299,7 @@ Page({
    */
   reserveDelete: function (e) {
     var index = e.currentTarget.dataset.index;
-    var obj = this.data.reserveBook
+    var obj = app.cache.reserveBook||[]
     obj.splice(index, 1);
     app.saveCache('reserveBook', obj);
     wx.showToast({
@@ -312,6 +316,8 @@ Page({
     var that = this
     var index = e.currentTarget.dataset.index; 
     var obj = that.data.waitToReturn
+    var info = app.cache.userInfo
+    var phone = info.phone
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -322,7 +328,7 @@ Page({
         field: { BorrowTime:that.getTime()},
         factor: {
           BookId: obj[index].BookId,
-          UserId: app.cache.userInfo.phone
+          UserId: phone
         },
         limit: "1"
       },
@@ -344,7 +350,7 @@ Page({
             field: {book_takeTime: that.getTime() },
             factor: {
               book_id: obj[index].BookId,
-              idx_phone: app.cache.userInfo.phone
+              idx_phone: phone
             },
             limit: "1"
           },

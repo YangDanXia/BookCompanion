@@ -23,9 +23,6 @@ Page({
   winHeight: app.globalData.winHeight,
   // 登录状态
   loginFlag: app.cache.loginFlag || false,
-  // 页面配置
-  winWidth: app.globalData.width,
-  winHeight: app.globalData.winHeight,
   // 显示的菜单栏下标
   currentTab:0,
   // 显示的图书信息
@@ -51,9 +48,8 @@ Page({
   // 保存图书馆藏情况
   bookOfLib:[],
   // 推荐内容
-  bookThumbs: ['http://www.hqinfo.xyz:8080/photo/girl.jpg'],
-  // 浏览记录
-  browsingHistory: app.cache.browsingHistory||[]
+  bookThumbs: ['http://www.hqinfo.xyz:8080/photo/girl.jpg']
+
   },
 
   onLoad: function (options) {
@@ -217,21 +213,24 @@ Page({
    */
   browsHistroy:function(){
     // 浏览记录
-    var obj = this.data.browsingHistory;
+    var obj = app.cache.browsingHistory||[]
     // 浏览次数
     if (obj.length == 0){
+      console.log("1")
       bookNeedInfo.brows_time = 1
       obj.push(bookNeedInfo)
       app.saveCache("browsingHistory", obj);
       return false;
     }
     for (var i = 0; i < obj.length; i++) {
+      console.log("2")
       if (obj[i].book_isbn == bookNeedInfo.book_isbn) {
         obj[i].brows_time = obj[i].brows_time + 1;
         app.saveCache("browsingHistory", obj);
         return false;
       }
    }
+    console.log("3")
     bookNeedInfo.brows_time = 1
     obj.push(bookNeedInfo)
     app.saveCache("browsingHistory", obj);

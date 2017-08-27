@@ -45,8 +45,12 @@
 
 </view>
  
+ 
+<view class="contain" wx:if="{{warnHidden}}">
+ <text style=" margin-left:-10%;">快来发布第一条消息~</text>
+</view>
 
-<view class="contain" wx:else>
+<view class="contain" wx:if="{{!errHidden&&!warnHidden}}">
  <view>
   <image class="img" src="../../img/show/unload.png"/>
  </view>

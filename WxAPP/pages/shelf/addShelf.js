@@ -19,6 +19,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      bookShelf: app.cache.bookShelf || []
+    })
   },
 
 
@@ -26,7 +29,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-  
+    this.setData({
+      bookShelf: app.cache.bookShelf || []
+    })
   },
 
   
@@ -104,7 +109,7 @@ Page({
           })
           return false;
         }
-      var obj = this.data.bookShelf;
+      var obj = app.cache.bookShelf;
       console.log(obj)
       var newShelf = {"shelf_photo": this.data.img, "shelf_name": name, "shelf_intro": intro, "shelf_bookList": [], shelf_tag:tag}
       console.log("添加的书单信息："+newShelf)

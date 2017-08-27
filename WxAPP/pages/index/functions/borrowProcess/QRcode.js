@@ -135,7 +135,7 @@ Page({
         method: 'GET',
         success: function (res) {
           console.log("状态"+res.data)
-          if (res.data == 0) {
+          if (res.data ==1) {
 
           // 添加图书到待还栏
           // 删除待借栏的图书
@@ -147,6 +147,7 @@ Page({
             choose[i].book_borrowTime = time
             var arr = choose[i]
             console.log(arr)
+            returnBook.push(arr)  
             wx.request({
               url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
               data: {
@@ -176,22 +177,22 @@ Page({
                 console.log(res.data)
                 if(res.data =="OK"){
                   console.log(arr)
-                  returnBook.push(arr)
-                  console.log(returnBook)
+                  app.saveCache("waitToReturn", returnBook)
                   num ++
+                  app.saveCache('bookTicket', num)
                 }
               }
             })
          }
-         app.saveCache('bookTicket', num)
-         app.saveCache("waitToReturn", returnBook)
+  
+
          wx.showToast({
            title: '操作成功',
            icon: " success",
            duration: 500
          })
          wx.showToast({
-           title: "书卷+"+num,
+           title: "书卷+1",
            icon: "success",
            duration: 800
          })
@@ -231,8 +232,9 @@ Page({
       })
   }else if(tab == 1){
       // 删除待借栏的图书
-      var waitToReturn = app.cache.waitToReturn
-      var chooseToReturn = app.cache.chooseToReturn
+      var waitToReturn = app.cache.waitToReturn ||[]
+      var chooseToReturn = app.cache.chooseToReturn || []
+      var historyBook = app.cache.historyBook || []
       var len = chooseToReturn.length
       var num = app.cache.bookTicket || 0
       wx.request({
@@ -244,8 +246,11 @@ Page({
         method: 'GET',
         success: function (res) {
           console.log("状态" + res.data)
-          if (res.data == 0) {
+          if (res.data == 1) {
             for(var i=0;i<len;i++){
+              console.log(historyBook)
+              console.log(chooseToReturn[i])
+              historyBook.push(chooseToReturn[i])
               wx.request({
                 url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
                 data: {
@@ -267,6 +272,9 @@ Page({
                   console.log(res.data)
                   if(res.data =="OK"){
                     num++
+
+                    app.saveCache('bookTicket', num)
+                    app.saveCache("historyBook", historyBook)
                   }else if(res.data =="error") {
                     wx.showToast({
                       title: '网络异常',
@@ -283,12 +291,11 @@ Page({
               duration: 500
             })
             wx.showToast({
-              title: "书卷+"+num,
+              title: "书卷+1",
               icon: "success",
               duration: 800
             })
-            app.saveCache('bookTicket', num)
-            app.saveCache("historyBook", chooseToReturn)
+
             if (len == 1) {
               waitToReturn.splice(codeValue[0], 1);
             } else if (len == 2) {
@@ -300,6 +307,7 @@ Page({
                 waitToReturn.splice(codeValue[1], 1);
               }
             }
+            app.removeCache("chooseToReturn")
             app.saveCache("waitToReturn", waitToReturn)
             wx.request({
               url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'

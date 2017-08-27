@@ -16,11 +16,17 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(this.data.bookList.length ==0){
+    console.log(this.data.bookList)
+    var obj = app.cache.historyBook || []
+ 
+    if (obj.length == 0) {
       this.setData({
-        errHidden:false
+        errHidden: false
       })
     }
+    this.setData({
+      bookList: obj
+    })
   },
 
   /**
@@ -41,6 +47,7 @@ Page({
    */
   onShow: function () {
     var obj = app.cache.historyBook|| []
+    console.log(obj)
     if (obj.length == 0) {
       this.setData({
         errHidden: false

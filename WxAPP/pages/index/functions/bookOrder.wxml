@@ -10,7 +10,7 @@
 <swiper current="{{currentTab}}" class="swiper-box" scroll-y duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
 <!--借书栏-->
 <swiper-item>
- <view class="list" wx:if="{{isBookCard}}">
+ <view class="list" wx:if="{{isBookCard&&length}}">
    <view class="items" data-id="borrow">
       <picker bindchange="bindPickerChange" value="{{card_index}}" range="{{arrayCard}}">
         <image src="../../../img/icon/qcode.png"></image>

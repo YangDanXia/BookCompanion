@@ -55,7 +55,7 @@ Page({
       {
         dbName: "WxApp",
         table: "sellBook_record",
-        typeName: "inquireOrder",
+        typeName: "inquire",
         field: {id:'',idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
         factor: { idx_phone:phone},
         limit: "0,20"
@@ -68,7 +68,13 @@ Page({
       success: function (res) {
         console.log(res.data)
         var obj = res.data.result
-        if(res.data == "error"){
+        if (res.data == "error") {
+          that.setData({
+            errHidden: false
+          })
+          return false;
+        }
+        if (obj.length == 0) {
           that.setData({
             warnHidden: true
           })

@@ -23,13 +23,15 @@ Page({
 
  onLoad:function(){
    var that=this;
+   var log = app.cache.loginFlag || false
    wx.getStorageInfo({
      success: function (res) {
        console.log(res.currentSize)
        var size =Math.round(res.currentSize / 1024);
        console.log(size)
        that.setData({
-         currentSize: size
+         currentSize: size,
+         loginFlag:log
        })
      }
    })
@@ -40,7 +42,9 @@ Page({
    */
   onshow: function () {
     this.setData({
-      setState: app.cache.remindFlag || ['0', '0', '0', '0']
+      setState: app.cache.remindFlag || ['0', '0', '0', '0'],
+      loginFlag: app.cache.loginFlag || false
+ 
     })
   },
 

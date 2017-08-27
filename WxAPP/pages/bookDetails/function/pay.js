@@ -5,7 +5,7 @@ var email
 var passwd
 Page({
   data: {
-    userInfo: app.cache.userInfo
+    userInfo: app.cache.userInfo ||''
   },
 
   /**

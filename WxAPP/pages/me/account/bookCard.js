@@ -121,7 +121,7 @@ Page({
         //显示手机号错误的提示
         wx.showToast({
           title: '添加失败：该账户与借书证账户无法匹配！',
-          img: "../../../img/icon/warn.png"
+          image: "../../../img/icon/warn.png"
         })
         }
         that.onShow()

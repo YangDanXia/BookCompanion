@@ -9,7 +9,7 @@ Page({
     //是否隐藏网络异常
     errHidden: true,
     //屏幕高度
-    winHeight: app.globalData.winHeight,
+    winHeight: app.globalData.winHeight
   },
 
   /**

@@ -21,14 +21,14 @@ Page({
     //待借图书
     waitToBorrow: app.cache.waitToBorrow || [],
     //搜索历史，用于图书推荐
-     historicalSearch: app.cache.historicalSearch || [],
+    historySearch: app.cache.historySearch || [],
     //图书导航栏内容
      bookTypeUp: option.BookNavigationUp,
      bookTypeDown: option.BookNavigationDown,
     //附近图书馆名称
      library: app.globalData.G_selectLibrary || '',
      // 收藏情况
-     bookShelf: app.cache.bookShelf
+     bookShelf: app.cache.bookShelf || []
   },
 
 
@@ -98,6 +98,12 @@ Page({
       library:app.globalData.G_selectLibrary||'',
       waitToBorrow: app.cache.waitToBorrow || []
     })
+    var time = this.getTime()
+    var days = app.cache.everyDay ||[]
+    if(days != time){
+      this.DailyRecommend();
+      app.saveCache("everyDay",time)
+    }
   },
 
 
@@ -106,20 +112,19 @@ Page({
    */
   DailyRecommend: function () {
     var that = this
-    //获取随机数
-    var index = app.getRandom(20);
     //历史搜索记录
-    var history_length = this.data.historicalSearch.length;
+    var search = app.cache.historySearch||[]
+    var history_length =search.length;
     if (history_length == 0) {
       wx.request({
         url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
         data:
         {
           dbName: "gdou_book",
-          table: "culture",
+          table: "novel",
           typeName: "inquire",
           field: { title: '', author: '', isbn13: '', images: '', total_type: ''},
-          factor: { respect_type: "世界各国文化" },
+          factor: { respect_type: "都市" },
           limit:"0,6"
         },
         //请求头
@@ -152,8 +157,20 @@ Page({
     } else {
       //随机抽取历史记录
       var re_index = app.getRandom(history_length);
-      var re_tag = this.data.historySearch[re_index];
-
+      var re_tag = app.cache.historySearch[re_index];
+      var factorType;
+      switch (re_tag.val_type) {
+        case "title":
+          factorType = { title: re_tag.input };
+          break;
+        case "author":
+          factorType = { author: re_tag.input };
+          break;
+        case "publisher":
+          factorType = { publisher: re_tag.input};
+          break;
+        default: break;
+      }
       wx.request({
         url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
         data:
@@ -351,6 +368,16 @@ Page({
     wx.navigateTo({
       url: 'functions/bookOrder'
     })
-  } 
+  },
+
+  /**
+ * 获取时间
+ */
+  getTime: function () {
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    return year + '-' + month + '-' + day;
+  }
 
 })

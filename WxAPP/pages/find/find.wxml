@@ -1,6 +1,6 @@
 <!--pages/find/find.wxml-->
 <view wx:if="{{errHidden}}">
-<image class="fixed" src="../../img/icon/addTitle.png" bindtap="publish"></image>
+<image class="fixed" src="../../img/icon/addTitle.png" bindtap="publish" style="z-index:2;"></image>
 
 <view class="box-top" wx:for="{{list}}" wx:for-item="item" wx:key="x">
   <view class="content" style="padding-top:25rpx;">

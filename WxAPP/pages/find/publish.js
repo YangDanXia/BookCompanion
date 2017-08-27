@@ -29,14 +29,19 @@ Page({
       sizeType: 'compressed', // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        wx.saveFile({
-          tempFilePath: res.tempFilePaths[0],
+        var tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: 'https://www.hqinfo.xyz/Server_Java/UploadImage',
+          filePath: tempFilePaths[0],
+          name: 'file',
           success: function (res) {
-              that.setData({
-                img: res.savedFilePath,
-                isContinue:true
-              })
-              photoShow = res.savedFilePath
+            that.setData({
+              img: tempFilePaths[0],
+              isContinue: true
+            })
+            console.log(res.data)
+            photoShow ="http://www.hqinfo.xyz/Server_Java/upload/"+res.data
+
           }
         })
       }
@@ -54,13 +59,17 @@ Page({
       sizeType: 'compressed', // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        wx.saveFile({
-          tempFilePath: res.tempFilePaths[0],
+        var tempFilePaths = res.tempFilePaths
+        wx.uploadFile({
+          url: 'https://www.hqinfo.xyz/Server_Java/UploadImage',
+          filePath: tempFilePaths[0],
+          name: 'file',
           success: function (res) {
             that.setData({
-              img1: res.savedFilePath
+              imgs: tempFilePaths[0]
             })
-            photoShow =photoShow+";"+res.savedFilePath
+            console.log(res.data)
+            photoShow =photoShow +";"+ "http://www.hqinfo.xyz/Server_Java/upload/" + res.data
           }
         })
       }
@@ -110,7 +119,6 @@ Page({
   publishTo:function(){
     var userInfo = app.cache.userInfo
     var that = this
-    var picture=''; 
     var num = app.cache.bookTicket || 0
     if (!content || !price || !ex_price || !photoShow||!tag) {
       wx.showToast({

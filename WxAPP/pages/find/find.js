@@ -88,6 +88,7 @@ Page({
             obj[i].picture = obj[i].picture.split(";")
           }
           that.setData({
+            warnHidden: false,
             list: obj
           })
         }

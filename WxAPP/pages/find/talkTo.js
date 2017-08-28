@@ -1,4 +1,11 @@
 // pages/me/functions/service.js
+var photo;
+var phone;
+var name;
+var content
+var messageList;
+var app= getApp()
+
 Page({
   data: {
     //用户信息，用于头像显示
@@ -11,6 +18,12 @@ Page({
     addinput: []
   },
 
+  onLoad:function(options){
+    phone = options.phone
+    photo = options.photo
+    name = options.name
+  },
+
 
   /**
    * 生命周期函数--监听页面显示
@@ -19,19 +32,7 @@ Page({
     // 页面显示
     //将全局的方法赋值
     var that = this;
-    //调用登录接口
-    wx.login({
-      success: function (res) {
-        wx.getUserInfo({
-          success: function (res) {
-            that.setData({
-              userInfo: res.userInfo
-            })
-            typeof cb == "function" && cb(res.userInfo)
-          }
-        })
-      }
-    })
+    messageList = app.cache.messageList||[]
   },
 
 
@@ -40,9 +41,7 @@ Page({
    * 获取输入内容
    */
   bindInput: function (e) {
-    this.setData({
-      content: e.detail.value
-    })
+      content = e.detail.value
   },
 
   /**
@@ -50,6 +49,7 @@ Page({
    */
   sendKeyWord: function () {
     var that = this
+    var userInfo = app.cache.userInfo
     var myDate = new Date();
     var hours = myDate.getHours();       //获取当前小时数(0-23)
     var minutes = myDate.getMinutes();     //获取当前分钟数(0-59)
@@ -61,20 +61,70 @@ Page({
     }
     var newfeedback = this.data.feedback;
     var time = {
-      content: that.data.content,
-      content_type: 0,
-      contract_info: this.data.contract_info,
+      content: content,
       myDate: mydata,
       role: true,
-      img: that.data.userInfo.avatarUrl,
+      img: userInfo.photo
     };
-    switch (this.data.content) {
-      default: newfeedback.push(time);
-    }
+    newfeedback.push(time);
     this.setData({
       addinput: [],
       minutes: minutes,
       feedback: newfeedback
     })
+
+    wx.request({
+      url: 'http://localhost:8080/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "WxApp",
+        table: "message_record",
+        typeName: "insert",
+        field: {
+          user: userInfo.phone,
+          friend:phone,
+          sender:userInfo.phone,
+          receiver:phone,
+          content: content
+        },
+        factor: {},
+        limit: "1"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+        wx.showToast({
+          title: '发送成功',
+          icon: "success",
+          duration: 500
+        })
+        var info = {phone:phone,photo:photo,name:name}
+        messageList.push(info)
+        console.log(messageList)
+        app.saveCache('messageList', messageList)
+        wx.request({
+          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+            delta: 1
+          })
+        }, 1000);
+
+      },
+      fail: function (res) {
+        wx.showToast({
+          title: '网络异常',
+          image: '../../img/icon/warn.png'
+        })
+      }
+    });
+
+
+
   }
 })

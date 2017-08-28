@@ -1,0 +1,59 @@
+/* pages/bookDetails/bookView.wxss */
+/* pages/find/find.wxss */
+page{
+  background:#f6f6f6;
+}
+
+.form-control
+{
+  display: flex;
+  flex-direction:row;
+  justify-content:flex-start;
+  align-items:flex-start;
+ background:#fff;
+ 
+}
+.control
+{
+  width:700rpx;
+  font-size: 35rpx;
+}
+.three
+{
+  display: flex; 
+  flex-direction:row;
+  justify-content:space-between;
+  align-items:center;
+ margin-bottom:20rpx;
+  height:60rpx;
+  padding:0rpx 20rpx;
+  background:#fff;
+}
+
+.three-text
+{
+  font-size: 28rpx;
+  color:#cdcdcd;
+}
+
+
+
+
+.book-buy{
+  position: fixed;
+
+  width: 100%;
+  background:#f6f6f6;
+  text-align: center;
+}
+.book-buy .btn-buy{
+  display: block;
+  margin: 20rpx 75rpx;
+  background-color: #73b4ef;
+  font-size: 20px;
+  line-height: 80rpx;
+  color: #fff;
+  border-radius: 4px;
+  width:80%;
+
+}

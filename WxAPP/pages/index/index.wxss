@@ -18,7 +18,7 @@ page {
   box-sizing: border-box;
   position: relative;
   background-color:#73b4ef; 
-  padding:24rpx;
+  padding:3%;
 }
 
 

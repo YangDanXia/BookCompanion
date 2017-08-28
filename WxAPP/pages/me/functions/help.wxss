@@ -102,7 +102,7 @@ margin:2%;
 
 .swiper-tab{ 
    height: 70rpx; 
-   line-height: 60rpx; 
+   line-height: 70rpx; 
    background: #FFF; 
    display: flex; 
    position: relative; 

@@ -21,10 +21,7 @@
          </view>
          <!--内容 ：图片/文字-->
         <view class="{{item.role?'textview2':'textview'}}">
-          <view class="feedbackimg" wx:if="{{item.content_type}}">  
-             <image  src="{{item.content}}"></image>
-          </view>
-          <text class="feedbacktext" wx:else>{{item.content}}</text>
+          <text class="feedbacktext">{{item.content}}</text>
         </view>
         
         <view wx:if="{{networkType=='fail'}}"><icon type="warn" size="20"/></view>

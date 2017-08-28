@@ -19,6 +19,8 @@ Page({
   data: {
   // 是否隐藏加载情况
   hidden:false,
+  //  评论情况
+  viewHidden:false,
   winWidth: app.globalData.width,
   winHeight: app.globalData.winHeight,
   // 登录状态
@@ -48,12 +50,13 @@ Page({
   // 保存图书馆藏情况
   bookOfLib:[],
   // 推荐内容
-  bookThumbs: ['http://www.hqinfo.xyz:8080/photo/girl.jpg']
+  bookThumbs: ['http://www.hqinfo.xyz:8080/photo/girl.jpg'],
+  // 图书编号
+  bookISBN:''
 
   },
 
   onLoad: function (options) {
-    console.log(options)
     var that = this;
     query = options
     this.getTime()
@@ -85,15 +88,11 @@ Page({
           "collectStatus": "dislike"
         };
         res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
-        console.log("图书信息")
-        console.log(res.data.result[0])
         that.setData({
-          bookInfo: res.data.result[0]
+          bookInfo: res.data.result[0],
+          bookISBN: res.data.result[0].isbn13
         })
-        that.setData({
-          transData:res.data
-        })
- 
+
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
           data:
@@ -157,7 +156,7 @@ Page({
      loginFlag: app.cache.loginFlag || false
    })
    this.toQualify();
-  //  this.libraryBook(query.isbn);
+   this.getBookView(query.isbn);
   },
 
   /**
@@ -181,6 +180,39 @@ Page({
         currentTab: e.target.dataset.current
       })
     }
+  },
+
+ /**
+  * 获取图书评论
+  */
+  getBookView:function(isbn){
+    var that = this
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "WxApp",
+        table: "book_view",
+        typeName: "inquire",
+        field: {name: '',photo:'',content:'',gmt_create:'' },
+        factor: { book_isbn: isbn },
+        limit: "20"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+        if(res.data.result.length > 0){
+          that.setData({
+            viewBook: res.data.result,
+            viewHidden: true
+          })
+        }
+      }
+    });
   },
 
   /**
@@ -221,14 +253,12 @@ Page({
       return false;
     }
     for (var i = 0; i < obj.length; i++) {
-      console.log("2")
       if (obj[i].book_isbn == bookNeedInfo.book_isbn) {
         obj[i].brows_time = obj[i].brows_time + 1;
         app.saveCache("browsingHistory", obj);
         return false;
       }
    }
-    console.log("3")
     bookNeedInfo.brows_time = 1
     obj.push(bookNeedInfo)
     app.saveCache("browsingHistory", obj);
@@ -255,8 +285,6 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log("馆藏情况：")
-        console.log(res.data)
         var bookDetails = res.data.result;
         that.setData({
           bookOfLib: res.data.result
@@ -523,6 +551,13 @@ Page({
     var isbn = e.currentTarget.dataset.index
     wx.navigateTo({
       url: 'bookDetails?isbn='+isbn
+    })
+  },
+
+  bookView:function(e){
+    var isbn = e.currentTarget.dataset.isbn
+    wx.navigateTo({
+      url: 'function/bookView?isbn='+isbn
     })
   },
 

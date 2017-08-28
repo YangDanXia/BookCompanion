@@ -1,0 +1,20 @@
+<!--pages/bookDetails/bookView.wxml-->
+   
+
+   <view class="form-control">
+      <form class="bs-example bs-example-form" role="form">
+        <textarea class="control" style="padding:30rpx 20rpx;" bindinput="contentInput"/>
+      </form>
+   </view>
+
+   <view class="three">
+     <text class="three-text">140字</text>
+   </view>
+
+   
+<view class="book-buy">
+  <view bindtap="publishTo" hover-class="none" class="btn-buy">发布</view>
+</view>
+
+  
+

@@ -60,7 +60,7 @@ Page({
         dbName: "WxApp",
         table: "sellBook_record",
         typeName: "inquireOrder",
-        field: { idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
+        field: { idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '',publish_time:'' },
         factor: {},
         limit: "1"
       },
@@ -122,12 +122,15 @@ Page({
   /**
  * 发起聊天
  */
-  talkTo: function () {
+  talkTo: function (e) {
+    var photo = e.currentTarget.dataset.photo;
+    var name = e.currentTarget.dataset.name;
+    var phone = e.currentTarget.dataset.phone;
     if (!this.data.loginFlag) {
       this.login()
     } else {
       wx.navigateTo({
-        url: 'talkTo'
+        url: 'talkTo?phone='+phone+'&photo='+photo+'&name='+name
       })
     }
   },
@@ -139,40 +142,5 @@ Page({
     wx.navigateTo({
       url: '../me/account/login'
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
   }
 })

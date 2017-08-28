@@ -1,5 +1,6 @@
 // pages/find/find.js
 var app = getApp()
+const date = new Date()
 var content='';
 var price='';
 var photoShow;
@@ -134,6 +135,7 @@ Page({
       })
       return false;
     }
+    var time = this.getTime()
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
@@ -141,7 +143,17 @@ Page({
         dbName: "WxApp",
         table: "sellBook_record",
         typeName: "insert",
-        field: { idx_phone: userInfo.phone, name: userInfo.name, photo: userInfo.photo, picture: photoShow,content:content,tag:tag,price:price,ex_price:ex_price},
+        field: { 
+          idx_phone: userInfo.phone, 
+          name: userInfo.name, 
+          photo: userInfo.photo, 
+          picture: photoShow,
+          content:content, 
+          tag:tag, 
+          price:price,
+          ex_price:ex_price,
+          publish_time:time
+        },
         factor: {},
         limit: "1"
       },
@@ -181,5 +193,15 @@ Page({
         })
       }
     });
+  },
+
+  /**
+* 获取时间
+*/
+  getTime: function () {
+    var year = date.getFullYear()
+    var month = date.getMonth() + 1
+    var day = date.getDate()
+    return year + '-' + month + '-' + day;
   }
 })

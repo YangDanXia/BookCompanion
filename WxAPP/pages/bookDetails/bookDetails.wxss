@@ -8,8 +8,8 @@ Page{
 
 /*标题栏*/
 .swiper-tab{ 
-   height: 60rpx; 
-   line-height: 60rpx; 
+   height: 70rpx; 
+   line-height: 70rpx; 
    background: #FFF; 
    display: flex; 
    position: relative; 
@@ -21,7 +21,7 @@ Page{
   }
 
 .swiper-tab-list{ 
-   margin: 0 40rpx;  
+   margin: 0 70rpx;  
    padding: 0 48rpx; 
    font-size: 32rpx; 
    font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif 
@@ -125,37 +125,45 @@ margin-left:-20rpx;
 
 
 /*书评*/
-.comment-list{
-   background: #fff; 
-   margin-top: 10rpx;
+.themes-list-name{
+  text-align:left;
+  line-height:45rpx;
+} 
+
+
+.themes-list-description{
+  text-align:left;
+  line-height:45rpx;
+  color:#707070;
  }
 
-.comment-list-box{ 
-   display: block; 
-   position: relative; 
-   padding: 10rpx 20rpx;  
-   height:300rpx;
-  }
-
-.comment-list-thumbnail{ 
-   position: absolute; 
-   left: 40rpx; 
-   top: 10rpx; 
-   height: 250rpx; 
-   width:200rpx; 
-  }
-
-.comment-list-img{ 
-   width: 200rpx; 
-   height:250rpx; 
-   border-radius: 2%; 
-   border: 1px solid #999;
+.themes-list-thumbnail{
+    top:10rpx;
+    left:3%;
+    height:0
+    width:0;
 }
 
-.comment-list-main{margin-left: 260rpx;}
-.view-list-box{ display: block; position: relative; padding: 35rpx 20rpx; border-bottom: 1px solid  #D3D3D3; height:auto;}
-.view-list-img{ width: 60rpx; height:60rpx; border-radius: 100%;}
-.view-list-main{ margin-left: 100rpx;margin-top:-20rpx}
+.themes-list-main {
+   margin-left:20%;
+
+}
+
+
+.themes-list-img {
+    width: 100rpx;
+    height: 100rpx;
+    border-radius: 200rpx;
+    box-shadow: 0 0 300rpx 100rpx rgba(255, 255, 255, .2), 0 1px 0 rgba(255, 255, 255, 0.4);
+    display: -webkit-inline-flex; 
+}
+.themes-list{
+  margin:15rpx 0;
+}
+.contain{
+  text-align: center;
+  margin-top:280rpx;
+}
 
 
 /*馆藏情况*/
@@ -191,7 +199,7 @@ margin-left:-20rpx;
 
 
 .movie-photos{
-  padding: 0 30rpx 50rpx 30rpx;
+  padding: 0 30rpx 150rpx 30rpx;
   background: linear-gradient(180deg,#e1e1e1,#e1e1e1 50%,transparent 0) 0 bottom/100% 1px no-repeat;
   line-height: 2;
   white-space:nowrap;

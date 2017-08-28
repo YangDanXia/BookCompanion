@@ -7,7 +7,7 @@
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">预约图书</view>
 </view>
 
-<swiper current="{{currentTab}}" class="swiper-box" scroll-y duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
+<swiper current="{{currentTab}}" class="swiper-box" duration="300" style="height:{{winHeight}}px" bindchange="bindChange">
 <!--借书栏-->
 <swiper-item>
  <view class="list" wx:if="{{isBookCard&&length}}">
@@ -25,7 +25,7 @@
       </view>
  </view>
 
-
+<scroll-view scroll-y style="height:{{winHeight}}px">
 <view wx:if="{{waitToBorrow ==''}}" class="login-warn">目前没有要借的书籍~</view>
 <view wx:else> 
   <checkbox-group bindchange="checkboxChange">
@@ -60,6 +60,7 @@
     </block> 
   </checkbox-group>
  </view>
+</scroll-view>
 
 </swiper-item>
 
@@ -80,7 +81,7 @@
       </view>
  </view>
 
-
+<scroll-view scroll-y style="height:{{winHeight}}px">
 <view wx:if="{{waitToReturn ==''}}" class="login-warn">目前没有要还的书籍~</view>
 <view wx:else> 
   <checkbox-group bindchange="checkboxChange">
@@ -115,12 +116,14 @@
     </block> 
   </checkbox-group>
 </view>
+</scroll-view>
 </swiper-item>
 
 
 
 <!--预约栏-->
 <swiper-item>
+<scroll-view scroll-y style="height:{{winHeight}}px">
 <view wx:if="{{reserveBook ==''}}" class="login-warn">目前没有预约书籍~</view>
 <view wx:else> 
   <block wx:for="{{reserveBook}}" wx:key="item"> 
@@ -153,6 +156,7 @@
       </view>
     </block> 
   </view>
+</scroll-view>
 </swiper-item>
 
 

@@ -2,6 +2,7 @@
   玩命加载中...
 </loading>
 <!-- 概要 -->
+<scroll-view scroll-y style="height:{{winHeight}}px">
 <view class="book-details">
    <view class="book-cover">
      <image class="cover" src="{{bookInfo.images}}"></image>
@@ -19,7 +20,7 @@
     <view class="book-brief">当当售价：{{bookInfo.price}}元</view>
     <view class="book-brief">电子书：{{bookInfo.ebook_price}}元</view>
   </view>
-   <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder"></image>
+   <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder" style="z-index:1"></image>
 </view>
 
 <!--功能栏-->
@@ -96,11 +97,11 @@
   <view class="title">猜你喜欢</view>
   <scroll-view scroll-x="true" style="width: 100%" scroll-left="0">
     <block wx:for="{{sameBook}}" wx:key="index">
-      <image class="photo" src="{{item.images}}"></image>
+      <image class="photo" src="{{item.images}}" data-index="{{item.isbn13}}" bindtap="jumpTo"></image>
     </block>
   </scroll-view>
 </view>
-
+</scroll-view>
 <!-- 购票 -->
 <view class="book-buy">
   <view bindtap="bookBuy" class="btn-buy">凑单买书</view>

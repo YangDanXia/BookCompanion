@@ -186,10 +186,7 @@ height:auto;
 .box-top{
   display: flex;
   flex-wrap:wrap;
-  width:34%;
-
 margin-right:10%;
-
 
   border: 1px solid #e0e0e0; 
   border-radius:20rpx;

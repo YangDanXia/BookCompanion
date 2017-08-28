@@ -1,5 +1,6 @@
 <!--pages/me/me.wxml-->
 <!--信息栏-->
+<scroll-view scroll-y style="height:{{winHeight}}px">
 <view class="themes-box-top" wx:if="{{loginFlag}}">
   <image src="{{userInfo.photo}}" class="themes-box-title"></image>
   <text class="themes-box-subtitle">{{userInfo.name}}</text>
@@ -11,11 +12,9 @@
 
 
 <view class="container">
-
-
     <view bindtap="historyMess" class="issue-link">
       <view class="more-btn" >
-        <image class="btn-icon" src="../../img/icon/info.png"></image>
+        <image class="btn-icon" src="../../img/icon/message.png"></image>
         <text class="btn-text">我发布过的消息</text>
         <view class="btn-open">
           <image class="btn-enter" src="../../img/icon/enter.png"></image>
@@ -121,3 +120,4 @@
   </view>
 
 </view>
+</scroll-view>

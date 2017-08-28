@@ -18,7 +18,7 @@
     </view>
   </view>
 </view>
-  <scroll-view scroll-x="true" style="width: {{winWidth}}px" scroll-left="0">
+  <scroll-view scroll-x style="margin-left:2%" scroll-left="0">
    <view class="shiyan">
 
      <view class="box-top" wx:for="{{array}}" wx:key="item">

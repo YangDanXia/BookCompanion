@@ -5,7 +5,7 @@
     加载中...
 </loading>
 
- <scroll-view style="height:{{winHeight+400}}px" scroll-y="true" enable-back-to-top="true" >
+
  <view class="box-title-top">
   <view class="book-details">
    <view class="book-cover">
@@ -20,7 +20,7 @@
 </view>
 </view>
 <!--简介-->
-
+ <scroll-view style="height:{{winHeigh}}px" scroll-y enable-back-to-top="true" >
   <view class="list fun-list">
     <block wx:for="{{bookShelfValue.shelf_bookList}}"  wx:key="item"> 
       <view class="themes-list">
@@ -38,7 +38,7 @@
         <view class="operate-toDo" data-index="{{index}}" bindtap="collectOrNot">
            <image class="operate-type" src="../../img/icon/{{item.collectStatus}}.png"/>
         </view>
-        <navigator url="../../bookDetails/bookDetails?isbn={{item.BooklistISBN||item.book_isbn}}" hover-class="none">
+        <navigator url="../bookDetails/bookDetails?isbn={{item.BooklistISBN||item.book_isbn}}" hover-class="none">
            <image class="operate-type" src="../../img/icon/detail.png"/>
         </navigator>
         <view class="operate-toDo">

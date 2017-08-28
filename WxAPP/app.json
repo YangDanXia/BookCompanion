@@ -18,7 +18,7 @@
       "pages/me/account/login",
       "pages/me/account/bookCard",
       "pages/me/functions/recommend",
-
+      "pages/me/functions/notice",
       "pages/me/account/enroll",
       "pages/me/account/findPassword",
       "pages/me/functions/suggest",

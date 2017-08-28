@@ -12,7 +12,8 @@ Page({
   data: {
     userInfo: app.cache.userInfo,
     //登录状态
-    loginFlag: app.cache.loginFlag || false
+    loginFlag: app.cache.loginFlag || false,
+    winHeight: app.globalData.winHeight
     
   },
 

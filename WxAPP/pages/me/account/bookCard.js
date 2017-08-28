@@ -105,6 +105,9 @@ Page({
                 var newCard = { history_borrow: "0", library: arr[2], uk_bookCardId: arr[1], current_borrow: "0" };
                 obj.push(newCard);
                 app.saveCache('bookCard', obj);
+                that.setData({
+                  bookCard: obj
+                })
                 wx.showToast({
                   title: '添加成功',
                   icon: success

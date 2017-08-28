@@ -42,7 +42,13 @@ Page({
       })
     }
     for(var i=0;i<obj.length;i++){
-      obj[i].book_name = obj[i].book_name.substr(0, 16) + "..."
+      if (obj[i].book_name>24){
+        obj[i].book_name = obj[i].book_name.substr(0, 24) + "..."
+      }
+      if (obj[i].book_author.length>24){
+        obj[i].book_author = obj[i].book_author.substr(0, 24) + "..."
+      }
+      
     }
     this.setData({
       bookList:obj

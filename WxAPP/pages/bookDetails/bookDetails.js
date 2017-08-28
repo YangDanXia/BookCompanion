@@ -111,8 +111,6 @@ Page({
           },
           method: 'GET',
           success: function (res) {
-            console.log(res.data)
-            console.log(res.data.result[0])
             that.setData({
               sameBook: res.data.result
             })
@@ -521,9 +519,14 @@ Page({
     }
   },
 
-  onReachBottom: function () {
-    // Do something when page reach bottom.
+  jumpTo:function(e){
+    var isbn = e.currentTarget.dataset.index
+    wx.navigateTo({
+      url: 'bookDetails?isbn='+isbn
+    })
   },
+
+
 
   /**
   * 获取时间

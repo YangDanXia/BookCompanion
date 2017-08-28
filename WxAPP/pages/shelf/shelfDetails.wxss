@@ -148,7 +148,6 @@ display:flex;
 
 .themes-list-name {
   font-size:30rpx;
-  height:65%;
 overflow:hidden;
 
 }
@@ -190,7 +189,7 @@ overflow:hidden;
     position: relative; 
     padding: 15rpx 0rpx; 
     border-bottom: 0px solid  #D3D3D3;
-    height:220rpx;
+    height:200rpx;
     width:95%;
 
   }

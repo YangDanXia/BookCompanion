@@ -125,3 +125,23 @@ page {
   margin-top: 10rpx;
   font-size:30rpx;
 }
+.tubiao1
+{
+  font-size:26rpx;
+}
+
+.notice{
+     margin-left:-40%;
+   padding-top: 10rpx;
+
+}
+
+ .record{
+  background-color: red;
+  padding: 5rpx 10rpx;
+  border-top-left-radius: 150rpx;
+  border-bottom-left-radius: 150rpx;
+  border-top-right-radius: 150rpx;
+  border-bottom-right-radius: 150rpx;
+  color:white;
+ }

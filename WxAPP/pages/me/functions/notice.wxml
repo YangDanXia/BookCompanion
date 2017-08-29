@@ -10,7 +10,7 @@
 <!--设置下滑更新数据-->
 <view wx:if="{{msgHidden}}">
   <block wx:for="{{msgList}}" wx:key="{{item}}"> 
-   <view class="themes-list">
+   <view class="themes-list" data-index="index" bindtap="message">
     <view class="themes-list-box">
      <view bindtap="bookDetail">
        <view class="themes-list-thumbnail">
@@ -19,7 +19,18 @@
 
        <view class="themes-list-main">
          <view class="themes-list-name">{{item.name}}</view>
+         <view class="notice">
+           <view class="tubiao">
+             <view class="tubiao1">
+               <text class="record">1</text>
+             </view>
+         </view>
        </view>
+       <image src="../../../img/icon/delMsg.png" class="deleteIt" bindtap="delMsg" data-index="index"></image>
+       </view>
+
+
+
       </view>
      </view>
     </view>

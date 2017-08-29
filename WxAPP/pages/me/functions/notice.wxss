@@ -1,5 +1,9 @@
 /* pages/me/functions/notice.wxss */
 
+page{
+  background-color:#f6f6f6; 
+}
+
 /* 滑动栏 */
 .swiper-tab{ 
    height: 70rpx; 
@@ -41,7 +45,9 @@
 
 .themes-list-name{
   text-align:left;
-  line-height:45rpx;
+  line-height:70rpx;
+  font-size:40rpx;
+
 } 
 
 
@@ -54,23 +60,59 @@
 .themes-list-thumbnail{
     top:10rpx;
     left:3%;
-    height:0
-    width:0;
+    height:0;
+    width:1rpx;
+
 }
 
 .themes-list-main {
-   margin-left:20%;
+  margin:0% 0 3% 17%;
+display:flex;
+
 
 }
 
 
 .themes-list-img {
-    width: 100rpx;
-    height: 100rpx;
+    width: 80rpx;
+    height: 80rpx;
     border-radius: 200rpx;
     box-shadow: 0 0 300rpx 100rpx rgba(255, 255, 255, .2), 0 1px 0 rgba(255, 255, 255, 0.4);
     display: -webkit-inline-flex; 
 }
-.themes-list{
-  margin:15rpx 0;
+
+.themes-list-box{
+  margin:1%;
 }
+
+.deleteIt{
+  width:30px;
+height:30px;
+margin-left:60%;
+padding-top:2%;
+}
+
+
+
+.tubiao1
+{
+
+  font-size:26rpx;
+
+}
+
+.notice{
+     margin-left:30rpx;
+   padding-top: 10rpx;
+
+}
+
+ .record{
+  background-color: red;
+  padding: 5rpx 10rpx;
+  border-top-left-radius: 150rpx;
+  border-bottom-left-radius: 150rpx;
+  border-top-right-radius: 150rpx;
+  border-bottom-right-radius: 150rpx;
+  color:white;
+ }

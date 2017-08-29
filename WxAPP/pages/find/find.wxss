@@ -24,6 +24,11 @@
   width:600rpx;
   height:90rpx;
 }
+
+.detail{
+  margin-top:-8px;
+}
+
 .from-othercontent
 {
   display:block;

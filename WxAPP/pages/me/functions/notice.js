@@ -63,6 +63,25 @@ Page({
    */
   onReady: function () {
   
+  },
+
+  /**
+   * 进入聊天界面
+   */
+  message:function(e){
+  },
+
+  /**
+   * 删除对话
+   */
+  delMsg:function(e){
+    var index = e.currentTarget.dataset.index
+    var msgList = app.cache.messageList
+    msgList.splice(index,1)
+    app.saveCache("messageList",msgList)
+    this.setData({
+      msgList: msgList
+    })
   }
 
 })

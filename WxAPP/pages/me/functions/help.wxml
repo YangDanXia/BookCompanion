@@ -9,10 +9,43 @@
 <swiper-item>
  <scroll-view scroll-y style="height:{{winHeight}}px">
 <view class="help">
+  
+
+<view class="movie-photos">
   <view class="all">
    <view class="first">
     <view class="numberpicture">
       <image class="numberpicture" src="../../../img/icon/one.png"></image>
+    </view>
+    <view class="question">
+      <text>如果在图书馆借阅书籍？</text>
+    </view>
+  </view>
+</view>
+  <scroll-view scroll-x style="margin-left:2%" scroll-left="0">
+   <view class="shiyan">
+
+     <!-- <view class="box-top" wx:for="{{array}}" wx:key="item"> -->
+       <view class="box-one" data-index="{{index}}" bindtap="tellIntro">
+         <image class="box-textone" src="https://www.hqinfo.xyz/photo/step1.jpg"></image>
+         <image class="box-textone" src="https://www.hqinfo.xyz/photo/step2.jpg"></image>
+         <image class="box-textone" src="https://www.hqinfo.xyz/photo/step3.jpg"></image>
+         <image class="box-textone" src="https://www.hqinfo.xyz/photo/step4.jpg"></image>
+         <image class="box-textone" src="https://www.hqinfo.xyz/photo/step5.jpg"></image>
+         <image class="box-textone" src="https://www.hqinfo.xyz/photo/step6.jpg"></image>
+       </view>
+     <!-- </view> -->
+    </view>
+
+  </scroll-view>
+</view>
+  
+
+
+  <view class="all">
+   <view class="first">
+    <view class="numberpicture">
+      <image class="numberpicture" src="../../../img/icon/two.png"></image>
     </view>
     <view class="question">
       <text>关于图书推荐</text>
@@ -33,7 +66,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/two.png"></image>
+      <image class="numberpicture" src="../../../img/icon/three.png"></image>
     </view>
     <view class="question">
     <text>关于“附近图书馆”功能</text>
@@ -49,7 +82,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/three.png"></image>
+      <image class="numberpicture" src="../../../img/icon/four.png"></image>
     </view>
     <view class="question">
       <text>关于“扫码”功能</text>
@@ -66,7 +99,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/four.png"></image>
+      <image class="numberpicture" src="../../../img/icon/five.png"></image>
     </view>
     <view class="question">
       <text>关于“预约图书”功能</text>
@@ -85,7 +118,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/five.png"></image>
+      <image class="numberpicture" src="../../../img/icon/six.png"></image>
     </view>
     <view class="question">
       <text>关于"凑单买书"功能</text>
@@ -107,7 +140,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/six.png"></image>
+      <image class="numberpicture" src="../../../img/icon/seven.png"></image>
     </view>
     <view class="question">
       <text>关于"淘书"功能</text>
@@ -126,7 +159,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/seven.png"></image>
+      <image class="numberpicture" src="../../../img/icon/eight.png"></image>
     </view>
     <view class="question">
       <text>关于"借书证"</text>
@@ -143,7 +176,7 @@
 <view class="all">
  <view class="first">
     <view class="numberpicture">
-      <image class="numberpicture" src="../../../img/icon/eight.png"></image>
+      <image class="numberpicture" src="../../../img/icon/night.png"></image>
     </view>
     <view class="question">
       <text>关于"图书荐购与图书馆反馈"</text>

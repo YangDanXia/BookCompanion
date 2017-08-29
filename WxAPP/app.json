@@ -1,6 +1,7 @@
 {
   "pages": [
-"pages/find/find",
+          
+      "pages/find/find",
       "pages/index/index",
       "pages/shelf/shelf",
       

@@ -125,7 +125,7 @@ Page({
   talkTo: function (e) {
     var photo = e.currentTarget.dataset.photo;
     var name = e.currentTarget.dataset.name;
-    var phone = e.currentTarget.dataset.phone;
+    var phone = e.currentTarget.dataset.id;
     if (!this.data.loginFlag) {
       this.login()
     } else {

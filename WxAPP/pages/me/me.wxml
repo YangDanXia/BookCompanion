@@ -35,6 +35,11 @@
            <image src="../../img/icon/notice.png" style="width:55rpx;height:55rpx;"></image>
            <text>通知</text>
           </view>
+          <view class="notice">
+             <view class="tubiao1">
+               <text class="record">10</text>
+             </view>
+       </view>
         </view>
         <view class="list">
           <navigator url="functions/bookTicket" class="items" hover-class="none">

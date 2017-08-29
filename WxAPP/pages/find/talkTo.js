@@ -74,7 +74,7 @@ Page({
     })
 
     wx.request({
-      url: 'http://localhost:8080/Server_Java/DbOperations',
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",
@@ -109,12 +109,6 @@ Page({
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
-        setTimeout(function () {
-          wx.navigateBack({
-            delta: 1
-          })
-        }, 1000);
-
       },
       fail: function (res) {
         wx.showToast({

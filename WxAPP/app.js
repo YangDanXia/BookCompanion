@@ -73,6 +73,30 @@ App({
     }
   },
 
+  /**
+   * 从前台进入后台时，登记书卷
+   */
+   onHide: function() {
+     var that = this
+       wx.request({
+         url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+         data:{
+                dbName:"WxApp",
+                table:"user_info",
+                typeName:"update",
+                field: { bookTicket:that.cache.userInfo.bookTicket},
+                factor:{ userPhone: that.cache.userInfo.userPhone}
+               }, 
+         method: 'GET', // OPTIONS, GET, HEAD, POST, PUT, DELETE, TRACE, CONNECT
+         header: {
+             'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+               },
+         success: function(res){
+            console.log(res.data)
+         }, 
+       })
+   },
+
 
   /**
   * 保存缓存

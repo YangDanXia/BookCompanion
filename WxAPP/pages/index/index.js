@@ -152,7 +152,6 @@ Page({
         },
         method: 'GET',
         success: function (res) {
-          console.log(res.data)
           var obj = res.data.result
           for (var i = 0; i < obj.length; i++) {
             if(obj[i].title.length>10){
@@ -165,7 +164,6 @@ Page({
           that.setData({
             recommendItems: res.data.result
           })
-          console.log(res.data.result)
         },
         fail: function (res) {
           that.setData({
@@ -207,7 +205,6 @@ Page({
         },
         method: 'GET',
         success: function (res) {
-          console.log(res.data)
           var obj = res.data.result
           for (var i = 0; i < obj.length; i++) {
             if (obj[i].title.length > 10) {
@@ -220,7 +217,6 @@ Page({
           that.setData({
             recommendItems: res.data.result
           })
-          console.log(res.data.result)
         },
         fail: function (res) {
           that.setData({
@@ -256,7 +252,6 @@ Page({
       },
       method: 'GET',
       success:function(res){
-        console.log(res.data)
         var obj = res.data.result
         for (var i = 0; i < obj.length; i++) {
           if (obj[i].title.length > 10) {
@@ -269,7 +264,6 @@ Page({
         that.setData({
           commendItems: res.data.result
         })
-        console.log(res.data.result)
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
@@ -292,7 +286,6 @@ Page({
     var bookId;
     wx.scanCode({
       success: (res) => {
-        console.log("扫码结果"+res.result)
         bookId = res.result;
         // 为防止重复借同一本书，在扫码后先检索此书是否已存在
         for(var i=0;i<that.data.waitToBorrow.length;i++){
@@ -325,8 +318,6 @@ Page({
                   },
                   method: 'GET',
                   success:function(res){
-                    console.log("扫码借书：")
-                    console.log(res.data)
                     if(res.data == "error"){
                       wx.showToast({
                         title: "系统故障，请稍后重试",

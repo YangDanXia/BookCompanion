@@ -61,7 +61,7 @@ Page({
         dbName: "WxApp",
         table: "user_info",
         typeName: "inquire",
-        field: { userPassword: that.data.userPassword},
+        field: { userPassword:'',bookTicket:''},
         factor: { userPhone: that.data.userPhone},
         limit:"0,1"
       },
@@ -84,6 +84,7 @@ Page({
           var info = app.cache.userInfo || {}
           info.userPhone = that.data.userPhone
           info.userPassword = that.data.userPassword
+          info.bookTicket = result.bookTicket
           app.saveCache("userInfo",info)
           app.saveCache('loginFlag',true)
           //返回上一层

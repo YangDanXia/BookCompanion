@@ -3,8 +3,6 @@ var app = getApp();
 
 Page({
   data: {
-    // loading
-    hidden: false,
     // 页面配置
     winWidth: app.globalData.width,
     winHeight: app.globalData.winHeight,
@@ -47,20 +45,7 @@ Page({
 
   },
 
-
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-    var that = this
-    // 数据加载完成后 延迟隐藏loading
-    setTimeout(function () {
-      that.setData({
-        hidden: true
-      })
-    }, 500);
-  },
+ 
 
   /**
    * 计算图书数量

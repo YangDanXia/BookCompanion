@@ -74,6 +74,7 @@ Page({
       },
       method: 'GET',
       success: function (res) {
+        console.log(res.data)
         var obj = res.data.result
         if(res.data == "error"){
           that.setData({

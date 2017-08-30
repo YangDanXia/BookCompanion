@@ -118,7 +118,7 @@ Page({
           data:
           {
             dbName: "WxApp",
-            table: "tem_sellBook_record",
+            table: "sellBook_record",
             typeName: "insert",
             field: {
               idx_phone: userInfo.userPhone,

@@ -50,7 +50,7 @@ Page({
       data:
       {
         dbName: "WxApp",
-        table: "tem_sellBook_record",
+        table: "sellBook_record",
         typeName: "inquireLike",
         field: { idx_phone: '', nickName: '', avatarUrl: '', bookName: '', picture: '', content: '', tag: '', price: '', ex_price: '', publish_time: '' },
         factor: { bookName: searchContent },

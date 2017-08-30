@@ -24,8 +24,7 @@
 .title{
   position: absolute;
   top: 60rpx;
-  left: 50%;
-  width: 1800rpx;
+  left: 57%;
   height: 220rpx;
   margin-left:-48%;
 }

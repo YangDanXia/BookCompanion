@@ -79,7 +79,7 @@
     <servlet-name>CloseConn</servlet-name>
     <url-pattern>/CloseConn</url-pattern>
   </servlet-mapping>
-    <servlet>
+  <servlet>
     <description></description>
     <display-name>UploadImage</display-name>
     <servlet-name>UploadImage</servlet-name>
@@ -89,5 +89,14 @@
     <servlet-name>UploadImage</servlet-name>
     <url-pattern>/UploadImage</url-pattern>
   </servlet-mapping>
-  
+    <servlet>
+    <description></description>
+    <display-name>MsgBoard</display-name>
+    <servlet-name>MsgBoard</servlet-name>
+    <servlet-class>msg.MsgBoard</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MsgBoard</servlet-name>
+    <url-pattern>/MsgBoard</url-pattern>
+  </servlet-mapping>
 </web-app>

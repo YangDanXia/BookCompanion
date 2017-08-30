@@ -2,8 +2,8 @@
 <!--信息栏-->
 <scroll-view scroll-y style="height:{{winHeight}}px">
 <view class="themes-box-top" wx:if="{{loginFlag}}">
-  <image src="{{userInfo.photo}}" class="themes-box-title"></image>
-  <text class="themes-box-subtitle">{{userInfo.name}}</text>
+  <image src="{{userInfo.avatarUrl}}" class="themes-box-title"></image>
+  <text class="themes-box-subtitle">{{userInfo.nickName}}</text>
 </view>
 <view class="themes-box-top" wx:else>
   <image src='../../img/icon/user.png' class="themes-box-title" bindtap="login"></image>
@@ -35,11 +35,11 @@
            <image src="../../img/icon/notice.png" style="width:55rpx;height:55rpx;"></image>
            <text>通知</text>
           </view>
-          <view class="notice">
+          <view class="notice"  wx:if="{{unreadNum>0}}">
              <view class="tubiao1">
-               <text class="record">10</text>
+               <text class="record">{{unreadNum}}</text>
              </view>
-       </view>
+          </view>
         </view>
         <view class="list">
           <navigator url="functions/bookTicket" class="items" hover-class="none">

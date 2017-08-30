@@ -2,7 +2,7 @@
 var app = getApp();
 var that = this;
 var userPhone;
-var passwd;
+var userPassword;
 var codeNumber;
 var code;
 var countdown = 60;
@@ -26,8 +26,9 @@ var settime = function (that) {
   }
     , 1000)
 }
-Page({
 
+
+Page({
   data: {
     toSend:true,
     second:60
@@ -44,7 +45,7 @@ Page({
    * 获取密码的输入
    */
   passwdInput: function (e) {
-    passwd = e.detail.value
+    userPassword = e.detail.value
   },
 
   /**
@@ -97,7 +98,8 @@ Page({
    * 点击注册
    */
   enroll: function () {
-    var information = new Array(userPhone,passwd,code);
+    var info = app.cache.userInfo ||{}
+    var information = new Array(userPhone, userPassword,code);
     for (var x = 0; x < 3; x++) {
       if (!information[x]) {
         wx.showToast({
@@ -114,6 +116,8 @@ Page({
       })
       return false;
     }
+    info.userPhone =userPhone;
+    info.userPassword = userPassword;
   /**
    * 连接数据库
    * 需要的数据：数据表，操作类型，手机号，密码
@@ -125,7 +129,7 @@ Page({
         dbName:"WxApp",
         table:"user_info",
         typeName:"insert",
-        field:{uk_phone:userPhone,info_password:passwd},
+        field:info,
         factor:{}
       }, 
       header: {
@@ -151,6 +155,7 @@ Page({
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
+        app.saveCache("userInfo",info)
         setTimeout(function () {
           wx.navigateBack({
             delta: 1

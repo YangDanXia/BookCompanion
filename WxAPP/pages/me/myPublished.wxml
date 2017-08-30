@@ -2,9 +2,9 @@
 <view wx:if="{{errHidden}}">
 <view class="box-top" wx:for="{{list}}" wx:for-item="item" wx:key="x">
   <view class="content" style="padding-top:25rpx;">
-     <image class="from-headpicture" src="{{item.photo}}"></image>
+     <image class="from-headpicture" src="{{item.avatarUrl}}"></image>
      <view class="from-othercontent">
-        <text class="from-nametext">{{item.name}}</text>
+        <text class="from-nametext">{{item.nickName}}</text>
      </view>
   </view>
   <view class="middle"></view>

@@ -12,10 +12,11 @@ Page({
    */
   onLoad: function () {
     var that = this
+    var info = app.cache.userInfo || {}
     app.getUserInfo(function (userInfo) {
-      that.setData({
-        userInfo: userInfo
-      })
+      info.avatarUrl = userInfo.avatarUrl
+      info.nickName = userInfo.nickName
+      app.saveCache("userInfo",info)
     })
   },
 
@@ -35,7 +36,7 @@ Page({
    */
   passwdInput: function (e) {
     this.setData({
-      passwd: e.detail.value
+      userPassword: e.detail.value
     });
   },
 
@@ -46,7 +47,7 @@ Page({
    */
   doLogin: function () {
     var that = this;
-    if (!this.data.userPhone || !this.data.passwd) {//当账号或密码为空时提示
+    if (!this.data.userPhone || !this.data.userPassword) {//当账号或密码为空时提示
       wx.showToast({
         title: '手机号或密码不能为空',
         image: "../../../img/icon/warn.png"
@@ -60,8 +61,8 @@ Page({
         dbName: "WxApp",
         table: "user_info",
         typeName: "inquire",
-        field: { info_password: that.data.passwd},
-        factor: { uk_phone: that.data.userPhone},
+        field: { userPassword: that.data.userPassword},
+        factor: { userPhone: that.data.userPhone},
         limit:"0,1"
       },
       //请求头
@@ -70,7 +71,6 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data.result)
         var obj = res.data.result
         if(obj.length == 0){
           wx.showToast({
@@ -79,11 +79,13 @@ Page({
           })
           return false;
         }
-        var result=res.data.result[0].info_password;
-        if (result == that.data.passwd) {//验证成功，则返回的数据为TRUE,失败则返回false
-          //保存登录态，只要用户不删除缓存记录和自动退出，以后都不需要再登录
+        var result=res.data.result[0].userPassword;
+        if (result == that.data.userPassword) {
+          var info = app.cache.userInfo || {}
+          info.userPhone = that.data.userPhone
+          info.userPassword = that.data.userPassword
+          app.saveCache("userInfo",info)
           app.saveCache('loginFlag',true)
-          app.saveCache('userInfo', { phone: that.data.userPhone,password: that.data.passwd,photo:that.data.userInfo.avatarUrl,name:that.data.userInfo.nickName})
           //返回上一层
           setTimeout(function () {
             wx.navigateBack({

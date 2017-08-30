@@ -9,7 +9,7 @@
 
 
 
-<swiper current="{{currentTab}}"  class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight+30}}px">
+<swiper current="{{currentTab}}"  class="swiper-box" duration="300"  bindchange="bindChange" style="height:{{winHeight+10}}px">
 <swiper-item>
 <scroll-view scroll-y style="height:{{winHeight+30}}px">
 <view class="book-details">
@@ -120,7 +120,7 @@
 
 <!--发表评论-->
 <swiper-item>
-<scroll-view scroll-y style="height:{{winHeight+30}}px">
+<scroll-view scroll-y style="height:{{winHeight+10}}px">
 
 <view wx:if="{{viewHidden}}">
   <block wx:for="{{viewBook}}" wx:key="{{item}}"> 

@@ -9,7 +9,6 @@ Page({
   },
 
   onLoad: function(options) {
-    console.log(this.data.phone)
     var length = this.data.bookCard.length;
     var that = this;
     var user = app.cache.userInfo || ''
@@ -27,8 +26,8 @@ Page({
           table: "bookcard_record",
           typeName: "inquire",
           field: { uk_bookCardId: '', library: '', current_borrow:'',history_borrow:''},
-          factor: { idx_phone: user.phone},
-          limit:"10"
+          factor: { idx_phone: user.userPhone},
+          limit:"20"
         },
         //请求头
         header: {
@@ -36,13 +35,10 @@ Page({
         },
         method: 'GET',
         success:function(res){
-          console.log("借书证：")
-          console.log(res.data)
           that.setData({
             bookCard:res.data.result
           })
           app.saveCache("bookCard",res.data.result)
-
           wx.request({
             url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
           })
@@ -58,7 +54,7 @@ Page({
    */
   onShow: function () {
     var info = app.cache.userInfo || ''
-    var phone = info.phone || ''
+    var phone = info.userPhone || ''
   
     this.setData({
       bookCard: app.cache.bookCard,

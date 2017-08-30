@@ -317,7 +317,7 @@ Page({
     var index = e.currentTarget.dataset.index; 
     var obj = that.data.waitToReturn
     var info = app.cache.userInfo
-    var phone = info.phone
+    var phone = info.userPhone
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:

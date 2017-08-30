@@ -1,32 +1,27 @@
 <!--pages/me/functions/notice.wxml-->
 <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">小纸条</view>
-    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">系统通知</view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">留言记录</view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">系统通知</view>
 </view>
 
 <swiper current="{{currentTab}}" duration="300"  bindchange="bindChange" style="height:{{winHeight}}px">
 <swiper-item>
  <scroll-view scroll-y style="height:{{winHeight}}px">
 <!--设置下滑更新数据-->
-<view wx:if="{{msgHidden}}">
-  <block wx:for="{{msgList}}" wx:key="{{item}}"> 
-   <view class="themes-list" data-index="index" bindtap="message">
+<view wx:if="{{replyHidden}}">
+  <block wx:for="{{replyList}}" wx:key="{{item}}"> 
+   <view class="themes-list" data-index="{{index}}" data-type="reply" bindtap="message">
     <view class="themes-list-box">
-     <view bindtap="bookDetail">
+     <view>
        <view class="themes-list-thumbnail">
          <image class="themes-list-img" src='{{item.photo}}' />
        </view>
 
        <view class="themes-list-main">
          <view class="themes-list-name">{{item.name}}</view>
-         <view class="notice">
-           <view class="tubiao">
-             <view class="tubiao1">
-               <text class="record">1</text>
-             </view>
-         </view>
-       </view>
-       <image src="../../../img/icon/delMsg.png" class="deleteIt" bindtap="delMsg" data-index="index"></image>
+             <image src="../../../img/icon/unread.png" class="tubiao"></image>
+       <image src="../../../img/icon/delMsg.png" class="deleteIt" catchtap="delReply" data-index="{{index}}"></image>
        </view>
 
 
@@ -47,6 +42,46 @@
 
  </scroll-view>
 </swiper-item>
+
+
+
+<swiper-item>
+ <scroll-view scroll-y style="height:{{winHeight}}px">
+<!--设置下滑更新数据-->
+<view wx:if="{{msgHidden}}">
+  <block wx:for="{{msgList}}" wx:key="{{item}}"> 
+   <view class="themes-list" data-index="{{index}}" data-type="msg" bindtap="message">
+    <view class="themes-list-box">
+     <view>
+       <view class="themes-list-thumbnail">
+         <image class="themes-list-img" src='{{item.photo}}' />
+       </view>
+
+       <view class="themes-list-main">
+         <view class="themes-list-name">{{item.name}}</view>
+       <image src="../../../img/icon/delMsg.png" class="deleteIt" catchtap="delMsg" data-index="{{index}}"></image>
+       </view>
+
+
+
+      </view>
+     </view>
+    </view>
+   </block>
+</view>
+
+
+<view class="contain" wx:else>
+ <image src="../../../img/icon/emptyMsg.png" class="img"></image>
+ <view>
+   <text>暂时没有留言~</text>
+ </view>
+</view>
+
+ </scroll-view>
+</swiper-item>
+
+
 
 
 <swiper-item>

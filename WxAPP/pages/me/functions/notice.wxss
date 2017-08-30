@@ -19,7 +19,7 @@ page{
   }
 
 .swiper-tab-list{ 
-   margin: 0 80rpx;  
+   margin: 0 40rpx;  
    padding: 0 18rpx; 
    font-size: 32rpx; 
    font-family: Helvetica, Arial, "Hiragino Sans GB", "Source Han Sans CN", "PingFang SC", Roboto, "微软雅黑", "Heiti SC", "Microsoft Yahei", sans-serif 
@@ -49,6 +49,12 @@ page{
   font-size:40rpx;
 
 } 
+
+.tubiao{
+  width:50rpx;
+height:50rpx;
+
+}
 
 
 .themes-list-description{
@@ -90,6 +96,8 @@ display:flex;
 height:30px;
 margin-left:60%;
 padding-top:2%;
+position:fixed;
+
 }
 
 
@@ -100,12 +108,7 @@ padding-top:2%;
   font-size:26rpx;
 
 }
-
-.notice{
-     margin-left:30rpx;
-   padding-top: 10rpx;
-
-}
+ 
 
  .record{
   background-color: red;

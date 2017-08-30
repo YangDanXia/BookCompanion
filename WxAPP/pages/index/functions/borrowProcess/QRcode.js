@@ -142,7 +142,9 @@ Page({
          var time = that.getTime()
          var choose = app.cache.chooseToBorrow
          var returnBook = app.cache.waitToReturn || []
-         var num = app.cache.bookTicket || 0
+         var obj = app.cache.userInfo || ''
+         // 书卷数量
+         var num = obj.bookTicket || 0
          for(var i = 0 ;i<choose.length;i++){
             choose[i].book_borrowTime = time
             var arr = choose[i]
@@ -155,7 +157,7 @@ Page({
                 table: "book_borrow",
                 typeName: "insert",
                 field: {
-                  idx_phone:app.cache.userInfo.phone,
+                  idx_phone:app.cache.userInfo.userPhone,
                   book_id: choose[i].BookId,
                   book_isbn:choose[i].BooklistISBN,
                   book_photo: choose[i].BooklistImage,
@@ -179,7 +181,8 @@ Page({
                   console.log(arr)
                   app.saveCache("waitToReturn", returnBook)
                   num ++
-                  app.saveCache('bookTicket', num)
+                  obj.bookTicket = num
+                  app.saveCache('userInfo', obj)
                 }
               }
             })
@@ -236,7 +239,9 @@ Page({
       var chooseToReturn = app.cache.chooseToReturn || []
       var historyBook = app.cache.historyBook || []
       var len = chooseToReturn.length
-      var num = app.cache.bookTicket || 0
+      var obj = app.cache.userInfo || ''
+      // 书卷数量
+      var num = obj.bookTicket || 0
       wx.request({
         url: 'https://www.hqinfo.xyz/ServerForCommunicate/Get?request=getReturnState',
         //请求头
@@ -259,7 +264,7 @@ Page({
                   typeName: "delete",
                   field: {},
                   factor: {
-                    idx_phone: app.cache.userInfo.phone,
+                    idx_phone: app.cache.userInfo.userPhone,
                     book_id: chooseToReturn[i].BookId
                   },
                   limit: "1"
@@ -272,8 +277,8 @@ Page({
                   console.log(res.data)
                   if(res.data =="OK"){
                     num++
-
-                    app.saveCache('bookTicket', num)
+                    obj.bookTicket = num
+                    app.saveCache('userInfo', obj)
                     app.saveCache("historyBook", historyBook)
                   }else if(res.data =="error") {
                     wx.showToast({

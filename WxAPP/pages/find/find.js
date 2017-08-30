@@ -11,7 +11,9 @@ Page({
    //登录状态
     loginFlag: app.cache.loginFlag || false,
     // 提示没有发布过
-    warnHidden: false
+    warnHidden: false,
+    // 是否需要放大图片
+    photoShow:false
   },
 
   /**
@@ -58,9 +60,9 @@ Page({
       data:
       {
         dbName: "WxApp",
-        table: "sellBook_record",
+        table: "tem_sellBook_record",
         typeName: "inquireOrder",
-        field: { idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '',publish_time:'' },
+        field: { idx_phone: '', nickName: '', avatarUrl: '', picture: '', content: '', tag: '', price: '', ex_price: '',publish_time:'' },
         factor: {},
         limit: "1"
       },
@@ -70,7 +72,6 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data)
         var obj = res.data.result
         if(res.data == "error"){
           that.setData({
@@ -85,7 +86,6 @@ Page({
         } else {
           for (var i = 0; i < obj.length; i++) {
             obj[i].tag = obj[i].tag.split(",");
-            obj[i].picture = obj[i].picture.split(";")
           }
           that.setData({
             warnHidden: false,
@@ -102,6 +102,29 @@ Page({
           errHidden: false
         })
       }
+    })
+  },
+
+
+  /**
+   * 点击放大图片
+   */
+  largePicture:function(e){
+     var src = e.currentTarget.dataset.src
+     this.setData({
+       photoShow: true,
+       needSrc: src
+     })
+
+
+  },
+
+  /**
+   * 放小图片
+   */
+  closePhoto:function(){
+    this.setData({
+      photoShow: false
     })
   },
 
@@ -130,7 +153,7 @@ Page({
       this.login()
     } else {
       wx.navigateTo({
-        url: 'talkTo?phone='+phone+'&photo='+photo+'&name='+name
+        url: 'talkTo?phone='+phone+'&photo='+photo+'&name='+name+'&way=write'
       })
     }
   },

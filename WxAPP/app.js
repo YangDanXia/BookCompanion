@@ -34,6 +34,8 @@ App({
       }
     })
 
+
+
      /**
       * 建立用户信息
       */
@@ -42,26 +44,13 @@ App({
       success: function (res) { return; },
       fail: function () {
         var newInfo = {
-          phone:'',
-          password:''
+          userPhone:'',
+          userPassword:'',
+          avatarUrl:'img/icon/user.png',
+          nickName:'匿名',
+          bookTicket:0
         }
         that.saveCache('userInfo', newInfo)
-      }
-    })
-
-
-    /**
-     * 自动建立签到机制
-     */
-    wx.getStorage({
-      key: 'checkIn',
-      success: function (res) { return; },
-      fail: function () {
-        var newCheck = {
-         "data":"0",
-         "days":"0"
-        }
-        that.saveCache('checkIn', newCheck)
       }
     })
 
@@ -79,8 +68,9 @@ App({
           }
         });
       }
-    } catch (e) { console.warn('获取缓存失败'); }
-
+    } catch (e) { 
+      console.warn('获取缓存失败'); 
+    }
   },
 
 
@@ -133,18 +123,6 @@ App({
     } else {
       wx.login({
         success: function (res) {
-          // if (res.code) {
-          //   wx.request({
-          //     url: "https://api.weixin.qq.com/sns/jscode2session?appid=wx2b32ac8600d1cef0&secret=e3b94eafd696bc0913cc1dd40f0b7069&js_code=" + res.code + "&grant_type=authorization_code",
-          //     success: function (res) {
-          //       wx.setStorage({
-          //         key: 'openId',
-          //         data: res.data.openid
-          //       });
-          //       console.log(res.data.openid)
-          //     }
-          //   });
-          // }
           wx.getUserInfo({
             success: function (res) {
               that.globalData.userInfo = res.userInfo
@@ -153,27 +131,11 @@ App({
           })
         },
         fail: function () {
-          that.showWarnModal('提示', '拒绝授权将导致部分功能无法使用，请重新打开再点击允许授权！')
+          
         }
       })
     }
   },
-
-
-  // /**
-  //  * 倒计时
-  //  */
-  // countDown: function (that,num) {
-  //   if (num == 0) {
-  //     return;
-  //   } else {
-  //     num--;
-  //   }
-  //   setTimeout(function () {
-  //     settime(that)
-  //   }
-  //     , 1000)
-  // },
 
 
   //缓存内容
@@ -198,6 +160,10 @@ App({
     // 图书选择的下标
     codeValue:[],
     // 类型的选择
-    currentTab:0
+    currentTab:0,
+    // // 未读信息数量
+    // unreadNum:0,
+    // // 未读信息列表
+    // unreadList:[]
   }
 })

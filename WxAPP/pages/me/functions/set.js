@@ -5,17 +5,10 @@ Page({
   data: {
     //是否隐藏弹窗
     modalHidden: true,
-    radioValue: [
-      { value: 'everyDay', name: '每日一推' },
-      { value: 'everyWeek', name: '每周一推' },
-      { value: 'everyMonth', name: '每月一推' }
-    ],
-    // 默认频率为每日一推
-    frequency: app.cache.frequency || 'everyDay',
     //功能列表
     functionList: option.ReminderFunction,
     //功能设置情况
-    remindFlag: app.cache.remindFlag || ['0', '0', '0', '0'],
+    remindFlag: app.cache.remindFlag || ['0', '0', '0'],
     //登录状态
     loginFlag: app.cache.loginFlag || false
   },
@@ -26,9 +19,7 @@ Page({
    var log = app.cache.loginFlag || false
    wx.getStorageInfo({
      success: function (res) {
-       console.log(res.currentSize)
        var size =Math.round(res.currentSize / 1024);
-       console.log(size)
        that.setData({
          currentSize: size,
          loginFlag:log
@@ -42,7 +33,7 @@ Page({
    */
   onshow: function () {
     this.setData({
-      setState: app.cache.remindFlag || ['0', '0', '0', '0'],
+      setState: app.cache.remindFlag || ['0', '0', '0'],
       loginFlag: app.cache.loginFlag || false
  
     })
@@ -54,7 +45,6 @@ Page({
    */
   setting: function (e) {
     var formId = e.detail.formId;
-    console.log(formId)
     var index = e.currentTarget.dataset.index;
     var newSetState = this.data.remindFlag;
     if (this.data.remindFlag[index] == '0') {//选择打开

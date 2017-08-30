@@ -1,7 +1,12 @@
 <!--pages/find/find.wxml--> 
+<!-- loading -->
+<loading hidden="{{loadhidden}}">
+   上传中...
+</loading>
+
+
    <view class="camera">
      <view bindtap="chooseImg"><image class="camera-picture" src="{{img}}"/></view>
-     <view wx:if="{{isContinue}}" bindtap="chooseImgs"><image  class="camera-picture" src="{{imgs}}"/></view>
    </view>
    <view class="form-control">
       <form class="bs-example bs-example-form" role="form">
@@ -13,7 +18,7 @@
    </view>
 
    <view class="tag">
-     <input class="tag-text" placeholder="请输入标签，并用逗号区分" bindinput="tagInput"/>
+     <input class="tag-text" placeholder="请输入标签，并用逗号区分" cursor-spacing="10" bindinput="tagInput"/>
    </view>
 
   <view class="four">
@@ -22,7 +27,7 @@
      </view>
   <view class="four-saleprice">
     <form class="bs-example bs-example-form" role="form">
-      <input type="text" placeholder="￥0.00" bindinput="newPrice"></input>
+      <input type="text" placeholder="￥0.00" cursor-spacing="10" bindinput="newPrice"></input>
     </form>
   </view>
 </view>
@@ -32,7 +37,7 @@
   </view>
   <view class="four-saleprice">
     <form class="bs-example bs-example-form" role="form">
-      <input type="text" placeholder="￥0.00" bindinput="oldPrice"></input>
+      <input type="text" placeholder="￥0.00" cursor-spacing="10" bindinput="oldPrice"></input>
     </form>
   </view>
 </view>

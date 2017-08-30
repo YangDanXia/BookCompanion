@@ -29,7 +29,7 @@ Page({
   publishTo: function () {
     var userInfo = app.cache.userInfo || ''
     var that = this
-    var num = app.cache.bookTicket || 0
+    var num = userInfo.bookTicket || 0
     if (!content) {
       wx.showToast({
         title: '请输入完整信息',
@@ -48,9 +48,9 @@ Page({
         typeName: "insert",
         field: {
           book_isbn:isbn,
-          phone: userInfo.phone||'',
-          name: userInfo.name||'游客',
-          photo: userInfo.photo||'../../img/icon/user.png',
+          phone: userInfo.userPhone||'',
+          nickName: userInfo.nickName||'游客',
+          avatarUrl: userInfo.avatarUrl||'../../img/icon/user.png',
           content: content,
           view_time:time
         },
@@ -63,7 +63,6 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data)
         wx.showToast({
           title: '发布成功',
           icon: "success",
@@ -75,7 +74,7 @@ Page({
           icon: "success",
           duration: 1000
         })
-        app.saveCache('bookTicket', num)
+        app.saveCache('userInfo', userInfo)
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })

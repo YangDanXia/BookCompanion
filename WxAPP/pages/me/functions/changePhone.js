@@ -26,8 +26,8 @@ var settime = function (that) {
   }
     , 1000)
 }
-Page({
 
+Page({
   data: {
     toSend: true,
     second: 60 
@@ -35,7 +35,7 @@ Page({
 
   onShow: function () {
     var info = app.cache.userInfo || ''
-    var phone = info.phone || ''
+    var phone = info.userPhone || ''
 
     this.setData({
       phone: phone
@@ -147,15 +147,14 @@ Page({
         dbName: "WxApp",
         table: "user_info",
         typeName: "update",
-        field: { uk_phone: newPhone},
-        factor: { uk_phone: oldPhone}
+        field: { userPhone: newPhone},
+        factor: {userPhone: oldPhone}
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data);
         if (res.data == "error") {
           wx.showToast({
             title: "系统繁忙",

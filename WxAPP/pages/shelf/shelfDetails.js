@@ -19,7 +19,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(this.data.bookShelf)
     shelfIndex=options.index,
      this.setData({
        //书单内容
@@ -54,11 +53,8 @@ Page({
    * 是否收藏图书
    */
    collectOrNot:function(e){
-
      var index = e.currentTarget.dataset.index;
-     console.log(index)
      var obj = this.data.bookShelf
-     console.log("当前书单"+obj)
      obj[shelfIndex].shelf_bookList.splice(index, 1);
      app.saveCache('bookShelf', obj);
      this.onShow()

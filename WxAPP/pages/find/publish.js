@@ -3,15 +3,15 @@ var app = getApp()
 const date = new Date()
 var content='';
 var price='';
+var uploadPhoto=[]
 var photoShow;
 var ex_price='';
 var tag='';
 Page({
   data: {
     img:"../../img/icon/camera.png",
-    // 是否继续添加照片
-    isContinue:false,
-    imgs:"../../img/icon/addImg.png"
+    // loading
+    loadhidden: true
   },
 
 
@@ -31,50 +31,10 @@ Page({
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         var tempFilePaths = res.tempFilePaths
-        wx.uploadFile({
-          url: 'https://www.hqinfo.xyz/Server_Java/UploadImage',
-          filePath: tempFilePaths[0],
-          name: 'file',
-          success: function (res) {
-            that.setData({
-              img: tempFilePaths[0],
-              isContinue: true
-            })
-            console.log(res.data)
-            photoShow ="http://www.hqinfo.xyz/Server_Java/upload/"+res.data
-
-          }
+        that.setData({
+          img: tempFilePaths[0],
         })
       }
-    })
-    console.log(photoShow)
-  },
-
-  /**
- * 上传本地照片2
- */
-  chooseImgs: function () {
-    var that = this;
-    wx.chooseImage({
-      count: 1,
-      sizeType: 'compressed', // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        var tempFilePaths = res.tempFilePaths
-        wx.uploadFile({
-          url: 'https://www.hqinfo.xyz/Server_Java/UploadImage',
-          filePath: tempFilePaths[0],
-          name: 'file',
-          success: function (res) {
-            that.setData({
-              imgs: tempFilePaths[0]
-            })
-            console.log(res.data)
-            photoShow =photoShow +";"+ "http://www.hqinfo.xyz/Server_Java/upload/" + res.data
-          }
-        })
-      }
-
     })
   },
 
@@ -83,7 +43,6 @@ Page({
    */
   contentInput:function(e){
     content = e.detail.value
-    console.log(content)
   },
 
   /**
@@ -91,7 +50,6 @@ Page({
    */
   tagInput:function(e){
    tag = e.detail.value
-   console.log(tag)
   },
 
 
@@ -100,7 +58,6 @@ Page({
   */
   newPrice:function(e){
     price = e.detail.value
-    console.log(price)
   },
 
   /**
@@ -108,7 +65,6 @@ Page({
    */
   oldPrice:function(e){
     ex_price = e.detail.value
-    console.log(ex_price)
   },
 
 
@@ -120,8 +76,8 @@ Page({
   publishTo:function(){
     var userInfo = app.cache.userInfo
     var that = this
-    var num = app.cache.bookTicket || 0
-    if (!content || !price || !ex_price || !photoShow||!tag) {
+    var num = userInfo.bookTicket || 0
+    if (!content || !price || !ex_price || !uploadPhoto.length||!tag) {
       wx.showToast({
         title: '请输入完整信息',
         image: '../../img/icon/warn.png'
@@ -135,64 +91,80 @@ Page({
       })
       return false;
     }
-    var time = this.getTime()
-    wx.request({
-      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
-      data:
-      {
-        dbName: "WxApp",
-        table: "sellBook_record",
-        typeName: "insert",
-        field: { 
-          idx_phone: userInfo.phone, 
-          name: userInfo.name, 
-          photo: userInfo.photo, 
-          picture: photoShow,
-          content:content, 
-          tag:tag, 
-          price:price,
-          ex_price:ex_price,
-          publish_time:time
-        },
-        factor: {},
-        limit: "1"
-      },
-      //请求头
-      header: {
-        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
-      },
-      method: 'GET',
+    that.setData({
+      loadhidden:false
+    })
+
+    wx.uploadFile({
+      url: 'https://www.hqinfo.xyz/Server_Java/UploadImage',
+      filePath: that.data.img,
+      name: 'file',
       success: function (res) {
-        console.log(res.data)
-        wx.showToast({
-          title: '发布成功',
-          icon:"success",
-          duration:1000
+        photoShow = "http://www.hqinfo.xyz/Server_Java/upload/" + res.data
+        var time = that.getTime()
+        that.setData({
+          loadhidden: true
         })
-        num--
-        wx.showToast({
-          title: "书卷-1",
-          icon: "success",
-          duration: 1000
-        })
-        app.saveCache('bookTicket', num)
         wx.request({
-          url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
-        })
-        setTimeout(function () {
-          wx.navigateBack({
-            delta: 1
-          })
-        }, 1000);  
-        
-      },
-      fail: function (res) {
-        wx.showToast({
-          title: '网络异常',
-          image: '../../img/icon/warn.png'
-        })
+          url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+          data:
+          {
+            dbName: "WxApp",
+            table: "tem_sellBook_record",
+            typeName: "insert",
+            field: {
+              idx_phone: userInfo.userPhone,
+              nickName: userInfo.nickName,
+              avatarUrl: userInfo.avatarUrl,
+              picture: photoShow,
+              content: content,
+              tag: tag,
+              price: price,
+              ex_price: ex_price,
+              publish_time: time
+            },
+            factor: {},
+            limit: "1"
+          },
+          //请求头
+          header: {
+            'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+          },
+          method: 'GET',
+          success: function (res) {
+            wx.showToast({
+              title: '发布成功',
+              icon: "success",
+              duration: 800
+            })
+            num--
+            wx.showToast({
+              title: "书卷-1",
+              icon: "success",
+              duration: 500
+            })
+            userInfo.bookTicket = num
+            app.saveCache('userInfo', userInfo)
+            wx.request({
+              url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
+            })
+            setTimeout(function () {
+              wx.navigateBack({
+                delta: 1
+              })
+            }, 1000);
+
+          },
+          fail: function (res) {
+            wx.showToast({
+              title: '网络异常',
+              image: '../../img/icon/warn.png'
+            })
+          }
+        });
       }
-    });
+    })
+
   },
 
   /**

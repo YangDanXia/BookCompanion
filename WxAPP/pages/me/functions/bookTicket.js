@@ -1,5 +1,6 @@
 // pages/me/functions/bookTicket.js
 var app =getApp()
+
 Page({
 
   /**
@@ -8,16 +9,13 @@ Page({
   data: {
     winWidth: app.globalData.width,
     // 书卷的获得
-    array:["每日打卡","借阅图书","按时还书","购买电子书","发布","意见反馈"],
-    // 书卷数量
-    num:app.cache.bookTicket||0
+    array:["每日打卡","借阅图书","按时还书","购买电子书","发布","意见反馈"]
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-     console.log(app.cache.bookTicket)
   },
 
   /**
@@ -31,8 +29,9 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-   this.setData({
-     num: app.cache.bookTicket || 0
+    var obj = app.cache.userInfo || []
+    this.setData({
+     num: obj.bookTicket || 0
    })
   },
 

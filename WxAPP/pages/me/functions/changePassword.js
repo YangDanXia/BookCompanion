@@ -14,8 +14,8 @@ Page({
 
   onShow: function () {
     var info = app.cache.userInfo || ''
-    var phone = info.phone || ''
-    var oldPasswd = info.password ||''
+    var phone = info.userPhone || ''
+    var oldPasswd = info.userPassword ||''
     this.setData({
       phone: phone,
       oldPasswd: oldPasswd
@@ -83,8 +83,8 @@ Page({
         dbName: "WxApp",
         table: "user_info",
         typeName: "update",
-        field: { info_password: passwd },
-        factor: { uk_phone: this.data.phone }
+        field: { userPassword: passwd },
+        factor: {userPhone: this.data.phone }
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'

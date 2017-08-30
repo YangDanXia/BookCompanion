@@ -111,7 +111,7 @@ Page({
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '',publisher:'',summary:'' },
         factor: { total_type: tag },
-        limit: "0,30"
+        limit: "0,100"
       },
       //请求头
       header: {

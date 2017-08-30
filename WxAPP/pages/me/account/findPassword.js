@@ -2,7 +2,7 @@
 var app = getApp();
 var that = this;
 var userPhone;
-var passwd;
+var userPassword;
 var codeNumber;
 var code;
 var countdown = 60;
@@ -26,8 +26,9 @@ var settime = function (that) {
   }
     , 1000)
 }
-Page({
 
+
+Page({
   data: {
     toSend: true,
     second: 60
@@ -44,7 +45,7 @@ Page({
    * 获取密码的输入
    */
   passwdInput: function (e) {
-    passwd = e.detail.value
+    userPassword = e.detail.value
   },
 
   /**
@@ -94,10 +95,11 @@ Page({
   },
 
   /**
-   * 点击注册
+   * 点击修改密码
    */
   login: function () {
-    var information = new Array(userPhone, passwd, code);
+    var info = app.cache.userInfo || {}
+    var information = new Array(userPhone, userPassword, code);
     for (var x = 0; x < 3; x++) {
       if (!information[x]) {
         wx.showToast({
@@ -125,15 +127,14 @@ Page({
         dbName: "WxApp",
         table: "user_info",
         typeName: "update",
-        field: {info_password: passwd },
-        factor: { uk_phone: userPhone}
+        field: { userPassword: userPassword },
+        factor: {userPhone: userPhone}
       },
       header: {
         'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data);
         if (res.data == "error") {
           wx.showToast({
             title: "系统繁忙",
@@ -142,11 +143,14 @@ Page({
           })
           return false;
         } else {
+          info.userPassword = userPassword;
+          app.saveCache("userInfo", info)
           wx.showToast({
             icon: 'success',
             duration: 1000
           })
         }
+
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })

@@ -47,16 +47,15 @@ Page({
    */
   refresh: function () {
     var that = this
-    var phone = app.cache.userInfo.phone
-    console.log(app.cache.userInfo.phone)
+    var phone = app.cache.userInfo.userPhone
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",
-        table: "sellBook_record",
+        table: "tem_sellBook_record",
         typeName: "inquire",
-        field: {id:'',idx_phone: '', name: '', photo: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
+        field: {id:'',idx_phone: '', nickName: '', avatarUrl: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
         factor: { idx_phone:phone},
         limit: "0,20"
       },
@@ -66,7 +65,6 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data)
         var obj = res.data.result
         if (res.data == "error") {
           that.setData({
@@ -76,6 +74,7 @@ Page({
         }
         if (obj.length == 0) {
           that.setData({
+            list: obj,
             warnHidden: true
           })
         }else{
@@ -107,17 +106,15 @@ Page({
   delMessage:function(e){
     var _id = e.currentTarget.dataset.id
     var that =this
-    console.log(e)
-    console.log(_id)
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",
-        table: "sellBook_record",
+        table: "tem_sellBook_record",
         typeName: "delete",
         field: {},
-        factor: { idx_phone: app.cache.userInfo.phone,id:_id },
+        factor: { idx_phone: app.cache.userInfo.userPhone,id:_id },
         limit: "1"
       },
       //请求头
@@ -126,12 +123,11 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data)
         if(res.data){
           wx.showToast({
             title: "删除成功",
             icon: "success",
-            duration: 1000
+            duration: 800
           })
         }
         wx.request({
@@ -146,7 +142,7 @@ Page({
     })
     setTimeout(function () {
       that.onShow()
-    }, 500);
+    }, 1000);
 
   }
 

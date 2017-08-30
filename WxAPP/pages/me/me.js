@@ -1,8 +1,11 @@
 // pages/me/me.js
 const date = new Date()
 var app = getApp()
-// 书卷数量
-var num = app.cache.bookTicket || 0
+// 打卡记录
+var checkIn
+// 打卡天数
+var days
+
 
 Page({
 
@@ -10,7 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userInfo: app.cache.userInfo,
+    userInfo: app.cache.userInfo||'',
     //登录状态
     loginFlag: app.cache.loginFlag || false,
     winHeight: app.globalData.winHeight
@@ -22,8 +25,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function () {
-    var that = this
-    console.log("finish")
+
   },
 
 
@@ -31,12 +33,52 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    var content = app.cache.checkIn || [];
-    var days = content.days || 0;
+    checkIn = app.cache.checkIn || [];
+    days = checkIn.days || 0;
+    this.getMsgDetail()
     this.setData({
       days:days,
       loginFlag: app.cache.loginFlag || false,
       userInfo: app.cache.userInfo
+    })
+  },
+
+  /**
+   * 获取通知信息
+   */
+  getMsgDetail: function () {
+    var that = this
+    var userInfo = app.cache.userInfo || ''
+    var phone = userInfo.userPhone || ''
+    if (!app.cache.loginFlag) {
+      return false;
+    }
+    wx.request({
+      url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
+      data:
+      {
+        dbName: "WxApp",
+        table: "message_record",
+        typeName: "inquire",
+        field: { sender: '', receiver: '', status: '' },
+        factor: {user:phone, receiver: phone, status: '0' },
+        limit: "100"
+      },
+      //请求头
+      header: {
+        'content-type': 'application/x-www-form-urlencoded; charset=utf-8'
+      },
+      method: 'GET',
+      success: function (res) {
+        console.log(res.data)
+        // 未读数量
+        that.setData({
+          unreadNum: res.data.result.length
+        })
+      },
+      fail: function (res) {
+        console.log("fail")
+      }
     })
   },
 
@@ -80,11 +122,12 @@ Page({
    * 打卡
    */
   checkIn:function(){
-    var content = app.cache.checkIn || [];
     var data = this.getTime()
-    var days = content.days || 0;
+    var obj = this.data.userInfo || ''
+    // 书卷数量
+    var num = obj.bookTicket || 0
     var arr;
-    if(content.data!= data){
+    if(checkIn.data!= data){
       days++ ;
       num++;
       arr = { data: data, days:days }
@@ -96,8 +139,9 @@ Page({
         icon:"success",
         duration:1000
       })
+      obj.bookTicket = num
       app.saveCache('checkIn',arr)
-      app.saveCache('bookTicket',num)
+      app.saveCache('userInfo',obj)
     }else{
       wx.showToast({
         title: "今天已完成打卡了哦~",
@@ -111,13 +155,14 @@ Page({
    * 提示用户
    */
   warnUser:function(){
-    wx.navigateTo({
-      url: 'functions/notice'
-    })
-    // wx.showToast({
-    //   title: "功能未开放，敬请期待",
-    //   image: "../../img/icon/warn.png"
-    // })
+    if (!this.data.loginFlag) {
+      this.login()
+    } else {
+      wx.navigateTo({
+        url: 'functions/notice'
+      })
+    }
+
   },
 
 
@@ -125,7 +170,6 @@ Page({
    * 退出登录
    */
   logOut: function () {
-    app.removeCache('userInfo')
     app.saveCache('loginFlag', false)
     wx.showToast({
       title: '注销成功',

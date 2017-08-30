@@ -13,6 +13,7 @@ public class WxApp  implements DbConnect{
 		// TODO Auto-generated method stub
 		
 		String url = "jdbc:mysql://10.66.192.197:3306/WxApp";
+		
 		Class.forName("com.mysql.jdbc.Driver");		
 		dsWxApp = DriverManager.getConnection(url, user, password);
      }

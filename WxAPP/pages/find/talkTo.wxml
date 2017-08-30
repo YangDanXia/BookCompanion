@@ -23,8 +23,6 @@
         <view class="{{item.role?'textview2':'textview'}}">
           <text class="feedbacktext">{{item.content}}</text>
         </view>
-        
-        <view wx:if="{{networkType=='fail'}}"><icon type="warn" size="20"/></view>
         <view class="imgview"></view>
       </li>
       </block>

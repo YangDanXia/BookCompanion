@@ -1,5 +1,34 @@
 /* pages/find/find.wxss */
  
+.warnShow{
+  position: fixed;
+	bottom: 0;
+	top: 0;
+	width: 100%;
+	z-index: 2;
+	overflow: hidden;
+	display: flex;
+
+}
+
+.song-info{
+	flex: none;
+	display: flex;
+	background: rgba(0,0,0,.1);
+	box-sizing: border-box;
+	width: 100%;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.imgTo{
+width:550rpx;
+height:550rpx;
+margin:0 10%;
+
+
+}
+
 .from
 {
   display: flex;

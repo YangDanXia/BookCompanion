@@ -1,7 +1,7 @@
  <!--pages/shelf/functions/pay.wxml-->
  <view class="workbench">
    <view>
-    <view class="title"><image class="title-warn" src="../../../../img/icon/h.png"/>支付押金
+    <view class="title"><image class="title-warn" src="../../../../img/icon/h.png"/>支付
     <image class="title-warn" src="../../../../img/icon/h.png"/>
     </view>
    </view>
@@ -9,7 +9,7 @@
    <view class="list fun-list">
      <view class="err-item">  
        <view class="themes-box-top">
-        <image src="{{userInfo.photo}}" class="themes-box-title"></image>
+        <image src="{{avatarUrl}}" class="themes-box-title"></image>
        </view>
        <view class="_navs">
           <text class="1_content">向【书途Life】转账：</text>

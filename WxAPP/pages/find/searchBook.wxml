@@ -1,17 +1,7 @@
 <!--pages/find/find.wxml-->
-<view class="search-box">
- <image class="search-vacate"/>
-   <input class="search-input" placeholder="请输入书名"  bindchange="bindChange" confirm-type="search"/>
-   <view class="search-btn">
-     <icon type="search"  bindtap="formSubmit"/>
-   </view>
-</view>
+ 
 
 <view wx:if="{{errHidden}}">
-
-
-<image class="fixed" src="../../img/icon/addTitle.png" bindtap="publish" style="z-index:2;"></image>
-
 <!-- 放大图片 -->
 	<view class="warnShow" wx:if="{{photoShow}}" bindtap="closePhoto">
 		<view class="song-info">

@@ -31,9 +31,9 @@ Page({
   /**
    * 生命周期函数--监听页面显示
    */
-  onshow: function () {
+  onShow: function () {
     this.setData({
-      setState: app.cache.remindFlag || ['0', '0', '0'],
+      remindFlag: app.cache.remindFlag || ['0', '0', '0'],
       loginFlag: app.cache.loginFlag || false
  
     })
@@ -61,7 +61,7 @@ Page({
     this.setData({
       remindFlag: newSetState
     })
-    app.saveCache('remindFlag', this.data.remindFlag)//更新本地缓存
+    app.saveCache('remindFlag', newSetState)//更新本地缓存
   },
 
 

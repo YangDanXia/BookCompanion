@@ -144,7 +144,7 @@ navigator image{
     height: 20px;
 }
 navigator{
-  padding:0 40rpx;
+ padding-left:40rpx;
 }
 .title-btn{
   width:80rpx;height:60rpx;
@@ -175,7 +175,7 @@ navigator{
 
     /*text-align: center;*/
 }
-.navs{width:100%;height: 100%;}
+.navs{width:100%;height: 100%;padding-left:10%;}
 .book{width:80%;height:110%;border-radius:8rpx;margin-top:-10%;
 }
 

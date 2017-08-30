@@ -12,10 +12,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options)
+    var userInfo = app.cache.userInfo ||''
     isbn = options.isbn
     email = options.email
     this.setData({
+      avatarUrl: userInfo.avatarUrl,
       average:options.average
     })
       
@@ -51,7 +52,6 @@ Page({
       },
       method: 'GET',
       success: function (res) {
-        console.log(res.data)
         wx.showToast({
           title: '购买成功！',
           icon: 'success',

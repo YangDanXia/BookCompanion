@@ -5,7 +5,7 @@ var searchContent;
 Page({
 
   /**
-   * 页面的初始数据
+   * 页面的初始数据 
    */
   data: {
     // 提示错误图片
@@ -22,9 +22,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.setData({
-      loginFlag: app.cache.loginFlag || false
-    })
+    searchContent = options.book
   },
 
 
@@ -46,27 +44,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    this.setData({
-      loginFlag: app.cache.loginFlag || false
-    })
-    this.refresh()
-  },
-
-  /**
-   * 刷新界面
-   */
-  refresh:function(){
-    var that = this
+    var that = this;
     wx.request({
       url: 'https://www.hqinfo.xyz/Server_Java/DbOperations',
       data:
       {
         dbName: "WxApp",
         table: "tem_sellBook_record",
-        typeName: "inquireOrder",
-        field: { idx_phone: '', nickName: '', avatarUrl: '', bookName:'',picture: '', content: '', tag: '', price: '', ex_price: '',publish_time:'' },
-        factor: {},
-        limit: "1"
+        typeName: "inquireLike",
+        field: { idx_phone: '', nickName: '', avatarUrl: '', bookName: '', picture: '', content: '', tag: '', price: '', ex_price: '', publish_time: '' },
+        factor: { bookName: searchContent },
+        limit: "0,50"
       },
       //请求头
       header: {
@@ -74,27 +62,18 @@ Page({
       },
       method: 'GET',
       success: function (res) {
+        console.log(res.data)
         var obj = res.data.result
-        if(res.data == "error"){
-          that.setData({
-            errHidden: false
-          })
-          return false;
-        }
         if (obj.length == 0) {
           that.setData({
-            warnHidden: true
+            warnHidden: true,
+            list: []
           })
         } else {
-          for (var i = 0; i < obj.length; i++) {
-            obj[i].tag = obj[i].tag.split(",");
-          }
           that.setData({
-            warnHidden: false,
-            list: obj
+            list: res.data.result
           })
         }
-
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
@@ -107,6 +86,7 @@ Page({
     })
   },
 
+ 
 
   /**
    * 点击放大图片
@@ -127,37 +107,9 @@ Page({
       photoShow: false
     })
   },
+ 
 
-  /**
-   * 输入框失焦时触发,获取输入框内容
-   */
-  bindChange: function (e) {
-      searchContent = e.detail.value //搜索内容
-  },
-
-
-  /**
-   * 点击搜索按钮触发
-   */
-  formSubmit:function(){
-    wx.navigateTo({
-      url: 'searchBook?book='+searchContent,
-    })
-  },
-
-
-  /**
-   * 发布文章
-   */
-  publish:function(){
-    if (!this.data.loginFlag) {
-      this.login()
-    } else {
-      wx.navigateTo({
-        url: 'publish'
-      })
-    }
-  },
+  
 
   /**
  * 发起聊天
@@ -173,14 +125,5 @@ Page({
         url: 'talkTo?phone='+phone+'&photo='+photo+'&name='+name+'&way=write'
       })
     }
-  },
-
-  /**
- * 进入登录界面
- */
-  login: function () {
-    wx.navigateTo({
-      url: '../me/account/login'
-    })
-  }
+  } 
 })

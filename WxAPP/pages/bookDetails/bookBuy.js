@@ -45,7 +45,7 @@ Page({
       method: 'GET',
       success: function (res) {
         // res.data.result[0].title = res.data.result[0].title.substr(0, 10) + "..."
-        res.data.result[0].average =Math.ceil(res.data.result[0].ebook_price / 4)
+        res.data.result[0].average =res.data.result[0].ebook_price / 4
         that.setData({
           bookInfo: res.data.result[0]
         })
@@ -126,9 +126,10 @@ Page({
   submit:function(){
     var that = this
     var patt = /([\w\-]+\@[\w\-]+\.[\w\-]+)/;
+    var average = that.data.bookInfo.average.toFixed(1)
     if(patt.test(email)){
       wx.navigateTo({
-        url: 'function/pay?isbn=' + that.data.bookInfo.isbn13 + '&email=' + email + '&average=' + that.data.bookInfo.average
+        url: 'function/pay?isbn=' + that.data.bookInfo.isbn13 + '&email=' + email + '&average=' + average
       })
     }else{
       wx.showToast({

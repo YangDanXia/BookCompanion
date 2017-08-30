@@ -30,7 +30,7 @@
  
 
 <!--图书导航-->
- <view class="list">
+  <view class="list">
    <block wx:for="{{bookTypeUp}}"  wx:key="item"> 
       <navigator url="{{item.url}}" hover-class="none" class="items">
         <image src="{{item.img}}"></image>
@@ -45,13 +45,13 @@
         <text>{{item.text}}</text>
       </navigator>
    </block>
-  </view>
+  </view> 
 <!--菜单-->
 
  
- <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder"></image>
+   <image class="fixed" src="../../img/icon/order.png" bindtap="bookOrder"></image> 
  
-  <view class="workbench">
+   <view class="workbench" style="width:{{winWidth}}px">
    <view>
     <view class="title"><image class="title-btn" src="../../img/icon/h.png"/>每日推荐<image class="title-btn" src="../../img/icon/h.png"/></view>
     </view>
@@ -84,7 +84,7 @@
 
 
 
-    <view class="workbench">
+    <view class="workbench" style="width:{{winWidth}}px">
    <view>
     <view class="title"><image class="title-btn" src="../../img/icon/h.png"/>新书来袭<image class="title-btn" src="../../img/icon/h.png"/></view>
     </view>
@@ -111,12 +111,12 @@
                 </view>
               </view>
             </view>
-    </view>
+    </view> 
 
-  </view>
+   </view> 
 
 
  
-    <view class="themes-list-description" style="text-align:center">已经到底了</view>
+    <view class="themes-list-description" style="text-align:center">已经到底了</view> 
 
 </view>

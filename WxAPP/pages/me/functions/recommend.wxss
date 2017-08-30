@@ -14,7 +14,7 @@ page{
  .list-btn {
   align-items: center;
   font-size: 11pt;
-  padding: 0 30rpx 0 10px;
+  padding-left:15px;
   margin-bottom: 10rpx;
   display: flex;
   background-color: #fff;

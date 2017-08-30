@@ -1,14 +1,15 @@
 {
   "pages": [
-             
-      "pages/index/index", 
-      "pages/find/find",
-      "pages/shelf/shelf",
-      "pages/me/me",
             
+      "pages/index/index", 
+      "pages/shelf/shelf",
+      "pages/find/find",
+      "pages/me/me",
+        
       "pages/me/myPublished",
       "pages/find/talkTo",
       "pages/find/publish",
+      "pages/find/searchBook",
       "pages/shelf/addShelf",
       "pages/shelf/shelfDetails",
       "pages/bookDetails/bookDetails",

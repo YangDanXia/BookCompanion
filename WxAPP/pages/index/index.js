@@ -140,10 +140,10 @@ Page({
         data:
         {
           dbName: "gdou_book",
-          table: "novel",
+          table: "biography",
           typeName: "inquire",
           field: { title: '', author: '', isbn13: '', images: '', total_type: ''},
-          factor: { respect_type: "都市" },
+          factor: { respect_type: "人文-社会学家" },
           limit:"0,6"
         },
         //请求头
@@ -247,7 +247,7 @@ Page({
         table: "all_books",
         typeName: "inquire",
         field: { title: '', author: '', isbn13: '', images: '', total_type: '' },
-        factor: {pubdate:"2017-01-01"},
+        factor: { pubdate: "2017-01-01", respect_type:"古代言情"},
         limit: "0,6"
       },
       //请求头

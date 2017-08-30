@@ -107,8 +107,9 @@ Page({
         wx.request({
           url: 'https://www.hqinfo.xyz/Server_Java/CloseConn'
         })
+        app.saveCache('loginFlag', false)
         setTimeout(function () {
-          wx.navigateTo({
+          wx.redirectTo({
             url: '../account/login'
           })
         }, 1000);  

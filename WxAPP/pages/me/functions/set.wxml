@@ -15,6 +15,7 @@
 
 
 
+
 <view class="box-top">
  <block wx:for="{{functionList}}" wx:key="{{item}}">
    <view class="content">
@@ -39,5 +40,8 @@
     清理缓存
     <view class="btn-size"> {{currentSize}} M</view>
     </view>
+    <view class="cleanRemind">
+       清除浏览记录、借阅历史、以及搜索记录
+      </view>
 </view>
  

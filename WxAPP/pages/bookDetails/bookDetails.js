@@ -102,7 +102,7 @@ Page({
             typeName: "inquire",
             field: { isbn13: '', images: ''},
             factor: { total_type: total_type },
-            limit:"50,6"
+            limit:"60,6"
           },
           //请求头
           header: {
@@ -194,7 +194,7 @@ Page({
         dbName: "WxApp",
         table: "book_view",
         typeName: "inquire",
-        field: {name: '',photo:'',content:'',gmt_create:'' },
+        field: {nickName: '',avatarUrl:'',content:'',view_time:'' },
         factor: { book_isbn: isbn },
         limit: "20"
       },

@@ -129,7 +129,12 @@ Page({
         dbName:"WxApp",
         table:"user_info",
         typeName:"insert",
-        field:info,
+        field: { 
+          userPhone: userPhone, 
+          userPassword: userPassword, 
+          avatarUrl:info.avatarUrl, 
+          nickName: info.nickName
+          },
         factor:{}
       }, 
       header: {

@@ -8,6 +8,9 @@
    <view class="camera">
      <view bindtap="chooseImg"><image class="camera-picture" src="{{img}}"/></view>
    </view>
+    <view class="tag">
+     <input class="tag-text" placeholder="请输入书名" cursor-spacing="10" bindinput="bookInput"/>
+   </view>
    <view class="form-control">
       <form class="bs-example bs-example-form" role="form">
         <textarea class="control" placeholder="详细描述有助于吸引更多人的关注哦！" style="padding:30rpx 20rpx;" bindinput="contentInput"/>

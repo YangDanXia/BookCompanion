@@ -1,11 +1,12 @@
 // pages/find/find.js
 var app = getApp()
 const date = new Date()
+var image;
 var content='';
 var price='';
-var uploadPhoto=[]
 var photoShow;
 var ex_price='';
+var bookName;
 var tag='';
 Page({
   data: {
@@ -30,12 +31,19 @@ Page({
       sizeType: 'compressed', // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
-        var tempFilePaths = res.tempFilePaths
+        image = res.tempFilePaths[0]
         that.setData({
-          img: tempFilePaths[0],
+          img: res.tempFilePaths[0],
         })
       }
     })
+  },
+
+  /**
+   * 书名
+   */
+  bookInput:function(e){
+    bookName = e.detail.value
   },
 
   /**
@@ -77,7 +85,7 @@ Page({
     var userInfo = app.cache.userInfo
     var that = this
     var num = userInfo.bookTicket || 0
-    if (!content || !price || !ex_price || !uploadPhoto.length||!tag) {
+    if (!content || !bookName || !price || !image|| !ex_price ||!tag) {
       wx.showToast({
         title: '请输入完整信息',
         image: '../../img/icon/warn.png'
@@ -97,7 +105,7 @@ Page({
 
     wx.uploadFile({
       url: 'https://www.hqinfo.xyz/Server_Java/UploadImage',
-      filePath: that.data.img,
+      filePath: image,
       name: 'file',
       success: function (res) {
         photoShow = "http://www.hqinfo.xyz/Server_Java/upload/" + res.data
@@ -117,6 +125,7 @@ Page({
               nickName: userInfo.nickName,
               avatarUrl: userInfo.avatarUrl,
               picture: photoShow,
+              bookName: bookName,
               content: content,
               tag: tag,
               price: price,

@@ -128,12 +128,12 @@
     <view class="themes-list-box">
      <view bindtap="bookDetail">
        <view class="themes-list-thumbnail">
-         <image class="themes-list-img" src='{{item.photo}}' />
+         <image class="themes-list-img" src='{{item.avatarUrl}}' />
        </view>
 
        <view class="themes-list-main">
-         <view class="themes-list-name">{{item.name}}</view>
-         <view class="themes-list-description">{{item.gmt_create}}</view>
+         <view class="themes-list-name">{{item.nickName}}</view>
+         <view class="themes-list-description">{{item.view_time}}</view>
          <view class="themes-list-description">{{item.content}}</view>
        </view>
       </view>

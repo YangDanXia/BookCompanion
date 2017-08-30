@@ -124,7 +124,7 @@
 <!--预约栏-->
 <swiper-item>
 <scroll-view scroll-y style="height:{{winHeight}}px">
-<view wx:if="{{reserveBook ==''}}" class="login-warn">目前没有预约书籍~</view>
+<view wx:if="{{reserveBook ==''}}" class="login-warn" style="padding:28%;">目前没有预约书籍~</view>
 <view wx:else> 
   <block wx:for="{{reserveBook}}" wx:key="item"> 
    <view class="themes-list">

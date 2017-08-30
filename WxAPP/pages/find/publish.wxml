@@ -27,7 +27,7 @@
      </view>
   <view class="four-saleprice">
     <form class="bs-example bs-example-form" role="form">
-      <input type="text" placeholder="￥0.00" cursor-spacing="10" bindinput="newPrice"></input>
+      <input type="digit" placeholder="￥0.00" cursor-spacing="10" bindinput="newPrice"></input>
     </form>
   </view>
 </view>
@@ -37,7 +37,7 @@
   </view>
   <view class="four-saleprice">
     <form class="bs-example bs-example-form" role="form">
-      <input type="text" placeholder="￥0.00" cursor-spacing="10" bindinput="oldPrice"></input>
+      <input type="digit" placeholder="￥0.00" cursor-spacing="10" bindinput="oldPrice"></input>
     </form>
   </view>
 </view>

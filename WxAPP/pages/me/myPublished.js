@@ -53,7 +53,7 @@ Page({
       data:
       {
         dbName: "WxApp",
-        table: "tem_sellBook_record",
+        table: "sellBook_record",
         typeName: "inquire",
         field: {id:'',idx_phone: '', nickName: '', avatarUrl: '', picture: '', content: '', tag: '', price: '', ex_price: '' },
         factor: { idx_phone:phone},
@@ -111,7 +111,7 @@ Page({
       data:
       {
         dbName: "WxApp",
-        table: "tem_sellBook_record",
+        table: "sellBook_record",
         typeName: "delete",
         field: {},
         factor: { idx_phone: app.cache.userInfo.userPhone,id:_id },

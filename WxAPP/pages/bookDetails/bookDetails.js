@@ -480,7 +480,7 @@ Page({
         dbName:"Library",
         table:"RECORD_RESERVATION",
         typeName:"insert",
-        field: {UserId: app.cache.userInfo.phone, ReservationGiveTime: e.detail.value, BookId: that.data.bookId, BooklistISBN:bookNeedInfo.book_isbn},
+        field: {UserId: app.cache.userInfo.userPhone, ReservationGiveTime: e.detail.value, BookId: that.data.bookId, BooklistISBN:bookNeedInfo.book_isbn},
         factor:{}
       }, 
       header: {

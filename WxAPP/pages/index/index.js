@@ -67,25 +67,6 @@ Page({
       }
     })
 
-    /**
- * 弹出提示
- */
-    wx.showModal({
-      title: '帮助',
-      content: '在开始我们的图书之旅前，先来看看如何使用我们的小程序吧~',
-      cancelText: '不了不了',
-      confirmText: '带我去',
-      success: function (res) {
-        if (res.confirm) {
-          wx.navigateTo({
-            url: '../me/functions/help'
-          })
-        } else if (res.cancel) {
-          console.log('用户点击取消')
-        }
-      }
-    })
-
 
     //每日推荐
     that.DailyRecommend();

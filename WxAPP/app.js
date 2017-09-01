@@ -54,6 +54,23 @@ App({
       }
     })
 
+
+
+     /**
+      * 建立签到机制
+      */
+    wx.getStorage({
+      key: 'checkIn',
+      success: function (res) { return; },
+      fail: function () {
+        var obj = {
+          data:"0",
+          days:0
+        }
+        that.saveCache('checkIn', obj)
+      }
+    })
+
     
     /**
      * 读取缓存
@@ -114,7 +131,7 @@ App({
                },
          success: function(res){
             console.log(res.data)
-         }, 
+         }
        })
    },
 

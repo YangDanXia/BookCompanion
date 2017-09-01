@@ -66,8 +66,8 @@ onShow: function () {
      method: 'GET',
      success: function (res) {
        if(res.data){
-         var obj = app.cache.bookCard;
-         var newCard = { history_borrow: "0", library: that.data.array[that.data.index], uk_bookCardId: that.data.cardNum, current_borrow:"0"};
+         var obj = app.cache.bookCard||[];
+         var newCard = { history_borrow: 0, library: that.data.array[that.data.index], uk_bookCardId: that.data.cardNum, current_borrow:0};
          obj.push(newCard);
          app.saveCache('bookCard', obj);
          wx.showToast({

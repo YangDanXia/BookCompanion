@@ -511,7 +511,7 @@ Page({
         dbName: "WxApp",
         table: "booking_record",
         typeName: "insert",
-        field: { idx_phone: app.cache.userInfo.phone, 
+        field: { idx_phone: app.cache.userInfo.userPhone, 
         book_takeTime: e.detail.value, 
         book_id: that.data.bookId, 
         book_isbn: bookNeedInfo.book_isbn,

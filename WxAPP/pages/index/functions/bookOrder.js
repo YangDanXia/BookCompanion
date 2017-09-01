@@ -84,8 +84,6 @@ Page({
    * 选择要借/还的书
    */
   checkboxChange: function(e) {
-    console.log("图书选择情况:")
-    console.log(e.detail.value)
     codeValue =  e.detail.value;
     app.globalData.codeValue = codeValue
     app.globalData.currentTab = this.data.currentTab
@@ -143,6 +141,8 @@ Page({
     var waitToReturn = app.cache.waitToReturn || []
     var waitToBorrow = app.cache.waitToBorrow||[]
     var cardNum = this.data.bookCard[index].uk_bookCardId
+    var bookCard_record = {index:index,bookCardId:cardNum}
+    app.saveCache("cardNum",bookCard_record)
     var content = [codeValue.length, cardNum];
     // 为0表示在待借栏，为1表示在待还栏
     if (this.data.currentTab == '0') {

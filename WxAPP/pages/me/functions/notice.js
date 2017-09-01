@@ -136,7 +136,7 @@ Page({
         table: "message_record",
         typeName: "update",
         field: {status: '1' },
-        factor: {sender:phone,receiver:userInfo.phone, status: '0' },
+        factor: {sender:phone,receiver:userInfo.userPhone, status: '0' },
         limit: "100"
       },
       //请求头

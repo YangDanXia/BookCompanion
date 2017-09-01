@@ -158,6 +158,7 @@ Page({
         console.log("借书证编号：" + e.currentTarget.dataset.id)
         if (res.confirm) {
           var index = e.currentTarget.dataset.id;
+          var id = that.data.bookCard[index].uk_bookCardId
           that.data.bookCard.splice(index, 1);
           console.log(that.data.bookCard)
           app.saveCache('bookCard', that.data.bookCard);
@@ -170,7 +171,7 @@ Page({
               table: "bookcard_record",
               typeName: "delete",
               field: {},
-              factor: { idx_phone: that.data.phone}
+              factor: { idx_phone: that.data.phone,uk_bookCardId:id}
             },
             //请求头
             header: {

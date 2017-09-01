@@ -142,6 +142,8 @@ Page({
          var time = that.getTime()
          var choose = app.cache.chooseToBorrow
          var returnBook = app.cache.waitToReturn || []
+         var bookCard = app.cache.bookCard || []
+         var bookCard_record = app.cache.cardNum ||''
          var obj = app.cache.userInfo || ''
          // 书卷数量
          var num = obj.bookTicket || 0
@@ -187,8 +189,13 @@ Page({
               }
             })
          }
-  
-
+            var index = bookCard_record.index
+            console.log(index)
+            console.log(bookCard)
+            var old_current_borrow =bookCard[index].current_borrow
+            var new_current_borrow =old_current_borrow+len
+            bookCard[index].current_borrow = new_current_borrow
+            app.saveCache("bookCard", bookCard)
          wx.showToast({
            title: '操作成功',
            icon: " success",
@@ -238,6 +245,8 @@ Page({
       var waitToReturn = app.cache.waitToReturn ||[]
       var chooseToReturn = app.cache.chooseToReturn || []
       var historyBook = app.cache.historyBook || []
+      var bookCard = app.cache.bookCard || []
+      var bookCard_record = app.cache.cardNum ||''
       var len = chooseToReturn.length
       var obj = app.cache.userInfo || ''
       // 书卷数量
@@ -290,6 +299,14 @@ Page({
                 }
               })
             }
+            var index = bookCard_record.index
+            var old_history_borrow =bookCard[index].history_borrow
+            var old_current_borrow =bookCard[index].current_borrow
+            var new_history_borrow =old_history_borrow+len
+            var new_current_borrow = old_current_borrow-len
+            bookCard[index].history_borrow = new_history_borrow
+            bookCard[index].current_borrow = new_current_borrow
+            app.saveCache("bookCard", bookCard)
             wx.showToast({
               title: '操作成功',
               icon: " success",
@@ -341,6 +358,7 @@ Page({
     }
       , 1000)
   },
+
 
     /**
    * 获取时间

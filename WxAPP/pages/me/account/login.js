@@ -84,7 +84,7 @@ Page({
           var info = app.cache.userInfo || {}
           info.userPhone = that.data.userPhone
           info.userPassword = that.data.userPassword
-          info.bookTicket = result.bookTicket
+          info.bookTicket = 0
           app.saveCache("userInfo",info)
           app.saveCache('loginFlag',true)
           //返回上一层

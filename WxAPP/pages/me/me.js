@@ -125,8 +125,12 @@ Page({
     var data = this.getTime()
     var obj = this.data.userInfo || ''
     // 书卷数量
+    checkIn = app.cache.checkIn || [];
+    days = checkIn.days || 0;
     var num = obj.bookTicket || 0
     var arr;
+    console.log(checkIn.data)
+    console.log(data)
     if(checkIn.data!= data){
       days++ ;
       num++;

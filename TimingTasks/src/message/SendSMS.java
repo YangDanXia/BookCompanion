@@ -11,49 +11,49 @@ import com.aliyuncs.profile.IClientProfile;
 
 /**
  * Created on 17/6/7.
- * ¶ÌĞÅAPI²úÆ·µÄDEMO³ÌĞò,¹¤³ÌÖĞ°üº¬ÁËÒ»¸öSmsDemoÀà£¬Ö±½ÓÍ¨¹ı
- * Ö´ĞĞmainº¯Êı¼´¿ÉÌåÑé¶ÌĞÅ²úÆ·API¹¦ÄÜ(Ö»ĞèÒª½«AKÌæ»»³É¿ªÍ¨ÁËÔÆÍ¨ĞÅ-¶ÌĞÅ²úÆ·¹¦ÄÜµÄAK¼´¿É)
- * ¹¤³ÌÒÀÀµÁË2¸öjar°ü(´æ·ÅÔÚ¹¤³ÌµÄlibsÄ¿Â¼ÏÂ)
+ * çŸ­ä¿¡APIäº§å“çš„DEMOç¨‹åº,å·¥ç¨‹ä¸­åŒ…å«äº†ä¸€ä¸ªSmsDemoç±»ï¼Œç›´æ¥é€šè¿‡
+ * æ‰§è¡Œmainå‡½æ•°å³å¯ä½“éªŒçŸ­ä¿¡äº§å“APIåŠŸèƒ½(åªéœ€è¦å°†AKæ›¿æ¢æˆå¼€é€šäº†äº‘é€šä¿¡-çŸ­ä¿¡äº§å“åŠŸèƒ½çš„AKå³å¯)
+ * å·¥ç¨‹ä¾èµ–äº†2ä¸ªjaråŒ…(å­˜æ”¾åœ¨å·¥ç¨‹çš„libsç›®å½•ä¸‹)
  * 1:aliyun-java-sdk-core.jar
  * 2:aliyun-java-sdk-dysmsapi.jar
  *
- * ±¸×¢:Demo¹¤³Ì±àÂë²ÉÓÃUTF-8
- * ¹ú¼Ê¶ÌĞÅ·¢ËÍÇëÎğ²ÎÕÕ´ËDEMO
+ * å¤‡æ³¨:Demoå·¥ç¨‹ç¼–ç é‡‡ç”¨UTF-8
+ * å›½é™…çŸ­ä¿¡å‘é€è¯·å‹¿å‚ç…§æ­¤DEMO
  */
 public class SendSMS {
 
-    //²úÆ·Ãû³Æ:ÔÆÍ¨ĞÅ¶ÌĞÅAPI²úÆ·,¿ª·¢ÕßÎŞĞèÌæ»»
+    //äº§å“åç§°:äº‘é€šä¿¡çŸ­ä¿¡APIäº§å“,å¼€å‘è€…æ— éœ€æ›¿æ¢
     static final String product = "Dysmsapi";
-    //²úÆ·ÓòÃû,¿ª·¢ÕßÎŞĞèÌæ»»
+    //äº§å“åŸŸå,å¼€å‘è€…æ— éœ€æ›¿æ¢
     static final String domain = "dysmsapi.aliyuncs.com";
 
-    // TODO ´Ë´¦ĞèÒªÌæ»»³É¿ª·¢Õß×Ô¼ºµÄAK(ÔÚ°¢ÀïÔÆ·ÃÎÊ¿ØÖÆÌ¨Ñ°ÕÒ)
-    static final String accessKeyId = "LTAIPn82P2LKTcEB";
-    static final String accessKeySecret = "jnqIHeLWA752HcQQmHBlO5EFPquSMO";
+    // TODO æ­¤å¤„éœ€è¦æ›¿æ¢æˆå¼€å‘è€…è‡ªå·±çš„AK(åœ¨é˜¿é‡Œäº‘è®¿é—®æ§åˆ¶å°å¯»æ‰¾)
+    static final String accessKeyId = "***";
+    static final String accessKeySecret = "***";
 
     public SendSmsResponse sendSms(String phone,String template,String param) throws ClientException {
 
-        //¿É×ÔÖúµ÷Õû³¬Ê±Ê±¼ä
+        //å¯è‡ªåŠ©è°ƒæ•´è¶…æ—¶æ—¶é—´
         System.setProperty("sun.net.client.defaultConnectTimeout", "10000");
         System.setProperty("sun.net.client.defaultReadTimeout", "10000");
 
-        //³õÊ¼»¯acsClient,Ôİ²»Ö§³Öregion»¯
+        //åˆå§‹åŒ–acsClient,æš‚ä¸æ”¯æŒregionåŒ–
         IClientProfile profile = DefaultProfile.getProfile("cn-hangzhou", accessKeyId, accessKeySecret);
         DefaultProfile.addEndpoint("cn-hangzhou", "cn-hangzhou", product, domain);
         IAcsClient acsClient = new DefaultAcsClient(profile);
 
-        //×é×°ÇëÇó¶ÔÏó-¾ßÌåÃèÊö¼û¿ØÖÆÌ¨-ÎÄµµ²¿·ÖÄÚÈİ
+        //ç»„è£…è¯·æ±‚å¯¹è±¡-å…·ä½“æè¿°è§æ§åˆ¶å°-æ–‡æ¡£éƒ¨åˆ†å†…å®¹
         SendSmsRequest request = new SendSmsRequest();
-        //±ØÌî:´ı·¢ËÍÊÖ»úºÅ
+        //å¿…å¡«:å¾…å‘é€æ‰‹æœºå·
         request.setPhoneNumbers(phone);
-        //±ØÌî:¶ÌĞÅÇ©Ãû-¿ÉÔÚ¶ÌĞÅ¿ØÖÆÌ¨ÖĞÕÒµ½
-        request.setSignName("ÊéÍ¾Life");
-        //±ØÌî:¶ÌĞÅÄ£°å-¿ÉÔÚ¶ÌĞÅ¿ØÖÆÌ¨ÖĞÕÒµ½
+        //å¿…å¡«:çŸ­ä¿¡ç­¾å-å¯åœ¨çŸ­ä¿¡æ§åˆ¶å°ä¸­æ‰¾åˆ°
+        request.setSignName("ä¹¦é€”Life");
+        //å¿…å¡«:çŸ­ä¿¡æ¨¡æ¿-å¯åœ¨çŸ­ä¿¡æ§åˆ¶å°ä¸­æ‰¾åˆ°
         request.setTemplateCode(template);
-        //¿ÉÑ¡:Ä£°åÖĞµÄ±äÁ¿Ìæ»»JSON´®,ÈçÄ£°åÄÚÈİÎª"Ç×°®µÄ${name},ÄúµÄÑéÖ¤ÂëÎª${code}"Ê±,´Ë´¦µÄÖµÎª
+        //å¯é€‰:æ¨¡æ¿ä¸­çš„å˜é‡æ›¿æ¢JSONä¸²,å¦‚æ¨¡æ¿å†…å®¹ä¸º"äº²çˆ±çš„${name},æ‚¨çš„éªŒè¯ç ä¸º${code}"æ—¶,æ­¤å¤„çš„å€¼ä¸º
         request.setTemplateParam(param);
 
-        //hint ´Ë´¦¿ÉÄÜ»áÅ×³öÒì³££¬×¢Òâcatch
+        //hint æ­¤å¤„å¯èƒ½ä¼šæŠ›å‡ºå¼‚å¸¸ï¼Œæ³¨æ„catch
         SendSmsResponse sendSmsResponse = acsClient.getAcsResponse(request);
 
         return sendSmsResponse;
